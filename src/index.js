@@ -1,8 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-
-import store from './redux/store';
 import App from './containers/App';
 import './index.css';
 import 'sanitize.css/sanitize.css';
@@ -12,9 +9,9 @@ import 'sanitize.css/sanitize.css';
 // docs for adding apollo to redux
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+
+  <App />,
+
   document.getElementById('root'),
 );
 
