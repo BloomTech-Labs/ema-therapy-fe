@@ -8,6 +8,9 @@ import './index.css';
 import 'sanitize.css/sanitize.css';
 // import * as serviceWorker from './utils/serviceWorker';
 
+//  https://s3.amazonaws.com/apollo-docs-1.x/redux.html
+// docs for adding apollo to redux
+
 ReactDOM.render(
   <Provider store={store}>
     <App />

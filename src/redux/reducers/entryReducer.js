@@ -1,6 +1,6 @@
 import { ADD_ENTRY, GET_ENTRIES } from '../actions/actionTypes';
 
-const initialState = [];
+const initialState = { email: 'jeeef@gmail.com', sub: '8675309' };
 
 export default function(state = initialState, action) {
   switch (action.type) {
