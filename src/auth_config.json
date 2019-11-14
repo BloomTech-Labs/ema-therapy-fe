@@ -1,5 +1,4 @@
 {
   "domain": "moodmuse.auth0.com",
-  "clientId": "RWYKn1NSBG6LjReho2WItTjxxdtBxjXj",
-  "audience": "https://moodmuse-production.herokuapp.com"
+  "clientId": "RWYKn1NSBG6LjReho2WItTjxxdtBxjXj"
 }
