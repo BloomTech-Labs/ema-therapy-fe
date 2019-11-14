@@ -1,5 +1,5 @@
 {
   "domain": "moodmuse.auth0.com",
-  "clientId": "process.env.REACT_APP_AUTH0_CLIENTID",
+  "clientId": "RWYKn1NSBG6LjReho2WItTjxxdtBxjXj",
   "audience": "https://moodmuse-production.herokuapp.com"
 }
