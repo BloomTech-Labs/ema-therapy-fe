@@ -5,10 +5,9 @@ import './index.css';
 import 'sanitize.css/sanitize.css';
 import { Auth0Provider } from './react-auth0-spa';
 import config from './auth_config.json';
-// import * as serviceWorker from './utils/serviceWorker';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-//  https://s3.amazonaws.com/apollo-docs-1.x/redux.html
-// docs for adding apollo to redux
+// import * as serviceWorker from './utils/serviceWorker';
 
 // A function that routes the user to the right place
 // after login
@@ -29,7 +28,9 @@ ReactDOM.render(
     redirect_uri={window.location.origin}
     onRedirectCallback={onRedirectCallback}
   >
-    <App />
+    <Router>
+      <App />
+    </Router>
   </Auth0Provider>,
   document.getElementById('root'),
 );
