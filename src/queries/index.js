@@ -1,8 +1,8 @@
 import { gql } from 'apollo-boost';
 
 export const getMoodsQuery = gql`
-  query($id: ID) {
-    user(id: $id) {
+  query($sub: ID) {
+    user(sub: $sub) {
       moods {
         mood
         intensity

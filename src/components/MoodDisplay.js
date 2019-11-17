@@ -1,7 +1,6 @@
 import React from 'react';
 import { getMoodsQuery } from '../queries';
 import { useQuery } from '@apollo/react-hooks';
-// import { useAuth0 } from '../react-auth0-spa';
 
 function MoodDisplay({ sub }) {
   const { loading, error, data } = useQuery(getMoodsQuery, {
@@ -10,7 +9,7 @@ function MoodDisplay({ sub }) {
 
   console.log('data: ', data);
 
-  return <div>hey</div>;
+  return <code>{JSON.stringify(data, null, 2)}</code>;
 }
 
 export default MoodDisplay;

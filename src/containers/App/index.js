@@ -7,6 +7,7 @@ import PrivateRoute from '../../components/PrivateRoute';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import MoodDisplay from '../../components/MoodDisplay';
+import AddUser from '../../components/AddUser';
 
 function App() {
   const { loading, getTokenSilently, user, isAuthenticated } = useAuth0();
@@ -35,6 +36,7 @@ function App() {
         <header>
           <NavBar />
         </header>
+        {isAuthenticated && <AddUser email={user.email} sub={user.sub} />}
         {isAuthenticated && <MoodDisplay sub={user.sub} />}
         <Switch>
           <Route path="/" exact />
