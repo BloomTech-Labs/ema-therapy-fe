@@ -11,6 +11,17 @@ export const getMoodsQuery = gql`
   }
 `;
 
+export const checkForUserAndGetMoodsQuery = gql`
+  query($sub: ID, $email: String) {
+    user(sub: $sub, email: $email) {
+      moods {
+        mood
+        intensity
+      }
+    }
+  }
+`;
+
 export const addUserMutation = gql`
   mutation($email: String!, $sub: String!) {
     addUser(email: $email, sub: $sub) {
