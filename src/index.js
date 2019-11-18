@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import App from './containers/App';
-import './index.css';
 import 'sanitize.css/sanitize.css';
 import { Auth0Provider } from './react-auth0-spa';
-import config from './auth_config.json';
-import { BrowserRouter as Router } from 'react-router-dom';
-
+import {
+  AUTH0_DOMAIN,
+  AUTH0_CLIENT_ID,
+  AUTH0_AUDIENCE,
+} from './utils/auth-config';
+import './index.css';
 // import * as serviceWorker from './utils/serviceWorker';
 
-// A function that routes the user to the right place
-// after login
+// A function that routes the user to the right place after login
 const onRedirectCallback = (appState) => {
   window.history.replaceState(
     {},
@@ -23,10 +25,10 @@ const onRedirectCallback = (appState) => {
 
 ReactDOM.render(
   <Auth0Provider
-    domain={config.domain}
-    client_id={config.clientId}
+    domain={AUTH0_DOMAIN}
+    client_id={AUTH0_CLIENT_ID}
     redirect_uri={window.location.origin}
-    audience={config.audience}
+    audience={AUTH0_AUDIENCE}
     onRedirectCallback={onRedirectCallback}
   >
     <Router>
