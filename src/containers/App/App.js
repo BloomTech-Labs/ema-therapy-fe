@@ -8,7 +8,7 @@ import NavBar from '../../components/NavBar';
 import Profile from '../../components/Profile';
 import PrivateRoute from '../../components/PrivateRoute';
 import MoodDisplay from '../../components/MoodDisplay';
-import GlobalStyle from '../../global-styles';
+import GlobalStyle from '../../styles/global-styles';
 
 function App() {
   const { loading, getTokenSilently, isAuthenticated } = useAuth0();
