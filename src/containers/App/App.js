@@ -25,7 +25,9 @@ function App() {
     },
   });
 
-  return loading ? null : (
+  return loading ? (
+    <p>Loading...</p>
+  ) : (
     <ApolloProvider client={client}>
       <div className="App">
         <header>
