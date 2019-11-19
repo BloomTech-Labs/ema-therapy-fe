@@ -7,6 +7,7 @@ import { useAuth0 } from '../../react-auth0-spa';
 import Profile from '../../components/Profile';
 import PrivateRoute from '../../components/PrivateRoute';
 import MoodDisplay from '../../components/MoodDisplay';
+import { GRAPHQL_URI } from '../../utils/config';
 
 function App() {
   const { loading, getTokenSilently, isAuthenticated } = useAuth0();
@@ -16,8 +17,7 @@ function App() {
   }
 
   const client = new ApolloClient({
-    // uri: 'https://moodmuse.herokuapp.com/backend',
-    uri: 'http://localhost:5000/backend',
+    uri: GRAPHQL_URI,
     request: async (operation) => {
       const token = await getTokenSilently();
       operation.setContext({
