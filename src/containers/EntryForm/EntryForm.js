@@ -1,6 +1,18 @@
 import React, { useState } from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useAuth0 } from '../../utils/react-auth0-spa';
+import { gql } from 'apollo-boost';
+import { addMoodMutation } from '../../queries';
+
+const getUserId = gql`
+  query($sub: ID) {
+    user(sub: $sub) {
+      id
+    }
+  }
+`;
 
 const activities = [
   {
@@ -50,6 +62,14 @@ const EntryForm = () => {
   });
   const [view, setView] = useState('mood');
 
+  const { user } = useAuth0();
+
+  const { loading, error, data } = useQuery(getUserId, {
+    variables: { sub: user.sub },
+  });
+
+  const [addMood, { data: moodData }] = useMutation(addMoodMutation);
+
   // console.log(input);
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -66,13 +86,20 @@ const EntryForm = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
+    // console.log(input.mood);
+    addMood({ variables: { userId: data.user.id, mood: input.mood } });
   };
+
+  console.log('moodData', moodData);
 
   const handleView = (newView) => {
     setView(newView);
   };
 
-  console.log(input);
+  // console.log(data);
+
+  if (loading) return <p>Loading ...</p>;
+  if (error) return <p>Error fetching.</p>;
 
   return (
     <form onSubmit={submitForm}>

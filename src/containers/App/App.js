@@ -32,12 +32,16 @@ function App() {
   ) : (
     <ApolloProvider client={client}>
       <div className="App">
-        {/* <header>
+        <header>
           <NavBar />
         </header>
-        {isAuthenticated && <MoodDisplay />} */}
-        <Dashboard />
-        <EntryForm />
+        {/* {isAuthenticated && <MoodDisplay />} */}
+        {isAuthenticated && (
+          <>
+            <Dashboard />
+            <EntryForm />
+          </>
+        )}
         <Switch>
           <Route path="/" exact />
           <PrivateRoute path="/profile" component={Profile} />
