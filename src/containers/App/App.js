@@ -3,7 +3,7 @@ import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { Route, Switch } from 'react-router-dom';
 import NavBar from '../../components/NavBar';
-import { useAuth0 } from '../../react-auth0-spa';
+import { useAuth0 } from '../../utils/react-auth0-spa';
 import Profile from '../../components/Profile';
 import PrivateRoute from '../../components/PrivateRoute';
 import MoodDisplay from '../../components/MoodDisplay';

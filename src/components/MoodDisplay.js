@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { checkForUserAndGetMoodsQuery } from '../queries';
-import { useAuth0 } from '../react-auth0-spa';
+import { useAuth0 } from '../utils/react-auth0-spa';
 
 function MoodDisplay() {
   const { user } = useAuth0();

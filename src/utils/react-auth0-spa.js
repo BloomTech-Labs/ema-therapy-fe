@@ -1,4 +1,6 @@
-// src/react-auth0-spa.js
+/* eslint-disable no-shadow */
+/* eslint-disable no-console */
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect, useContext } from 'react';
 import createAuth0Client from '@auth0/auth0-spa-js';
 

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './containers/App';
 import 'sanitize.css/sanitize.css';
-import { Auth0Provider } from './react-auth0-spa';
+import { Auth0Provider } from './utils/react-auth0-spa';
 import { AUTH0_DOMAIN, AUTH0_CLIENT_ID, AUTH0_AUDIENCE } from './utils/config';
 import './index.css';
 // import * as serviceWorker from './utils/serviceWorker';
