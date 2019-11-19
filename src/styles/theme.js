@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const theme = {
-  main: 'mediumseagreen',
+  main: 'red',
 };
 
 export default theme;
