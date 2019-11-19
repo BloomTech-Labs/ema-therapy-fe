@@ -9,6 +9,8 @@ import Profile from '../../components/Profile';
 import PrivateRoute from '../../components/PrivateRoute';
 import MoodDisplay from '../../components/MoodDisplay';
 import GlobalStyle from '../../styles/global-styles';
+import Dashboard from '../Dashboard/Dashboard';
+import EntryForm from '../EntryForm/EntryForm';
 
 function App() {
   const { loading, getTokenSilently, isAuthenticated } = useAuth0();
@@ -30,10 +32,12 @@ function App() {
   ) : (
     <ApolloProvider client={client}>
       <div className="App">
-        <header>
+        {/* <header>
           <NavBar />
         </header>
-        {isAuthenticated && <MoodDisplay />}
+        {isAuthenticated && <MoodDisplay />} */}
+        <Dashboard />
+        <EntryForm />
         <Switch>
           <Route path="/" exact />
           <PrivateRoute path="/profile" component={Profile} />
