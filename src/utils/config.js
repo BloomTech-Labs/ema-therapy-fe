@@ -21,7 +21,7 @@ if (NODE_ENV === 'development') {
   AUTH0_AUDIENCE = 'https://moodmuse-staging.herokuapp.com';
   AUTH0_CLIENT_ID = 'KwOV32dmJl1hXtMWAkaf8AgV4NNjYdPW';
   AUTH0_DOMAIN = 'moodmuse-staging.auth0.com';
-  GRAPHQL_URI = 'http://moodmuse.herokuapp.com/backend';
+  GRAPHQL_URI = 'https://moodmuse.herokuapp.com/backend';
 }
 
 export { AUTH0_CLIENT_ID, AUTH0_AUDIENCE, AUTH0_DOMAIN, GRAPHQL_URI };
