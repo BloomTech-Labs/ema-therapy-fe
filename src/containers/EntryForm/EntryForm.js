@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { useAuth0 } from '../../utils/react-auth0-spa';
 import { gql } from 'apollo-boost';
+import { useAuth0 } from '../../utils/react-auth0-spa';
 import { addMoodMutation } from '../../queries';
 
 const getUserId = gql`
@@ -55,10 +55,10 @@ const activities = [
 const EntryForm = () => {
   const [input, setInput] = useState({
     mood: 3,
-    activities: [],
-    text: '',
+    activities: undefined,
+    text: undefined,
     anxietyLevel: 5,
-    sleep: 2,
+    sleep: undefined,
   });
   const [view, setView] = useState('mood');
 
@@ -70,7 +70,6 @@ const EntryForm = () => {
 
   const [addMood, { data: moodData }] = useMutation(addMoodMutation);
 
-  // console.log(input);
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
@@ -80,14 +79,43 @@ const EntryForm = () => {
   };
 
   const onAnxietySliderChange = (value) => {
-    // console.log(value);
     setInput({ ...input, anxietyLevel: value });
   };
 
   const submitForm = (e) => {
+    console.log('yo yo ma');
     e.preventDefault();
-    // console.log(input.mood);
-    addMood({ variables: { userId: data.user.id, mood: input.mood } });
+    if (view === 'mood') {
+      addMood({
+        variables: {
+          userId: data.user.id,
+          mood: input.mood,
+          text: null,
+          anxietyLevel: null,
+          sleep: null,
+        },
+      });
+    } else if (view === 'activities-journal') {
+      addMood({
+        variables: {
+          userId: data.user.id,
+          mood: input.mood,
+          text: input.text,
+          anxietyLevel: null,
+          sleep: null,
+        },
+      });
+    } else {
+      addMood({
+        variables: {
+          userId: data.user.id,
+          mood: input.mood,
+          text: input.text,
+          anxietyLevel: input.anxietyLevel,
+          sleep: parseFloat(input.sleep),
+        },
+      });
+    }
   };
 
   console.log('moodData', moodData);
@@ -95,8 +123,6 @@ const EntryForm = () => {
   const handleView = (newView) => {
     setView(newView);
   };
-
-  // console.log(data);
 
   if (loading) return <p>Loading ...</p>;
   if (error) return <p>Error fetching.</p>;
@@ -157,7 +183,8 @@ const EntryForm = () => {
           <label>
             Hours of sleep:
             <input
-              type="text"
+              type="number"
+              step="any"
               name="sleep"
               value={input.sleep}
               onChange={handleChange}
