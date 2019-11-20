@@ -3,60 +3,54 @@ import styled from 'styled-components';
 import { MdAdd } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
-function AddMoodButton() {
-  return (
-    <AddButton>
-      <MdAdd />
-    </AddButton>
-  );
-}
-
 function MobileNavBar() {
   return (
-    <StyledNav>
+    <StyledNavBar>
       <NavButton>Mood</NavButton>
       <NavButton>Stories</NavButton>
-      <Link to="/entryform">
-        <AddMoodButton />
-      </Link>
+      <AddButton to="/entryform">
+        <MdAdd />
+      </AddButton>
       <NavButton>Stats</NavButton>
       <NavButton>Settings</NavButton>
-    </StyledNav>
+    </StyledNavBar>
   );
 }
 
-const StyledNav = styled.div`
+const StyledNavBar = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 90px;
-  background-color: blue;
+  background-color: #c4c4c4;
+  height: 63px;
   width: 100%;
-  position: relative;
-
-  @media (min-width: 510px) {
-    display: none;
-  }
+  position: fixed;
+  bottom: 0;
 `;
 
 const NavButton = styled.button`
-  background: white;
+  /* background: white; */
   height: 30px;
   width: 60px;
+  font-size: 12px;
+  border: 1px solid #000000;
 `;
 
-const AddButton = styled.button`
+const AddButton = styled(Link)`
   background: white;
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
   border: none;
   border-radius: 50%;
-  background-color: #bada55;
-  font-size: 40px;
-  line-height: 40px;
+  background-color: #6f6c6c;
+  font-size: 32px;
   display: flex;
-  top: -25px;
+  justify-content: center;
+  align-items: center;
+  top: -20px;
   position: absolute;
+  color: #000000;
 `;
 
 export default MobileNavBar;
