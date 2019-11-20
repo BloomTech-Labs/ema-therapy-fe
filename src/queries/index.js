@@ -5,7 +5,9 @@ export const getMoodsQuery = gql`
     user(sub: $sub) {
       moods {
         mood
-        intensity
+        text
+        anxietyLevel
+        sleep
       }
     }
   }

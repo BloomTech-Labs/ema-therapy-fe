@@ -7,13 +7,12 @@ import { GRAPHQL_URI } from '../../utils/config';
 import NavBar from '../../components/NavBar';
 import Profile from '../../components/Profile';
 import PrivateRoute from '../../components/PrivateRoute';
-import MoodDisplay from '../../components/MoodDisplay';
 import GlobalStyle from '../../styles/global-styles';
-import Dashboard from '../Dashboard/Dashboard';
+import Dashboard from '../Dashboard';
 import EntryForm from '../EntryForm/EntryForm';
 
 function App() {
-  const { loading, getTokenSilently, isAuthenticated } = useAuth0();
+  const { loading, getTokenSilently } = useAuth0();
 
   const client = new ApolloClient({
     uri: GRAPHQL_URI,
@@ -32,18 +31,10 @@ function App() {
   ) : (
     <ApolloProvider client={client}>
       <div className="App">
-        <header>
-          <NavBar />
-        </header>
-        {/* {isAuthenticated && <MoodDisplay />} */}
-        {isAuthenticated && (
-          <>
-            <Dashboard />
-            <EntryForm />
-          </>
-        )}
         <Switch>
-          <Route path="/" exact />
+          <Route path="/" exact component={NavBar} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/entryform" component={EntryForm} />
           <PrivateRoute path="/profile" component={Profile} />
         </Switch>
       </div>

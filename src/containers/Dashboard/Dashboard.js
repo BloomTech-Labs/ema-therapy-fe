@@ -1,17 +1,24 @@
 import React from 'react';
-import MoodPreview from '../../components/MoodPreview';
-import NavBuffet from '../../components/NavBuffet';
+import styled from 'styled-components';
 import Logo from '../../components/Logo';
+import MobileNavBar from '../../components/MobileNavBar';
+import MoodDisplay from '../../components/MoodDisplay';
 
 const Dashboard = () => {
   return (
-    <div>
+    <StyledDashboard>
       <Logo />
-      hello this is dashbaord
-      <MoodPreview />
-      <NavBuffet />
-    </div>
+      <MoodDisplay />
+      <MobileNavBar />
+    </StyledDashboard>
   );
 };
 
 export default Dashboard;
+
+const StyledDashboard = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
