@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from '../../components/Logo';
+// import Logo from '../../components/Logo';
 import MobileNavBar from '../../components/MobileNavBar';
 import MoodDisplay from '../../components/MoodDisplay';
 
 const Dashboard = () => {
   return (
     <StyledDashboard>
-      <Logo />
+      <StyledLogo>MoodBloom</StyledLogo>
       <MoodDisplay />
       <MobileNavBar />
     </StyledDashboard>
@@ -21,4 +21,11 @@ const StyledDashboard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+`;
+
+const StyledLogo = styled.h1`
+  font-size: 24px;
+  line-height: 30px;
+  padding: 20px 31px;
+  font-weight: normal;
 `;
