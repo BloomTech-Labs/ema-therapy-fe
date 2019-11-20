@@ -1,30 +1,39 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
-import styled, { ThemeContext } from 'styled-components';
 import { checkForUserAndGetMoodsQuery } from '../queries';
 import { useAuth0 } from '../utils/react-auth0-spa';
+import MoodCard from './MoodCard';
 
 function MoodDisplay() {
-  const themeContext = useContext(ThemeContext);
-
-  const Code = styled.code`
-    color: ${themeContext.main};
-  `;
-
   const { user } = useAuth0();
   const { loading, error, data } = useQuery(checkForUserAndGetMoodsQuery, {
-    variables: { sub: user.sub, email: user.email },
+    variables: {
+      sub: user.sub,
+      email: user.email,
+      firstName: user.given_name,
+      lastName: user.family_name,
+    },
   });
 
-  // console.log('data: ', data);
-  // console.log('user: ', user);
-  if (loading) return <p>Loading Moods...</p>;
-  if (error) return <p>Error fetching moods.</p>;
-  return (
-    <>
-      <Code>{JSON.stringify(data, null, 2)}</Code>
-    </>
+  // console.log(data);
+
+  if (error) return <p>Error</p>;
+  return loading ? null : (
+    <MoodList>
+      {data.user.moods.map((mood) => (
+        <MoodCard key={mood.id} mood={mood} />
+      ))}
+    </MoodList>
   );
 }
 
 export default MoodDisplay;
+
+const MoodList = styled.div`
+  margin: 10px;
+  padding: 10px;
+  background-color: #fafafa;
+  height: 100%;
+  flex: 1;
+`;
