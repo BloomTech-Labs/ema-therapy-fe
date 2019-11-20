@@ -31,9 +31,8 @@ function MoodDisplay() {
 export default MoodDisplay;
 
 const MoodList = styled.div`
-  margin: 10px;
-  padding: 10px;
+  padding: 0 31px;
   background-color: #fafafa;
-  height: 100%;
+  padding-bottom: 90px;
   flex: 1;
 `;
