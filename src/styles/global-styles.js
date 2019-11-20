@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 
-  #root {
+  #root, .App {
     height: 100%;
   }
 
