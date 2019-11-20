@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MdAdd } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 function AddMoodButton() {
   return (
@@ -10,12 +11,14 @@ function AddMoodButton() {
   );
 }
 
-function MobileNav() {
+function MobileNavBar() {
   return (
     <StyledNav>
       <NavButton>Mood</NavButton>
       <NavButton>Stories</NavButton>
-      <AddMoodButton />
+      <Link to="/entryform">
+        <AddMoodButton />
+      </Link>
       <NavButton>Stats</NavButton>
       <NavButton>Settings</NavButton>
     </StyledNav>
@@ -56,4 +59,4 @@ const AddButton = styled.button`
   position: absolute;
 `;
 
-export default MobileNav;
+export default MobileNavBar;
