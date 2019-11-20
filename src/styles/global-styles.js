@@ -14,10 +14,21 @@ const GlobalStyle = createGlobalStyle`
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    width: 100%;
   }
 
   #root, .App {
+
     height: 100%;
+  }
+
+  #root {
+    display: flex;
+    justify-content: center;
+  }
+
+  .App {
+    max-width: 500px;
   }
 
   button {

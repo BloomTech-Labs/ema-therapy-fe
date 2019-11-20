@@ -26,6 +26,7 @@ const StyledNavBar = styled.div`
   width: 100%;
   position: fixed;
   bottom: 0;
+  max-width: 500px;
 `;
 
 const NavButton = styled.button`
