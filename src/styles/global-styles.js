@@ -18,7 +18,6 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #root, .App {
-
     height: 100%;
   }
 
@@ -28,7 +27,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .App {
-    max-width: 500px;
+    width: 500px;
+    max-width: 100%;
   }
 
   button {
