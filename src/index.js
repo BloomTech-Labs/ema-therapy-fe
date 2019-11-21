@@ -8,7 +8,7 @@ import { Auth0Provider } from './utils/react-auth0-spa';
 import { AUTH0_DOMAIN, AUTH0_CLIENT_ID, AUTH0_AUDIENCE } from './utils/config';
 import theme from './styles/theme';
 
-// import * as serviceWorker from './utils/serviceWorker';
+import * as serviceWorker from './utils/serviceWorker';
 
 // A function that routes the user to the right place after login
 const onRedirectCallback = (appState) => {
@@ -40,4 +40,4 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-// serviceWorker.unregister();
+serviceWorker.register();
