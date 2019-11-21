@@ -15,7 +15,7 @@ const MoodCard = ({ mood: m }) => {
     <StyledMoodCard>
       <div className="date-time">
         <p className="date">{formatDate(createdAt, 'iii LLL d')}</p>
-        <p className="time">{formatDate(createdAt, 'h:m a')}</p>
+        <p className="time">{formatDate(createdAt, 'h:m aa')}</p>
       </div>
       <p className="mood">{moodToString(mood)}</p>
       <div className="mood-details">
