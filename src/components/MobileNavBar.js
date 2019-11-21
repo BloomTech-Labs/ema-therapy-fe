@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom';
 function MobileNavBar() {
   return (
     <StyledNavBar>
-      <NavButton to="/dashboard">Mood</NavButton>
-      <NavButton to="/dashboard">Stories</NavButton>
+      <NavButton to="/dashboard/moods">Moods</NavButton>
+      <NavButton to="/dashboard/stories">Stories</NavButton>
       <AddButton to="/entryform">
         <MdAdd />
       </AddButton>
-      <NavButton to="/dashboard">Stats</NavButton>
-      <NavButton to="/settings">Settings</NavButton>
+      <NavButton to="/dashboard/stats">Stats</NavButton>
+      <NavButton to="/dashboard/settings">Settings</NavButton>
     </StyledNavBar>
   );
 }
