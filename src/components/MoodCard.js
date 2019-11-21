@@ -19,7 +19,7 @@ const MoodCard = ({ mood: m }) => {
       </div>
       <p className="mood">{moodToString(mood)}</p>
       <div className="mood-details">
-        {weather && <p className="weather">Weather:</p>}
+        {weather && <p className="weather">Weather: {weather}</p>}
         {sleep !== null && <p className="sleep">Sleep: {sleep} h</p>}
         {anxiety !== null && (
           <p className="anxiety">Anxiety Level: {anxiety}</p>
