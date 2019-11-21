@@ -17,6 +17,7 @@ function MoodDisplay() {
   });
 
   // console.log(data);
+  // console.log(user);
 
   if (error) return <p>Error</p>;
   return loading ? null : (
@@ -32,7 +33,6 @@ export default MoodDisplay;
 
 const MoodList = styled.div`
   padding: 0 31px;
-  background-color: #fafafa;
   padding-bottom: 90px;
   flex: 1;
 `;

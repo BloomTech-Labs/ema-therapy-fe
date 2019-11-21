@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { useAuth0 } from '../utils/react-auth0-spa';
 
 const NavBar = () => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
 
   return (
-    <div>
+    <StyledNav>
       {!isAuthenticated && (
         <button type="button" onClick={() => loginWithRedirect({})}>
           Log in
@@ -18,15 +19,23 @@ const NavBar = () => {
           Log out
         </button>
       )}
-
       {isAuthenticated && (
-        <span>
-          <Link to="/">Home</Link>&nbsp;
+        <div>
+          <Link to="/dashboard">Dashboard</Link>
           <Link to="/profile">Profile</Link>
-        </span>
+        </div>
       )}
-    </div>
+    </StyledNav>
   );
 };
 
 export default NavBar;
+
+const StyledNav = styled.div`
+  display: flex;
+  margin-top: 15px;
+
+  a {
+    margin-left: 10px;
+  }
+`;
