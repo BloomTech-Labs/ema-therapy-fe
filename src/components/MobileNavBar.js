@@ -6,13 +6,13 @@ import { Link } from 'react-router-dom';
 function MobileNavBar() {
   return (
     <StyledNavBar>
-      <NavButton>Mood</NavButton>
-      <NavButton>Stories</NavButton>
+      <NavButton to="/dashboard">Mood</NavButton>
+      <NavButton to="/dashboard">Stories</NavButton>
       <AddButton to="/entryform">
         <MdAdd />
       </AddButton>
-      <NavButton>Stats</NavButton>
-      <NavButton>Settings</NavButton>
+      <NavButton to="/dashboard">Stats</NavButton>
+      <NavButton to="/settings">Settings</NavButton>
     </StyledNavBar>
   );
 }
@@ -29,12 +29,16 @@ const StyledNavBar = styled.div`
   max-width: 500px;
 `;
 
-const NavButton = styled.button`
-  /* background: white; */
+const NavButton = styled(Link)`
   height: 30px;
   width: 60px;
   font-size: 12px;
   border: 1px solid #000000;
+  color: #000;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const AddButton = styled(Link)`
