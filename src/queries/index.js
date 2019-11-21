@@ -20,6 +20,7 @@ export const addMoodMutation = gql`
     $text: String
     $anxietyLevel: Int
     $sleep: Float
+    $weather: String
   ) {
     addMood(
       userId: $userId
@@ -27,11 +28,13 @@ export const addMoodMutation = gql`
       text: $text
       anxietyLevel: $anxietyLevel
       sleep: $sleep
+      weather: $weather
     ) {
       mood
       text
       anxietyLevel
       sleep
+      weather
     }
   }
 `;
@@ -51,6 +54,7 @@ export const checkForUserAndGetMoodsQuery = gql`
         sleep
         createdAt
         id
+        weather
       }
     }
   }

@@ -15,10 +15,21 @@ const GlobalStyle = createGlobalStyle`
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    width: 100%;
   }
 
   #root, .App {
     height: 100%;
+  }
+
+  #root {
+    display: flex;
+    justify-content: center;
+  }
+
+  .App {
+    width: 500px;
+    max-width: 100%;
   }
 
   button {

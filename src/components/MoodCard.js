@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
-import moodToString from '../utils/mood-to-string';
+import moodToString from '../utils/moodToString';
 
 const formatDate = (timestamp, fmt) => {
   const ts = Number(timestamp);
@@ -15,11 +15,11 @@ const MoodCard = ({ mood: m }) => {
     <StyledMoodCard>
       <div className="date-time">
         <p className="date">{formatDate(createdAt, 'iii LLL d')}</p>
-        <p className="time">{formatDate(createdAt, 'h:m a')}</p>
+        <p className="time">{formatDate(createdAt, 'h:mm a')}</p>
       </div>
       <p className="mood">{moodToString(mood)}</p>
       <div className="mood-details">
-        {weather && <p className="weather">Weather:</p>}
+        {weather && <p className="weather">Weather: {weather}</p>}
         {sleep !== null && <p className="sleep">Sleep: {sleep} h</p>}
         {anxiety !== null && (
           <p className="anxiety">Anxiety Level: {anxiety}</p>
@@ -77,6 +77,7 @@ const StyledMoodCard = styled.div`
 
     p:not(.text) {
       margin: 0 0 4px;
+      padding: 0 15px;
     }
 
     .text {
