@@ -77,6 +77,7 @@ const StyledMoodCard = styled.div`
 
     p:not(.text) {
       margin: 0 0 4px;
+      padding: 0 15px;
     }
 
     .text {
