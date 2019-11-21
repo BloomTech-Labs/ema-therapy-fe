@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { useAuth0 } from '../utils/react-auth0-spa';
 
-const NavBar = () => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+const Login = () => {
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   return (
     <StyledNav>
@@ -13,23 +13,11 @@ const NavBar = () => {
           Log in
         </button>
       )}
-
-      {isAuthenticated && (
-        <button type="button" onClick={() => logout()}>
-          Log out
-        </button>
-      )}
-      {isAuthenticated && (
-        <div>
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/profile">Profile</Link>
-        </div>
-      )}
     </StyledNav>
   );
 };
 
-export default NavBar;
+export default Login;
 
 const StyledNav = styled.div`
   display: flex;
