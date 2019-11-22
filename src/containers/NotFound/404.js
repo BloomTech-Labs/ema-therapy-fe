@@ -3,17 +3,20 @@ import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { AiOutlineFrown } from 'react-icons/ai';
 import { IoIosArrowBack } from 'react-icons/io';
+import Dashboard from '../Dashboard';
 
 function NotFound() {
   const history = useHistory();
   return (
-    <Styled404>
-      <h1>Sorry Not Sorry</h1>
-      <AiOutlineFrown size={200} />
-      <button type="button" onClick={() => history.goBack()}>
-        <IoIosArrowBack /> Go Back
-      </button>
-    </Styled404>
+    <Dashboard>
+      <Styled404>
+        <h1>Sorry Not Sorry</h1>
+        <AiOutlineFrown size={200} />
+        <button type="button" onClick={() => history.goBack()}>
+          <IoIosArrowBack /> Go Back
+        </button>
+      </Styled404>
+    </Dashboard>
   );
 }
 

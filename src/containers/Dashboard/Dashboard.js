@@ -6,7 +6,7 @@ import MobileNavBar from '../../components/MobileNavBar';
 const Dashboard = ({ children }) => {
   return (
     <StyledDashboard>
-      {children}
+      <div className="dashboard-main">{children}</div>
       <MobileNavBar />
     </StyledDashboard>
   );
@@ -25,4 +25,9 @@ const StyledDashboard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  .dashboard-main {
+    padding: 0 30px;
+    height: 100%;
+  }
 `;

@@ -12,7 +12,7 @@ import PrivateRoute from '../../components/PrivateRoute';
 import EntryForm from '../EntryForm/EntryForm';
 import Moods from '../Moods';
 import NotFound from '../NotFound/404';
-import Settings from '../Settings/Settings';
+import Settings from '../Settings';
 
 function App() {
   const { loading, getTokenSilently } = useAuth0();

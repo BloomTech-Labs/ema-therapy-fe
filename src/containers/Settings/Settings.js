@@ -1,54 +1,81 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { useAuth0 } from '../../utils/react-auth0-spa';
-import Logout from '../../components/Logout';
-import MobileNavBar from '../../components/MobileNavBar';
+import Logout from './Logout';
+import Dashboard from '../Dashboard';
+import Toggle from './Toggle';
 
 const Settings = () => {
   const { isAuthenticated } = useAuth0();
 
-  return (
-    <>
-      <StyledSettings>
-        <h3>Settings</h3>
+  const [darkMode, setDarkMode] = useState(false);
+  const [isSharingLocation, setIsSharingLocation] = useState(false);
 
-        {isAuthenticated && (
-          <div>
-            <Link to="/profile">Profile</Link>
+  // console.log('darkMode', darkMode);
+  // console.log('isSharingLocation', isSharingLocation);
+
+  return (
+    <Dashboard>
+      <StyledSettings>
+        <h1>Settings</h1>
+        <div className="setting-group">
+          <h2 className="setting-group__heading">Preferences</h2>
+          <div className="setting-group__item">
+            <span>Share My Location</span>
+            <Toggle
+              toggleState={isSharingLocation}
+              handleClick={() => setIsSharingLocation(!isSharingLocation)}
+            />
           </div>
-        )}
+          <div className="setting-group__item">
+            <span>Dark Mode</span>
+            <Toggle
+              toggleState={darkMode}
+              handleClick={() => setDarkMode(!darkMode)}
+            />
+          </div>
+        </div>
+        {isAuthenticated && <StyledLink to="/profile">Profile</StyledLink>}
         <Logout />
       </StyledSettings>
-      <MobileNavBar />
-    </>
+    </Dashboard>
   );
 };
 
-const StyledSettings = styled.div`
-  max-width: 500px;
-  height: 100vh;
-  margin: 0 auto;
-  padding: 30px 50px;
+export default Settings;
 
-  a {
-    text-decoration: none;
-    height: 35px;
-    width: 120px;
-    font-size: 14px;
-    border: none;
-    border-radius: 3px;
-    color: #000;
-    background-color: darkgrey;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+const StyledSettings = styled.div`
+  h1 {
+    font-size: 24px;
+    line-height: 30px;
+    padding: 20px 0;
+    font-weight: normal;
   }
 
-  a:hover {
-    cursor: pointer;
+  .setting-group {
+    margin-bottom: 20px;
+  }
+
+  .setting-group__heading {
+    font-size: 15px;
+    font-weight: normal;
+    margin: 0 0 3px;
+  }
+
+  .setting-group__item {
+    height: 34px;
+    background: #c4c4c4;
+    border-radius: 5px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    justify-content: space-between;
   }
 `;
 
-export default Settings;
+const StyledLink = styled(Link)`
+  color: #000;
+  text-decoration: none;
+`;
