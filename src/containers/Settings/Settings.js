@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
@@ -7,9 +5,6 @@ import { useAuth0 } from '../../utils/react-auth0-spa';
 import Logout from './Logout';
 import Dashboard from '../Dashboard';
 import Toggle from './Toggle';
-// const Toggle = () => {
-//   return <div onClick={toggleMode} className=""></div>;
-// };
 
 const Settings = () => {
   const { isAuthenticated } = useAuth0();
@@ -17,8 +12,8 @@ const Settings = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [isSharingLocation, setIsSharingLocation] = useState(false);
 
-  console.log('darkMode', darkMode);
-  console.log('isSharingLocation', isSharingLocation);
+  // console.log('darkMode', darkMode);
+  // console.log('isSharingLocation', isSharingLocation);
 
   return (
     <Dashboard>
