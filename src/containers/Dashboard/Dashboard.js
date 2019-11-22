@@ -1,17 +1,28 @@
 import React from 'react';
-import MoodPreview from '../../components/MoodPreview';
-import NavBuffet from '../../components/NavBuffet';
-import Logo from '../../components/Logo';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import MobileNavBar from '../../components/MobileNavBar';
 
-const Dashboard = () => {
+const Dashboard = ({ children }) => {
   return (
-    <div>
-      <Logo />
-      hello this is dashbaord
-      <MoodPreview />
-      <NavBuffet />
-    </div>
+    <StyledDashboard>
+      {children}
+      <MobileNavBar />
+    </StyledDashboard>
   );
 };
 
+Dashboard.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+};
 export default Dashboard;
+
+const StyledDashboard = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;

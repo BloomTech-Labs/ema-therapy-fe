@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     width: 100%;
     line-height: 1.4;
+    box-sizing:border-box;
   }
 
   body {
@@ -14,10 +15,21 @@ const GlobalStyle = createGlobalStyle`
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    width: 100%;
+  }
+
+  #root, .App {
+    height: 100%;
   }
 
   #root {
-    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .App {
+    width: 500px;
+    max-width: 100%;
   }
 
   button {
