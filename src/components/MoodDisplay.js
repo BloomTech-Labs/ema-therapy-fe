@@ -16,7 +16,7 @@ function MoodDisplay() {
     },
   });
 
-  console.log(data);
+  // console.log(data);
   // console.log(user);
 
   if (error) return <p>Error</p>;
