@@ -1,12 +1,24 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '../../utils/react-auth0-spa';
 import Logout from './Logout';
 import Dashboard from '../Dashboard';
+import Toggle from './Toggle';
+// const Toggle = () => {
+//   return <div onClick={toggleMode} className=""></div>;
+// };
 
 const Settings = () => {
   const { isAuthenticated } = useAuth0();
+
+  const [darkMode, setDarkMode] = useState(false);
+  const [isSharingLocation, setIsSharingLocation] = useState(false);
+
+  console.log('darkMode', darkMode);
+  console.log('isSharingLocation', isSharingLocation);
 
   return (
     <Dashboard>
@@ -14,8 +26,20 @@ const Settings = () => {
         <h1>Settings</h1>
         <div className="setting-group">
           <h2 className="setting-group__heading">Preferences</h2>
-          <div className="setting-group__item">Share My Location</div>
-          <div className="setting-group__item">Dark Mode</div>
+          <div className="setting-group__item">
+            <span>Share My Location</span>
+            <Toggle
+              toggleState={darkMode}
+              handleClick={() => setDarkMode(!darkMode)}
+            />
+          </div>
+          <div className="setting-group__item">
+            <span>Dark Mode</span>
+            <Toggle
+              toggleState={isSharingLocation}
+              handleClick={() => setIsSharingLocation(!isSharingLocation)}
+            />
+          </div>
         </div>
         {isAuthenticated && <StyledLink to="/profile">Profile</StyledLink>}
         <Logout />
@@ -48,15 +72,15 @@ const StyledSettings = styled.div`
     height: 34px;
     background: #c4c4c4;
     border-radius: 5px;
-    padding-left: 10px;
+    padding: 0 10px;
     display: flex;
     align-items: center;
     margin-bottom: 6px;
+    justify-content: space-between;
   }
 `;
 
 const StyledLink = styled(Link)`
-  /* font-size: 15px; */
   color: #000;
   text-decoration: none;
 `;
