@@ -24,15 +24,15 @@ const Settings = () => {
           <div className="setting-group__item">
             <span>Share My Location</span>
             <Toggle
-              toggleState={darkMode}
-              handleClick={() => setDarkMode(!darkMode)}
+              toggleState={isSharingLocation}
+              handleClick={() => setIsSharingLocation(!isSharingLocation)}
             />
           </div>
           <div className="setting-group__item">
             <span>Dark Mode</span>
             <Toggle
-              toggleState={isSharingLocation}
-              handleClick={() => setIsSharingLocation(!isSharingLocation)}
+              toggleState={darkMode}
+              handleClick={() => setDarkMode(!darkMode)}
             />
           </div>
         </div>
