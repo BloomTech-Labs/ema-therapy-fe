@@ -9,9 +9,8 @@ import styled from 'styled-components';
 // eslint-disable-next-line react/prop-types
 function Toggle({ toggleState, handleClick }) {
   const [toggleOn, setToggleOn] = useState(toggleState);
-  console.log('toggle state', toggleState);
-  const toggleMode = (e) => {
-    e.preventDefault();
+
+  const toggleMode = () => {
     setToggleOn(!toggleOn);
     handleClick();
   };
