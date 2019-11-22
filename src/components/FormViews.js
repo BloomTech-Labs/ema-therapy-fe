@@ -63,10 +63,12 @@ const FormViews = () => {
   });
   const [view, setView] = useState('mood');
 
-  const { user } = useAuth0();
+  const { loading: userLoading, error: userError, user } = useAuth0();
+
+  console.log(user);
 
   const { loading, error, data } = useQuery(getUserId, {
-    variables: { sub: user.sub },
+    variables: { sub: 'google-oauth2|106716352176305690850' },
   });
 
   const [addMood, { data: moodData }] = useMutation(addMoodMutation);
@@ -126,6 +128,7 @@ const FormViews = () => {
 
   if (loading) return <p>Loading ...</p>;
   if (error) return <p>Error fetching.</p>;
+  if (userError) return <p>Loading ...</p>;
 
   return (
     <form onSubmit={submitForm}>
@@ -136,7 +139,9 @@ const FormViews = () => {
         <MoodView>
           {/* questions */}
           <div className="header">
-            <button type="button">&larr;</button>
+            <button type="button" className="back">
+              &larr;
+            </button>
             <p>How do you feel?</p>
             <button type="submit">Done</button>
           </div>
@@ -162,20 +167,26 @@ const FormViews = () => {
       {view === 'activity-journal' && (
         <MoodView>
           <div className="header">
-            <button type="button" onClick={() => handleView('mood')}>
+            <button
+              type="button"
+              className="back"
+              onClick={() => handleView('mood')}
+            >
               &larr;
             </button>
             <p>What have you been up to?</p>
             <button type="submit">Done</button>
           </div>
-          <div className="inputs">
-            <textarea
-              type="text"
-              name="text"
-              placeholder="write your text here"
-              value={input.text}
-              onChange={handleChange}
-            />
+          <div className="input-section">
+            <div className="inputs">
+              <textarea
+                type="text"
+                name="text"
+                placeholder="write your thoughts here"
+                value={input.text}
+                onChange={handleChange}
+              />
+            </div>
           </div>
           <div className="footer">
             <button type="button" onClick={() => handleView('anxiety-sleep')}>
@@ -190,29 +201,34 @@ const FormViews = () => {
           <div className="header">
             <button
               type="button"
+              className="back"
               onClick={() => handleView('activity-journal')}
             >
               &larr;
             </button>
             <p>How stressed are you this moment from 1 - 10?</p>
           </div>
-          <div className="inputs">
-            <p>Anxiety Level</p>
-            <Slider
-              value={input.anxietyLevel}
-              onChange={onAnxietySliderChange}
-              min={1}
-              max={10}
-            />
-            <label>
-              Hours of sleep:
-              <input
-                type="number"
-                name="sleep"
-                value={input.sleep}
-                onChange={handleChange}
+          <div className="inputs-section">
+            <div className="inputs">
+              <p>Anxiety Level</p>
+              <Slider
+                value={input.anxietyLevel}
+                onChange={onAnxietySliderChange}
+                min={1}
+                max={10}
               />
-            </label>
+            </div>
+            <div className="inputs">
+              <label>
+                Hours of sleep:
+                <input
+                  type="number"
+                  name="sleep"
+                  value={input.sleep}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
           </div>
           <div className="footer">
             <button type="submit">Done</button>
@@ -224,20 +240,66 @@ const FormViews = () => {
 };
 
 const MoodView = styled.div`
-  color: red;
-
   .header {
-    border: 1px solid blue;
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
+    margin-top: 25px;
+    padding: 0 25px;
+  }
+
+  button {
+    height: 35px;
+    width: 120px;
+    font-size: 14px;
+    border: none;
+    border-radius: 3px;
+    color: #000;
+    background-color: darkgrey;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .back {
+    background-color: transparent;
+    font-size: 32px;
+    width: 30px;
   }
 
   .inputs {
-    border: 1px solid orange;
+    margin: 15% 5%;
+    padding: 25px;
+  }
+
+  .inputs input {
+    margin-left: 5px;
+    height: 30px;
+    width: 70px;
+  }
+
+  .input-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50%;
+  }
+
+  textarea {
+    height: 200px;
+    width: 400px;
   }
 
   .footer {
-    border: 1px solid purple;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 25px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    max-width: 500px;
   }
 `;
 
