@@ -4,8 +4,11 @@ import 'rc-slider/assets/index.css';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { useAuth0 } from '../utils/react-auth0-spa';
 import { addMoodMutation } from '../queries';
+import useWeather from '../hooks/getWeatherLocationHook';
+import Activities from '../components/Activities';
 
 const getUserId = gql`
   query($sub: ID) {
@@ -14,44 +17,6 @@ const getUserId = gql`
     }
   }
 `;
-
-const activities = [
-  {
-    name: 'food',
-    foods: [
-      { foodType: 'meat', icon: 'meat-icon' },
-      { foodType: 'fruit', icon: 'fruit-icon' },
-    ],
-  },
-  {
-    name: 'drink',
-    drinks: [
-      { drinkType: 'juice', icon: 'juice-icon' },
-      { drinkType: 'alcohol', icon: 'alcohol-icon' },
-    ],
-  },
-  {
-    name: 'fun',
-    funs: [
-      { funType: 'games', icon: 'game-icon' },
-      { funType: 'party', icon: 'party-icon' },
-    ],
-  },
-  {
-    name: 'misc',
-    miscs: [
-      { miscType: 'gambling', icon: 'gambling-icon' },
-      { miscType: 'movies', icon: 'movie-icon' },
-    ],
-  },
-  {
-    name: 'leisure',
-    leisures: [
-      { leisureType: 'swimming', icon: 'swimming-icon' },
-      { leisureType: 'basketball', icon: 'basketball-icon' },
-    ],
-  },
-];
 
 const FormViews = () => {
   const [input, setInput] = useState({
@@ -65,10 +30,10 @@ const FormViews = () => {
 
   const { loading: userLoading, error: userError, user } = useAuth0();
 
-  console.log(user);
+  const { finalTemp } = useWeather();
 
   const { loading, error, data } = useQuery(getUserId, {
-    variables: { sub: 'google-oauth2|106716352176305690850' },
+    variables: { sub: user.sub },
   });
 
   const [addMood, { data: moodData }] = useMutation(addMoodMutation);
@@ -95,6 +60,7 @@ const FormViews = () => {
           text: null,
           anxietyLevel: null,
           sleep: null,
+          weather: finalTemp,
         },
       });
     } else if (view === 'activities-journal') {
@@ -105,6 +71,7 @@ const FormViews = () => {
           text: input.text,
           anxietyLevel: null,
           sleep: null,
+          weather: finalTemp,
         },
       });
     } else {
@@ -115,6 +82,7 @@ const FormViews = () => {
           text: input.text,
           anxietyLevel: input.anxietyLevel,
           sleep: parseFloat(input.sleep),
+          weather: finalTemp,
         },
       });
     }
@@ -139,11 +107,17 @@ const FormViews = () => {
         <MoodView>
           {/* questions */}
           <div className="header">
-            <button type="button" className="back">
-              &larr;
-            </button>
+            <Link to="/dashboard">
+              <button type="button" className="back">
+                &larr;
+              </button>
+            </Link>
             <p>How do you feel?</p>
-            <button type="submit">Done</button>
+            <Link to="/dashboard">
+              <button className="main-button" type="submit">
+                Done
+              </button>
+            </Link>
           </div>
           <div className="inputs">
             <Slider
@@ -155,6 +129,7 @@ const FormViews = () => {
           </div>
           <div className="footer">
             <button
+              className="main-button"
               type="button"
               onClick={() => handleView('activity-journal')}
             >
@@ -175,8 +150,13 @@ const FormViews = () => {
               &larr;
             </button>
             <p>What have you been up to?</p>
-            <button type="submit">Done</button>
+            <Link to="/dashboard">
+              <button className="main-button" type="submit">
+                Done
+              </button>
+            </Link>
           </div>
+          <Activities />
           <div className="input-section">
             <div className="inputs">
               <textarea
@@ -189,7 +169,11 @@ const FormViews = () => {
             </div>
           </div>
           <div className="footer">
-            <button type="button" onClick={() => handleView('anxiety-sleep')}>
+            <button
+              type="button"
+              className="main-button"
+              onClick={() => handleView('anxiety-sleep')}
+            >
               Next
             </button>
           </div>
@@ -231,7 +215,11 @@ const FormViews = () => {
             </div>
           </div>
           <div className="footer">
-            <button type="submit">Done</button>
+            <Link to="/dashboard">
+              <button className="main-button" type="submit">
+                Done
+              </button>
+            </Link>
           </div>
         </MoodView>
       )}
@@ -240,6 +228,10 @@ const FormViews = () => {
 };
 
 const MoodView = styled.div`
+  a {
+    text-decoration: none;
+  }
+
   .header {
     display: flex;
     justify-content: space-between;
@@ -248,7 +240,7 @@ const MoodView = styled.div`
     padding: 0 25px;
   }
 
-  button {
+  .main-button {
     height: 35px;
     width: 120px;
     font-size: 14px;
