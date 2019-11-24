@@ -21,7 +21,7 @@ const Activities = () => {
           );
         })}
       </div>
-      <div>
+      <ActivitiesView>
         {type === 'food' &&
           activities[0].foods.map((food) => {
             return (
@@ -31,6 +31,7 @@ const Activities = () => {
               </ActivityButton>
             );
           })}
+
         {type === 'drink' &&
           activities[1].drinks.map((drink) => {
             return (
@@ -67,19 +68,21 @@ const Activities = () => {
               </ActivityButton>
             );
           })}
-      </div>
+      </ActivitiesView>
     </ActivitiesWrapper>
   );
 };
 
 const ActivitiesWrapper = styled.div`
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  width: 400px;
+  align-items: center;
+  margin: 0 auto;
+`;
 
-  div {
-    margin: 0 auto;
-  }
+const ActivitiesView = styled.div`
+  margin-left: 15px;
 `;
 
 const TypeButton = styled.button`
@@ -94,14 +97,15 @@ const TypeButton = styled.button`
   font-weight: normal;
   font-size: 12px;
   line-height: 15px;
-  margin-top: 63px;
+  margin-top: 50px;
 `;
 
 const ActivityButton = styled.button`
-  padding: 0;
+  padding: 5px;
+  width: 70px;
   border: none;
   background: none;
-  margin-right: 9px;
+  margin-right: 3px;
   margin-top: 27px;
 `;
 
