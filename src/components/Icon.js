@@ -1,13 +1,20 @@
 import React from 'react';
+import styled from 'styled-components';
 
 const Icon = (props) => {
   const { icon } = props;
 
   return (
-    <svg width="30" height="30" viewBox="0 0 1024 1024">
+    <IconStyle width="30" height="30" viewBox="0 0 500 500">
       <path d={icon} />
-    </svg>
+    </IconStyle>
   );
 };
+
+const IconStyle = styled.svg`
+  border: 1px solid black;
+  border-radius: 100%;
+  padding: 4px;
+`;
 
 export default Icon;

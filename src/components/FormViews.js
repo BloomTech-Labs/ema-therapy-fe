@@ -119,6 +119,7 @@ const FormViews = () => {
               </button>
             </Link>
           </div>
+
           <div className="inputs">
             <Slider
               value={input.mood}
