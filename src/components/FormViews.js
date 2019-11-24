@@ -7,8 +7,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '../utils/react-auth0-spa';
 import { addMoodMutation } from '../queries';
+import Activities from './Activities';
 import useWeather from '../hooks/getWeatherLocationHook';
-import Activities from '../components/Activities';
 
 const getUserId = gql`
   query($sub: ID) {

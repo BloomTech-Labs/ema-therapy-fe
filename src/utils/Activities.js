@@ -1,8 +1,10 @@
+import { ICONS } from './IconPaths';
+
 const activities = [
   {
     name: 'food',
     foods: [
-      { foodType: 'meat', icon: 'meat-icon' },
+      { foodType: 'meat', icon: ICONS.FIVE },
       { foodType: 'fruit', icon: 'fruit-icon' },
     ],
   },

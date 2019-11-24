@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { FaPaperclip } from 'react-icons/fa';
+import Icon from './Icon';
 import activities from '../utils/Activities';
 
 const Activities = () => {
@@ -27,7 +27,7 @@ const Activities = () => {
             return (
               <>
                 <button type="button">
-                  <FaPaperclip />
+                  <Icon icon={food.icon} />
                   <p>{food.foodType}</p>
                 </button>
               </>
