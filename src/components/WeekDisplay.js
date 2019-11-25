@@ -31,12 +31,12 @@ function WeekDisplay() {
   return (
     <>
       {moodsByWeek &&
-        moodsByWeek.map((list, index) => {
+        moodsByWeek.map((list) => {
           // return mood preview card if mood entries exist in the list
           if (list.length !== 0) {
             return (
               <MoodPreview
-                key={list[index]}
+                key={list[0].id}
                 count={list.length}
                 lastItem={list[list.length - 1]}
               />
