@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import Dashboard from '../Dashboard';
-import MoodDisplay from '../../components/MoodDisplay';
+import WeekDisplay from '../../components/WeekDisplay';
 
 function Moods() {
   return (
     <Dashboard>
       <StyledLogo>MoodBloom</StyledLogo>
-      <MoodDisplay />
+      <WeekDisplay />
     </Dashboard>
   );
 }

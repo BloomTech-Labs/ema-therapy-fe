@@ -68,7 +68,7 @@ const FormViews = () => {
   console.log(user);
 
   const { loading, error, data } = useQuery(getUserId, {
-    variables: { sub: 'google-oauth2|106716352176305690850' },
+    variables: { sub: user.sub },
   });
 
   const [addMood, { data: moodData }] = useMutation(addMoodMutation);
