@@ -18,18 +18,21 @@ function WeekDisplay() {
 
   const [moodsByWeek, setMoodsByWeek] = useState(null);
 
+  // set moodsByWeek state if the data from query exists
   useEffect(() => {
     if (data) {
       setMoodsByWeek(weekOfMoods(data.user.moods));
     }
   }, [data]);
 
-  console.log(moodsByWeek);
   if (error) return <p>Error</p>;
+  if (loading) return <p>Loading...</p>;
+
   return (
     <>
       {moodsByWeek &&
         moodsByWeek.map((list, index) => {
+          // return mood preview card if mood entries exist in the list
           if (list.length !== 0) {
             return (
               <MoodPreview
