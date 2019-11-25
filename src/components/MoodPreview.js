@@ -40,6 +40,8 @@ const StyledMoodCard = styled.div`
   background-color: #e5e5e5;
   padding: 25px 23px 10px;
   margin-bottom: 23px;
+  width: 90%;
+  min-height: 80px;
 
   .date-time {
     display: flex;
