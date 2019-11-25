@@ -17,6 +17,6 @@ export default Moods;
 const StyledLogo = styled.h1`
   font-size: 24px;
   line-height: 30px;
-  padding: 20px 31px;
+  padding: 20px 0;
   font-weight: normal;
 `;

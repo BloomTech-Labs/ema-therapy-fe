@@ -32,7 +32,6 @@ function MoodDisplay() {
 export default MoodDisplay;
 
 const MoodList = styled.div`
-  padding: 0 31px;
   padding-bottom: 90px;
   flex: 1;
 `;
