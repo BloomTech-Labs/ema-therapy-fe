@@ -1,3 +1,4 @@
+// converts a day number (0-6) to a day abbreviation
 function convertDay(num) {
   let day = '';
   switch (num) {
@@ -23,6 +24,7 @@ function convertDay(num) {
       day = 'Sat';
       break;
     default:
+      break;
   }
   return day;
 }
