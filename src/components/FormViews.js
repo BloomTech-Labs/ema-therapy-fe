@@ -68,6 +68,7 @@ const FormViews = () => {
   };
 
   const submitForm = (e) => {
+    console.log('am i firing?');
     e.preventDefault();
     if (view === 'mood') {
       addMood({
@@ -109,6 +110,7 @@ const FormViews = () => {
   };
 
   console.log('moodData', moodData);
+  console.log('input', input);
 
   const handleView = (newView) => {
     setView(newView);

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Icon from './Icon';
 import activities from '../utils/Activities';
+import Activity from './activity';
 
 const Activities = (props) => {
   const { addActivities } = props;
@@ -25,12 +26,12 @@ const Activities = (props) => {
       </div>
       <ActivitiesView>
         {type === 'food' &&
-          activities[0].foods.map((food) => {
+          activities[0].foods.map((activityType) => {
             return (
-              <ActivityButton type="button" onClick={() => addActivities(food)}>
-                <Icon icon={food.icon} />
-                <p>{food.type}</p>
-              </ActivityButton>
+              <Activity
+                activityType={activityType}
+                addActivities={addActivities}
+              />
             );
           })}
         {type === 'drink' &&
@@ -114,6 +115,10 @@ const ActivityButton = styled.button`
   background: none;
   margin-right: 3px;
   margin-top: 27px;
+`;
+
+const ActivityButtonToggle = styled(ActivityButton)`
+  background: ${(props) => (props.active ? 'darkred' : 'limegreen')};
 `;
 
 export default Activities;
