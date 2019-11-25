@@ -4,8 +4,11 @@ import 'rc-slider/assets/index.css';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import styled from 'styled-components';
+import { Link, useHistory } from 'react-router-dom';
 import { useAuth0 } from '../utils/react-auth0-spa';
 import { addMoodMutation } from '../queries';
+import Activities from './Activities';
+import useWeather from '../hooks/getWeatherLocationHook';
 
 const getUserId = gql`
   query($sub: ID) {
@@ -15,57 +18,22 @@ const getUserId = gql`
   }
 `;
 
-const activities = [
-  {
-    name: 'food',
-    foods: [
-      { foodType: 'meat', icon: 'meat-icon' },
-      { foodType: 'fruit', icon: 'fruit-icon' },
-    ],
-  },
-  {
-    name: 'drink',
-    drinks: [
-      { drinkType: 'juice', icon: 'juice-icon' },
-      { drinkType: 'alcohol', icon: 'alcohol-icon' },
-    ],
-  },
-  {
-    name: 'fun',
-    funs: [
-      { funType: 'games', icon: 'game-icon' },
-      { funType: 'party', icon: 'party-icon' },
-    ],
-  },
-  {
-    name: 'misc',
-    miscs: [
-      { miscType: 'gambling', icon: 'gambling-icon' },
-      { miscType: 'movies', icon: 'movie-icon' },
-    ],
-  },
-  {
-    name: 'leisure',
-    leisures: [
-      { leisureType: 'swimming', icon: 'swimming-icon' },
-      { leisureType: 'basketball', icon: 'basketball-icon' },
-    ],
-  },
-];
-
 const FormViews = () => {
   const [input, setInput] = useState({
     mood: 3,
-    activities: undefined,
+    activities: [],
     text: '',
     anxietyLevel: 5,
     sleep: '',
   });
+
+  const history = useHistory();
+
   const [view, setView] = useState('mood');
 
   const { loading: userLoading, error: userError, user } = useAuth0();
 
-  console.log(user);
+  const { finalTemp } = useWeather();
 
   const { loading, error, data } = useQuery(getUserId, {
     variables: { sub: user.sub },
@@ -85,7 +53,22 @@ const FormViews = () => {
     setInput({ ...input, anxietyLevel: value });
   };
 
+  const addActivities = (activityObject) => {
+    const hasActivity = input.activities.some(
+      (activity) => activity.type === activityObject.type,
+    );
+    if (hasActivity) {
+      const removeActivity = input.activities.filter((obj) => {
+        return obj.type !== activityObject.type;
+      });
+      setInput({ ...input, activities: removeActivity });
+    } else {
+      setInput({ ...input, activities: [...input.activities, activityObject] });
+    }
+  };
+
   const submitForm = (e) => {
+    console.log('am i firing?');
     e.preventDefault();
     if (view === 'mood') {
       addMood({
@@ -95,8 +78,10 @@ const FormViews = () => {
           text: null,
           anxietyLevel: null,
           sleep: null,
+          weather: finalTemp,
         },
       });
+      history.push('/dashboard');
     } else if (view === 'activities-journal') {
       addMood({
         variables: {
@@ -105,8 +90,10 @@ const FormViews = () => {
           text: input.text,
           anxietyLevel: null,
           sleep: null,
+          weather: finalTemp,
         },
       });
+      history.push('/dashboard');
     } else {
       addMood({
         variables: {
@@ -115,12 +102,15 @@ const FormViews = () => {
           text: input.text,
           anxietyLevel: input.anxietyLevel,
           sleep: parseFloat(input.sleep),
+          weather: finalTemp,
         },
       });
+      history.push('/dashboard');
     }
   };
 
   console.log('moodData', moodData);
+  console.log('input', input);
 
   const handleView = (newView) => {
     setView(newView);
@@ -139,11 +129,15 @@ const FormViews = () => {
         <MoodView>
           {/* questions */}
           <div className="header">
-            <button type="button" className="back">
-              &larr;
-            </button>
+            <Link to="/dashboard">
+              <button type="button" className="back">
+                &larr;
+              </button>
+            </Link>
             <p>How do you feel?</p>
-            <button type="submit">Done</button>
+            <button className="main-button" type="submit">
+              Done
+            </button>
           </div>
           <div className="inputs">
             <Slider
@@ -155,6 +149,7 @@ const FormViews = () => {
           </div>
           <div className="footer">
             <button
+              className="main-button"
               type="button"
               onClick={() => handleView('activity-journal')}
             >
@@ -175,8 +170,11 @@ const FormViews = () => {
               &larr;
             </button>
             <p>What have you been up to?</p>
-            <button type="submit">Done</button>
+            <button className="main-button" type="submit">
+              Done
+            </button>
           </div>
+          <Activities addActivities={addActivities} />
           <div className="input-section">
             <div className="inputs">
               <textarea
@@ -189,7 +187,11 @@ const FormViews = () => {
             </div>
           </div>
           <div className="footer">
-            <button type="button" onClick={() => handleView('anxiety-sleep')}>
+            <button
+              type="button"
+              className="main-button"
+              onClick={() => handleView('anxiety-sleep')}
+            >
               Next
             </button>
           </div>
@@ -231,7 +233,9 @@ const FormViews = () => {
             </div>
           </div>
           <div className="footer">
-            <button type="submit">Done</button>
+            <button className="main-button" type="submit">
+              Done
+            </button>
           </div>
         </MoodView>
       )}
@@ -240,6 +244,10 @@ const FormViews = () => {
 };
 
 const MoodView = styled.div`
+  a {
+    text-decoration: none;
+  }
+
   .header {
     display: flex;
     justify-content: space-between;
@@ -248,7 +256,7 @@ const MoodView = styled.div`
     padding: 0 25px;
   }
 
-  button {
+  .main-button {
     height: 35px;
     width: 120px;
     font-size: 14px;
