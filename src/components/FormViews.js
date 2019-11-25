@@ -4,7 +4,7 @@ import 'rc-slider/assets/index.css';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useAuth0 } from '../utils/react-auth0-spa';
 import { addMoodMutation } from '../queries';
 import Activities from './Activities';
@@ -21,11 +21,14 @@ const getUserId = gql`
 const FormViews = () => {
   const [input, setInput] = useState({
     mood: 3,
-    activities: undefined,
+    activities: [],
     text: '',
     anxietyLevel: 5,
     sleep: '',
   });
+
+  const history = useHistory();
+
   const [view, setView] = useState('mood');
 
   const { loading: userLoading, error: userError, user } = useAuth0();
@@ -50,6 +53,20 @@ const FormViews = () => {
     setInput({ ...input, anxietyLevel: value });
   };
 
+  const addActivities = (activityObject) => {
+    const hasActivity = input.activities.some(
+      (activity) => activity.type === activityObject.type,
+    );
+    if (hasActivity) {
+      const removeActivity = input.activities.filter((obj) => {
+        return obj.type !== activityObject.type;
+      });
+      setInput({ ...input, activities: removeActivity });
+    } else {
+      setInput({ ...input, activities: [...input.activities, activityObject] });
+    }
+  };
+
   const submitForm = (e) => {
     e.preventDefault();
     if (view === 'mood') {
@@ -63,6 +80,7 @@ const FormViews = () => {
           weather: finalTemp,
         },
       });
+      history.push('/dashboard');
     } else if (view === 'activities-journal') {
       addMood({
         variables: {
@@ -74,6 +92,7 @@ const FormViews = () => {
           weather: finalTemp,
         },
       });
+      history.push('/dashboard');
     } else {
       addMood({
         variables: {
@@ -85,6 +104,7 @@ const FormViews = () => {
           weather: finalTemp,
         },
       });
+      history.push('/dashboard');
     }
   };
 
@@ -113,13 +133,10 @@ const FormViews = () => {
               </button>
             </Link>
             <p>How do you feel?</p>
-            <Link to="/dashboard">
-              <button className="main-button" type="submit">
-                Done
-              </button>
-            </Link>
+            <button className="main-button" type="submit">
+              Done
+            </button>
           </div>
-
           <div className="inputs">
             <Slider
               value={input.mood}
@@ -151,13 +168,11 @@ const FormViews = () => {
               &larr;
             </button>
             <p>What have you been up to?</p>
-            <Link to="/dashboard">
-              <button className="main-button" type="submit">
-                Done
-              </button>
-            </Link>
+            <button className="main-button" type="submit">
+              Done
+            </button>
           </div>
-          <Activities />
+          <Activities addActivities={addActivities} />
           <div className="input-section">
             <div className="inputs">
               <textarea
@@ -216,11 +231,9 @@ const FormViews = () => {
             </div>
           </div>
           <div className="footer">
-            <Link to="/dashboard">
-              <button className="main-button" type="submit">
-                Done
-              </button>
-            </Link>
+            <button className="main-button" type="submit">
+              Done
+            </button>
           </div>
         </MoodView>
       )}

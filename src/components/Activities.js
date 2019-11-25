@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import Icon from './Icon';
 import activities from '../utils/Activities';
 
-const Activities = () => {
+const Activities = (props) => {
+  const { addActivities } = props;
+
   const [type, setType] = useState('food');
 
   const handleTypeView = (view) => {
@@ -25,46 +27,51 @@ const Activities = () => {
         {type === 'food' &&
           activities[0].foods.map((food) => {
             return (
-              <ActivityButton type="button">
+              <ActivityButton type="button" onClick={() => addActivities(food)}>
                 <Icon icon={food.icon} />
-                <p>{food.foodType}</p>
+                <p>{food.type}</p>
               </ActivityButton>
             );
           })}
-
         {type === 'drink' &&
           activities[1].drinks.map((drink) => {
             return (
-              <ActivityButton type="button">
+              <ActivityButton
+                type="button"
+                onClick={() => addActivities(drink)}
+              >
                 <Icon icon={drink.icon} />
-                <p>{drink.drinkType}</p>
+                <p>{drink.type}</p>
               </ActivityButton>
             );
           })}
         {type === 'fun' &&
           activities[2].funs.map((fun) => {
             return (
-              <ActivityButton type="button">
+              <ActivityButton type="button" onClick={() => addActivities(fun)}>
                 <Icon icon={fun.icon} />
-                <p>{fun.funType}</p>
+                <p>{fun.type}</p>
               </ActivityButton>
             );
           })}
         {type === 'misc' &&
           activities[3].miscs.map((misc) => {
             return (
-              <ActivityButton type="button">
+              <ActivityButton type="button" onClick={() => addActivities(misc)}>
                 <Icon icon={misc.icon} />
-                <p>{misc.miscType}</p>
+                <p>{misc.type}</p>
               </ActivityButton>
             );
           })}
         {type === 'leisure' &&
           activities[4].leisures.map((leisure) => {
             return (
-              <ActivityButton type="button">
+              <ActivityButton
+                type="button"
+                onClick={() => addActivities(leisure)}
+              >
                 <Icon icon={leisure.icon} />
-                <p>{leisure.leisureType}</p>
+                <p>{leisure.type}</p>
               </ActivityButton>
             );
           })}

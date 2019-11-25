@@ -18,29 +18,6 @@ import Settings from '../Settings/Settings';
 function App() {
   const { loading, getTokenSilently } = useAuth0();
 
-  /*
-    Gets the user's location using the Geolocation API
-    This should probably be moved to the mood entry form and run onSubmit
-    Relies on a REACT_APP_OPEN_WEATHER_API_KEY env variable
-  */
-  // useEffect(() => {
-  //   if ('geolocation' in navigator) {
-  //     navigator.geolocation.getCurrentPosition(async (position) => {
-  //       const { latitude, longitude } = position.coords;
-  //       // addå REACT_APP_OPEN_WEATHER_API_KEY to .env
-  //       const API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
-  //       const url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=${API_KEY}`;
-  //       const response = await fetch(url);
-  //       const res = await response.json();
-  //       // convert the temp from kelvin to fahrenheit
-  //       const temp = convertTemp(res.main.temp);
-  //       setWeather(`${res.weather[0].main} ${temp}°`);
-  //     });
-  //   }
-  // }, []);
-
-  // console.log(weather);
-
   const client = new ApolloClient({
     uri: GRAPHQL_URI,
     request: async (operation) => {
