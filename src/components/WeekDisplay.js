@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { checkForUserAndGetMoodsQuery } from '../queries';
 import { useAuth0 } from '../utils/react-auth0-spa';
 import weekOfMoods from '../utils/weekOfMoods';
 import MoodPreview from './MoodPreview';
+import { MoodsPrevWeekContext } from '../contexts/MoodsPrevWeekContext';
 
 function WeekDisplay() {
   const { user } = useAuth0();
@@ -16,12 +17,13 @@ function WeekDisplay() {
     },
   });
 
-  const [moodsByWeek, setMoodsByWeek] = useState(null);
+  const moodsPrevWeek = useContext(MoodsPrevWeekContext);
 
   // set moodsByWeek state if the data from query exists
   useEffect(() => {
     if (data) {
-      setMoodsByWeek(weekOfMoods(data.user.moods));
+      // setMoodsByWeek(weekOfMoods(data.user.moods));
+      moodsPrevWeek.setMoods(weekOfMoods(data.user.moods));
     }
   }, [data]);
 
@@ -30,8 +32,8 @@ function WeekDisplay() {
 
   return (
     <>
-      {moodsByWeek &&
-        moodsByWeek.map((list) => {
+      {moodsPrevWeek.moods &&
+        moodsPrevWeek.moods.map((list) => {
           // return mood preview card if mood entries exist in the list
           if (list.length !== 0) {
             return (
