@@ -7,7 +7,7 @@ export const MoodsPrevWeekContext = createContext({
 
 export const MoodsPrevWeekProvider = ({ children }) => {
   const [state, setState] = useState({
-    moods: [],
+    moods: null,
     setMoods: (moods) => {
       setState({ ...state, moods });
     },
