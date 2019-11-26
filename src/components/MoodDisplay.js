@@ -19,6 +19,7 @@ function MoodDisplay() {
   );
 
   useEffect(() => {
+    // if moods exist in context, find the mood that matches the day from url and set to state
     if (moods) {
       for (let i = 0; i < moods.length; i += 1) {
         if (moods[i].length > 0 && +day === getDay(+moods[i][0].createdAt)) {
@@ -26,8 +27,10 @@ function MoodDisplay() {
           break;
         }
       }
+      // if data was returned from query, save result to context
     } else if (data) {
       setMoods(weekOfMoods(data.user.moods));
+      // run query to fetch missing moods data
     } else {
       getMoods({
         variables: {
@@ -38,7 +41,7 @@ function MoodDisplay() {
         },
       });
     }
-  }, [day, moods, data]);
+  }, [day, moods, data, getMoods, setMoods, user]);
 
   if (loading) return <p>Loading ...</p>;
 

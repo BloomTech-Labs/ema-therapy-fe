@@ -19,22 +19,22 @@ function WeekDisplay() {
     },
   });
 
-  const moodsPrevWeek = useContext(MoodsPrevWeekContext);
+  const { moods, setMoods } = useContext(MoodsPrevWeekContext);
 
-  // set moodsPrevWEek state if the data from query exists
+  // set moodsPrevWeek context if the data from query exists
   useEffect(() => {
     if (data) {
-      moodsPrevWeek.setMoods(weekOfMoods(data.user.moods));
+      setMoods(weekOfMoods(data.user.moods));
     }
-  }, [data]);
+  }, [data, setMoods]);
 
   if (error) return <p>Error</p>;
   if (loading) return <p>Loading...</p>;
 
   return (
     <>
-      {moodsPrevWeek.moods &&
-        moodsPrevWeek.moods.map((list) => {
+      {moods &&
+        moods.map((list) => {
           // return mood preview card if mood entries exist in the list
           if (list.length !== 0) {
             return (
