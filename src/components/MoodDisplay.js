@@ -1,32 +1,86 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import { useLazyQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
-import { useQuery } from '@apollo/react-hooks';
-import { checkForUserAndGetMoodsQuery } from '../queries';
+import { useParams, useHistory } from 'react-router-dom';
+import { getDay } from 'date-fns';
 import { useAuth0 } from '../utils/react-auth0-spa';
+import weekOfMoods from '../utils/weekOfMoods';
+import { checkForUserAndGetMoodsQuery } from '../queries';
 import MoodCard from './MoodCard';
+import { MoodsPrevWeekContext } from '../contexts/MoodsPrevWeekContext';
 
 function MoodDisplay() {
+  const { moods, setMoods } = useContext(MoodsPrevWeekContext);
+  const { day } = useParams();
+  const [moodsToday, setMoodsToday] = useState(null);
   const { user } = useAuth0();
-  const { loading, error, data } = useQuery(checkForUserAndGetMoodsQuery, {
-    variables: {
-      sub: user.sub,
-      email: user.email,
-      firstName: user.given_name,
-      lastName: user.family_name,
-    },
-  });
+  const [getMoods, { loading, data }] = useLazyQuery(
+    checkForUserAndGetMoodsQuery,
+  );
+  const history = useHistory();
 
-  if (error) return <p>Error</p>;
-  return loading ? null : (
-    <MoodList>
-      {data.user.moods.map((mood) => (
-        <MoodCard key={mood.id} mood={mood} />
-      ))}
-    </MoodList>
+  useEffect(() => {
+    // if moods exist in context, find the mood that matches the day from url and set to state
+    if (moods) {
+      for (let i = 0; i < moods.length; i += 1) {
+        if (moods[i].length > 0 && +day === getDay(+moods[i][0].createdAt)) {
+          setMoodsToday(moods[i]);
+          break;
+        }
+      }
+      // if data was returned from query, save result to context
+    } else if (data) {
+      setMoods(weekOfMoods(data.user.moods));
+      // run query to fetch missing moods data
+    } else {
+      getMoods({
+        variables: {
+          sub: user.sub,
+          email: user.email,
+          firstName: user.given_name,
+          lastName: user.family_name,
+        },
+      });
+    }
+  }, [day, moods, data, getMoods, setMoods, user]);
+
+  if (loading) return <p>Loading ...</p>;
+
+  return (
+    <>
+      <HeaderDiv>
+        <Logo>Logo</Logo>
+        <BackBtn type="button" onClick={() => history.push('/dashboard')}>
+          X
+        </BackBtn>
+      </HeaderDiv>
+      <MoodList>
+        {moodsToday &&
+          moodsToday.map((mood) => <MoodCard key={mood.id} mood={mood} />)}
+        {!moodsToday && <h1>No moods here :(</h1>}
+      </MoodList>
+    </>
   );
 }
 
 export default MoodDisplay;
+
+const HeaderDiv = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin: 60px 0 40px;
+`;
+
+const Logo = styled.h1`
+  margin: auto;
+`;
+
+const BackBtn = styled.button`
+  border: none;
+  background-color: white;
+  font-weight: bold;
+  font-size: 30px;
+`;
 
 const MoodList = styled.div`
   padding-bottom: 90px;

@@ -1,13 +1,16 @@
 import { isAfter, subDays, getDay } from 'date-fns';
 
 function weekOfMoods(data) {
-  const newArr = data.filter((mood) => {
+  // get only the mood entries from the previous week
+  const prevWeekMoodArr = data.filter((mood) => {
     return isAfter(+mood.createdAt, subDays(Date.now(), 7));
   });
 
+  // index 0 = sunday, index 1 = monday, etc
   const week = [[], [], [], [], [], [], []];
 
-  newArr.forEach((mood) => {
+  // add mood to the week array at the index corresponding to the day it was created
+  prevWeekMoodArr.forEach((mood) => {
     switch (getDay(+mood.createdAt)) {
       case 0:
         week[0].push(mood);
@@ -34,10 +37,12 @@ function weekOfMoods(data) {
     }
   });
 
-  for (let i = 0; i < getDay(Date.now()) + 1; i += 1) {
+  // re-order the week array - entries from today at last index
+  for (let i = 0, d = getDay(Date.now()); i < d + 1; i += 1) {
     const value = week.shift();
     week.push(value);
   }
+  // reverse week array
   return week.reverse();
 }
 

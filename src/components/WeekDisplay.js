@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
+import { getDay } from 'date-fns';
+import { Link } from 'react-router-dom';
 import { checkForUserAndGetMoodsQuery } from '../queries';
 import { useAuth0 } from '../utils/react-auth0-spa';
 import weekOfMoods from '../utils/weekOfMoods';
 import MoodPreview from './MoodPreview';
+import { MoodsPrevWeekContext } from '../contexts/MoodsPrevWeekContext';
 
 function WeekDisplay() {
   const { user } = useAuth0();
@@ -16,27 +19,34 @@ function WeekDisplay() {
     },
   });
 
-  const [moodsByWeek, setMoodsByWeek] = useState(null);
+  const { moods, setMoods } = useContext(MoodsPrevWeekContext);
 
+  // set moodsPrevWeek context if the data from query exists
   useEffect(() => {
     if (data) {
-      setMoodsByWeek(weekOfMoods(data.user.moods));
+      setMoods(weekOfMoods(data.user.moods));
     }
-  }, [data]);
+  }, [data, setMoods]);
 
-  console.log(moodsByWeek);
   if (error) return <p>Error</p>;
+  if (loading) return <p>Loading...</p>;
+
   return (
     <>
-      {moodsByWeek &&
-        moodsByWeek.map((list, index) => {
+      {moods &&
+        moods.map((list) => {
+          // return mood preview card if mood entries exist in the list
           if (list.length !== 0) {
             return (
-              <MoodPreview
-                key={list[index]}
-                count={list.length}
-                lastItem={list[list.length - 1]}
-              />
+              <Link
+                to={`/dashboard/day/${getDay(+list[0].createdAt)}`}
+                key={list[0].id}
+              >
+                <MoodPreview
+                  count={list.length}
+                  lastItem={list[list.length - 1]}
+                />
+              </Link>
             );
           }
           return null;

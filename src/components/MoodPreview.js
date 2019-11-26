@@ -1,6 +1,7 @@
 import React from 'react';
 import { format, getDay } from 'date-fns';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import convertDay from '../utils/convertDay';
 
 const formatDate = (timestamp, fmt) => {
@@ -9,15 +10,8 @@ const formatDate = (timestamp, fmt) => {
 };
 
 function MoodPreview({ lastItem, count }) {
-  console.log(lastItem);
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}
-    >
+    <PreviewContainer>
       <p className="weekday"> {convertDay(getDay(+lastItem.createdAt))}</p>
       <StyledMoodCard>
         <div className="date-time">
@@ -28,11 +22,30 @@ function MoodPreview({ lastItem, count }) {
           {lastItem.text && <p className="text">{lastItem.text}</p>}
         </div>
       </StyledMoodCard>
-    </div>
+    </PreviewContainer>
   );
 }
 
+MoodPreview.propTypes = {
+  lastItem: PropTypes.shape({
+    mood: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    anxietyLevel: PropTypes.number,
+    text: PropTypes.string,
+    sleep: PropTypes.number,
+    weather: PropTypes.string,
+  }).isRequired,
+  count: PropTypes.number.isRequired,
+};
+
 export default MoodPreview;
+
+const PreviewContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
 
 const StyledMoodCard = styled.div`
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -40,6 +53,8 @@ const StyledMoodCard = styled.div`
   background-color: #e5e5e5;
   padding: 25px 23px 10px;
   margin-bottom: 23px;
+  width: 90%;
+  min-height: 80px;
 
   .date-time {
     display: flex;
