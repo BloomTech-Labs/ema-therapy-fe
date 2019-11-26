@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { useQuery, useMutation } from '@apollo/react-hooks';
@@ -10,36 +10,44 @@ import { addMoodMutation } from '../queries';
 import Activities from './Activities';
 import useWeather from '../hooks/getWeatherLocationHook';
 
-const getUserId = gql`
+const getUserIdAndLocation = gql`
   query($sub: ID) {
     user(sub: $sub) {
+      isSharingLocation
       id
     }
   }
 `;
 
 const FormViews = () => {
-  const [input, setInput] = useState({
-    mood: 3,
-    activities: [],
-    text: '',
-    anxietyLevel: 5,
-    sleep: '',
-  });
-
   const history = useHistory();
-
   const [view, setView] = useState('mood');
-
-  const { loading: userLoading, error: userError, user } = useAuth0();
-
   const { finalTemp } = useWeather();
+  const { user } = useAuth0();
 
-  const { loading, error, data } = useQuery(getUserId, {
+  const [addMood] = useMutation(addMoodMutation);
+
+  const { loading, error, data } = useQuery(getUserIdAndLocation, {
     variables: { sub: user.sub },
   });
 
-  const [addMood, { data: moodData }] = useMutation(addMoodMutation);
+  const [input, setInput] = useState({
+    mood: 3,
+    activities: [],
+    text: '', // `value` prop on `textarea` should not be null.
+    anxietyLevel: null,
+    sleep: null,
+    weather: null,
+  });
+
+  useEffect(() => {
+    if (data && data.user.isSharingLocation) {
+      if (typeof finalTemp === 'string') {
+        // eslint-disable-next-line no-shadow
+        setInput((input) => ({ ...input, weather: finalTemp }));
+      }
+    }
+  }, [finalTemp, data]);
 
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -67,58 +75,30 @@ const FormViews = () => {
     }
   };
 
-  const submitForm = (e) => {
-    console.log('am i firing?');
-    e.preventDefault();
-    if (view === 'mood') {
-      addMood({
-        variables: {
-          userId: data.user.id,
-          mood: input.mood,
-          text: null,
-          anxietyLevel: null,
-          sleep: null,
-          weather: finalTemp,
-        },
-      });
-      history.push('/dashboard');
-    } else if (view === 'activities-journal') {
-      addMood({
-        variables: {
-          userId: data.user.id,
-          mood: input.mood,
-          text: input.text,
-          anxietyLevel: null,
-          sleep: null,
-          weather: finalTemp,
-        },
-      });
-      history.push('/dashboard');
-    } else {
-      addMood({
-        variables: {
-          userId: data.user.id,
-          mood: input.mood,
-          text: input.text,
-          anxietyLevel: input.anxietyLevel,
-          sleep: parseFloat(input.sleep),
-          weather: finalTemp,
-        },
-      });
-      history.push('/dashboard');
-    }
-  };
-
-  console.log('moodData', moodData);
-  console.log('input', input);
-
   const handleView = (newView) => {
     setView(newView);
   };
 
+  const submitForm = (e) => {
+    e.preventDefault();
+    addMood({
+      variables: {
+        userId: data.user.id,
+        weather: input.weather,
+        mood: input.mood,
+        anxietyLevel: input.anxietyLevel,
+        // if input.text is an empty string, pass null
+        text: input.text.length > 0 ? input.text : null,
+        // convert sleep from a string to a number as long as it is not 0
+        sleep: input.sleep !== null ? +input.sleep : null,
+      },
+    });
+    history.push('/dashboard');
+  };
+
   if (loading) return <p>Loading ...</p>;
   if (error) return <p>Error fetching.</p>;
-  if (userError) return <p>Loading ...</p>;
+  // if (userError) return <p>Loading ...</p>;
 
   return (
     <form onSubmit={submitForm}>
@@ -214,18 +194,19 @@ const FormViews = () => {
             <div className="inputs">
               <p>Anxiety Level</p>
               <Slider
-                value={input.anxietyLevel}
+                value={input.anxietyLevel || 5}
                 onChange={onAnxietySliderChange}
                 min={1}
                 max={10}
               />
             </div>
             <div className="inputs">
-              <label>
+              <label htmlFor="sleep">
                 Hours of sleep:
                 <input
                   type="number"
                   name="sleep"
+                  id="sleep"
                   value={input.sleep}
                   onChange={handleChange}
                 />
