@@ -35,7 +35,7 @@ const FormViews = () => {
     mood: 3,
     activities: [],
     text: '', // `value` prop on `textarea` should not be null.
-    anxietyLevel: null,
+    anxietyLevel: 5,
     sleep: null,
     weather: null,
   });
@@ -86,7 +86,7 @@ const FormViews = () => {
         userId: data.user.id,
         weather: input.weather,
         mood: input.mood,
-        anxietyLevel: input.anxietyLevel,
+        anxietyLevel: view === 'anxiety-sleep' ? input.anxietyLevel : null,
         // if input.text is an empty string, pass null
         text: input.text.length > 0 ? input.text : null,
         // convert sleep from a string to a number as long as it is not 0
@@ -194,7 +194,7 @@ const FormViews = () => {
             <div className="inputs">
               <p>Anxiety Level</p>
               <Slider
-                value={input.anxietyLevel || 5}
+                value={input.anxietyLevel}
                 onChange={onAnxietySliderChange}
                 min={1}
                 max={10}
