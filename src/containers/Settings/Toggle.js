@@ -1,29 +1,26 @@
-// TEMPORARILY ignore these warnings because I'm lazy and...
-// don't like squiggly lines but I plan on satisfying the linter eventually
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-// TEMPORARILY disable this proptype warning because I'm lazy
-// eslint-disable-next-line react/prop-types
-function Toggle({ toggleState, handleClick }) {
-  const [toggleOn, setToggleOn] = useState(toggleState);
-
-  const toggleMode = () => {
-    setToggleOn(!toggleOn);
-    handleClick();
-  };
-
+function Toggle({ toggleState, handleToggle }) {
   return (
     <StyledToggle>
       <div
-        onClick={toggleMode}
-        className={toggleOn ? 'toggle toggled' : 'toggle'}
+        onClick={() => handleToggle()}
+        className={toggleState ? 'toggle toggled' : 'toggle'}
       />
     </StyledToggle>
   );
 }
+
+Toggle.propTypes = {
+  toggleState: PropTypes.bool.isRequired,
+  handleToggle: PropTypes.func.isRequired,
+};
+
+export default Toggle;
 
 const StyledToggle = styled.div`
   background: papayawhip;
@@ -47,5 +44,3 @@ const StyledToggle = styled.div`
     left: 18px;
   }
 `;
-
-export default Toggle;

@@ -1,19 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { gql } from 'apollo-boost';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import { useAuth0 } from '../../utils/react-auth0-spa';
 import Logout from './Logout';
 import Dashboard from '../Dashboard';
 import Toggle from './Toggle';
 
+const GET_IS_SHARING_LOCATION = gql`
+  query($sub: ID) {
+    user(sub: $sub) {
+      isSharingLocation
+      id
+    }
+  }
+`;
+
+const UPDATE_IS_SHARING_LOCATION = gql`
+  mutation($id: ID!, $isSharingLocation: Boolean!) {
+    updateIsSharingLocation(id: $id, isSharingLocation: $isSharingLocation) {
+      isSharingLocation
+      id
+    }
+  }
+`;
+
 const Settings = () => {
-  const { isAuthenticated } = useAuth0();
-
-  const [darkMode, setDarkMode] = useState(false);
+  const [updateIsSharingLocation] = useMutation(UPDATE_IS_SHARING_LOCATION);
   const [isSharingLocation, setIsSharingLocation] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+  const { user } = useAuth0();
+  const { loading, data } = useQuery(GET_IS_SHARING_LOCATION, {
+    variables: { sub: user.sub },
+  });
 
-  // console.log('darkMode', darkMode);
-  // console.log('isSharingLocation', isSharingLocation);
+  useEffect(() => {
+    if (!loading) {
+      setIsSharingLocation(data.user.isSharingLocation);
+    }
+  }, [isSharingLocation, data, loading]);
+
+  const toggleLocationPermissions = () => {
+    updateIsSharingLocation({
+      variables: { id: data.user.id, isSharingLocation: !isSharingLocation },
+    });
+  };
 
   return (
     <Dashboard>
@@ -25,18 +57,18 @@ const Settings = () => {
             <span>Share My Location</span>
             <Toggle
               toggleState={isSharingLocation}
-              handleClick={() => setIsSharingLocation(!isSharingLocation)}
+              handleToggle={toggleLocationPermissions}
             />
           </div>
           <div className="setting-group__item">
             <span>Dark Mode</span>
             <Toggle
               toggleState={darkMode}
-              handleClick={() => setDarkMode(!darkMode)}
+              handleToggle={() => setDarkMode(!darkMode)}
             />
           </div>
         </div>
-        {isAuthenticated && <StyledLink to="/profile">Profile</StyledLink>}
+        <StyledLink to="/profile">Profile</StyledLink>
         <Logout />
       </StyledSettings>
     </Dashboard>
