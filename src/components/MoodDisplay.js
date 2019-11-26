@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useLazyQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { getDay } from 'date-fns';
 import { useAuth0 } from '../utils/react-auth0-spa';
 import weekOfMoods from '../utils/weekOfMoods';
@@ -17,6 +17,7 @@ function MoodDisplay() {
   const [getMoods, { loading, data }] = useLazyQuery(
     checkForUserAndGetMoodsQuery,
   );
+  const history = useHistory();
 
   useEffect(() => {
     // if moods exist in context, find the mood that matches the day from url and set to state
@@ -46,15 +47,40 @@ function MoodDisplay() {
   if (loading) return <p>Loading ...</p>;
 
   return (
-    <MoodList>
-      {moodsToday &&
-        moodsToday.map((mood) => <MoodCard key={mood.id} mood={mood} />)}
-      {!moodsToday && <h1>No moods here :(</h1>}
-    </MoodList>
+    <>
+      <HeaderDiv>
+        <Logo>Logo</Logo>
+        <BackBtn type="button" onClick={() => history.push('/dashboard')}>
+          X
+        </BackBtn>
+      </HeaderDiv>
+      <MoodList>
+        {moodsToday &&
+          moodsToday.map((mood) => <MoodCard key={mood.id} mood={mood} />)}
+        {!moodsToday && <h1>No moods here :(</h1>}
+      </MoodList>
+    </>
   );
 }
 
 export default MoodDisplay;
+
+const HeaderDiv = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin: 60px 0 40px;
+`;
+
+const Logo = styled.h1`
+  margin: auto;
+`;
+
+const BackBtn = styled.button`
+  border: none;
+  background-color: white;
+  font-weight: bold;
+  font-size: 30px;
+`;
 
 const MoodList = styled.div`
   padding-bottom: 90px;
