@@ -1,8 +1,7 @@
 import React from 'react';
-import { format, getDay } from 'date-fns';
+import format from 'date-fns/format';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import convertDay from '../utils/convertDay';
 
 const formatDate = (timestamp, fmt) => {
   const ts = Number(timestamp);
@@ -12,7 +11,7 @@ const formatDate = (timestamp, fmt) => {
 function MoodPreview({ lastItem, count }) {
   return (
     <PreviewContainer>
-      <p className="weekday"> {convertDay(getDay(+lastItem.createdAt))}</p>
+      <p className="weekday">{formatDate(lastItem.createdAt, 'iii')}</p>
       <StyledMoodCard>
         <div className="date-time">
           <p className="time">{formatDate(lastItem.createdAt, 'h:mm a')}</p>
