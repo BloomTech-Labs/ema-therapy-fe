@@ -4,11 +4,12 @@ import 'antd/dist/antd.css';
 import 'rc-slider/assets/index.css';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useAuth0 } from '../utils/react-auth0-spa';
 import { addMoodMutation, getUserIdAndLocation } from '../queries';
-import Activities from './Activities';
 import useWeather from '../hooks/getWeatherLocationHook';
+import FormMood from './FormMood';
+import FormActivityJournal from './FormActvityJournal';
 
 const FormViews = () => {
   const history = useHistory();
@@ -93,85 +94,30 @@ const FormViews = () => {
 
   return (
     <form onSubmit={submitForm}>
-      {/* Insert link to dashboard here */}
-      {/* <button type="button" onClick={}></button> */}
-
       {view === 'mood' && (
-        <MoodView>
+        <FormContainer>
           {/* questions */}
-          <div className="header">
-            <Link to="/dashboard">
-              <button type="button" className="back">
-                &larr;
-              </button>
-            </Link>
-            <p>How do you feel?</p>
-            <button className="main-button" type="submit">
-              Done
-            </button>
-          </div>
-          <div className="inputs">
-            <Slider
-              // defaultValue={3}
-              value={input.mood}
-              onChange={onMoodSliderChange}
-              min={1}
-              max={5}
-            />
-          </div>
-          <div className="footer">
-            <button
-              className="main-button"
-              type="button"
-              onClick={() => handleView('activity-journal')}
-            >
-              Next
-            </button>
-          </div>
-        </MoodView>
+          <FormMood
+            onMoodSliderChange={onMoodSliderChange}
+            mood={input.mood}
+            handleView={handleView}
+          />
+        </FormContainer>
       )}
 
       {view === 'activity-journal' && (
-        <MoodView>
-          <div className="header">
-            <button
-              type="button"
-              className="back"
-              onClick={() => handleView('mood')}
-            >
-              &larr;
-            </button>
-            <p>What have you been up to?</p>
-            <button className="main-button" type="submit">
-              Done
-            </button>
-          </div>
-          <Activities addActivities={addActivities} />
-          <div className="input-section">
-            <div className="inputs">
-              <textarea
-                type="text"
-                name="text"
-                placeholder="write your thoughts here"
-                value={input.text}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
-          <div className="footer">
-            <button
-              type="button"
-              className="main-button"
-              onClick={() => handleView('anxiety-sleep')}
-            >
-              Next
-            </button>
-          </div>
-        </MoodView>
+        <FormContainer>
+          <FormActivityJournal
+            handleView={handleView}
+            handleChange={handleChange}
+            addActivities={addActivities}
+            text={input.text}
+          />
+        </FormContainer>
       )}
 
       {view === 'anxiety-sleep' && (
-        <MoodView>
+        <FormContainer>
           <div className="header">
             <button
               type="button"
@@ -210,13 +156,13 @@ const FormViews = () => {
               Done
             </button>
           </div>
-        </MoodView>
+        </FormContainer>
       )}
     </form>
   );
 };
 
-const MoodView = styled.div`
+const FormContainer = styled.div`
   a {
     text-decoration: none;
   }
