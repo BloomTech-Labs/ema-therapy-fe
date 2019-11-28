@@ -3,22 +3,12 @@ import Slider from 'antd/es/slider';
 import 'antd/dist/antd.css';
 import 'rc-slider/assets/index.css';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { gql } from 'apollo-boost';
 import styled from 'styled-components';
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth0 } from '../utils/react-auth0-spa';
-import { addMoodMutation } from '../queries';
+import { addMoodMutation, getUserIdAndLocation } from '../queries';
 import Activities from './Activities';
 import useWeather from '../hooks/getWeatherLocationHook';
-
-const getUserIdAndLocation = gql`
-  query($sub: ID) {
-    user(sub: $sub) {
-      isSharingLocation
-      id
-    }
-  }
-`;
 
 const FormViews = () => {
   const history = useHistory();
