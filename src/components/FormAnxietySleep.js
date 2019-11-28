@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from 'antd/es/slider';
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 
 const FormAnxietySleep = ({
   handleView,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'antd/es/slider';
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 
 const FormMood = ({ onMoodSliderChange, mood, handleView }) => {
   return (
