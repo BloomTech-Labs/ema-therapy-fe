@@ -82,3 +82,12 @@ export const addUserMutation = gql`
     }
   }
 `;
+
+export const getUserIdAndLocation = gql`
+  query($sub: ID) {
+    user(sub: $sub) {
+      isSharingLocation
+      id
+    }
+  }
+`;

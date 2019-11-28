@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Icon from './Icon';
 import activities from '../utils/Activities';
-import Activity from './activity';
+import Activity from './Activity';
 
-const Activities = (props) => {
-  const { addActivities } = props;
-
+const Activities = ({ addActivities }) => {
   const [type, setType] = useState('food');
 
   const handleTypeView = (view) => {
     setType(view);
   };
-  console.log(activities);
   return (
     <ActivitiesWrapper>
       <div>
@@ -28,6 +25,7 @@ const Activities = (props) => {
         {type === 'food' &&
           activities[0].foods.map((activityType) => {
             return (
+              // TODO: add unique key prop
               <Activity
                 activityType={activityType}
                 addActivities={addActivities}
@@ -35,50 +33,52 @@ const Activities = (props) => {
             );
           })}
         {type === 'drink' &&
-          activities[1].drinks.map((drink) => {
+          activities[1].drinks.map((activityType) => {
             return (
-              <ActivityButton
-                type="button"
-                onClick={() => addActivities(drink)}
-              >
-                <Icon icon={drink.icon} />
-                <p>{drink.type}</p>
-              </ActivityButton>
+              // TODO: add unique key prop
+              <Activity
+                activityType={activityType}
+                addActivities={addActivities}
+              />
             );
           })}
         {type === 'fun' &&
-          activities[2].funs.map((fun) => {
+          activities[2].funs.map((activityType) => {
             return (
-              <ActivityButton type="button" onClick={() => addActivities(fun)}>
-                <Icon icon={fun.icon} />
-                <p>{fun.type}</p>
-              </ActivityButton>
+              // TODO: add unique key prop
+              <Activity
+                activityType={activityType}
+                addActivities={addActivities}
+              />
             );
           })}
         {type === 'misc' &&
-          activities[3].miscs.map((misc) => {
+          activities[3].miscs.map((activityType) => {
             return (
-              <ActivityButton type="button" onClick={() => addActivities(misc)}>
-                <Icon icon={misc.icon} />
-                <p>{misc.type}</p>
-              </ActivityButton>
+              // TODO: add unique key prop
+              <Activity
+                activityType={activityType}
+                addActivities={addActivities}
+              />
             );
           })}
         {type === 'leisure' &&
-          activities[4].leisures.map((leisure) => {
+          activities[4].leisures.map((activityType) => {
             return (
-              <ActivityButton
-                type="button"
-                onClick={() => addActivities(leisure)}
-              >
-                <Icon icon={leisure.icon} />
-                <p>{leisure.type}</p>
-              </ActivityButton>
+              // TODO: add unique key prop
+              <Activity
+                activityType={activityType}
+                addActivities={addActivities}
+              />
             );
           })}
       </ActivitiesView>
     </ActivitiesWrapper>
   );
+};
+
+Activities.propTypes = {
+  addActivities: PropTypes.func.isRequired,
 };
 
 const ActivitiesWrapper = styled.div`
@@ -106,19 +106,6 @@ const TypeButton = styled.button`
   font-size: 12px;
   line-height: 15px;
   margin-top: 50px;
-`;
-
-const ActivityButton = styled.button`
-  padding: 5px;
-  width: 70px;
-  border: none;
-  background: none;
-  margin-right: 3px;
-  margin-top: 27px;
-`;
-
-const ActivityButtonToggle = styled(ActivityButton)`
-  background: ${(props) => (props.active ? 'darkred' : 'limegreen')};
 `;
 
 export default Activities;
