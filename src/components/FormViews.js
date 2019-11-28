@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Slider from 'rc-slider';
+import Slider from 'antd/es/slider';
+import 'antd/dist/antd.css';
 import 'rc-slider/assets/index.css';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
@@ -121,6 +122,7 @@ const FormViews = () => {
           </div>
           <div className="inputs">
             <Slider
+              // defaultValue={3}
               value={input.mood}
               onChange={onMoodSliderChange}
               min={1}
