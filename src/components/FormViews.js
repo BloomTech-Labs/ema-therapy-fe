@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Slider from 'antd/es/slider';
 import 'antd/dist/antd.css';
 import 'rc-slider/assets/index.css';
 import { useQuery, useMutation } from '@apollo/react-hooks';
@@ -10,6 +9,7 @@ import { addMoodMutation, getUserIdAndLocation } from '../queries';
 import useWeather from '../hooks/getWeatherLocationHook';
 import FormMood from './FormMood';
 import FormActivityJournal from './FormActvityJournal';
+import FormAnxietySleep from './FormAnxietySleep';
 
 const FormViews = () => {
   const history = useHistory();
@@ -118,44 +118,13 @@ const FormViews = () => {
 
       {view === 'anxiety-sleep' && (
         <FormContainer>
-          <div className="header">
-            <button
-              type="button"
-              className="back"
-              onClick={() => handleView('activity-journal')}
-            >
-              &larr;
-            </button>
-            <p>How stressed are you this moment from 1 - 10?</p>
-          </div>
-          <div className="inputs-section">
-            <div className="inputs">
-              <p>Anxiety Level</p>
-              <Slider
-                value={input.anxietyLevel}
-                onChange={onAnxietySliderChange}
-                min={1}
-                max={10}
-              />
-            </div>
-            <div className="inputs">
-              <label htmlFor="sleep">
-                Hours of sleep:
-                <input
-                  type="number"
-                  name="sleep"
-                  id="sleep"
-                  value={input.sleep}
-                  onChange={handleChange}
-                />
-              </label>
-            </div>
-          </div>
-          <div className="footer">
-            <button className="main-button" type="submit">
-              Done
-            </button>
-          </div>
+          <FormAnxietySleep
+            handleView={handleView}
+            handleChange={handleChange}
+            onAnxietySliderChange={onAnxietySliderChange}
+            anxietyLevel={input.anxietyLevel}
+            sleep={input.sleep}
+          />
         </FormContainer>
       )}
     </form>
