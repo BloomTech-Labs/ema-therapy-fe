@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Icon from './Icon';
 
-const Activity = (props) => {
-  const { activityType, addActivities } = props;
-
-  let [active, setActive] = useState(true);
+const Activity = ({ activityType, addActivities }) => {
+  const [active, setActive] = useState(true);
 
   const handleActiveAndAddActivity = (addedActivity) => {
     addActivities(addedActivity);
