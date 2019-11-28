@@ -15,7 +15,7 @@ function MoodPreview({ lastItem, count }) {
       <StyledMoodCard>
         <div className="date-time">
           <p className="time">{formatDate(lastItem.createdAt, 'h:mm a')}</p>
-          <p className="date">{count} entries</p>
+          <p className="date">{count > 1 ? `${count} entries` : '1 entry'}</p>
         </div>
         <div className="mood-details">
           {lastItem.text && <p className="text">{lastItem.text}</p>}

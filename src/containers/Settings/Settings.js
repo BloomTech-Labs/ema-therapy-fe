@@ -29,7 +29,7 @@ const UPDATE_IS_SHARING_LOCATION = gql`
 const Settings = () => {
   const [updateIsSharingLocation] = useMutation(UPDATE_IS_SHARING_LOCATION);
   const [isSharingLocation, setIsSharingLocation] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  // const [darkMode, setDarkMode] = useState(false);
   const { user } = useAuth0();
   const { loading, data } = useQuery(GET_IS_SHARING_LOCATION, {
     variables: { sub: user.sub },
@@ -60,13 +60,13 @@ const Settings = () => {
               handleToggle={toggleLocationPermissions}
             />
           </div>
-          <div className="setting-group__item">
+          {/* <div className="setting-group__item">
             <span>Dark Mode</span>
             <Toggle
               toggleState={darkMode}
               handleToggle={() => setDarkMode(!darkMode)}
             />
-          </div>
+          </div> */}
         </div>
         <StyledLink to="/profile">Profile</StyledLink>
         <Logout />
