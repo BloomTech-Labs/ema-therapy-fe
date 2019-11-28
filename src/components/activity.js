@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Icon from './Icon';
 
 const Activity = ({ activityType, addActivities }) => {
@@ -21,6 +22,14 @@ const Activity = ({ activityType, addActivities }) => {
       </ActivityButtonToggle>
     </>
   );
+};
+
+Activity.propTypes = {
+  activityType: PropTypes.shape({
+    type: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired,
+  }).isRequired,
+  addActivities: PropTypes.func.isRequired,
 };
 
 const ActivityButton = styled.button`

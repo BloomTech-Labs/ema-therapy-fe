@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from 'antd/es/slider';
-// import 'antd/dist/antd.css';
+import PropTypes from 'prop-types';
 
 const FormAnxietySleep = ({
   handleView,
@@ -51,6 +51,14 @@ const FormAnxietySleep = ({
       </div>
     </>
   );
+};
+
+FormAnxietySleep.propTypes = {
+  handleView: PropTypes.func.isRequired,
+  anxietyLevel: PropTypes.number.isRequired,
+  onAnxietySliderChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  sleep: PropTypes.string.isRequired,
 };
 
 export default FormAnxietySleep;

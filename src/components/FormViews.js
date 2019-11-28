@@ -88,7 +88,6 @@ const FormViews = () => {
 
   if (loading) return <p>Loading ...</p>;
   if (error) return <p>Error fetching.</p>;
-  // if (userError) return <p>Loading ...</p>;
 
   return (
     <form onSubmit={submitForm}>

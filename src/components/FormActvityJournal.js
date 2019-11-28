@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Activities from './Activities';
 
 const FormActivityJournal = ({
@@ -45,6 +46,13 @@ const FormActivityJournal = ({
       </div>
     </>
   );
+};
+
+FormActivityJournal.propTypes = {
+  handleView: PropTypes.func.isRequired,
+  addActivities: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
 export default FormActivityJournal;

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import activities from '../utils/Activities';
 import Activity from './Activity';
@@ -24,6 +25,7 @@ const Activities = ({ addActivities }) => {
         {type === 'food' &&
           activities[0].foods.map((activityType) => {
             return (
+              // TODO: add unique key prop
               <Activity
                 activityType={activityType}
                 addActivities={addActivities}
@@ -33,6 +35,7 @@ const Activities = ({ addActivities }) => {
         {type === 'drink' &&
           activities[1].drinks.map((activityType) => {
             return (
+              // TODO: add unique key prop
               <Activity
                 activityType={activityType}
                 addActivities={addActivities}
@@ -42,6 +45,7 @@ const Activities = ({ addActivities }) => {
         {type === 'fun' &&
           activities[2].funs.map((activityType) => {
             return (
+              // TODO: add unique key prop
               <Activity
                 activityType={activityType}
                 addActivities={addActivities}
@@ -51,6 +55,7 @@ const Activities = ({ addActivities }) => {
         {type === 'misc' &&
           activities[3].miscs.map((activityType) => {
             return (
+              // TODO: add unique key prop
               <Activity
                 activityType={activityType}
                 addActivities={addActivities}
@@ -60,6 +65,7 @@ const Activities = ({ addActivities }) => {
         {type === 'leisure' &&
           activities[4].leisures.map((activityType) => {
             return (
+              // TODO: add unique key prop
               <Activity
                 activityType={activityType}
                 addActivities={addActivities}
@@ -69,6 +75,10 @@ const Activities = ({ addActivities }) => {
       </ActivitiesView>
     </ActivitiesWrapper>
   );
+};
+
+Activities.propTypes = {
+  addActivities: PropTypes.func.isRequired,
 };
 
 const ActivitiesWrapper = styled.div`

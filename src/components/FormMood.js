@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Slider from 'antd/es/slider';
-// import 'antd/dist/antd.css';
 
 const FormMood = ({ onMoodSliderChange, mood, handleView }) => {
   return (
@@ -18,13 +18,7 @@ const FormMood = ({ onMoodSliderChange, mood, handleView }) => {
         </button>
       </div>
       <div className="inputs">
-        <Slider
-          // defaultValue={3}
-          value={mood}
-          onChange={onMoodSliderChange}
-          min={1}
-          max={5}
-        />
+        <Slider value={mood} onChange={onMoodSliderChange} min={1} max={5} />
       </div>
       <div className="footer">
         <button
@@ -37,6 +31,12 @@ const FormMood = ({ onMoodSliderChange, mood, handleView }) => {
       </div>
     </>
   );
+};
+
+FormMood.propTypes = {
+  handleView: PropTypes.func.isRequired,
+  mood: PropTypes.number.isRequired,
+  onMoodSliderChange: PropTypes.func.isRequired,
 };
 
 export default FormMood;
