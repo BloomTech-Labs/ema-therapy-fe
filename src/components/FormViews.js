@@ -37,7 +37,7 @@ const FormViews = () => {
     activities: [],
     text: '', // `value` prop on `textarea` should not be null.
     anxietyLevel: 5,
-    sleep: null,
+    sleep: '',
     weather: null,
   });
 
@@ -90,8 +90,8 @@ const FormViews = () => {
         anxietyLevel: view === 'anxiety-sleep' ? input.anxietyLevel : null,
         // if input.text is an empty string, pass null
         text: input.text.length > 0 ? input.text : null,
-        // convert sleep from a string to a number as long as it is not 0
-        sleep: input.sleep !== null ? +input.sleep : null,
+        // convert sleep from a string to a number as long as it is not an empty string
+        sleep: input.sleep !== '' ? +input.sleep : null,
       },
     });
     history.push('/dashboard');
