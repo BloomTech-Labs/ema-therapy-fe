@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import 'antd/dist/antd.css';
-import 'rc-slider/assets/index.css';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
