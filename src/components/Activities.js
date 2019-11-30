@@ -4,6 +4,12 @@ import styled from 'styled-components';
 import activities from '../utils/Activities';
 import Activity from './Activity';
 
+function generateUniqueKey() {
+  return `_${Math.random()
+    .toString()
+    .substr(2, 9)}`;
+}
+
 const Activities = ({ addActivities }) => {
   const [type, setType] = useState('food');
 
@@ -15,7 +21,11 @@ const Activities = ({ addActivities }) => {
       <div>
         {activities.map((cur) => {
           return (
-            <TypeButton onClick={() => handleTypeView(cur.name)} type="button">
+            <TypeButton
+              key={generateUniqueKey()}
+              onClick={() => handleTypeView(cur.name)}
+              type="button"
+            >
               {cur.name}
             </TypeButton>
           );
@@ -25,8 +35,8 @@ const Activities = ({ addActivities }) => {
         {type === 'food' &&
           activities[0].foods.map((activityType) => {
             return (
-              // TODO: add unique key prop
               <Activity
+                key={generateUniqueKey()}
                 activityType={activityType}
                 addActivities={addActivities}
               />
@@ -35,8 +45,8 @@ const Activities = ({ addActivities }) => {
         {type === 'drink' &&
           activities[1].drinks.map((activityType) => {
             return (
-              // TODO: add unique key prop
               <Activity
+                key={generateUniqueKey()}
                 activityType={activityType}
                 addActivities={addActivities}
               />
@@ -45,8 +55,8 @@ const Activities = ({ addActivities }) => {
         {type === 'fun' &&
           activities[2].funs.map((activityType) => {
             return (
-              // TODO: add unique key prop
               <Activity
+                key={generateUniqueKey()}
                 activityType={activityType}
                 addActivities={addActivities}
               />
@@ -55,8 +65,8 @@ const Activities = ({ addActivities }) => {
         {type === 'misc' &&
           activities[3].miscs.map((activityType) => {
             return (
-              // TODO: add unique key prop
               <Activity
+                key={generateUniqueKey()}
                 activityType={activityType}
                 addActivities={addActivities}
               />
@@ -65,8 +75,8 @@ const Activities = ({ addActivities }) => {
         {type === 'leisure' &&
           activities[4].leisures.map((activityType) => {
             return (
-              // TODO: add unique key prop
               <Activity
+                key={generateUniqueKey()}
                 activityType={activityType}
                 addActivities={addActivities}
               />
