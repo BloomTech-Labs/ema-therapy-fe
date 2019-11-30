@@ -1,4 +1,3 @@
-// import React, { useState, useEffect } from 'react';
 import React from 'react';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
@@ -6,7 +5,6 @@ import { Route, Switch } from 'react-router-dom';
 import { useAuth0 } from '../../utils/react-auth0-spa';
 import { GRAPHQL_URI } from '../../utils/config';
 import GlobalStyle from '../../styles/global-styles';
-// import convertTemp from '../../utils/convertTemp';
 import Welcome from '../Welcome/Welcome';
 import Profile from '../../components/Profile';
 import PrivateRoute from '../../components/PrivateRoute';
