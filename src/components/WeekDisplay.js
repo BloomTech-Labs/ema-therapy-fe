@@ -28,7 +28,7 @@ function WeekDisplay() {
     }
   }, [data, setMoods]);
 
-  if (error) return <p>Error</p>;
+  if (error) return <p>{error.message}</p>;
   if (loading) return <p>Loading...</p>;
 
   return (
