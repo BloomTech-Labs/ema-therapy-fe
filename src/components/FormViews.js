@@ -3,15 +3,15 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { useAuth0 } from '../utils/react-auth0-spa';
+import useWeather from '../hooks/getWeatherLocationHook';
+import FormMood from './FormMood';
+import FormActivityJournal from './FormActvityJournal';
+import FormAnxietySleep from './FormAnxietySleep';
 import {
   addMoodMutation,
   getUserIdAndLocation,
   checkForUserAndGetMoodsQuery,
 } from '../queries';
-import useWeather from '../hooks/getWeatherLocationHook';
-import FormMood from './FormMood';
-import FormActivityJournal from './FormActvityJournal';
-import FormAnxietySleep from './FormAnxietySleep';
 
 const FormViews = () => {
   const history = useHistory();
@@ -35,14 +35,12 @@ const FormViews = () => {
   });
 
   useEffect(() => {
-    // const ac = new AbortController();
     if (data && data.user.isSharingLocation) {
       if (typeof finalTemp === 'string') {
         // eslint-disable-next-line no-shadow
         setInput((input) => ({ ...input, weather: finalTemp }));
       }
     }
-    // return () => ac.abort();
   }, [finalTemp, data]);
 
   const handleChange = (e) => {
