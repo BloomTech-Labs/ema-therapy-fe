@@ -86,6 +86,7 @@ const FormViews = () => {
         userId: data.user.id,
         weather: input.weather,
         mood: input.mood,
+        activities: JSON.stringify(input.activities),
         anxietyLevel: view === 'anxiety-sleep' ? input.anxietyLevel : null,
         // if input.text is an empty string, pass null
         text: input.text.length > 0 ? input.text : null,
@@ -99,6 +100,8 @@ const FormViews = () => {
   if (loading) return <p>Loading ...</p>;
   if (error) return <p>Error fetching.</p>;
   // if (userError) return <p>Loading ...</p>;
+
+  console.log(input);
 
   return (
     <form onSubmit={submitForm}>

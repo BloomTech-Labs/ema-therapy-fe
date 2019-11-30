@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import moodToString from '../utils/moodToString';
+import Icon from './Icon';
 
 const formatDate = (timestamp, fmt) => {
   const ts = Number(timestamp);
@@ -10,7 +11,16 @@ const formatDate = (timestamp, fmt) => {
 };
 
 const MoodCard = ({ mood: m }) => {
-  const { mood, sleep, anxietyLevel: anxiety, text, createdAt, weather } = m;
+  const {
+    mood,
+    activities,
+    sleep,
+    anxietyLevel: anxiety,
+    text,
+    createdAt,
+    weather,
+  } = m;
+
   return (
     <StyledMoodCard>
       <div className="date-time">
@@ -18,6 +28,17 @@ const MoodCard = ({ mood: m }) => {
         <p className="time">{formatDate(createdAt, 'h:mm a')}</p>
       </div>
       <p className="mood">{moodToString(mood)}</p>
+      <div className="activity">
+        {activities &&
+          JSON.parse(activities).map((activity) => {
+            return (
+              <divdiv className="icon-wrapper">
+                <Icon icon={activity.icon} />
+                <p>{activity.type}</p>
+              </divdiv>
+            );
+          })}
+      </div>
       <div className="mood-details">
         {weather && <p className="weather">Weather: {weather}</p>}
         {sleep !== null && <p className="sleep">Sleep: {sleep} h</p>}
@@ -50,6 +71,14 @@ const StyledMoodCard = styled.div`
   background-color: #e5e5e5;
   padding: 48px 23px 10px;
   margin-bottom: 23px;
+
+  .activity {
+    display:flex .icon-wrapper {
+      display: flex;
+      flex-direction: column;
+      margin: 10px;
+    }
+  }
 
   .date-time {
     display: flex;
