@@ -32,10 +32,10 @@ const MoodCard = ({ mood: m }) => {
         {activities &&
           JSON.parse(activities).map((activity) => {
             return (
-              <divdiv className="icon-wrapper">
+              <div className="icon-wrapper">
                 <Icon icon={activity.icon} />
                 <p>{activity.type}</p>
-              </divdiv>
+              </div>
             );
           })}
       </div>
@@ -73,7 +73,9 @@ const StyledMoodCard = styled.div`
   margin-bottom: 23px;
 
   .activity {
-    display:flex .icon-wrapper {
+    display: flex;
+
+    .icon-wrapper {
       display: flex;
       flex-direction: column;
       margin: 10px;
