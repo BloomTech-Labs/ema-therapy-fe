@@ -46,7 +46,7 @@ const Settings = () => {
     });
   };
 
-  return (
+  return loading ? null : (
     <Dashboard>
       <StyledSettings>
         <h1>Settings</h1>
