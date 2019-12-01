@@ -16,10 +16,10 @@ const useCurrentWeather = () => {
         const { latitude, longitude } = position.coords;
         // Get the user's current weather from Open Weather API
         const url = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=${API_KEY}`;
-        const response = await fetch(url);
-        const res = await response.json();
-        const temp = convertTempFromKelvinToFahr(res.main.temp);
-        const description = res.weather[0].main;
+        const res = await fetch(url);
+        const data = await res.json();
+        const temp = convertTempFromKelvinToFahr(data.main.temp);
+        const description = data.weather[0].main;
         setCurrentWeather(`${description} ${temp}°`);
       });
     }
