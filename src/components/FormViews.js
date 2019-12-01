@@ -3,7 +3,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { useAuth0 } from '../utils/react-auth0-spa';
-import useWeather from '../hooks/getWeatherLocationHook';
+import useCurrentWeather from '../hooks/useCurrentWeather';
 import FormMood from './FormMood';
 import FormActivityJournal from './FormActvityJournal';
 import FormAnxietySleep from './FormAnxietySleep';
@@ -16,7 +16,7 @@ import {
 const FormViews = () => {
   const history = useHistory();
   const [view, setView] = useState('mood');
-  const { finalTemp } = useWeather();
+  const currentWeather = useCurrentWeather();
   const { user } = useAuth0();
 
   const [addMood] = useMutation(addMoodMutation);
@@ -36,12 +36,12 @@ const FormViews = () => {
 
   useEffect(() => {
     if (data && data.user.isSharingLocation) {
-      if (typeof finalTemp === 'string') {
+      if (currentWeather) {
         // eslint-disable-next-line no-shadow
-        setInput((input) => ({ ...input, weather: finalTemp }));
+        setInput((input) => ({ ...input, weather: currentWeather }));
       }
     }
-  }, [finalTemp, data]);
+  }, [currentWeather, data]);
 
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
