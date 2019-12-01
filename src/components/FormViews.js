@@ -3,11 +3,15 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import { useAuth0 } from '../utils/react-auth0-spa';
-import { addMoodMutation, getUserIdAndLocation } from '../queries';
 import useWeather from '../hooks/getWeatherLocationHook';
 import FormMood from './FormMood';
 import FormActivityJournal from './FormActvityJournal';
 import FormAnxietySleep from './FormAnxietySleep';
+import {
+  addMoodMutation,
+  getUserIdAndLocation,
+  checkForUserAndGetMoodsQuery,
+} from '../queries';
 
 const FormViews = () => {
   const history = useHistory();
@@ -24,7 +28,7 @@ const FormViews = () => {
   const [input, setInput] = useState({
     mood: 3,
     activities: [],
-    text: '', // `value` prop on `textarea` should not be null.
+    text: '',
     anxietyLevel: 5,
     sleep: '',
     weather: null,
@@ -69,9 +73,9 @@ const FormViews = () => {
     setView(newView);
   };
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
-    addMood({
+    await addMood({
       variables: {
         userId: data.user.id,
         weather: input.weather,
@@ -82,12 +86,19 @@ const FormViews = () => {
         // convert sleep from a string to a number as long as it is not an empty string
         sleep: input.sleep !== '' ? +input.sleep : null,
       },
+      refetchQueries: [
+        {
+          query: checkForUserAndGetMoodsQuery,
+          variables: { sub: user.sub },
+        },
+      ],
+      awaitRefetchQueries: true,
     });
     history.push('/dashboard');
   };
 
-  if (loading) return <p>Loading ...</p>;
-  if (error) return <p>Error fetching.</p>;
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error.message}</p>;
 
   return (
     <form onSubmit={submitForm}>
