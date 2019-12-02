@@ -11,7 +11,7 @@ module.exports = override(
     modifyVars: {
       // override any defaults from...
       // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
-      '@primary-color': '#BADA55',
+      // '@primary-color': '#BADA55',
     },
   }),
 );
