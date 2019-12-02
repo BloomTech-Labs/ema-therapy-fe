@@ -31,17 +31,17 @@ You can find the deployed project at [mood<strong>bloom</strong>app.com](https:/
 
 ## Project Overview
 
-1️⃣ [Trello Board](🚫add link to trello board here)
+[Trello Board](https://trello.com/b/Avyrxfpo/ema-therapy-app)
 
-1️⃣ [Product Canvas](🚫add link to product canvas here)
+[Product Canvas](https://www.notion.so/MoodBloom-8c3de7cf08fc4e96a1014b9dd02cc1a3)
 
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
+[UX Design files](https://www.figma.com/file/CXt8kzVr1fvhPdWsQdSmok/Labs18_Ema-Therapy%2C-Hermione-Gogou%2CJanessa-Maisonet?node-id=201%3A339)
 
-🚫 Replace lorem ipsum with a description of your project
+### MoodBloom
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+People seeking therapy don't have a single source of truth for tracking their moods or for sharing it with their mental health provider. Due to the limitations that come with HIPAA as well as limited time for mental health providers to change their work flow, MoodMuse provides a central location for users who want to improve their overall quality of life through mood.
 
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Users can use MoodMuse to track their mood implementing EMA strategies for their own mindfulness or to share with their mental health provider.
 
 ### 4️⃣ Key Features
 
@@ -51,11 +51,11 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 - feature four
 - feature five
 
-## 1️⃣ Tech Stack
+## Tech Stack
 
 ### Front end built using:
 
-#### _Front end framework goes here_
+#### React JS using Context API, and Apollo-Boost. Styles using Ant Design.
 
 🚫 Why did you choose this framework?
 
@@ -66,11 +66,11 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
 🚫List the rest of the front end features and libraries in the same format as the framework above.
 
-#### Front end deployed to `🚫insert service here`
+#### Front end deployed to Netlify
 
-#### [Back end](🚫link to back end repo here) built using:
+#### [Back end](https://github.com/Lambda-School-Labs/ema-therapy-be) built using:
 
-#### 🚫 back end framework goes here
+#### Node.js with Express, GraphQL, and MongoDB with Mongoose.
 
 - point one
 - point two
@@ -80,52 +80,35 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
 # APIs
 
-## 2️⃣ Authentication API here
+## Auth 0
 
 🚫Replace text below with a description of the API
 
 Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
 
-## 2️⃣ Payment API here
+## Apollo-Boost
 
 🚫Replace text below with a description of the API
 
 This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
 
-## 3️⃣ Misc API here
+## Context API
 
 🚫Replace text below with a description of the API
 
 You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
 
-## 3️⃣ Misc API here
+## Ant Design
 
 🚫Replace text below with a description of the API
 
 When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
 
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
-
-# 3️⃣ Environment Variables
+# Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
-🚫These are just examples, replace them with the specifics for your app
-
-    *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
-    *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
-    *  REACT_APP_databaseURL - in the Firebase dashboard
-    *  REACT_APP_projectID - in the Firebase dashboard
-    *  REACT_APP_storageBucket - in the Firebase dashboard
-    *  REACT_APP_messagingSenderId - in the Firebase dashboard
-    *  REACT_APP_stripe_API - this is your public Stripe API key, generated in the Stripe dashboard
-    *  REACT_APP_backendURL - optional for your local development server
-    *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
-    *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
+    *  REACT_APP_OPEN_WEATHER_API_KEY - this is your Open Weather API key, which can be generated at https://openweathermap.org/api.
 
 # 5️⃣ Content Licenses
 
@@ -136,9 +119,19 @@ In order for the app to function correctly, the user must set up their own envir
 | doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
 | rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
 
-# 4️⃣ Testing
+# Testing
 
-🚫Document what you used for testing and why
+### Front-end: React Testing Library with Jest
+
+- point one
+- point two
+- point three
+
+### Back-end: Jest with Supertest
+
+- point one
+- point two
+- point three
 
 # 4️⃣ Installation Instructions
 
@@ -192,4 +185,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](🚫*link to your backend readme here*) for details on the backend of our project.
+See [Backend Documentation](https://github.com/Lambda-School-Labs/ema-therapy-be) for details on the backend of our project.
