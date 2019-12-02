@@ -1,22 +1,20 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
+# MoodBloom 🌱
 
-🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
+You can find the deployed project at [mood<strong>bloom</strong>app.com](https://www.moodbloomapp.com/).
 
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
+## Contributors
 
-# 1️⃣ Title of project goes here
+|                                                                                       [Matt Klein](https://github.com/DuckEverlasting)                                                                                        |                                                                                              [Janessa Maisonet](https://github.com/)                                                                                              |                                                                                          [Hermione Gogou](https://github.com/hermionegogou)                                                                                          |                                                                                          [Allison Donnelly](https://github.com/allisonkydy)                                                                                          |                                                                                       [Amanda Lane](https://github.com/amlane)                                                                                       |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                               [<img src="https://ca.slack-edge.com/T4JUEB3ME-UGHE0V5AN-bfbd3d938465-512" width = "200" />](https://github.com/DuckEverlasting)                                                |                                                         [<img src="https://ca.slack-edge.com/T4JUEB3ME-UH0G8RJKZ-420b0cd6f247-512" width = "200" />](https://github.com/)                                                         |                                                     [<img src="https://avatars3.githubusercontent.com/u/50219602?s=460&v=4" width = "200" />](https://github.com/hermionegogou)                                                      |                                                      [<img src="https://avatars0.githubusercontent.com/u/31572415?s=460&v=4" width = "200" />](https://github.com/allisonkydy)                                                       |                                                 [<img src="https://avatars2.githubusercontent.com/u/47289060?s=460&v=4" width = "200" />](https://github.com/amlane)                                                 |
+|                                                                                                           Team Lead                                                                                                           |                                                                                                            UX Designer                                                                                                            |                                                                                                             UX Designer                                                                                                              |                                                                                                            Web Developer                                                                                                             |                                                                                                    Web Developer                                                                                                     |
+| [<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/DuckEverlasting) [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/matthew-s-klein/) | [<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/honda0306) [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/janessa-maisonet-314a7219/) | [<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/hermionegogou) [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/hermione-gogou-0aa351186/) | [<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/allisonkydy) [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/allison-donnelly-90831a174/) | [<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/amlane) [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/amanda-lane-dev/) |
 
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
-
-## 4️⃣ Contributors
-
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
-
-|                                       [Student 1](https://github.com/)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
-| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
+|                                                                                            [Brandon Pampuch](https://github.com/)                                                                                             |                                                                                  [Daisy Messa](https://github.com/daisymesa)                                                                                   |                                                                                               [Jeffrey Whitaker](https://github.com/)                                                                                                |                                                                                        [Jonathan Taylor](https://github.com/jonyonson)                                                                                        |                                                                                 [Samir Lilienfeld](https://github.com/samir-hub)                                                                                  |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                 [<img src="https://avatars1.githubusercontent.com/u/30952674?s=460&v=4" width = "200" />](https://github.com/Brandon-Pampuch)                                                 |                                            [<img src="https://avatars3.githubusercontent.com/u/42687274?s=460&v=4" width = "200" />](https://github.com/daisymesa)                                             |                                                    [<img src="https://avatars2.githubusercontent.com/u/52683769?s=460&v=4" width = "200" />](https://github.com/jeffreywhitaker)                                                     |                                                    [<img src="https://avatars0.githubusercontent.com/u/14138530?s=460&v=4" width = "200" />](https://github.com/jonyonson)                                                    |                                              [<img src="https://avatars0.githubusercontent.com/u/52542655?s=460&v=4" width = "200" />](https://github.com/samir-hub)                                              |
+|                                                                                                         Web Developer                                                                                                         |                                                                                                 Web Developer                                                                                                  |                                                                                                            Web Developer                                                                                                             |                                                                                                         Web Developer                                                                                                         |                                                                                                   Web Developer                                                                                                   |
+| [<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/Brandon-Pampuch) [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/brandon-pampuch/) | [<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/daisymesa) [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/mdaisy/) | [<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/jeffreywhitaker) [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/jeffrey-david-whitaker/) | [<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/jonyonson) [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/jonathan-craig-taylor/) | [<img src="https://github.com/favicon.ico" width="20"> ](https://github.com/samir-hub) [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="20"> ](https://www.linkedin.com/in/samir-hub/) |
 
 <br>
 <br>
@@ -45,14 +43,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-
 ### 4️⃣ Key Features
 
--    feature one
--    feature two
--    feature three
--    feature four
--    feature five
+- feature one
+- feature two
+- feature three
+- feature four
+- feature five
 
 ## 1️⃣ Tech Stack
 
@@ -62,10 +59,10 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
 🚫 Why did you choose this framework?
 
--    point one
--    point two
--    point three
--    point four
+- point one
+- point two
+- point three
+- point four
 
 🚫List the rest of the front end features and libraries in the same format as the framework above.
 
@@ -75,9 +72,9 @@ Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
 
 #### 🚫 back end framework goes here
 
--    point one
--    point two
--    point three
+- point one
+- point two
+- point three
 
 🚫 List the rest of the back end end features and libraries in the same format as the framework above
 
@@ -163,12 +160,13 @@ When contributing to this repository, please first discuss the change you wish t
 Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it in all your interactions with the project.
 
 ## Issue/Bug Request
-   
- **If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
- - Check first to see if your issue has already been reported.
- - Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
- - Create a live example of the problem.
- - Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes,  where you believe the issue is originating from, and any potential solutions you have considered.
+
+**If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
+
+- Check first to see if your issue has already been reported.
+- Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
+- Create a live example of the problem.
+- Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes, where you believe the issue is originating from, and any potential solutions you have considered.
 
 ### Feature Requests
 
@@ -194,4 +192,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](🚫_link to your backend readme here_) for details on the backend of our project.
+See [Backend Documentation](🚫*link to your backend readme here*) for details on the backend of our project.
