@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import moodToString from '../utils/moodToString';
-import Icon from './Icon';
+// import Icon from './Icon';
 
 const formatDate = (timestamp, fmt) => {
   const ts = Number(timestamp);
@@ -30,11 +30,11 @@ const MoodCard = ({ mood: m }) => {
       <p className="mood">{moodToString(mood)}</p>
       <div className="activity">
         {activities &&
-          JSON.parse(activities).map((activity) => {
+          activities.map((activity) => {
             return (
               <div className="icon-wrapper">
-                <Icon icon={activity.icon} />
-                <p>{activity.type}</p>
+                {/* <Icon icon={activity.icon} /> */}
+                <p>{activity}</p>
               </div>
             );
           })}

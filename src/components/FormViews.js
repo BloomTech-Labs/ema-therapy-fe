@@ -55,17 +55,18 @@ const FormViews = () => {
     setInput({ ...input, anxietyLevel: value });
   };
 
-  const addActivities = (activityObject) => {
+  const addActivities = (activityString) => {
+    console.log('fired', activityString);
     const hasActivity = input.activities.some(
-      (activity) => activity.type === activityObject.type,
+      (activity) => activity === activityString,
     );
     if (hasActivity) {
       const removeActivity = input.activities.filter((obj) => {
-        return obj.type !== activityObject.type;
+        return obj !== activityString;
       });
       setInput({ ...input, activities: removeActivity });
     } else {
-      setInput({ ...input, activities: [...input.activities, activityObject] });
+      setInput({ ...input, activities: [...input.activities, activityString] });
     }
   };
 
@@ -80,7 +81,7 @@ const FormViews = () => {
         userId: data.user.id,
         weather: input.weather,
         mood: input.mood,
-        activities: JSON.stringify(input.activities),
+        activities: input.activities,
         anxietyLevel: view === 'anxiety-sleep' ? input.anxietyLevel : null,
         // if input.text is an empty string, pass null
         text: input.text.length > 0 ? input.text : null,

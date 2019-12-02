@@ -18,7 +18,7 @@ export const addMoodMutation = gql`
   mutation(
     $userId: ID!
     $mood: Int!
-    $activities: String
+    $activities: [String]
     $text: String
     $anxietyLevel: Int
     $sleep: Float
