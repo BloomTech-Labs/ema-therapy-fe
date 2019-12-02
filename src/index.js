@@ -28,7 +28,7 @@ const onRedirectCallback = (appState) => {
   );
 };
 
-ReactGA.initialize(GA_ID);
+ReactGA.initialize(GA_ID, { debug: true });
 ReactGA.pageview(window.location.pathname + window.location.search);
 
 ReactDOM.render(
