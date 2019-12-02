@@ -50,17 +50,19 @@ const Settings = () => {
     <Dashboard>
       <StyledSettings>
         <h1>Settings</h1>
-        <div className="setting-group">
-          <h2 className="setting-group__heading">Preferences</h2>
-          <div className="setting-group__item">
-            <span>Share My Location</span>
-            <Switch
-              loading={loading}
-              checked={isSharingLocation}
-              onChange={toggleLocationPermissions}
-            />
+        {!loading && (
+          <div className="setting-group">
+            <h2 className="setting-group__heading">Preferences</h2>
+            <div className="setting-group__item">
+              <span>Share My Location</span>
+              <Switch
+                loading={loading}
+                checked={isSharingLocation}
+                onChange={toggleLocationPermissions}
+              />
+            </div>
           </div>
-        </div>
+        )}
         <StyledLink to="/profile">Profile</StyledLink>
         <Logout />
       </StyledSettings>
