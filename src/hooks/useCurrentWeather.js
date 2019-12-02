@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Avatar } from 'antd';
 
 const API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
 
@@ -10,26 +9,28 @@ function convertTempFromKelvinToFahr(kelvin) {
 
 const useCurrentWeather = () => {
   const [currentWeather, setCurrentWeather] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const ac = new AbortController();
-    const { signal } = ac;
     if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition(async (position) => {
+      navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
-        // Get the user's current weather from Open Weather API
         const WEATHER_API = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&APPID=${API_KEY}`;
-        const res = await fetch(WEATHER_API, { signal });
-        const data = await res.json();
-        const temp = convertTempFromKelvinToFahr(data.main.temp);
-        const description = data.weather[0].main;
-        setCurrentWeather(`${description} ${temp}°`);
+        // Get the user's current weather from Open Weather API
+        fetch(WEATHER_API, { signal: ac.signal })
+          .then((res) => res.json())
+          .then((data) => {
+            const temperature = convertTempFromKelvinToFahr(data.main.temp);
+            const conditions = data.weather[0].main;
+            setCurrentWeather(`${conditions} ${temperature}`);
+          })
+          .catch((err) => setError(err));
       });
     }
-
     return () => ac.abort();
   }, []);
-  return currentWeather;
+  return { currentWeather, error };
 };
 
 export default useCurrentWeather;
