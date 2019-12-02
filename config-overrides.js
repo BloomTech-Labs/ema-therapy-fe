@@ -1,5 +1,4 @@
 const { override, fixBabelImports, addLessLoader } = require('customize-cra');
-const path = require('path');
 
 // https://ant.design/docs/react/use-with-create-react-app#Advanced-Guides
 
@@ -19,17 +18,4 @@ module.exports = override(
       '@primary-color': '#1DA57A',
     },
   }),
-  // reduces bundle size significantly by aliasing antd's icon directory to
-  // `./src/icons.js` where antd icons can be individually exported
-  // https://github.com/ant-design/ant-design/issues/12011#issuecomment-552117531
-  // eslint-disable-next-line func-names
-  function(config) {
-    const alias = config.resolve.alias || {};
-    alias['@ant-design/icons/lib/dist$'] = path.resolve(
-      __dirname,
-      './src/icons.js',
-    );
-    config.resolve.alias = alias; // eslint-disable-line no-param-reassign
-    return config;
-  },
 );
