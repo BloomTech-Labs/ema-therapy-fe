@@ -16,7 +16,7 @@ import {
 const FormViews = () => {
   const history = useHistory();
   const [view, setView] = useState('mood');
-  const currentWeather = useCurrentWeather();
+  const { currentWeather } = useCurrentWeather();
   const { user } = useAuth0();
 
   const [addMood] = useMutation(addMoodMutation);
