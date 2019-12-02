@@ -7,8 +7,6 @@ import 'sanitize.css/sanitize.css';
 import { Auth0Provider } from './utils/react-auth0-spa';
 import { AUTH0_DOMAIN, AUTH0_CLIENT_ID, AUTH0_AUDIENCE } from './utils/config';
 import theme from './styles/theme';
-import 'antd/dist/antd.css';
-
 import * as serviceWorker from './utils/serviceWorker';
 
 // A function that routes the user to the right place after login
