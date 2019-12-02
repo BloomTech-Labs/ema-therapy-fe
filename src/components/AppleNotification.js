@@ -1,7 +1,8 @@
 import React from 'react';
 
+// Detects if device is on iOS, and notifies user to download PWA
+
 function AppleNotification() {
-  // Detects if device is on iOS
   const isIos = () => {
     const userAgent = window.navigator.userAgent.toLowerCase();
     return /iphone|ipad|ipod/.test(userAgent);
@@ -13,7 +14,7 @@ function AppleNotification() {
   return (
     <>
       {isIos() && !isInStandaloneMode() ? (
-        <div className="apple-notification">
+        <div className="mobile-alert ios-download">
           <p>
             For a better experience, open this page in Safari, press the Action
             menu at the bottom center and press{' '}
