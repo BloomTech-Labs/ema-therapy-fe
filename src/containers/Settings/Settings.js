@@ -46,23 +46,21 @@ const Settings = () => {
     });
   };
 
-  return loading ? null : (
+  return (
     <Dashboard>
       <StyledSettings>
         <h1>Settings</h1>
-        {!loading && (
-          <div className="setting-group">
-            <h2 className="setting-group__heading">Preferences</h2>
-            <div className="setting-group__item">
-              <span>Share My Location</span>
-              <Switch
-                loading={loading}
-                checked={isSharingLocation}
-                onChange={toggleLocationPermissions}
-              />
-            </div>
+        <div className="setting-group">
+          <h2 className="setting-group__heading">Preferences</h2>
+          <div className="setting-group__item">
+            <span>Share My Location</span>
+            <Switch
+              loading={loading}
+              checked={isSharingLocation}
+              onChange={toggleLocationPermissions}
+            />
           </div>
-        )}
+        </div>
         <StyledLink to="/profile">Profile</StyledLink>
         <Logout />
       </StyledSettings>
