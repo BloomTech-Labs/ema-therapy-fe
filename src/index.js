@@ -2,10 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import ReactGA from 'react-ga';
 import App from './containers/App';
 import 'sanitize.css/sanitize.css';
 import { Auth0Provider } from './utils/react-auth0-spa';
-import { AUTH0_DOMAIN, AUTH0_CLIENT_ID, AUTH0_AUDIENCE } from './utils/config';
+import {
+  AUTH0_DOMAIN,
+  AUTH0_CLIENT_ID,
+  AUTH0_AUDIENCE,
+  GA_ID,
+} from './utils/config';
 import theme from './styles/theme';
 import 'antd/dist/antd.css';
 
@@ -21,6 +27,9 @@ const onRedirectCallback = (appState) => {
       : window.location.pathname,
   );
 };
+
+ReactGA.initialize(GA_ID);
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
