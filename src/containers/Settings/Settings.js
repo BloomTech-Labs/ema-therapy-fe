@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { gql } from 'apollo-boost';
 import { useQuery, useMutation } from '@apollo/react-hooks';
+import Switch from 'antd/es/switch';
 import { useAuth0 } from '../../utils/react-auth0-spa';
 import Logout from './Logout';
 import Dashboard from '../Dashboard';
-import Toggle from './Toggle';
 
 const GET_IS_SHARING_LOCATION = gql`
   query($sub: ID) {
@@ -27,10 +27,9 @@ const UPDATE_IS_SHARING_LOCATION = gql`
 `;
 
 const Settings = () => {
-  const [updateIsSharingLocation] = useMutation(UPDATE_IS_SHARING_LOCATION);
   const [isSharingLocation, setIsSharingLocation] = useState(false);
-  // const [darkMode, setDarkMode] = useState(false);
   const { user } = useAuth0();
+  const [updateIsSharingLocation] = useMutation(UPDATE_IS_SHARING_LOCATION);
   const { loading, data } = useQuery(GET_IS_SHARING_LOCATION, {
     variables: { sub: user.sub },
   });
@@ -41,9 +40,9 @@ const Settings = () => {
     }
   }, [isSharingLocation, data, loading]);
 
-  const toggleLocationPermissions = () => {
+  const toggleLocationPermissions = (checked) => {
     updateIsSharingLocation({
-      variables: { id: data.user.id, isSharingLocation: !isSharingLocation },
+      variables: { id: data.user.id, isSharingLocation: checked },
     });
   };
 
@@ -55,18 +54,12 @@ const Settings = () => {
           <h2 className="setting-group__heading">Preferences</h2>
           <div className="setting-group__item">
             <span>Share My Location</span>
-            <Toggle
-              toggleState={isSharingLocation}
-              handleToggle={toggleLocationPermissions}
+            <Switch
+              loading={loading}
+              checked={isSharingLocation}
+              onChange={toggleLocationPermissions}
             />
           </div>
-          {/* <div className="setting-group__item">
-            <span>Dark Mode</span>
-            <Toggle
-              toggleState={darkMode}
-              handleToggle={() => setDarkMode(!darkMode)}
-            />
-          </div> */}
         </div>
         <StyledLink to="/profile">Profile</StyledLink>
         <Logout />
