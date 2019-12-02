@@ -1,20 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { Icon } from 'antd';
+import checkIcon from '../utils/CheckIcon';
 
-const Icon = (props) => {
+const AntIcon = (props) => {
   const { icon } = props;
 
+  const checkedIcon = checkIcon(icon);
+
   return (
-    <IconStyle width="30" height="30" viewBox="0 0 500 500">
-      <path d={icon} />
+    <IconStyle>
+      <Icon type={checkedIcon} />
     </IconStyle>
   );
 };
 
-const IconStyle = styled.svg`
-  border: 1px solid black;
-  border-radius: 100%;
-  padding: 4px;
+const IconStyle = styled.div`
+  padding: 10px;
 `;
 
-export default Icon;
+AntIcon.propTypes = {
+  icon: PropTypes.string.isRequired,
+};
+
+export default AntIcon;

@@ -8,9 +8,7 @@ const Activity = ({ activityType, addActivities }) => {
 
   const handleActiveAndAddActivity = (addedActivity) => {
     addActivities(addedActivity);
-    setTimeout(() => {
-      setActive(!active);
-    }, 1000);
+    setActive(!active);
   };
   return (
     <>
@@ -19,7 +17,7 @@ const Activity = ({ activityType, addActivities }) => {
         type="button"
         onClick={() => handleActiveAndAddActivity(activityType)}
       >
-        <Icon icon={activityType.icon} />
+        <Icon icon={activityType} />
         <p>{activityType}</p>
       </ActivityButtonToggle>
     </>
