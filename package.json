@@ -11,6 +11,8 @@
     "customize-cra": "^0.9.1",
     "date-fns": "^2.8.0",
     "graphql": "^14.5.8",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-app-rewired": "^2.1.5",
