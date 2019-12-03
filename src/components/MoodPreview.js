@@ -53,7 +53,7 @@ const StyledMoodCard = styled.div`
   padding: 25px 23px 10px;
   margin-bottom: 23px;
   width: 90%;
-  min-height: 80px;
+  min-height: 85px;
 
   .date-time {
     display: flex;
@@ -85,6 +85,7 @@ const StyledMoodCard = styled.div`
     }
 
     .text {
+      margin: 10px 0 20px;
       font-weight: 600;
       max-height: 1.4rem;
       overflow: hidden;
