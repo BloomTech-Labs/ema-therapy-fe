@@ -38,11 +38,11 @@ function App() {
         <div className="App">
           <Switch>
             <Route path="/" exact component={Welcome} />
-            <Route path="/entryform" component={EntryForm} />
-            <Route path="/dashboard" exact component={Moods} />
-            <Route path="/dashboard/moods" component={Moods} />
-            <Route path="/dashboard/day/:day" component={SingleDay} />
-            <Route path="/dashboard/settings" component={Settings} />
+            <PrivateRoute path="/entryform" component={EntryForm} />
+            <PrivateRoute path="/dashboard" exact component={Moods} />
+            <PrivateRoute path="/dashboard/moods" component={Moods} />
+            <PrivateRoute path="/dashboard/day/:day" component={SingleDay} />
+            <PrivateRoute path="/dashboard/settings" component={Settings} />
             <PrivateRoute path="/profile" component={Profile} />
             <Route component={NotFound} />
           </Switch>
