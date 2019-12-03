@@ -7,23 +7,30 @@
     "@auth0/auth0-spa-js": "^1.5.0",
     "antd": "^3.25.3",
     "apollo-boost": "^0.4.4",
+    "babel-plugin-import": "^1.13.0",
+    "customize-cra": "^0.9.1",
     "date-fns": "^2.8.0",
     "graphql": "^14.5.8",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
+    "react-app-rewired": "^2.1.5",
     "react-dom": "^16.11.0",
     "react-ga": "^2.7.0",
     "react-icons": "^3.8.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "sanitize.css": "^11.0.0",
+    "source-map-explorer": "^2.1.1",
     "styled-components": "^4.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!antd)/\"",
-    "eject": "react-scripts eject"
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --transformIgnorePatterns \"node_modules/(?!antd)/\"",
+    "eject": "react-app-rewired eject"
   },
   "browserslist": {
     "production": [

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { gql } from 'apollo-boost';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import Switch from 'antd/es/switch';
+import { Switch } from 'antd';
 import { useAuth0 } from '../../utils/react-auth0-spa';
 import Logout from './Logout';
 import Dashboard from '../Dashboard';

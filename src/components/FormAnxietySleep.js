@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider from 'antd/es/slider';
+import { Slider } from 'antd';
 import PropTypes from 'prop-types';
 
 const FormAnxietySleep = ({
