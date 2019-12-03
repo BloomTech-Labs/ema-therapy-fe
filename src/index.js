@@ -28,7 +28,7 @@ const onRedirectCallback = (appState) => {
   );
 };
 
-ReactGA.initialize(GA_ID, { debug: true });
+ReactGA.initialize(GA_ID, { debug: process.env.NODE_ENV !== 'production' });
 ReactGA.pageview(window.location.pathname + window.location.search);
 
 ReactDOM.render(
