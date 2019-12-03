@@ -86,6 +86,10 @@ const StyledMoodCard = styled.div`
 
     .text {
       font-weight: 600;
+      max-height: 1.4rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 `;
