@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Icon = (props) => {
   const { icon } = props;
@@ -16,5 +17,9 @@ const IconStyle = styled.svg`
   border-radius: 100%;
   padding: 4px;
 `;
+
+Icon.propTypes = {
+  icon: PropTypes.string.isRequired,
+};
 
 export default Icon;
