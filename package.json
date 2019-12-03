@@ -22,7 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!antd)/\"",
     "eject": "react-scripts eject"
   },
   "browserslist": {
@@ -47,8 +47,11 @@
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
     "husky": ">=1",
+    "jest": "^24.9.0",
+    "jest-styled-components": "^6.3.4",
     "lint-staged": ">=8",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "react-test-renderer": "^16.12.0"
   },
   "husky": {
     "hooks": {
