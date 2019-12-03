@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
+import ReactGA from 'react-ga';
 import { useAuth0 } from '../utils/react-auth0-spa';
 import useCurrentWeather from '../hooks/useCurrentWeather';
 import FormMood from './FormMood';
@@ -75,6 +76,8 @@ const FormViews = () => {
 
   const submitForm = async (e) => {
     e.preventDefault();
+
+    // adds mood and refetches mood data
     await addMood({
       variables: {
         userId: data.user.id,
@@ -94,6 +97,13 @@ const FormViews = () => {
       ],
       awaitRefetchQueries: true,
     });
+
+    // tracks add mood event
+    ReactGA.event({
+      category: 'Moods',
+      action: 'Add mood entry',
+    });
+
     history.push('/dashboard');
   };
 

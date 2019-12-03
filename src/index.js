@@ -26,8 +26,12 @@ const onRedirectCallback = (appState) => {
   );
 };
 
-ReactGA.initialize(GA_ID);
-ReactGA.pageview(window.location.pathname + window.location.search);
+const NODE_ENV = process.env.REACT_APP_FORCE_NODE_ENV || process.env.NODE_ENV;
+
+// initialize GA tracker
+ReactGA.initialize(GA_ID, { debug: NODE_ENV === 'staging' });
+// track initial pageview hit
+ReactGA.pageview(window.location.pathname);
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
