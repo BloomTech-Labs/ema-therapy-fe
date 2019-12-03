@@ -31,7 +31,7 @@ const onRedirectCallback = (appState) => {
 const NODE_ENV = process.env.REACT_APP_FORCE_NODE_ENV || process.env.NODE_ENV;
 
 // initialize GA tracker
-ReactGA.initialize(GA_ID, { debug: NODE_ENV !== 'production' });
+ReactGA.initialize(GA_ID, { debug: NODE_ENV === 'staging' });
 // track initial pageview hit
 ReactGA.pageview(window.location.pathname);
 
