@@ -23,7 +23,7 @@ const useCurrentWeather = () => {
           .then((data) => {
             const temperature = convertTempFromKelvinToFahr(data.main.temp);
             const conditions = data.weather[0].main;
-            setCurrentWeather(`${conditions} ${temperature}`);
+            setCurrentWeather(`${conditions} ${temperature}°`);
           })
           .catch((err) => setError(err));
       });
