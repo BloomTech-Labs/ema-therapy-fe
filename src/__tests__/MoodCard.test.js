@@ -1,10 +1,10 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import MoodCard from '../components/MoodCard';
 
 test('MoodCard renders correctly', () => {
-  const tree = renderer
-    .create(
+  expect(
+    render(
       <MoodCard
         mood={{
           mood: 1,
@@ -16,8 +16,6 @@ test('MoodCard renders correctly', () => {
           weather: 'mockWeather',
         }}
       />,
-    )
-    .toJSON();
-
-  expect(tree).toMatchSnapshot();
+    ),
+  ).toMatchSnapshot();
 });
