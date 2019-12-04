@@ -1,4 +1,4 @@
-import { ICONS } from './IconPaths';
+import ICONS from './IconPaths';
 
 const activities = [
   {
