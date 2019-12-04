@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-// import ReactGA from 'react-ga';
 import App from './containers/App';
 import 'sanitize.css/sanitize.css';
 import { Auth0Provider } from './utils/react-auth0-spa';
@@ -26,13 +25,6 @@ const onRedirectCallback = (appState) => {
       : window.location.pathname,
   );
 };
-
-// const NODE_ENV = process.env.REACT_APP_FORCE_NODE_ENV || process.env.NODE_ENV;
-
-// // initialize GA tracker
-// ReactGA.initialize(GA_ID, { debug: NODE_ENV === 'staging' });
-// // track initial pageview hit
-// ReactGA.pageview(window.location.pathname);
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
