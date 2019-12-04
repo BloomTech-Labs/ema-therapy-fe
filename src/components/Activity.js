@@ -15,6 +15,7 @@ const Activity = ({ activityType, addActivities }) => {
       <ActivityButtonToggle
         active={active}
         type="button"
+        data-testid="toggle"
         onClick={() => handleActiveAndAddActivity(activityType)}
       >
         <Icon icon={activityType.icon} />
