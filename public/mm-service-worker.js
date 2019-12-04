@@ -33,12 +33,6 @@ self.addEventListener('activate', (e) => {
   );
 });
 
-// Call Fetch Event: On fetch, use cache but update the entry with the latest contents from the server.
-self.addEventListener('fetch', (e) => {
-  e.respondWith(fromCache(e.request));
-  e.waitUntil(update(e.request).then(refresh));
-});
-
 // Open the cache where the assets were stored and search for the requested resource.
 const fromCache = (request) => {
   return caches.open(cacheName).then((cache) => {
@@ -74,3 +68,9 @@ const refresh = (response) => {
     });
   });
 };
+
+// Call Fetch Event: On fetch, use cache but update the entry with the latest contents from the server.
+self.addEventListener('fetch', (e) => {
+  e.respondWith(fromCache(e.request));
+  e.waitUntil(update(e.request).then(refresh));
+});
