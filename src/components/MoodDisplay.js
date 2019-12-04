@@ -13,6 +13,7 @@ function MoodDisplay() {
   const { moods, setMoods } = useContext(MoodsPrevWeekContext);
   const { day } = useParams();
   const [moodsToday, setMoodsToday] = useState(null);
+  const [isLoadingMoods, setIsLoadingMoods] = useState(true);
   const { user } = useAuth0();
   const [getMoods, { loading, data }] = useLazyQuery(
     checkForUserAndGetMoodsQuery,
@@ -25,6 +26,7 @@ function MoodDisplay() {
       for (let i = 0; i < moods.length; i += 1) {
         if (moods[i].length > 0 && +day === getDay(+moods[i][0].createdAt)) {
           setMoodsToday(moods[i]);
+          setIsLoadingMoods(false);
           break;
         }
       }
@@ -57,7 +59,7 @@ function MoodDisplay() {
       <MoodList>
         {moodsToday &&
           moodsToday.map((mood) => <MoodCard key={mood.id} mood={mood} />)}
-        {!moodsToday && <h1>No moods here :(</h1>}
+        {!isLoadingMoods && !moodsToday && <h1>No moods here :(</h1>}
       </MoodList>
     </>
   );
