@@ -27,7 +27,6 @@ const StyledDashboard = styled.div`
   justify-content: space-between;
 
   .dashboard-main {
-    padding: 0 30px;
-    height: 100%;
+    padding: 0 30px 80px;
   }
 `;

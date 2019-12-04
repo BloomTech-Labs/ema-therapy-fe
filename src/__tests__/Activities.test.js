@@ -1,13 +1,8 @@
 import React from 'react';
+import { render } from '@testing-library/react';
 import Activities from '../components/Activities';
-import renderer from 'react-test-renderer';
 import 'jest-styled-components';
 
-describe('Activities component', () => {
-  it('renders correctly', () => {
-    const tree = renderer
-      .create(<Activities addActivities={() => {}} />)
-      .toJSON();
-    expect(tree).toMatchSnapshot();
-  });
+test('renders correctly', () => {
+  expect(render(<Activities addActivities={() => {}} />)).toMatchSnapshot();
 });

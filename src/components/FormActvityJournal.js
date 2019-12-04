@@ -15,6 +15,7 @@ const FormActivityJournal = ({
           type="button"
           className="back"
           onClick={() => handleView('mood')}
+          data-testid="back"
         >
           &larr;
         </button>
