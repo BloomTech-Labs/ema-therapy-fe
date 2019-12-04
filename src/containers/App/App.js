@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
 import ReactGA from 'react-ga';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import { Route, Switch } from 'react-router-dom';
 import { useAuth0 } from '../../utils/react-auth0-spa';
 import { GRAPHQL_URI } from '../../utils/config';
 import GlobalStyle from '../../styles/global-styles';
@@ -18,7 +19,7 @@ import { MoodsPrevWeekProvider } from '../../contexts/MoodsPrevWeekContext';
 
 function App() {
   const { loading, getTokenSilently } = useAuth0();
-  const history = useHistory();
+  const history = createBrowserHistory();
 
   useEffect(() => {
     // sends pageview hit to GA when path changes
