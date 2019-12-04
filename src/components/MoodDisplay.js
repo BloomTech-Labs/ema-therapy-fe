@@ -1,18 +1,20 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { useLazyQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
+import { Icon } from 'antd';
+import { useLazyQuery } from '@apollo/react-hooks';
 import { useParams, useHistory } from 'react-router-dom';
 import { getDay } from 'date-fns';
 import { useAuth0 } from '../utils/react-auth0-spa';
-import weekOfMoods from '../utils/weekOfMoods';
 import { checkForUserAndGetMoodsQuery } from '../queries';
-import MoodCard from './MoodCard';
 import { MoodsPrevWeekContext } from '../contexts/MoodsPrevWeekContext';
+import weekOfMoods from '../utils/weekOfMoods';
+import MoodCard from './MoodCard';
 
 function MoodDisplay() {
   const { moods, setMoods } = useContext(MoodsPrevWeekContext);
   const { day } = useParams();
   const [moodsToday, setMoodsToday] = useState(null);
+  const [isLoadingMoods, setIsLoadingMoods] = useState(true);
   const { user } = useAuth0();
   const [getMoods, { loading, data }] = useLazyQuery(
     checkForUserAndGetMoodsQuery,
@@ -25,6 +27,7 @@ function MoodDisplay() {
       for (let i = 0; i < moods.length; i += 1) {
         if (moods[i].length > 0 && +day === getDay(+moods[i][0].createdAt)) {
           setMoodsToday(moods[i]);
+          setIsLoadingMoods(false);
           break;
         }
       }
@@ -33,6 +36,7 @@ function MoodDisplay() {
       setMoods(weekOfMoods(data.user.moods));
       // run query to fetch missing moods data
     } else {
+      setIsLoadingMoods(false);
       getMoods({
         variables: {
           sub: user.sub,
@@ -47,39 +51,38 @@ function MoodDisplay() {
   if (loading) return <p>Loading ...</p>;
 
   return (
-    <>
-      <HeaderDiv>
+    <StyledMoodDisplay>
+      <Header>
         <Logo>Logo</Logo>
-        <BackBtn type="button" onClick={() => history.push('/dashboard')}>
-          X
-        </BackBtn>
-      </HeaderDiv>
+        <Icon
+          type="close-circle"
+          style={{ fontSize: 30 }}
+          onClick={() => history.push('/dashboard')}
+        />
+      </Header>
       <MoodList>
         {moodsToday &&
           moodsToday.map((mood) => <MoodCard key={mood.id} mood={mood} />)}
-        {!moodsToday && <h1>No moods here :(</h1>}
+        {!isLoadingMoods && !moodsToday && <h1>No moods here :(</h1>}
       </MoodList>
-    </>
+    </StyledMoodDisplay>
   );
 }
 
 export default MoodDisplay;
 
-const HeaderDiv = styled.div`
+const StyledMoodDisplay = styled.div`
+  padding: 30px;
+`;
+
+const Header = styled.div`
   display: flex;
   justify-content: flex-end;
-  margin: 60px 0 40px;
+  margin-bottom: 20px;
 `;
 
 const Logo = styled.h1`
   margin: auto;
-`;
-
-const BackBtn = styled.button`
-  border: none;
-  background-color: white;
-  font-weight: bold;
-  font-size: 30px;
 `;
 
 const MoodList = styled.div`
