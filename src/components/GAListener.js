@@ -9,11 +9,13 @@ function sendPageView(location) {
 }
 
 function GAListener({ children, trackingId, history }) {
+  const NODE_ENV = process.env.REACT_APP_FORCE_NODE_ENV || process.env.NODE_ENV;
+
   useEffect(() => {
-    ReactGA.initialize(trackingId);
+    ReactGA.initialize(trackingId, { debug: NODE_ENV === 'staging' });
     sendPageView(history.location);
     return history.listen(sendPageView);
-  }, [history, trackingId]);
+  }, [history, trackingId, NODE_ENV]);
 
   return children;
 }
