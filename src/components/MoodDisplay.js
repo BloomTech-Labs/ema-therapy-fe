@@ -1,13 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { useLazyQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
+import { useLazyQuery } from '@apollo/react-hooks';
 import { useParams, useHistory } from 'react-router-dom';
 import { getDay } from 'date-fns';
 import { useAuth0 } from '../utils/react-auth0-spa';
-import weekOfMoods from '../utils/weekOfMoods';
 import { checkForUserAndGetMoodsQuery } from '../queries';
-import MoodCard from './MoodCard';
 import { MoodsPrevWeekContext } from '../contexts/MoodsPrevWeekContext';
+import weekOfMoods from '../utils/weekOfMoods';
+import MoodCard from './MoodCard';
 
 function MoodDisplay() {
   const { moods, setMoods } = useContext(MoodsPrevWeekContext);
@@ -35,6 +35,7 @@ function MoodDisplay() {
       setMoods(weekOfMoods(data.user.moods));
       // run query to fetch missing moods data
     } else {
+      setIsLoadingMoods(false);
       getMoods({
         variables: {
           sub: user.sub,
