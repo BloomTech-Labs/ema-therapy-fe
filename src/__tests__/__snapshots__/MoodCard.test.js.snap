@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MoodCard renders correctly 1`] = `
+<div
+  className="sc-bdVaJa knMFHI"
+>
+  <div
+    className="date-time"
+  >
+    <p
+      className="date"
+    >
+      Fri Dec 31
+    </p>
+    <p
+      className="time"
+    >
+      6:00 PM
+    </p>
+  </div>
+  <p
+    className="mood"
+  >
+    unhappy
+  </p>
+  <div
+    className="mood-details"
+  >
+    <p
+      className="weather"
+    >
+      Weather: 
+      mockWeather
+    </p>
+    <p
+      className="sleep"
+    >
+      Sleep: 
+      1
+       h
+    </p>
+    <p
+      className="anxiety"
+    >
+      Anxiety Level: 
+      1
+    </p>
+    <p
+      className="text"
+    >
+      mockText
+    </p>
+  </div>
+</div>
+`;
