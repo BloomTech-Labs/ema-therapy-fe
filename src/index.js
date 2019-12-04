@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 import App from './containers/App';
 import 'sanitize.css/sanitize.css';
 import { Auth0Provider } from './utils/react-auth0-spa';
@@ -14,6 +14,7 @@ import {
 } from './utils/config';
 import theme from './styles/theme';
 import * as serviceWorker from './utils/serviceWorker';
+import GAListener from './components/GAListener';
 
 // A function that routes the user to the right place after login
 const onRedirectCallback = (appState) => {
@@ -26,12 +27,12 @@ const onRedirectCallback = (appState) => {
   );
 };
 
-const NODE_ENV = process.env.REACT_APP_FORCE_NODE_ENV || process.env.NODE_ENV;
+// const NODE_ENV = process.env.REACT_APP_FORCE_NODE_ENV || process.env.NODE_ENV;
 
-// initialize GA tracker
-ReactGA.initialize(GA_ID, { debug: NODE_ENV === 'staging' });
-// track initial pageview hit
-ReactGA.pageview(window.location.pathname);
+// // initialize GA tracker
+// ReactGA.initialize(GA_ID, { debug: NODE_ENV === 'staging' });
+// // track initial pageview hit
+// ReactGA.pageview(window.location.pathname);
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
@@ -43,7 +44,9 @@ ReactDOM.render(
       onRedirectCallback={onRedirectCallback}
     >
       <Router>
-        <App />
+        <GAListener trackingId={GA_ID}>
+          <App />
+        </GAListener>
       </Router>
     </Auth0Provider>
   </ThemeProvider>,
