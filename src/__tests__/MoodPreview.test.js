@@ -17,15 +17,11 @@ const mockMoodPreview = (
   />
 );
 describe('MoodPreview component', () => {
-  test('matches snapshot', () => {
-    expect(render(mockMoodPreview)).toMatchSnapshot();
+  test('renders without crashing', () => {
+    render(mockMoodPreview);
   });
 
-  test('renders day, time, entry count, and text', () => {
-    const { getByText } = render(mockMoodPreview);
-    getByText(/mon/i);
-    getByText(/1:00 AM/i);
-    getByText(/1 entry/i);
-    getByText(/mockText/i);
+  test('matches snapshot', () => {
+    expect(render(mockMoodPreview)).toMatchSnapshot();
   });
 });
