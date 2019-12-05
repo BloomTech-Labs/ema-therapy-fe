@@ -1,6 +1,6 @@
-/* eslint-disable no-unused-vars */
 const theme = {
-  main: 'red',
+  primaryColor: '#00917A',
+  fontFamily: "'Fira Sans',sans-serif",
 };
 
 export default theme;
