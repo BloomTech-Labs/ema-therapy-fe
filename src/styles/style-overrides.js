@@ -4,7 +4,9 @@
   You must restart the server for changes to take effect. */
 
 module.exports = {
-  '@font-family':
-    "'Muli',-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif",
-  // '@primary-color': '#bada55',
+  // Slider
+  '@slider-handle-color': '#ffffff',
+  '@slider-handle-background-color': '#fca395',
+  '@slider-track-background-color': '#fcb924',
+  '@slider-rail-background-color': '#fde7b4',
 };
