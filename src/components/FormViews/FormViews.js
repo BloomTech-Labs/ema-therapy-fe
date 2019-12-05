@@ -136,7 +136,7 @@ const FormViews = () => {
   );
 };
 
-const StyledForm = styled.div`
+const StyledForm = styled.form`
   height: 100%;
   display: flex;
   flex-direction: column;

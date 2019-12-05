@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { Slider, Icon } from 'antd';
 import NextButton from './NextButton';
 import moodToString from '../../utils/moodToString';
+import DoneButton from './DoneButton';
+import happyPlant from '../../assets/happy-plant.svg';
 
 const FormMood = ({ onMoodSliderChange, mood, handleView, handleSubmit }) => {
   return (
@@ -17,11 +19,11 @@ const FormMood = ({ onMoodSliderChange, mood, handleView, handleSubmit }) => {
           How do you <br />
           feel?
         </p>
-        <button type="button" onClick={handleSubmit}>
-          Done
-        </button>
+        <DoneButton onClick={handleSubmit}>Done</DoneButton>
       </div>
       <MoodWrapper>
+        <img src={happyPlant} alt="happy plant" />
+
         <p>{moodToString(mood)}</p>
         <Slider
           min={1}
@@ -51,11 +53,14 @@ export default FormMood;
 
 const MoodWrapper = styled.div`
   padding: 0 20px;
+  display: flex;
+  flex-direction: column;
 
   p {
     text-align: center;
     color: #fcb924;
     font-size: 16px;
     text-transform: capitalize;
+    margin-bottom: 0;
   }
 `;
