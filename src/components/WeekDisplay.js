@@ -34,7 +34,7 @@ function WeekDisplay() {
 
   return (
     <>
-      <Greeting>Hello, {user.given_name}</Greeting>
+      <Greeting>Here you are, {user.given_name}!</Greeting>
       {moods &&
         moods.map((list) => {
           // return mood preview card if mood entries exist in the list
@@ -60,8 +60,9 @@ function WeekDisplay() {
 export default WeekDisplay;
 
 const Greeting = styled.h2`
-  color: #fca699;
+  color: #00917a;
   font-size: 21px;
   font-style: normal;
   font-weight: normal;
+  margin-bottom: 60px;
 `;

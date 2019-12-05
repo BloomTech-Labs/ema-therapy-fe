@@ -2,6 +2,7 @@ import React from 'react';
 import format from 'date-fns/format';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import Card from './Card';
 
 const formatDate = (timestamp, fmt) => {
   const ts = Number(timestamp);
@@ -13,13 +14,9 @@ function MoodPreview({ lastItem, count }) {
     <PreviewContainer>
       <p className="weekday">{formatDate(lastItem.createdAt, 'iii')}</p>
       <StyledMoodCard>
-        <div className="date-time">
-          <p className="time">{formatDate(lastItem.createdAt, 'h:mm a')}</p>
-          <p className="date">{count > 1 ? `${count} entries` : '1 entry'}</p>
-        </div>
-        <div className="mood-details">
-          {lastItem.text && <p className="text">{lastItem.text}</p>}
-        </div>
+        <p className="time">{formatDate(lastItem.createdAt, 'h:mm a')}</p>
+        {lastItem.text && <p className="text">{lastItem.text}</p>}
+        <p className="count">{count > 1 ? `${count} entries` : '1 entry'}</p>
       </StyledMoodCard>
     </PreviewContainer>
   );
@@ -27,13 +24,9 @@ function MoodPreview({ lastItem, count }) {
 
 MoodPreview.propTypes = {
   lastItem: PropTypes.shape({
-    mood: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
     createdAt: PropTypes.string.isRequired,
-    anxietyLevel: PropTypes.number,
     text: PropTypes.string,
-    sleep: PropTypes.number,
-    weather: PropTypes.string,
   }).isRequired,
   count: PropTypes.number.isRequired,
 };
@@ -46,51 +39,25 @@ const PreviewContainer = styled.div`
   justify-content: space-between;
 `;
 
-const StyledMoodCard = styled.div`
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 15px;
-  background-color: #e5e5e5;
+const StyledMoodCard = styled(Card)`
   padding: 25px 23px 10px;
   margin-bottom: 23px;
   width: 90%;
   min-height: 85px;
 
-  .date-time {
-    display: flex;
-    justify-content: space-between;
-
-    .date,
-    .time {
-      margin: 0;
-      font-size: 14px;
-      line-height: 18px;
-    }
-  }
-
-  .mood {
-    text-align: center;
-    margin: 10px;
-    text-transform: capitalize;
-    font-size: 16px;
-    line-height: 20px;
-  }
-
-  .mood-details {
+  .time {
+    margin: 0;
     font-size: 14px;
     line-height: 18px;
+  }
 
-    p:not(.text) {
-      margin: 0 0 4px;
-      padding: 0 15px;
-    }
-
-    .text {
-      margin: 10px 0 20px;
-      font-weight: 600;
-      max-height: 1.4rem;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
+  .text {
+    font-size: 14px;
+    margin: 10px 0 20px;
+    font-weight: 600;
+    max-height: 1.4rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 `;
