@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Slider } from 'antd';
+import Button from './Button';
 
-const FormMood = ({ onMoodSliderChange, mood, handleView }) => {
+const FormMood = ({ onMoodSliderChange, mood, handleView, handleSubmit }) => {
   return (
     <>
       <div className="header">
@@ -13,7 +14,7 @@ const FormMood = ({ onMoodSliderChange, mood, handleView }) => {
           </button>
         </Link>
         <p>How do you feel?</p>
-        <button className="main-button" type="submit">
+        <button type="button" onClick={handleSubmit}>
           Done
         </button>
       </div>
@@ -21,13 +22,7 @@ const FormMood = ({ onMoodSliderChange, mood, handleView }) => {
         <Slider value={mood} onChange={onMoodSliderChange} min={1} max={5} />
       </div>
       <div className="footer">
-        <button
-          className="main-button"
-          type="button"
-          onClick={() => handleView('activity-journal')}
-        >
-          Next
-        </button>
+        <Button onClick={() => handleView('anxiety-sleep')}>Next</Button>
       </div>
     </>
   );
@@ -37,6 +32,7 @@ FormMood.propTypes = {
   handleView: PropTypes.func.isRequired,
   mood: PropTypes.number.isRequired,
   onMoodSliderChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default FormMood;

@@ -44,37 +44,31 @@ const FormViews = () => {
     }
   }, [currentWeather, data]);
 
-  const handleChange = (e) => {
+  const handleView = (newView) => setView(newView);
+
+  const handleChange = (e) =>
     setInput({ ...input, [e.target.name]: e.target.value });
-  };
 
-  const onMoodSliderChange = (value) => {
-    setInput({ ...input, mood: value });
-  };
+  const onMoodSliderChange = (value) => setInput({ ...input, mood: value });
 
-  const onAnxietySliderChange = (value) => {
+  const onAnxietySliderChange = (value) =>
     setInput({ ...input, anxietyLevel: value });
-  };
 
-  const addActivities = (activityObject) => {
-    const hasActivity = input.activities.some(
-      (activity) => activity.type === activityObject.type,
-    );
-    if (hasActivity) {
-      const removeActivity = input.activities.filter((obj) => {
-        return obj.type !== activityObject.type;
-      });
-      setInput({ ...input, activities: removeActivity });
-    } else {
-      setInput({ ...input, activities: [...input.activities, activityObject] });
-    }
-  };
+  // const addActivities = (activityObject) => {
+  //   const hasActivity = input.activities.some(
+  //     (activity) => activity.type === activityObject.type,
+  //   );
+  //   if (hasActivity) {
+  //     const removeActivity = input.activities.filter((obj) => {
+  //       return obj.type !== activityObject.type;
+  //     });
+  //     setInput({ ...input, activities: removeActivity });
+  //   } else {
+  //     setInput({ ...input, activities: [...input.activities, activityObject] });
+  //   }
+  // };
 
-  const handleView = (newView) => {
-    setView(newView);
-  };
-
-  const submitForm = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // adds mood and refetches mood data
@@ -111,69 +105,49 @@ const FormViews = () => {
   if (error) return <p>{error.message}</p>;
 
   return (
-    <form onSubmit={submitForm}>
+    <StyledForm>
       {view === 'mood' && (
-        <FormContainer>
-          {/* questions */}
-          <FormMood
-            onMoodSliderChange={onMoodSliderChange}
-            mood={input.mood}
-            handleView={handleView}
-          />
-        </FormContainer>
-      )}
-
-      {view === 'activity-journal' && (
-        <FormContainer>
-          <FormActivityJournal
-            handleView={handleView}
-            handleChange={handleChange}
-            addActivities={addActivities}
-            text={input.text}
-          />
-        </FormContainer>
+        <FormMood
+          onMoodSliderChange={onMoodSliderChange}
+          mood={input.mood}
+          handleView={handleView}
+          handleSubmit={handleSubmit}
+        />
       )}
 
       {view === 'anxiety-sleep' && (
-        <FormContainer>
-          <FormAnxietySleep
-            handleView={handleView}
-            handleChange={handleChange}
-            onAnxietySliderChange={onAnxietySliderChange}
-            anxietyLevel={input.anxietyLevel}
-            sleep={input.sleep}
-          />
-        </FormContainer>
+        <FormAnxietySleep
+          handleView={handleView}
+          handleChange={handleChange}
+          onAnxietySliderChange={onAnxietySliderChange}
+          anxietyLevel={input.anxietyLevel}
+          sleep={input.sleep}
+          handleSubmit={handleSubmit}
+        />
       )}
-    </form>
+
+      {view === 'activity-journal' && (
+        <FormActivityJournal
+          // addActivities={addActivities}
+          handleView={handleView}
+          handleChange={handleChange}
+          text={input.text}
+          handleSubmit={handleSubmit}
+        />
+      )}
+    </StyledForm>
   );
 };
 
-const FormContainer = styled.div`
-  a {
-    text-decoration: none;
-  }
+const StyledForm = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   .header {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
-    margin-top: 25px;
-    padding: 0 25px;
-  }
-
-  .main-button {
-    height: 35px;
-    width: 120px;
-    font-size: 14px;
-    border: none;
-    border-radius: 3px;
-    color: #000;
-    background-color: darkgrey;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   .back {
@@ -200,20 +174,16 @@ const FormContainer = styled.div`
     height: 50%;
   }
 
-  textarea {
+  /* textarea {
     height: 200px;
     width: 400px;
-  }
+  } */
 
   .footer {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 25px;
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    max-width: 500px;
+    padding-bottom: 40px;
   }
 `;
 

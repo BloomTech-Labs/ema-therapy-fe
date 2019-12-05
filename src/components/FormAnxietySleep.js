@@ -1,6 +1,7 @@
 import React from 'react';
 import { Slider } from 'antd';
 import PropTypes from 'prop-types';
+import Button from './Button';
 
 const FormAnxietySleep = ({
   handleView,
@@ -8,6 +9,7 @@ const FormAnxietySleep = ({
   onAnxietySliderChange,
   handleChange,
   sleep,
+  handleSubmit,
 }) => {
   return (
     <>
@@ -19,7 +21,10 @@ const FormAnxietySleep = ({
         >
           &larr;
         </button>
-        <p>How stressed are you this moment from 1 - 10?</p>
+        <p>How stressed are you?</p>
+        <button type="button" onClick={handleSubmit}>
+          Done
+        </button>
       </div>
       <div className="inputs-section">
         <div className="inputs">
@@ -45,9 +50,7 @@ const FormAnxietySleep = ({
         </div>
       </div>
       <div className="footer">
-        <button className="main-button" type="submit">
-          Done
-        </button>
+        <Button onClick={() => handleView('activity-journal')}>Next</Button>
       </div>
     </>
   );
@@ -59,6 +62,7 @@ FormAnxietySleep.propTypes = {
   onAnxietySliderChange: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
   sleep: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default FormAnxietySleep;

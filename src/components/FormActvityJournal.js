@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Activities from './Activities';
+// import Activities from './Activities';
+import Button from './Button';
 
 const FormActivityJournal = ({
   handleView,
-  addActivities,
   handleChange,
   text,
+  handleSubmit,
 }) => {
   return (
     <>
@@ -18,12 +19,9 @@ const FormActivityJournal = ({
         >
           &larr;
         </button>
-        <p>What have you been up to?</p>
-        <button className="main-button" type="submit">
-          Done
-        </button>
+        <p>What are you thinking?</p>
       </div>
-      <Activities addActivities={addActivities} />
+      {/* <Activities addActivities={addActivities} /> */}
       <div className="input-section">
         <div className="inputs">
           <textarea
@@ -36,13 +34,7 @@ const FormActivityJournal = ({
         </div>
       </div>
       <div className="footer">
-        <button
-          type="button"
-          className="main-button"
-          onClick={() => handleView('anxiety-sleep')}
-        >
-          Next
-        </button>
+        <Button onClick={handleSubmit}>Done</Button>
       </div>
     </>
   );
@@ -50,9 +42,10 @@ const FormActivityJournal = ({
 
 FormActivityJournal.propTypes = {
   handleView: PropTypes.func.isRequired,
-  addActivities: PropTypes.func.isRequired,
+  // addActivities: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default FormActivityJournal;
