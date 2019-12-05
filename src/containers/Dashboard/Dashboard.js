@@ -21,12 +21,11 @@ Dashboard.propTypes = {
 export default Dashboard;
 
 const StyledDashboard = styled.div`
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   .dashboard-main {
-    padding: 0 30px 80px;
+    min-height: 100%;
   }
 `;

@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { getDay } from 'date-fns';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { checkForUserAndGetMoodsQuery } from '../queries';
 import { useAuth0 } from '../utils/react-auth0-spa';
 import weekOfMoods from '../utils/weekOfMoods';
@@ -33,6 +34,7 @@ function WeekDisplay() {
 
   return (
     <>
+      <Greeting>Hello, {user.given_name}</Greeting>
       {moods &&
         moods.map((list) => {
           // return mood preview card if mood entries exist in the list
@@ -56,3 +58,10 @@ function WeekDisplay() {
 }
 
 export default WeekDisplay;
+
+const Greeting = styled.h2`
+  color: #fca699;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: normal;
+`;
