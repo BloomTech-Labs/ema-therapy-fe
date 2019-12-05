@@ -5,14 +5,15 @@ import PropTypes from 'prop-types';
 import NextButton from './NextButton';
 import DoneButton from './DoneButton';
 
-const FormAnxietySleep = ({
-  handleView,
-  anxietyLevel,
-  onAnxietySliderChange,
-  onSleepSliderChange,
-  sleep,
-  handleSubmit,
-}) => {
+function FormAnxietySleep(props) {
+  const {
+    sleep,
+    handleView,
+    anxietyLevel,
+    handleSubmit,
+    onSleepSliderChange,
+    onAnxietySliderChange,
+  } = props;
   return (
     <>
       <div className="header">
@@ -62,7 +63,7 @@ const FormAnxietySleep = ({
       </div>
     </>
   );
-};
+}
 
 FormAnxietySleep.propTypes = {
   handleView: PropTypes.func.isRequired,

@@ -8,7 +8,7 @@ import moodToString from '../../utils/moodToString';
 import DoneButton from './DoneButton';
 import happyPlant from '../../assets/happy-plant.svg';
 
-const FormMood = ({ onMoodSliderChange, mood, handleView, handleSubmit }) => {
+function FormMood({ onMoodSliderChange, mood, handleView, handleSubmit }) {
   return (
     <>
       <div className="header">
@@ -40,7 +40,7 @@ const FormMood = ({ onMoodSliderChange, mood, handleView, handleSubmit }) => {
       </div>
     </>
   );
-};
+}
 
 FormMood.propTypes = {
   handleView: PropTypes.func.isRequired,
