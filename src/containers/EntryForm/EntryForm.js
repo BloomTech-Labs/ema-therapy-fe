@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import FormViews from '../../components/FormViews';
+import backgroundImage from '../../assets/background-leaf.svg';
 
 const EntryForm = () => {
   return (
@@ -11,9 +12,11 @@ const EntryForm = () => {
 };
 
 const StyledEntryForm = styled.div`
-  max-width: 500px;
-  height: 100vh;
-  margin: 0 auto;
+  height: 100%;
+  padding: 30px 25px;
+  background-image: url(${backgroundImage});
+  background-repeat: no-repeat;
+  background-position: top -36px right -20px;
 `;
 
 export default EntryForm;

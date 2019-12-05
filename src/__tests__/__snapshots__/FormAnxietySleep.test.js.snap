@@ -5,103 +5,273 @@ Array [
   <div
     className="header"
   >
-    <button
-      className="back"
+    <i
+      aria-label="icon: left-circle"
+      className="anticon anticon-left-circle"
       onClick={[Function]}
+      style={
+        Object {
+          "color": "#9cd9dd",
+          "fontSize": 35,
+        }
+      }
+      tabIndex={-1}
+    >
+      <svg
+        aria-hidden="true"
+        className=""
+        data-icon="left-circle"
+        fill="currentColor"
+        focusable="false"
+        height="1em"
+        viewBox="64 64 896 896"
+        width="1em"
+      >
+        <path
+          d="M603.3 327.5l-246 178a7.95 7.95 0 0 0 0 12.9l246 178c5.3 3.8 12.7 0 12.7-6.5V643c0-10.2-4.9-19.9-13.2-25.9L457.4 512l145.4-105.2c8.3-6 13.2-15.6 13.2-25.9V334c0-6.5-7.4-10.3-12.7-6.5z"
+        />
+        <path
+          d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+        />
+      </svg>
+    </i>
+    <p>
+      How stressed 
+      <br />
+      are you?
+    </p>
+    <button
+      className="ant-btn"
+      onClick={[Function]}
+      style={
+        Object {
+          "background": "#ffffff",
+          "border": "none",
+          "borderRadius": 10,
+          "color": "#89D2D6",
+          "fontSize": "12px",
+          "height": 30,
+          "marginRight": "-7px",
+          "marginTop": "6px",
+          "width": 70,
+        }
+      }
       type="button"
     >
-      ←
+      <span>
+        Done
+      </span>
     </button>
-    <p>
-      How stressed are you this moment from 1 - 10?
-    </p>
   </div>,
-  <div
+  .c0 {
+  color: #00917a;
+  font-size: 18px;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c1:first-of-type {
+  margin-bottom: 72px;
+}
+
+.c1 span {
+  color: #00917a;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.c1 span:first-of-type {
+  padding-right: 8px;
+}
+
+.c1 span:not(:first-of-type) {
+  padding-left: 8px;
+}
+
+<div
     className="inputs-section"
   >
     <div
       className="inputs"
     >
-      <p>
+      <p
+        className="c0"
+      >
         Anxiety Level
       </p>
       <div
-        className="ant-slider"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
-        onMouseUp={[Function]}
-        onTouchStart={[Function]}
+        className="c1"
       >
+        <span>
+          1
+        </span>
         <div
-          className="ant-slider-rail"
-          style={Object {}}
-        />
-        <div
-          className="ant-slider-track"
-          style={
-            Object {
-              "left": "0%",
-              "right": "auto",
-              "width": "66.66666666666666%",
-            }
-          }
-        />
-        <div
-          className="ant-slider-step"
-        />
-        <div
-          aria-disabled={false}
-          aria-valuemax={10}
-          aria-valuemin={1}
-          aria-valuenow={7}
-          className="ant-slider-handle"
+          className="ant-slider"
           onBlur={[Function]}
+          onFocus={[Function]}
           onKeyDown={[Function]}
           onMouseDown={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          role="slider"
+          onMouseUp={[Function]}
+          onTouchStart={[Function]}
           style={
             Object {
-              "left": "66.66666666666666%",
-              "right": "auto",
-              "transform": "translateX(-50%)",
+              "flexGrow": 1,
             }
           }
-          tabIndex={0}
-        />
-        <div
-          className="ant-slider-mark"
-        />
+        >
+          <div
+            className="ant-slider-rail"
+            style={Object {}}
+          />
+          <div
+            className="ant-slider-track"
+            style={
+              Object {
+                "left": "0%",
+                "right": "auto",
+                "width": "66.66666666666666%",
+              }
+            }
+          />
+          <div
+            className="ant-slider-step"
+          />
+          <div
+            aria-disabled={false}
+            aria-valuemax={10}
+            aria-valuemin={1}
+            aria-valuenow={7}
+            className="ant-slider-handle"
+            onBlur={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            role="slider"
+            style={
+              Object {
+                "left": "66.66666666666666%",
+                "right": "auto",
+                "transform": "translateX(-50%)",
+              }
+            }
+            tabIndex={0}
+          />
+          <div
+            className="ant-slider-mark"
+          />
+        </div>
+        <span>
+          10
+        </span>
       </div>
-    </div>
-    <div
-      className="inputs"
-    >
-      <label
-        htmlFor="sleep"
+      <p
+        className="c0"
       >
         Hours of sleep:
-        <input
-          id="sleep"
-          name="sleep"
-          onChange={[MockFunction]}
-          type="number"
-          value="testString"
-        />
-      </label>
+      </p>
+      <div
+        className="c1"
+      >
+        <span>
+          1
+        </span>
+        <div
+          className="ant-slider"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          onMouseUp={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "flexGrow": 1,
+            }
+          }
+        >
+          <div
+            className="ant-slider-rail"
+            style={Object {}}
+          />
+          <div
+            className="ant-slider-track"
+            style={
+              Object {
+                "left": "0%",
+                "right": "auto",
+                "width": "-11.11111111111111%",
+              }
+            }
+          />
+          <div
+            className="ant-slider-step"
+          />
+          <div
+            aria-disabled={false}
+            aria-valuemax={10}
+            aria-valuemin={1}
+            aria-valuenow={0}
+            className="ant-slider-handle"
+            onBlur={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            role="slider"
+            style={
+              Object {
+                "left": "-11.11111111111111%",
+                "right": "auto",
+                "transform": "translateX(-50%)",
+              }
+            }
+            tabIndex={0}
+          />
+          <div
+            className="ant-slider-mark"
+          />
+        </div>
+        <span>
+          10+
+        </span>
+      </div>
     </div>
   </div>,
   <div
     className="footer"
   >
     <button
-      className="main-button"
-      type="submit"
+      className="ant-btn"
+      onClick={[Function]}
+      style={
+        Object {
+          "background": "#00917A",
+          "borderRadius": 10,
+          "boxShadow": "0px 4px 4px #CCE8E4",
+          "color": "#FFFFFF",
+          "fontFamily": "'Fira Sans',sans-serif",
+          "fontSize": "18px",
+          "height": 55,
+          "width": 167,
+        }
+      }
+      type="button"
     >
-      Done
+      <span>
+        Next
+      </span>
     </button>
   </div>,
 ]
@@ -112,103 +282,273 @@ Array [
   <div
     className="header"
   >
-    <button
-      className="back"
+    <i
+      aria-label="icon: left-circle"
+      className="anticon anticon-left-circle"
       onClick={[Function]}
+      style={
+        Object {
+          "color": "#9cd9dd",
+          "fontSize": 35,
+        }
+      }
+      tabIndex={-1}
+    >
+      <svg
+        aria-hidden="true"
+        className=""
+        data-icon="left-circle"
+        fill="currentColor"
+        focusable="false"
+        height="1em"
+        viewBox="64 64 896 896"
+        width="1em"
+      >
+        <path
+          d="M603.3 327.5l-246 178a7.95 7.95 0 0 0 0 12.9l246 178c5.3 3.8 12.7 0 12.7-6.5V643c0-10.2-4.9-19.9-13.2-25.9L457.4 512l145.4-105.2c8.3-6 13.2-15.6 13.2-25.9V334c0-6.5-7.4-10.3-12.7-6.5z"
+        />
+        <path
+          d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+        />
+      </svg>
+    </i>
+    <p>
+      How stressed 
+      <br />
+      are you?
+    </p>
+    <button
+      className="ant-btn"
+      onClick={[Function]}
+      style={
+        Object {
+          "background": "#ffffff",
+          "border": "none",
+          "borderRadius": 10,
+          "color": "#89D2D6",
+          "fontSize": "12px",
+          "height": 30,
+          "marginRight": "-7px",
+          "marginTop": "6px",
+          "width": 70,
+        }
+      }
       type="button"
     >
-      ←
+      <span>
+        Done
+      </span>
     </button>
-    <p>
-      How stressed are you this moment from 1 - 10?
-    </p>
   </div>,
-  <div
+  .c0 {
+  color: #00917a;
+  font-size: 18px;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c1:first-of-type {
+  margin-bottom: 72px;
+}
+
+.c1 span {
+  color: #00917a;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.c1 span:first-of-type {
+  padding-right: 8px;
+}
+
+.c1 span:not(:first-of-type) {
+  padding-left: 8px;
+}
+
+<div
     className="inputs-section"
   >
     <div
       className="inputs"
     >
-      <p>
+      <p
+        className="c0"
+      >
         Anxiety Level
       </p>
       <div
-        className="ant-slider"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
-        onMouseUp={[Function]}
-        onTouchStart={[Function]}
+        className="c1"
       >
+        <span>
+          1
+        </span>
         <div
-          className="ant-slider-rail"
-          style={Object {}}
-        />
-        <div
-          className="ant-slider-track"
-          style={
-            Object {
-              "left": "0%",
-              "right": "auto",
-              "width": "66.66666666666666%",
-            }
-          }
-        />
-        <div
-          className="ant-slider-step"
-        />
-        <div
-          aria-disabled={false}
-          aria-valuemax={10}
-          aria-valuemin={1}
-          aria-valuenow={7}
-          className="ant-slider-handle"
+          className="ant-slider"
           onBlur={[Function]}
+          onFocus={[Function]}
           onKeyDown={[Function]}
           onMouseDown={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          role="slider"
+          onMouseUp={[Function]}
+          onTouchStart={[Function]}
           style={
             Object {
-              "left": "66.66666666666666%",
-              "right": "auto",
-              "transform": "translateX(-50%)",
+              "flexGrow": 1,
             }
           }
-          tabIndex={0}
-        />
-        <div
-          className="ant-slider-mark"
-        />
+        >
+          <div
+            className="ant-slider-rail"
+            style={Object {}}
+          />
+          <div
+            className="ant-slider-track"
+            style={
+              Object {
+                "left": "0%",
+                "right": "auto",
+                "width": "66.66666666666666%",
+              }
+            }
+          />
+          <div
+            className="ant-slider-step"
+          />
+          <div
+            aria-disabled={false}
+            aria-valuemax={10}
+            aria-valuemin={1}
+            aria-valuenow={7}
+            className="ant-slider-handle"
+            onBlur={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            role="slider"
+            style={
+              Object {
+                "left": "66.66666666666666%",
+                "right": "auto",
+                "transform": "translateX(-50%)",
+              }
+            }
+            tabIndex={0}
+          />
+          <div
+            className="ant-slider-mark"
+          />
+        </div>
+        <span>
+          10
+        </span>
       </div>
-    </div>
-    <div
-      className="inputs"
-    >
-      <label
-        htmlFor="sleep"
+      <p
+        className="c0"
       >
         Hours of sleep:
-        <input
-          id="sleep"
-          name="sleep"
-          onChange={[Function]}
-          type="number"
-          value="testString"
-        />
-      </label>
+      </p>
+      <div
+        className="c1"
+      >
+        <span>
+          1
+        </span>
+        <div
+          className="ant-slider"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          onMouseUp={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "flexGrow": 1,
+            }
+          }
+        >
+          <div
+            className="ant-slider-rail"
+            style={Object {}}
+          />
+          <div
+            className="ant-slider-track"
+            style={
+              Object {
+                "left": "0%",
+                "right": "auto",
+                "width": "-11.11111111111111%",
+              }
+            }
+          />
+          <div
+            className="ant-slider-step"
+          />
+          <div
+            aria-disabled={false}
+            aria-valuemax={10}
+            aria-valuemin={1}
+            aria-valuenow={0}
+            className="ant-slider-handle"
+            onBlur={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            role="slider"
+            style={
+              Object {
+                "left": "-11.11111111111111%",
+                "right": "auto",
+                "transform": "translateX(-50%)",
+              }
+            }
+            tabIndex={0}
+          />
+          <div
+            className="ant-slider-mark"
+          />
+        </div>
+        <span>
+          10+
+        </span>
+      </div>
     </div>
   </div>,
   <div
     className="footer"
   >
     <button
-      className="main-button"
-      type="submit"
+      className="ant-btn"
+      onClick={[Function]}
+      style={
+        Object {
+          "background": "#00917A",
+          "borderRadius": 10,
+          "boxShadow": "0px 4px 4px #CCE8E4",
+          "color": "#FFFFFF",
+          "fontFamily": "'Fira Sans',sans-serif",
+          "fontSize": "18px",
+          "height": 55,
+          "width": 167,
+        }
+      }
+      type="button"
     >
-      Done
+      <span>
+        Next
+      </span>
     </button>
   </div>,
 ]
@@ -219,103 +559,273 @@ Array [
   <div
     className="header"
   >
-    <button
-      className="back"
+    <i
+      aria-label="icon: left-circle"
+      className="anticon anticon-left-circle"
       onClick={[Function]}
+      style={
+        Object {
+          "color": "#9cd9dd",
+          "fontSize": 35,
+        }
+      }
+      tabIndex={-1}
+    >
+      <svg
+        aria-hidden="true"
+        className=""
+        data-icon="left-circle"
+        fill="currentColor"
+        focusable="false"
+        height="1em"
+        viewBox="64 64 896 896"
+        width="1em"
+      >
+        <path
+          d="M603.3 327.5l-246 178a7.95 7.95 0 0 0 0 12.9l246 178c5.3 3.8 12.7 0 12.7-6.5V643c0-10.2-4.9-19.9-13.2-25.9L457.4 512l145.4-105.2c8.3-6 13.2-15.6 13.2-25.9V334c0-6.5-7.4-10.3-12.7-6.5z"
+        />
+        <path
+          d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+        />
+      </svg>
+    </i>
+    <p>
+      How stressed 
+      <br />
+      are you?
+    </p>
+    <button
+      className="ant-btn"
+      onClick={[Function]}
+      style={
+        Object {
+          "background": "#ffffff",
+          "border": "none",
+          "borderRadius": 10,
+          "color": "#89D2D6",
+          "fontSize": "12px",
+          "height": 30,
+          "marginRight": "-7px",
+          "marginTop": "6px",
+          "width": 70,
+        }
+      }
       type="button"
     >
-      ←
+      <span>
+        Done
+      </span>
     </button>
-    <p>
-      How stressed are you this moment from 1 - 10?
-    </p>
   </div>,
-  <div
+  .c0 {
+  color: #00917a;
+  font-size: 18px;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c1:first-of-type {
+  margin-bottom: 72px;
+}
+
+.c1 span {
+  color: #00917a;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.c1 span:first-of-type {
+  padding-right: 8px;
+}
+
+.c1 span:not(:first-of-type) {
+  padding-left: 8px;
+}
+
+<div
     className="inputs-section"
   >
     <div
       className="inputs"
     >
-      <p>
+      <p
+        className="c0"
+      >
         Anxiety Level
       </p>
       <div
-        className="ant-slider"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
-        onMouseUp={[Function]}
-        onTouchStart={[Function]}
+        className="c1"
       >
+        <span>
+          1
+        </span>
         <div
-          className="ant-slider-rail"
-          style={Object {}}
-        />
-        <div
-          className="ant-slider-track"
-          style={
-            Object {
-              "left": "0%",
-              "right": "auto",
-              "width": "66.66666666666666%",
-            }
-          }
-        />
-        <div
-          className="ant-slider-step"
-        />
-        <div
-          aria-disabled={false}
-          aria-valuemax={10}
-          aria-valuemin={1}
-          aria-valuenow={7}
-          className="ant-slider-handle"
+          className="ant-slider"
           onBlur={[Function]}
+          onFocus={[Function]}
           onKeyDown={[Function]}
           onMouseDown={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          role="slider"
+          onMouseUp={[Function]}
+          onTouchStart={[Function]}
           style={
             Object {
-              "left": "66.66666666666666%",
-              "right": "auto",
-              "transform": "translateX(-50%)",
+              "flexGrow": 1,
             }
           }
-          tabIndex={0}
-        />
-        <div
-          className="ant-slider-mark"
-        />
+        >
+          <div
+            className="ant-slider-rail"
+            style={Object {}}
+          />
+          <div
+            className="ant-slider-track"
+            style={
+              Object {
+                "left": "0%",
+                "right": "auto",
+                "width": "66.66666666666666%",
+              }
+            }
+          />
+          <div
+            className="ant-slider-step"
+          />
+          <div
+            aria-disabled={false}
+            aria-valuemax={10}
+            aria-valuemin={1}
+            aria-valuenow={7}
+            className="ant-slider-handle"
+            onBlur={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            role="slider"
+            style={
+              Object {
+                "left": "66.66666666666666%",
+                "right": "auto",
+                "transform": "translateX(-50%)",
+              }
+            }
+            tabIndex={0}
+          />
+          <div
+            className="ant-slider-mark"
+          />
+        </div>
+        <span>
+          10
+        </span>
       </div>
-    </div>
-    <div
-      className="inputs"
-    >
-      <label
-        htmlFor="sleep"
+      <p
+        className="c0"
       >
         Hours of sleep:
-        <input
-          id="sleep"
-          name="sleep"
-          onChange={[Function]}
-          type="number"
-          value="testString"
-        />
-      </label>
+      </p>
+      <div
+        className="c1"
+      >
+        <span>
+          1
+        </span>
+        <div
+          className="ant-slider"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          onMouseUp={[Function]}
+          onTouchStart={[Function]}
+          style={
+            Object {
+              "flexGrow": 1,
+            }
+          }
+        >
+          <div
+            className="ant-slider-rail"
+            style={Object {}}
+          />
+          <div
+            className="ant-slider-track"
+            style={
+              Object {
+                "left": "0%",
+                "right": "auto",
+                "width": "-11.11111111111111%",
+              }
+            }
+          />
+          <div
+            className="ant-slider-step"
+          />
+          <div
+            aria-disabled={false}
+            aria-valuemax={10}
+            aria-valuemin={1}
+            aria-valuenow={0}
+            className="ant-slider-handle"
+            onBlur={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            role="slider"
+            style={
+              Object {
+                "left": "-11.11111111111111%",
+                "right": "auto",
+                "transform": "translateX(-50%)",
+              }
+            }
+            tabIndex={0}
+          />
+          <div
+            className="ant-slider-mark"
+          />
+        </div>
+        <span>
+          10+
+        </span>
+      </div>
     </div>
   </div>,
   <div
     className="footer"
   >
     <button
-      className="main-button"
-      type="submit"
+      className="ant-btn"
+      onClick={[Function]}
+      style={
+        Object {
+          "background": "#00917A",
+          "borderRadius": 10,
+          "boxShadow": "0px 4px 4px #CCE8E4",
+          "color": "#FFFFFF",
+          "fontFamily": "'Fira Sans',sans-serif",
+          "fontSize": "18px",
+          "height": 55,
+          "width": 167,
+        }
+      }
+      type="button"
     >
-      Done
+      <span>
+        Next
+      </span>
     </button>
   </div>,
 ]

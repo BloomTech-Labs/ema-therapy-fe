@@ -1,72 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Activity component renders correctly 1`] = `
-<<<<<<< HEAD
+exports[`Icon component renders correctly 1`] = `
 Object {
   "asFragment": [Function],
-  "baseElement": .c1 {
-=======
-.c1 {
->>>>>>> feature/add-mood-forms
+  "baseElement": .c0 {
   border: 1px solid black;
   border-radius: 100%;
   padding: 4px;
 }
 
-.c0 {
-  padding: 5px;
-  width: 70px;
-  border: none;
-  background: none;
-  margin-right: 3px;
-  margin-top: 27px;
-  color: limegreen;
-}
-
-<<<<<<< HEAD
 <body>
     <div>
-      <button
-        class="c0"
-        data-testid="toggle"
-        type="button"
-      >
-        <svg
-          class="c1"
-          height="30"
-          viewBox="0 0 500 500"
-          width="30"
-        >
-          <path
-            d="mockIcon"
-          />
-        </svg>
-        <p>
-          mockType
-        </p>
-      </button>
-    </div>
-  </body>,
-  "container": <div>
-    <button
-      class="sc-bwzfXH sc-htpNat enBhE"
-      data-testid="toggle"
-      type="button"
-    >
       <svg
-        class="sc-bdVaJa hEIfhB"
+        class="c0"
         height="30"
         viewBox="0 0 500 500"
         width="30"
       >
         <path
-          d="mockIcon"
+          d="testString"
         />
       </svg>
-      <p>
-        mockType
-      </p>
-    </button>
+    </div>
+  </body>,
+  "container": <div>
+    <svg
+      class="sc-bdVaJa hEIfhB"
+      height="30"
+      viewBox="0 0 500 500"
+      width="30"
+    >
+      <path
+        d="testString"
+      />
+    </svg>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -120,25 +87,4 @@ Object {
   "rerender": [Function],
   "unmount": [Function],
 }
-=======
-<button
-  className="c0"
-  onClick={[Function]}
-  type="button"
->
-  <svg
-    className="c1"
-    height="30"
-    viewBox="0 0 500 500"
-    width="30"
-  >
-    <path
-      d="mockIcon"
-    />
-  </svg>
-  <p>
-    mockType
-  </p>
-</button>
->>>>>>> feature/add-mood-forms
 `;

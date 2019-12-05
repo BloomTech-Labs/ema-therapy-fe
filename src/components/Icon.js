@@ -12,6 +12,10 @@ const Icon = (props) => {
   );
 };
 
+Icon.propTypes = {
+  icon: PropTypes.string.isRequired,
+};
+
 const IconStyle = styled.svg`
   border: 1px solid black;
   border-radius: 100%;

@@ -1,8 +1,8 @@
 import React from 'react';
-import FormAnxietySleep from '../components/FormAnxietySleep';
 import renderer, { act } from 'react-test-renderer';
 import 'jest-styled-components';
 import { exact } from 'prop-types';
+import FormAnxietySleep from '../components/FormViews/FormAnxietySleep';
 
 describe('FormAnxietySleep component', () => {
   it('renders correctly', () => {
