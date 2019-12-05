@@ -9,7 +9,7 @@ const FormAnxietySleep = ({
   handleView,
   anxietyLevel,
   onAnxietySliderChange,
-  handleChange,
+  onSleepSliderChange,
   sleep,
   handleSubmit,
 }) => {
@@ -45,8 +45,8 @@ const FormAnxietySleep = ({
           <SliderWrapper>
             <span>1</span>
             <Slider
-              value={anxietyLevel}
-              onChange={onAnxietySliderChange}
+              value={sleep}
+              onChange={onSleepSliderChange}
               min={1}
               max={10}
               style={{ flexGrow: 1 }}
@@ -81,7 +81,7 @@ FormAnxietySleep.propTypes = {
   handleView: PropTypes.func.isRequired,
   anxietyLevel: PropTypes.number.isRequired,
   onAnxietySliderChange: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired,
+  onSleepSliderChange: PropTypes.func.isRequired,
   sleep: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
 };

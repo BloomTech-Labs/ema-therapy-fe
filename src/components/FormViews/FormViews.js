@@ -8,7 +8,6 @@ import useCurrentWeather from '../../hooks/useCurrentWeather';
 import FormMood from './FormMood';
 import FormActivityJournal from './FormActvityJournal';
 import FormAnxietySleep from './FormAnxietySleep';
-import ladybug from '../../assets/ladybug.svg';
 import {
   addMoodMutation,
   getUserIdAndLocation,
@@ -29,9 +28,11 @@ const FormViews = () => {
     activities: [],
     text: '',
     anxietyLevel: 5,
-    sleep: '',
+    sleep: 5,
     weather: null,
   });
+  const [isAnxietyChanged, setIsAnxietyChanged] = useState(null);
+  const [isSleepChanged, setIsSleepChanged] = useState(null);
 
   useEffect(() => {
     if (data && data.user.isSharingLocation) {
@@ -49,8 +50,15 @@ const FormViews = () => {
 
   const onMoodSliderChange = (value) => setInput({ ...input, mood: value });
 
-  const onAnxietySliderChange = (value) =>
+  const onAnxietySliderChange = (value) => {
     setInput({ ...input, anxietyLevel: value });
+    setIsAnxietyChanged(true);
+  };
+
+  const onSleepSliderChange = (value) => {
+    setInput({ ...input, sleep: value });
+    setIsSleepChanged(true);
+  };
 
   // const addActivities = (activityObject) => {
   //   const hasActivity = input.activities.some(
@@ -75,11 +83,9 @@ const FormViews = () => {
         userId: data.user.id,
         weather: input.weather,
         mood: input.mood,
-        anxietyLevel: view === 'anxiety-sleep' ? input.anxietyLevel : null,
-        // if input.text is an empty string, pass null
+        anxietyLevel: isAnxietyChanged ? input.anxietyLevel : null,
+        sleep: isSleepChanged ? input.sleep : null,
         text: input.text.length > 0 ? input.text : null,
-        // convert sleep from a string to a number as long as it is not an empty string
-        sleep: input.sleep !== '' ? +input.sleep : null,
       },
       refetchQueries: [
         {
@@ -118,6 +124,7 @@ const FormViews = () => {
           handleView={handleView}
           handleChange={handleChange}
           onAnxietySliderChange={onAnxietySliderChange}
+          onSleepSliderChange={onSleepSliderChange}
           anxietyLevel={input.anxietyLevel}
           sleep={input.sleep}
           handleSubmit={handleSubmit}
