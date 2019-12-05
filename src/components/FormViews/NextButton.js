@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'antd';
+import theme from '../../styles/theme';
 
 const styles = {
-  // background: theme.primaryColor,
-  // fontFamily: theme.fontFamily,
-  background: 'purple',
+  background: theme.primaryColor,
+  fontFamily: theme.fontFamily,
   color: '#FFFFFF',
   fontSize: '18px',
   borderRadius: 10,

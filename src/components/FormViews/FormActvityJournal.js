@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 // import Activities from './Activities';
-import Button from './Button';
+import Button from './NextButton';
 
 const FormActivityJournal = ({
   handleView,
