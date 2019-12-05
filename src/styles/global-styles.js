@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
   .App {
     width: 100%;
     max-width: 500px;
+    position: relative;
   }
 
   .ant-slider-track, .ant-slider-rail {
