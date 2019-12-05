@@ -17,7 +17,7 @@ const FormAnxietySleep = ({
         <button
           type="button"
           className="back"
-          onClick={() => handleView('activity-journal')}
+          onClick={() => handleView('mood')}
         >
           &larr;
         </button>
