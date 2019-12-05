@@ -154,6 +154,9 @@ const StyledForm = styled.form`
   .header {
     display: flex;
     justify-content: space-between;
+    &.center {
+      justify-content: center;
+    }
 
     p {
       color: #0c423b;
