@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Slider } from 'antd';
+import { Slider, Icon } from 'antd';
 import Button from './Button';
 
 const FormMood = ({ onMoodSliderChange, mood, handleView, handleSubmit }) => {
@@ -9,11 +9,12 @@ const FormMood = ({ onMoodSliderChange, mood, handleView, handleSubmit }) => {
     <>
       <div className="header">
         <Link to="/dashboard">
-          <button type="button" className="back">
-            &larr;
-          </button>
+          <Icon type="left-circle" style={{ fontSize: 35, color: '#9cd9dd' }} />
         </Link>
-        <p>How do you feel?</p>
+        <p>
+          How do you <br />
+          feel?
+        </p>
         <button type="button" onClick={handleSubmit}>
           Done
         </button>
