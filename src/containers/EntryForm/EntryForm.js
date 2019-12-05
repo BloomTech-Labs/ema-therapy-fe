@@ -14,6 +14,7 @@ const EntryForm = () => {
 const StyledEntryForm = styled.div`
   height: 100%;
   padding: 30px 25px;
+  background-color: #fafdfc;
   background-image: url(${backgroundImage});
   background-repeat: no-repeat;
   background-position: top -36px right -20px;
