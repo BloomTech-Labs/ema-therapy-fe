@@ -14,9 +14,9 @@ const styles = {
   boxShadow: '0px 4px 4px #CCE8E4',
 };
 
-function NextButton({ children, onClick }) {
+function NextButton({ children, onClick, loading }) {
   return (
-    <Button onClick={onClick} style={styles}>
+    <Button loading={loading} onClick={onClick} style={styles}>
       {children}
     </Button>
   );
@@ -28,6 +28,11 @@ NextButton.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+  loading: PropTypes.bool,
+};
+
+NextButton.defaultProps = {
+  loading: false,
 };
 
 export default NextButton;

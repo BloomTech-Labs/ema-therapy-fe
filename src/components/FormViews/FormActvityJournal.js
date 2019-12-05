@@ -6,7 +6,13 @@ import Button from './NextButton';
 
 const { TextArea } = Input;
 
-function FormActivityJournal({ handleView, handleChange, text, handleSubmit }) {
+function FormActivityJournal({
+  handleView,
+  handleChange,
+  text,
+  handleSubmit,
+  isSubmitting,
+}) {
   return (
     <>
       <Icon
@@ -42,18 +48,21 @@ function FormActivityJournal({ handleView, handleChange, text, handleSubmit }) {
         placeholder="Write your thoughts here..."
       />
       <div className="footer">
-        <Button onClick={handleSubmit}>Done</Button>
+        <Button loading={isSubmitting} onClick={handleSubmit}>
+          Done
+        </Button>
       </div>
     </>
   );
 }
 
 FormActivityJournal.propTypes = {
-  // addActivities: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   handleView: PropTypes.func.isRequired,
   handleChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  isSubmitting: PropTypes.bool.isRequired,
+  // addActivities: PropTypes.func.isRequired,
 };
 
 export default FormActivityJournal;

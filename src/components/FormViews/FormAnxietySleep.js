@@ -5,15 +5,15 @@ import PropTypes from 'prop-types';
 import NextButton from './NextButton';
 import DoneButton from './DoneButton';
 
-function FormAnxietySleep(props) {
-  const {
-    sleep,
-    handleView,
-    anxietyLevel,
-    handleSubmit,
-    onSleepSliderChange,
-    onAnxietySliderChange,
-  } = props;
+function FormAnxietySleep({
+  sleep,
+  handleView,
+  anxietyLevel,
+  handleSubmit,
+  isSubmitting,
+  onSleepSliderChange,
+  onAnxietySliderChange,
+}) {
   return (
     <>
       <div className="header">
@@ -26,7 +26,9 @@ function FormAnxietySleep(props) {
           How stressed <br />
           are you?
         </p>
-        <DoneButton onClick={handleSubmit}>Done</DoneButton>
+        <DoneButton loading={isSubmitting} onClick={handleSubmit}>
+          Done
+        </DoneButton>
       </div>
       <div className="inputs-section">
         <div className="inputs">
@@ -72,6 +74,7 @@ FormAnxietySleep.propTypes = {
   onSleepSliderChange: PropTypes.func.isRequired,
   sleep: PropTypes.number.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  isSubmitting: PropTypes.bool.isRequired,
 };
 
 export default FormAnxietySleep;

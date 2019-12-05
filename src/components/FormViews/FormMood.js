@@ -8,7 +8,13 @@ import moodToString from '../../utils/moodToString';
 import DoneButton from './DoneButton';
 import happyPlant from '../../assets/happy-plant.svg';
 
-function FormMood({ onMoodSliderChange, mood, handleView, handleSubmit }) {
+function FormMood({
+  onMoodSliderChange,
+  mood,
+  handleView,
+  handleSubmit,
+  isSubmitting,
+}) {
   return (
     <>
       <div className="header">
@@ -19,7 +25,9 @@ function FormMood({ onMoodSliderChange, mood, handleView, handleSubmit }) {
           How do you <br />
           feel?
         </p>
-        <DoneButton onClick={handleSubmit}>Done</DoneButton>
+        <DoneButton loading={isSubmitting} onClick={handleSubmit}>
+          Done
+        </DoneButton>
       </div>
       <MoodWrapper>
         <img src={happyPlant} alt="happy plant" />
@@ -47,6 +55,7 @@ FormMood.propTypes = {
   mood: PropTypes.number.isRequired,
   onMoodSliderChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  isSubmitting: PropTypes.bool.isRequired,
 };
 
 export default FormMood;

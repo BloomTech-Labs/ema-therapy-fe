@@ -31,6 +31,7 @@ const FormViews = () => {
     sleep: 5,
     weather: null,
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [isAnxietyChanged, setIsAnxietyChanged] = useState(null);
   const [isSleepChanged, setIsSleepChanged] = useState(null);
@@ -77,6 +78,7 @@ const FormViews = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     // adds mood and refetches mood data
     await addMood({
@@ -116,29 +118,33 @@ const FormViews = () => {
           onMoodSliderChange={onMoodSliderChange}
           mood={input.mood}
           handleView={handleView}
+          handleChange={handleChange}
           handleSubmit={handleSubmit}
+          isSubmitting={isSubmitting}
         />
       )}
 
       {view === 'anxiety-sleep' && (
         <FormAnxietySleep
+          sleep={input.sleep}
+          anxietyLevel={input.anxietyLevel}
+          onSleepSliderChange={onSleepSliderChange}
+          onAnxietySliderChange={onAnxietySliderChange}
           handleView={handleView}
           handleChange={handleChange}
-          onAnxietySliderChange={onAnxietySliderChange}
-          onSleepSliderChange={onSleepSliderChange}
-          anxietyLevel={input.anxietyLevel}
-          sleep={input.sleep}
           handleSubmit={handleSubmit}
+          isSubmitting={isSubmitting}
         />
       )}
 
       {view === 'activity-journal' && (
         <FormActivityJournal
           // addActivities={addActivities}
+          text={input.text}
           handleView={handleView}
           handleChange={handleChange}
-          text={input.text}
           handleSubmit={handleSubmit}
+          isSubmitting={isSubmitting}
         />
       )}
     </StyledForm>

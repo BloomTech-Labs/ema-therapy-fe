@@ -14,9 +14,9 @@ const styles = {
   marginTop: '6px',
 };
 
-function DoneButton({ children, onClick }) {
+function DoneButton({ loading, children, onClick }) {
   return (
-    <Button onClick={onClick} style={styles}>
+    <Button loading={loading} onClick={onClick} style={styles}>
       {children}
     </Button>
   );
@@ -24,6 +24,7 @@ function DoneButton({ children, onClick }) {
 
 DoneButton.propTypes = {
   onClick: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
