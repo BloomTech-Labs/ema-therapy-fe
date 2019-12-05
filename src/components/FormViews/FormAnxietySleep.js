@@ -1,7 +1,8 @@
 import React from 'react';
-import { Slider } from 'antd';
+import { Slider, Icon } from 'antd';
 import PropTypes from 'prop-types';
 import NextButton from './NextButton';
+import DoneButton from './DoneButton';
 
 const FormAnxietySleep = ({
   handleView,
@@ -14,17 +15,16 @@ const FormAnxietySleep = ({
   return (
     <>
       <div className="header">
-        <button
-          type="button"
-          className="back"
+        <Icon
+          type="left-circle"
+          style={{ fontSize: 35, color: '#9cd9dd' }}
           onClick={() => handleView('mood')}
-        >
-          &larr;
-        </button>
-        <p>How stressed are you?</p>
-        <button type="button" onClick={handleSubmit}>
-          Done
-        </button>
+        />
+        <p>
+          How stressed <br />
+          are you?
+        </p>
+        <DoneButton onClick={handleSubmit}>Done</DoneButton>
       </div>
       <div className="inputs-section">
         <div className="inputs">
