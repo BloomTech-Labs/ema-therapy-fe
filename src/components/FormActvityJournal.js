@@ -15,7 +15,7 @@ const FormActivityJournal = ({
         <button
           type="button"
           className="back"
-          onClick={() => handleView('mood')}
+          onClick={() => handleView('anxiety-sleep')}
         >
           &larr;
         </button>
