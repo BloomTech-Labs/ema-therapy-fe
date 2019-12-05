@@ -64,5 +64,5 @@ const Greeting = styled.h2`
   font-size: 21px;
   font-style: normal;
   font-weight: normal;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 `;
