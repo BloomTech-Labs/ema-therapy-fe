@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Icon = (props) => {
   const { icon } = props;
@@ -9,6 +10,10 @@ const Icon = (props) => {
       <path d={icon} />
     </IconStyle>
   );
+};
+
+Icon.propTypes = {
+  icon: PropTypes.string.isRequired,
 };
 
 const IconStyle = styled.svg`

@@ -25,6 +25,7 @@ const FormMood = ({ onMoodSliderChange, mood, handleView }) => {
           className="main-button"
           type="button"
           onClick={() => handleView('activity-journal')}
+          data-testid="next"
         >
           Next
         </button>
