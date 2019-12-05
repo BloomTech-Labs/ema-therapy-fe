@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { render, fireEvent } from '@testing-library/react';
-import FormMood from '../components/FormMood';
+import FormMood from '../components/FormViews/FormMood';
 import 'jest-styled-components';
 
 describe('FormMood component', () => {
@@ -12,6 +12,8 @@ describe('FormMood component', () => {
           <FormMood
             onMoodSliderChange={() => {}}
             handleView={() => {}}
+            handleSubmit={() => {}}
+            isSubmitting={true}
             mood={5}
           />
         </Router>,
@@ -27,12 +29,14 @@ describe('FormMood component', () => {
         <FormMood
           onMoodSliderChange={() => {}}
           handleView={handleViewMock}
+          handleSubmit={() => {}}
+          isSubmitting={true}
           mood={5}
         />
       </Router>,
     );
 
     fireEvent.click(getByTestId('next'));
-    expect(handleViewMock).toHaveBeenCalledWith('activity-journal');
+    expect(handleViewMock).toHaveBeenCalledWith('anxiety-sleep');
   });
 });

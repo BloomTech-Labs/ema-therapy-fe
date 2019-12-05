@@ -3,7 +3,26 @@
 exports[`FormMood component renders correctly 1`] = `
 Object {
   "asFragment": [Function],
-  "baseElement": <body>
+  "baseElement": .c0 {
+  padding: 0 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c0 p {
+  text-align: center;
+  color: #fcb924;
+  font-size: 16px;
+  text-transform: capitalize;
+  margin-bottom: 0;
+}
+
+<body>
     <div>
       <div
         class="header"
@@ -11,26 +30,74 @@ Object {
         <a
           href="/dashboard"
         >
-          <button
-            class="back"
-            type="button"
+          <i
+            aria-label="icon: left-circle"
+            class="anticon anticon-left-circle"
+            style="font-size: 35px; color: rgb(156, 217, 221);"
           >
-            ←
-          </button>
+            <svg
+              aria-hidden="true"
+              class=""
+              data-icon="left-circle"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="64 64 896 896"
+              width="1em"
+            >
+              <path
+                d="M603.3 327.5l-246 178a7.95 7.95 0 0 0 0 12.9l246 178c5.3 3.8 12.7 0 12.7-6.5V643c0-10.2-4.9-19.9-13.2-25.9L457.4 512l145.4-105.2c8.3-6 13.2-15.6 13.2-25.9V334c0-6.5-7.4-10.3-12.7-6.5z"
+              />
+              <path
+                d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+              />
+            </svg>
+          </i>
         </a>
         <p>
-          How do you feel?
+          How do you 
+          <br />
+          feel?
         </p>
         <button
-          class="main-button"
-          type="submit"
+          class="ant-btn ant-btn-loading"
+          style="background: rgb(255, 255, 255); color: rgb(137, 210, 214); font-size: 12px; border-radius: 10px; width: 70px; height: 30px; margin-right: -7px; margin-top: 6px;"
+          type="button"
         >
-          Done
+          <i
+            aria-label="icon: loading"
+            class="anticon anticon-loading"
+          >
+            <svg
+              aria-hidden="true"
+              class="anticon-spin"
+              data-icon="loading"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="0 0 1024 1024"
+              width="1em"
+            >
+              <path
+                d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 0 0-94.3-139.9 437.71 437.71 0 0 0-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z"
+              />
+            </svg>
+          </i>
+          <span>
+            Done
+          </span>
         </button>
       </div>
       <div
-        class="inputs"
+        class="c0"
       >
+        <img
+          alt="happy plant"
+          src="happy-plant.svg"
+        />
+        <p>
+          happy
+        </p>
         <div
           class="ant-slider"
         >
@@ -63,11 +130,14 @@ Object {
         class="footer"
       >
         <button
-          class="main-button"
+          class="ant-btn"
           data-testid="next"
+          style="background: rgb(0, 145, 122); font-family: 'Fira Sans',sans-serif; color: rgb(255, 255, 255); font-size: 18px; border-radius: 10px; width: 167px; height: 55px; box-shadow: 0px 4px 4px #CCE8E4;"
           type="button"
         >
-          Next
+          <span>
+            Next
+          </span>
         </button>
       </div>
     </div>
@@ -79,26 +149,74 @@ Object {
       <a
         href="/dashboard"
       >
-        <button
-          class="back"
-          type="button"
+        <i
+          aria-label="icon: left-circle"
+          class="anticon anticon-left-circle"
+          style="font-size: 35px; color: rgb(156, 217, 221);"
         >
-          ←
-        </button>
+          <svg
+            aria-hidden="true"
+            class=""
+            data-icon="left-circle"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            viewBox="64 64 896 896"
+            width="1em"
+          >
+            <path
+              d="M603.3 327.5l-246 178a7.95 7.95 0 0 0 0 12.9l246 178c5.3 3.8 12.7 0 12.7-6.5V643c0-10.2-4.9-19.9-13.2-25.9L457.4 512l145.4-105.2c8.3-6 13.2-15.6 13.2-25.9V334c0-6.5-7.4-10.3-12.7-6.5z"
+            />
+            <path
+              d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+            />
+          </svg>
+        </i>
       </a>
       <p>
-        How do you feel?
+        How do you 
+        <br />
+        feel?
       </p>
       <button
-        class="main-button"
-        type="submit"
+        class="ant-btn ant-btn-loading"
+        style="background: rgb(255, 255, 255); color: rgb(137, 210, 214); font-size: 12px; border-radius: 10px; width: 70px; height: 30px; margin-right: -7px; margin-top: 6px;"
+        type="button"
       >
-        Done
+        <i
+          aria-label="icon: loading"
+          class="anticon anticon-loading"
+        >
+          <svg
+            aria-hidden="true"
+            class="anticon-spin"
+            data-icon="loading"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            viewBox="0 0 1024 1024"
+            width="1em"
+          >
+            <path
+              d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 0 0-94.3-139.9 437.71 437.71 0 0 0-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z"
+            />
+          </svg>
+        </i>
+        <span>
+          Done
+        </span>
       </button>
     </div>
     <div
-      class="inputs"
+      class="sc-bdVaJa kQCyBe"
     >
+      <img
+        alt="happy plant"
+        src="happy-plant.svg"
+      />
+      <p>
+        happy
+      </p>
       <div
         class="ant-slider"
       >
@@ -131,11 +249,14 @@ Object {
       class="footer"
     >
       <button
-        class="main-button"
+        class="ant-btn"
         data-testid="next"
+        style="background: rgb(0, 145, 122); font-family: 'Fira Sans',sans-serif; color: rgb(255, 255, 255); font-size: 18px; border-radius: 10px; width: 167px; height: 55px; box-shadow: 0px 4px 4px #CCE8E4;"
         type="button"
       >
-        Next
+        <span>
+          Next
+        </span>
       </button>
     </div>
   </div>,

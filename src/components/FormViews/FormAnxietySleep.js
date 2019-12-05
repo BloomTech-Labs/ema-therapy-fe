@@ -18,6 +18,7 @@ function FormAnxietySleep({
     <>
       <div className="header">
         <Icon
+          data-testid="back"
           type="left-circle"
           style={{ fontSize: 35, color: '#9cd9dd' }}
           onClick={() => handleView('mood')}
@@ -59,7 +60,10 @@ function FormAnxietySleep({
         </div>
       </div>
       <div className="footer">
-        <NextButton onClick={() => handleView('activity-journal')}>
+        <NextButton
+          data-testid="next"
+          onClick={() => handleView('activity-journal')}
+        >
           Next
         </NextButton>
       </div>
