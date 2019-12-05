@@ -18,7 +18,6 @@ describe('FormActivityJournal component', () => {
   });
   test('changes view to mood on back button', () => {
     const handleViewMock = jest.fn();
-
     const { getByTestId } = render(
       <FormActivityJournal
         handleView={handleViewMock}
@@ -27,15 +26,25 @@ describe('FormActivityJournal component', () => {
         text="testString"
       />,
     );
-
     const backButton = getByTestId('back');
     fireEvent.click(backButton);
     expect(handleViewMock).toHaveBeenLastCalledWith('mood');
   });
-  // check to see if on change was called and if we need to keep recreating this mocked render every time
   test('handleChange gets called when text is entered into the text field', () => {
+    const handleChangeMock = jest.fn();
+    const { getByTestId } = render(
+      <FormActivityJournal
+        handleView={() => {}}
+        addActivities={() => {}}
+        handleChange={handleChangeMock}
+        text="Good Day"
+      />,
+    );
+    const textChange = getByTestId('text');
+    expect(textChange.value).toBe('Good Day');
+  });
+  test('changes view to mood on back button', () => {
     const handleViewMock = jest.fn();
-
     const { getByTestId } = render(
       <FormActivityJournal
         handleView={handleViewMock}
@@ -44,49 +53,22 @@ describe('FormActivityJournal component', () => {
         text="testString"
       />,
     );
+    const backButton = getByTestId('back');
+    fireEvent.click(backButton);
+    expect(handleViewMock).toHaveBeenLastCalledWith('mood');
+  });
+  test('changes view to anxiety-sleep after pressing Next button', () => {
+    const handleViewMock = jest.fn();
+    const { getByText } = render(
+      <FormActivityJournal
+        handleView={handleViewMock}
+        addActivities={() => {}}
+        handleChange={() => {}}
+        text="testString"
+      />,
+    );
+    const nextButton = getByText(/next/i);
+    fireEvent.click(nextButton);
+    expect(handleViewMock).toHaveBeenLastCalledWith('anxiety-sleep');
   });
 });
-
-//   it('handleChange gets called when text is entered into the text field', () => {
-//     const handleChangeMock = jest.fn();
-//     const tree = renderer.create(
-//       <FormActivityJournal
-//         handleView={() => { }}
-//         addActivities={() => { }}
-//         handleChange={handleChangeMock}
-//         text={'testString'}
-//       />,
-//     );
-//     expect(tree.toJSON()).toMatchSnapshot();
-//     act(() => {
-//       tree.root
-//         .find((element) => element.props.type === 'text')
-//         .props.onChange();
-//     });
-//     expect(handleChangeMock.mock.calls.length).toBe(1);
-//   });
-
-//   it('handleView gets called with correct string when clicking anxiety-sleep button', () => {
-//     const handleViewMock = jest.fn();
-//     const tree = renderer.create(
-//       <FormActivityJournal
-//         handleView={handleViewMock}
-//         addActivities={() => { }}
-//         handleChange={() => { }}
-//         text={'testString'}
-//       />,
-//     );
-//     expect(tree.toJSON()).toMatchSnapshot();
-//     act(() => {
-//       tree.root
-//         .find(
-//           (element) =>
-//             element.props.className === 'main-button' &&
-//             element.props.type === 'button',
-//         )
-//         .props.onClick();
-//     });
-//     expect(handleViewMock.mock.calls.length).toBe(1);
-//     expect(handleViewMock.mock.calls[0][0]).toEqual('anxiety-sleep');
-//   });
-// });

@@ -316,6 +316,7 @@ Object {
           class="inputs"
         >
           <textarea
+            data-testid="text"
             name="text"
             placeholder="write your thoughts here"
             type="text"
@@ -594,6 +595,7 @@ Object {
         class="inputs"
       >
         <textarea
+          data-testid="text"
           name="text"
           placeholder="write your thoughts here"
           type="text"

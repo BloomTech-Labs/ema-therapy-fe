@@ -24,7 +24,6 @@ describe('Activity component', () => {
         activityType={activityTypeMock}
       />,
     );
-
     fireEvent.click(getByTestId('toggle'));
     expect(addActivitiesMock).toHaveBeenCalled();
   });

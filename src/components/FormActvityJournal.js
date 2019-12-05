@@ -30,6 +30,7 @@ const FormActivityJournal = ({
           <textarea
             type="text"
             name="text"
+            data-testid="text"
             placeholder="write your thoughts here"
             value={text}
             onChange={handleChange}

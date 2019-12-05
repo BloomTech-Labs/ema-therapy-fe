@@ -15,6 +15,7 @@ const FormAnxietySleep = ({
         <button
           type="button"
           className="back"
+          data-testid="back"
           onClick={() => handleView('activity-journal')}
         >
           &larr;
@@ -39,6 +40,7 @@ const FormAnxietySleep = ({
               name="sleep"
               id="sleep"
               value={sleep}
+              data-testid="sleep"
               onChange={handleChange}
             />
           </label>

@@ -1,643 +1,220 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FormAnxietySleep component handleChange gets called when a number is entered into the sleep hours field 1`] = `
-Array [
-  <div
-    className="header"
-  >
-    <button
-      className="back"
-      onClick={[Function]}
-      type="button"
-    >
-      ←
-    </button>
-    <p>
-      How stressed are you this moment from 1 - 10?
-    </p>
-  </div>,
-  <div
-    className="inputs-section"
-  >
-    <div
-      className="inputs"
-    >
-      <p>
-        Anxiety Level
-      </p>
-      <div
-        className="ant-slider"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
-        onMouseUp={[Function]}
-        onTouchStart={[Function]}
-      >
-        <div
-          className="ant-slider-rail"
-          style={Object {}}
-        />
-        <div
-          className="ant-slider-track"
-          style={
-            Object {
-              "left": "0%",
-              "right": "auto",
-              "width": "66.66666666666666%",
-            }
-          }
-        />
-        <div
-          className="ant-slider-step"
-        />
-        <div
-          aria-disabled={false}
-          aria-valuemax={10}
-          aria-valuemin={1}
-          aria-valuenow={7}
-          className="ant-slider-handle"
-          onBlur={[Function]}
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          role="slider"
-          style={
-            Object {
-              "left": "66.66666666666666%",
-              "right": "auto",
-              "transform": "translateX(-50%)",
-            }
-          }
-          tabIndex={0}
-        />
-        <div
-          className="ant-slider-mark"
-        />
-      </div>
-    </div>
-    <div
-      className="inputs"
-    >
-      <label
-        htmlFor="sleep"
-      >
-        Hours of sleep:
-        <input
-          id="sleep"
-          name="sleep"
-          onChange={[MockFunction]}
-          type="number"
-          value="testString"
-        />
-      </label>
-    </div>
-  </div>,
-  <div
-    className="footer"
-  >
-    <button
-      className="main-button"
-      type="submit"
-    >
-      Done
-    </button>
-  </div>,
-]
-`;
-
-exports[`FormAnxietySleep component handleView gets called with correct string when clicking back button 1`] = `
-Array [
-  <div
-    className="header"
-  >
-    <button
-      className="back"
-      onClick={[Function]}
-      type="button"
-    >
-      ←
-    </button>
-    <p>
-      How stressed are you this moment from 1 - 10?
-    </p>
-  </div>,
-  <div
-    className="inputs-section"
-  >
-    <div
-      className="inputs"
-    >
-      <p>
-        Anxiety Level
-      </p>
-      <div
-        className="ant-slider"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
-        onMouseUp={[Function]}
-        onTouchStart={[Function]}
-      >
-        <div
-          className="ant-slider-rail"
-          style={Object {}}
-        />
-        <div
-          className="ant-slider-track"
-          style={
-            Object {
-              "left": "0%",
-              "right": "auto",
-              "width": "66.66666666666666%",
-            }
-          }
-        />
-        <div
-          className="ant-slider-step"
-        />
-        <div
-          aria-disabled={false}
-          aria-valuemax={10}
-          aria-valuemin={1}
-          aria-valuenow={7}
-          className="ant-slider-handle"
-          onBlur={[Function]}
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          role="slider"
-          style={
-            Object {
-              "left": "66.66666666666666%",
-              "right": "auto",
-              "transform": "translateX(-50%)",
-            }
-          }
-          tabIndex={0}
-        />
-        <div
-          className="ant-slider-mark"
-        />
-      </div>
-    </div>
-    <div
-      className="inputs"
-    >
-      <label
-        htmlFor="sleep"
-      >
-        Hours of sleep:
-        <input
-          id="sleep"
-          name="sleep"
-          onChange={[Function]}
-          type="number"
-          value="testString"
-        />
-      </label>
-    </div>
-  </div>,
-  <div
-    className="footer"
-  >
-    <button
-      className="main-button"
-      type="submit"
-    >
-      Done
-    </button>
-  </div>,
-]
-`;
-
 exports[`FormAnxietySleep component renders correctly 1`] = `
-Array [
-  <div
-    className="header"
-  >
-    <button
-      className="back"
-      onClick={[Function]}
-      type="button"
-    >
-      ←
-    </button>
-    <p>
-      How stressed are you this moment from 1 - 10?
-    </p>
-  </div>,
-  <div
-    className="inputs-section"
-  >
-    <div
-      className="inputs"
-    >
-      <p>
-        Anxiety Level
-      </p>
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
       <div
-        className="ant-slider"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
-        onMouseUp={[Function]}
-        onTouchStart={[Function]}
+        class="header"
+      >
+        <button
+          class="back"
+          data-testid="back"
+          type="button"
+        >
+          ←
+        </button>
+        <p>
+          How stressed are you this moment from 1 - 10?
+        </p>
+      </div>
+      <div
+        class="inputs-section"
       >
         <div
-          className="ant-slider-rail"
-          style={Object {}}
-        />
+          class="inputs"
+        >
+          <p>
+            Anxiety Level
+          </p>
+          <div
+            class="ant-slider"
+          >
+            <div
+              class="ant-slider-rail"
+            />
+            <div
+              class="ant-slider-track"
+              style="left: 0%; width: 66.66666666666666%;"
+            />
+            <div
+              class="ant-slider-step"
+            />
+            <div
+              aria-disabled="false"
+              aria-valuemax="10"
+              aria-valuemin="1"
+              aria-valuenow="7"
+              class="ant-slider-handle"
+              role="slider"
+              style="left: 66.66666666666666%; transform: translateX(-50%);"
+              tabindex="0"
+            />
+            <div
+              class="ant-slider-mark"
+            />
+          </div>
+        </div>
         <div
-          className="ant-slider-track"
-          style={
-            Object {
-              "left": "0%",
-              "right": "auto",
-              "width": "66.66666666666666%",
-            }
-          }
-        />
+          class="inputs"
+        >
+          <label
+            for="sleep"
+          >
+            Hours of sleep:
+            <input
+              data-testid="sleep"
+              id="sleep"
+              name="sleep"
+              type="number"
+              value="testString"
+            />
+          </label>
+        </div>
+      </div>
+      <div
+        class="footer"
+      >
+        <button
+          class="main-button"
+          type="submit"
+        >
+          Done
+        </button>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="header"
+    >
+      <button
+        class="back"
+        data-testid="back"
+        type="button"
+      >
+        ←
+      </button>
+      <p>
+        How stressed are you this moment from 1 - 10?
+      </p>
+    </div>
+    <div
+      class="inputs-section"
+    >
+      <div
+        class="inputs"
+      >
+        <p>
+          Anxiety Level
+        </p>
         <div
-          className="ant-slider-step"
-        />
-        <div
-          aria-disabled={false}
-          aria-valuemax={10}
-          aria-valuemin={1}
-          aria-valuenow={7}
-          className="ant-slider-handle"
-          onBlur={[Function]}
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          role="slider"
-          style={
-            Object {
-              "left": "66.66666666666666%",
-              "right": "auto",
-              "transform": "translateX(-50%)",
-            }
-          }
-          tabIndex={0}
-        />
-        <div
-          className="ant-slider-mark"
-        />
+          class="ant-slider"
+        >
+          <div
+            class="ant-slider-rail"
+          />
+          <div
+            class="ant-slider-track"
+            style="left: 0%; width: 66.66666666666666%;"
+          />
+          <div
+            class="ant-slider-step"
+          />
+          <div
+            aria-disabled="false"
+            aria-valuemax="10"
+            aria-valuemin="1"
+            aria-valuenow="7"
+            class="ant-slider-handle"
+            role="slider"
+            style="left: 66.66666666666666%; transform: translateX(-50%);"
+            tabindex="0"
+          />
+          <div
+            class="ant-slider-mark"
+          />
+        </div>
+      </div>
+      <div
+        class="inputs"
+      >
+        <label
+          for="sleep"
+        >
+          Hours of sleep:
+          <input
+            data-testid="sleep"
+            id="sleep"
+            name="sleep"
+            type="number"
+            value="testString"
+          />
+        </label>
       </div>
     </div>
     <div
-      className="inputs"
+      class="footer"
     >
-      <label
-        htmlFor="sleep"
+      <button
+        class="main-button"
+        type="submit"
       >
-        Hours of sleep:
-        <input
-          id="sleep"
-          name="sleep"
-          onChange={[Function]}
-          type="number"
-          value="testString"
-        />
-      </label>
+        Done
+      </button>
     </div>
   </div>,
-  <div
-    className="footer"
-  >
-    <button
-      className="main-button"
-      type="submit"
-    >
-      Done
-    </button>
-  </div>,
-]
-`;
-
-exports[`handleChange gets called when a number is entered into the sleep hours field 1`] = `
-Array [
-  <div
-    className="header"
-  >
-    <button
-      className="back"
-      onClick={[Function]}
-      type="button"
-    >
-      ←
-    </button>
-    <p>
-      How stressed are you this moment from 1 - 10?
-    </p>
-  </div>,
-  <div
-    className="inputs-section"
-  >
-    <div
-      className="inputs"
-    >
-      <p>
-        Anxiety Level
-      </p>
-      <div
-        className="ant-slider"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
-        onMouseUp={[Function]}
-        onTouchStart={[Function]}
-      >
-        <div
-          className="ant-slider-rail"
-          style={Object {}}
-        />
-        <div
-          className="ant-slider-track"
-          style={
-            Object {
-              "left": "0%",
-              "right": "auto",
-              "width": "66.66666666666666%",
-            }
-          }
-        />
-        <div
-          className="ant-slider-step"
-        />
-        <div
-          aria-disabled={false}
-          aria-valuemax={10}
-          aria-valuemin={1}
-          aria-valuenow={7}
-          className="ant-slider-handle"
-          onBlur={[Function]}
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          role="slider"
-          style={
-            Object {
-              "left": "66.66666666666666%",
-              "right": "auto",
-              "transform": "translateX(-50%)",
-            }
-          }
-          tabIndex={0}
-        />
-        <div
-          className="ant-slider-mark"
-        />
-      </div>
-    </div>
-    <div
-      className="inputs"
-    >
-      <label
-        htmlFor="sleep"
-      >
-        Hours of sleep:
-        <input
-          id="sleep"
-          name="sleep"
-          onChange={[MockFunction]}
-          type="number"
-          value="testString"
-        />
-      </label>
-    </div>
-  </div>,
-  <div
-    className="footer"
-  >
-    <button
-      className="main-button"
-      type="submit"
-    >
-      Done
-    </button>
-  </div>,
-]
-`;
-
-exports[`handleView gets called with correct string when clicking back button 1`] = `
-Array [
-  <div
-    className="header"
-  >
-    <button
-      className="back"
-      onClick={[Function]}
-      type="button"
-    >
-      ←
-    </button>
-    <p>
-      How stressed are you this moment from 1 - 10?
-    </p>
-  </div>,
-  <div
-    className="inputs-section"
-  >
-    <div
-      className="inputs"
-    >
-      <p>
-        Anxiety Level
-      </p>
-      <div
-        className="ant-slider"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
-        onMouseUp={[Function]}
-        onTouchStart={[Function]}
-      >
-        <div
-          className="ant-slider-rail"
-          style={Object {}}
-        />
-        <div
-          className="ant-slider-track"
-          style={
-            Object {
-              "left": "0%",
-              "right": "auto",
-              "width": "66.66666666666666%",
-            }
-          }
-        />
-        <div
-          className="ant-slider-step"
-        />
-        <div
-          aria-disabled={false}
-          aria-valuemax={10}
-          aria-valuemin={1}
-          aria-valuenow={7}
-          className="ant-slider-handle"
-          onBlur={[Function]}
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          role="slider"
-          style={
-            Object {
-              "left": "66.66666666666666%",
-              "right": "auto",
-              "transform": "translateX(-50%)",
-            }
-          }
-          tabIndex={0}
-        />
-        <div
-          className="ant-slider-mark"
-        />
-      </div>
-    </div>
-    <div
-      className="inputs"
-    >
-      <label
-        htmlFor="sleep"
-      >
-        Hours of sleep:
-        <input
-          id="sleep"
-          name="sleep"
-          onChange={[Function]}
-          type="number"
-          value="testString"
-        />
-      </label>
-    </div>
-  </div>,
-  <div
-    className="footer"
-  >
-    <button
-      className="main-button"
-      type="submit"
-    >
-      Done
-    </button>
-  </div>,
-]
-`;
-
-exports[`renders correctly 1`] = `
-Array [
-  <div
-    className="header"
-  >
-    <button
-      className="back"
-      onClick={[Function]}
-      type="button"
-    >
-      ←
-    </button>
-    <p>
-      How stressed are you this moment from 1 - 10?
-    </p>
-  </div>,
-  <div
-    className="inputs-section"
-  >
-    <div
-      className="inputs"
-    >
-      <p>
-        Anxiety Level
-      </p>
-      <div
-        className="ant-slider"
-        onBlur={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onMouseDown={[Function]}
-        onMouseUp={[Function]}
-        onTouchStart={[Function]}
-      >
-        <div
-          className="ant-slider-rail"
-          style={Object {}}
-        />
-        <div
-          className="ant-slider-track"
-          style={
-            Object {
-              "left": "0%",
-              "right": "auto",
-              "width": "66.66666666666666%",
-            }
-          }
-        />
-        <div
-          className="ant-slider-step"
-        />
-        <div
-          aria-disabled={false}
-          aria-valuemax={10}
-          aria-valuemin={1}
-          aria-valuenow={7}
-          className="ant-slider-handle"
-          onBlur={[Function]}
-          onKeyDown={[Function]}
-          onMouseDown={[Function]}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-          role="slider"
-          style={
-            Object {
-              "left": "66.66666666666666%",
-              "right": "auto",
-              "transform": "translateX(-50%)",
-            }
-          }
-          tabIndex={0}
-        />
-        <div
-          className="ant-slider-mark"
-        />
-      </div>
-    </div>
-    <div
-      className="inputs"
-    >
-      <label
-        htmlFor="sleep"
-      >
-        Hours of sleep:
-        <input
-          id="sleep"
-          name="sleep"
-          onChange={[Function]}
-          type="number"
-          value="testString"
-        />
-      </label>
-    </div>
-  </div>,
-  <div
-    className="footer"
-  >
-    <button
-      className="main-button"
-      type="submit"
-    >
-      Done
-    </button>
-  </div>,
-]
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
 `;
