@@ -8,6 +8,7 @@ import useCurrentWeather from '../../hooks/useCurrentWeather';
 import FormMood from './FormMood';
 import FormActivityJournal from './FormActvityJournal';
 import FormAnxietySleep from './FormAnxietySleep';
+import ladybug from '../../assets/ladybug.svg';
 import {
   addMoodMutation,
   getUserIdAndLocation,

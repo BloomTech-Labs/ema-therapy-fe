@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Slider, Icon } from 'antd';
 import PropTypes from 'prop-types';
 import NextButton from './NextButton';
@@ -28,16 +29,34 @@ const FormAnxietySleep = ({
       </div>
       <div className="inputs-section">
         <div className="inputs">
-          <p>Anxiety Level</p>
-          <Slider
-            value={anxietyLevel}
-            onChange={onAnxietySliderChange}
-            min={1}
-            max={10}
-          />
+          <Label>Anxiety Level</Label>
+          <SliderWrapper>
+            <span>1</span>
+            <Slider
+              value={anxietyLevel}
+              onChange={onAnxietySliderChange}
+              min={1}
+              max={10}
+              style={{ flexGrow: 1 }}
+            />
+            <span>10</span>
+          </SliderWrapper>
+          <Label>Hours of sleep:</Label>
+          <SliderWrapper>
+            <span>1</span>
+            <Slider
+              value={anxietyLevel}
+              onChange={onAnxietySliderChange}
+              min={1}
+              max={10}
+              style={{ flexGrow: 1 }}
+            />
+            <span>10+</span>
+          </SliderWrapper>
         </div>
+
         <div className="inputs">
-          <label htmlFor="sleep">
+          {/* <label htmlFor="sleep">
             Hours of sleep:
             <input
               type="number"
@@ -46,7 +65,7 @@ const FormAnxietySleep = ({
               value={sleep}
               onChange={handleChange}
             />
-          </label>
+          </label> */}
         </div>
       </div>
       <div className="footer">
@@ -68,3 +87,31 @@ FormAnxietySleep.propTypes = {
 };
 
 export default FormAnxietySleep;
+
+const Label = styled.p`
+  color: #00917a;
+  font-size: 18px;
+  padding-left: 20px;
+  margin-bottom: 10px;
+`;
+
+const SliderWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  &:first-of-type {
+    margin-bottom: 72px;
+  }
+
+  span {
+    color: #00917a;
+    font-size: 14px;
+    margin-top: 5px;
+    &:first-of-type {
+      padding-right: 8px;
+    }
+
+    &:not(:first-of-type) {
+      padding-left: 8px;
+    }
+  }
+`;

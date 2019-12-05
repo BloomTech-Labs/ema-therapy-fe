@@ -14,6 +14,15 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     max-width: 500px;
   }
+
+  .ant-slider-track, .ant-slider-rail {
+    height: 6px !important;
+  }
+
+  .ant-slider-handle {
+    height: 16px !important;
+    width: 16px !important;
+  }
 `;
 
 export default GlobalStyle;
