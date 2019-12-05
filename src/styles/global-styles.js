@@ -23,6 +23,11 @@ const GlobalStyle = createGlobalStyle`
     height: 16px !important;
     width: 16px !important;
   }
+
+  .ant-input::placeholder {
+    color: #ffffff !important;
+  }
+
 `;
 
 export default GlobalStyle;

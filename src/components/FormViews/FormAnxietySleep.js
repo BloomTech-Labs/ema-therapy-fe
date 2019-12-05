@@ -54,19 +54,6 @@ const FormAnxietySleep = ({
             <span>10+</span>
           </SliderWrapper>
         </div>
-
-        <div className="inputs">
-          {/* <label htmlFor="sleep">
-            Hours of sleep:
-            <input
-              type="number"
-              name="sleep"
-              id="sleep"
-              value={sleep}
-              onChange={handleChange}
-            />
-          </label> */}
-        </div>
       </div>
       <div className="footer">
         <NextButton onClick={() => handleView('activity-journal')}>
@@ -82,7 +69,7 @@ FormAnxietySleep.propTypes = {
   anxietyLevel: PropTypes.number.isRequired,
   onAnxietySliderChange: PropTypes.func.isRequired,
   onSleepSliderChange: PropTypes.func.isRequired,
-  sleep: PropTypes.string.isRequired,
+  sleep: PropTypes.number.isRequired,
   handleSubmit: PropTypes.func.isRequired,
 };
 

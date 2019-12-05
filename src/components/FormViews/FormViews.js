@@ -163,24 +163,6 @@ const StyledForm = styled.form`
     }
   }
 
-  .inputs input {
-    margin-left: 5px;
-    height: 30px;
-    width: 70px;
-  }
-
-  .input-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 50%;
-  }
-
-  /* textarea {
-    height: 200px;
-    width: 400px;
-  } */
-
   .footer {
     display: flex;
     justify-content: space-around;

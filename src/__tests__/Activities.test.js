@@ -1,6 +1,6 @@
 import React from 'react';
-import Activities from '../components/Activities';
 import renderer from 'react-test-renderer';
+import Activities from '../components/FormViews/Activities';
 import 'jest-styled-components';
 
 describe('Activities component', () => {

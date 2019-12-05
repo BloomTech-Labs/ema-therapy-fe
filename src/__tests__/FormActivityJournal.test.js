@@ -1,8 +1,8 @@
 import React from 'react';
-import FormActivityJournal from '../components/FormActvityJournal';
 import renderer, { act } from 'react-test-renderer';
 import 'jest-styled-components';
 import { exact } from 'prop-types';
+import FormActivityJournal from '../components/FormViews/FormActvityJournal';
 
 describe('FormActivityJournal component', () => {
   it('renders correctly', () => {
@@ -12,7 +12,7 @@ describe('FormActivityJournal component', () => {
           handleView={() => {}}
           addActivities={() => {}}
           handleChange={() => {}}
-          text={'testString'}
+          text="testString"
         />,
       )
       .toJSON();
@@ -26,7 +26,7 @@ describe('FormActivityJournal component', () => {
         handleView={handleViewMock}
         addActivities={() => {}}
         handleChange={() => {}}
-        text={'testString'}
+        text="testString"
       />,
     );
     expect(tree.toJSON()).toMatchSnapshot();
