@@ -11,9 +11,8 @@ const EntryForm = () => {
 };
 
 const StyledEntryForm = styled.div`
-  max-width: 500px;
-  height: 100vh;
-  margin: 0 auto;
+  height: 100%;
+  padding: 30px 25px;
 `;
 
 export default EntryForm;
