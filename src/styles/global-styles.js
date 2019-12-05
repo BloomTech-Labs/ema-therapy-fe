@@ -15,20 +15,6 @@ const GlobalStyle = createGlobalStyle`
     max-width: 500px;
     position: relative;
   }
-
-  .ant-slider-track, .ant-slider-rail {
-    height: 6px !important;
-  }
-
-  .ant-slider-handle {
-    height: 16px !important;
-    width: 16px !important;
-  }
-
-  .ant-input::placeholder {
-    color: #ffffff !important;
-  }
-
 `;
 
 export default GlobalStyle;

@@ -158,6 +158,20 @@ const StyledForm = styled.form`
   justify-content: space-between;
   font-family: 'Fira Sans', sans-serif;
 
+  .ant-slider-track,
+  .ant-slider-rail {
+    height: 6px;
+  }
+
+  .ant-slider-handle {
+    height: 16px;
+    width: 16px;
+  }
+
+  .ant-input::placeholder {
+    color: #ffffff;
+  }
+
   .header {
     display: flex;
     justify-content: space-between;
