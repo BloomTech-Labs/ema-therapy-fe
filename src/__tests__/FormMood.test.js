@@ -20,10 +20,8 @@ describe('FormMood component', () => {
       ),
     ).toMatchSnapshot();
   });
-
   test('next button calls onClick handleView', () => {
     const handleViewMock = jest.fn();
-
     const { getByTestId } = render(
       <Router>
         <FormMood
@@ -35,7 +33,6 @@ describe('FormMood component', () => {
         />
       </Router>,
     );
-
     fireEvent.click(getByTestId('next'));
     expect(handleViewMock).toHaveBeenCalledWith('anxiety-sleep');
   });

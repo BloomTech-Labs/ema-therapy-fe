@@ -12,7 +12,6 @@ describe('FormActivityJournal component', () => {
           addActivities={() => {}}
           handleChange={() => {}}
           handleSubmit={() => {}}
-          // eslint-disable-next-line react/jsx-boolean-value
           isSubmitting={true}
           text="testString"
         />,
@@ -75,7 +74,6 @@ describe('FormActivityJournal component', () => {
         addActivities={() => {}}
         handleChange={() => {}}
         handleSubmit={handleSubmitMock}
-        // eslint-disable-next-line react/jsx-boolean-value
         isSubmitting={true}
         text="testString"
       />,
