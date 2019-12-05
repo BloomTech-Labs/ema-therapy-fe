@@ -3,8 +3,8 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 import ReactGA from 'react-ga';
-import { useAuth0 } from '../utils/react-auth0-spa';
-import useCurrentWeather from '../hooks/useCurrentWeather';
+import { useAuth0 } from '../../utils/react-auth0-spa';
+import useCurrentWeather from '../../hooks/useCurrentWeather';
 import FormMood from './FormMood';
 import FormActivityJournal from './FormActvityJournal';
 import FormAnxietySleep from './FormAnxietySleep';
@@ -12,20 +12,17 @@ import {
   addMoodMutation,
   getUserIdAndLocation,
   checkForUserAndGetMoodsQuery,
-} from '../queries';
+} from '../../queries';
 
 const FormViews = () => {
   const history = useHistory();
   const [view, setView] = useState('mood');
   const { currentWeather } = useCurrentWeather();
   const { user } = useAuth0();
-
   const [addMood] = useMutation(addMoodMutation);
-
   const { loading, error, data } = useQuery(getUserIdAndLocation, {
     variables: { sub: user.sub },
   });
-
   const [input, setInput] = useState({
     mood: 3,
     activities: [],
@@ -144,21 +141,18 @@ const StyledForm = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-family: 'Fira Sans', sans-serif;
 
   .header {
     display: flex;
     justify-content: space-between;
-  }
 
-  .back {
-    background-color: transparent;
-    font-size: 32px;
-    width: 30px;
-  }
-
-  .inputs {
-    margin: 15% 5%;
-    padding: 25px;
+    p {
+      color: #0c423b;
+      font-size: 21px;
+      line-height: 24px;
+      text-align: center;
+    }
   }
 
   .inputs input {

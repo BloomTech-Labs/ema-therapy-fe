@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button as AntdButton } from 'antd';
-import theme from '../styles/theme';
+import { Button } from 'antd';
 
 const styles = {
-  background: theme.primaryColor,
-  fontFamily: theme.fontFamily,
+  // background: theme.primaryColor,
+  // fontFamily: theme.fontFamily,
+  background: 'purple',
   color: '#FFFFFF',
   fontSize: '18px',
   borderRadius: 10,
@@ -14,15 +14,15 @@ const styles = {
   boxShadow: '0px 4px 4px #CCE8E4',
 };
 
-function Button({ children, onClick }) {
+function NextButton({ children, onClick }) {
   return (
-    <AntdButton onClick={onClick} style={styles}>
+    <Button onClick={onClick} style={styles}>
       {children}
-    </AntdButton>
+    </Button>
   );
 }
 
-Button.propTypes = {
+NextButton.propTypes = {
   onClick: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
@@ -30,4 +30,4 @@ Button.propTypes = {
   ]).isRequired,
 };
 
-export default Button;
+export default NextButton;

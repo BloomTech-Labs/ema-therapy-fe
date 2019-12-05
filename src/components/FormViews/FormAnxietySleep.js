@@ -1,7 +1,7 @@
 import React from 'react';
 import { Slider } from 'antd';
 import PropTypes from 'prop-types';
-import Button from './Button';
+import NextButton from './NextButton';
 
 const FormAnxietySleep = ({
   handleView,
@@ -50,7 +50,9 @@ const FormAnxietySleep = ({
         </div>
       </div>
       <div className="footer">
-        <Button onClick={() => handleView('activity-journal')}>Next</Button>
+        <NextButton onClick={() => handleView('activity-journal')}>
+          Next
+        </NextButton>
       </div>
     </>
   );

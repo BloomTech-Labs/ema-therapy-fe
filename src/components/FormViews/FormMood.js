@@ -1,8 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Slider, Icon } from 'antd';
-import Button from './Button';
+import NextButton from './NextButton';
+import moodToString from '../../utils/moodToString';
 
 const FormMood = ({ onMoodSliderChange, mood, handleView, handleSubmit }) => {
   return (
@@ -19,11 +21,20 @@ const FormMood = ({ onMoodSliderChange, mood, handleView, handleSubmit }) => {
           Done
         </button>
       </div>
-      <div className="inputs">
-        <Slider value={mood} onChange={onMoodSliderChange} min={1} max={5} />
-      </div>
+      <MoodWrapper>
+        <p>{moodToString(mood)}</p>
+        <Slider
+          min={1}
+          max={5}
+          value={mood}
+          tooltipVisible={false}
+          onChange={onMoodSliderChange}
+        />
+      </MoodWrapper>
       <div className="footer">
-        <Button onClick={() => handleView('anxiety-sleep')}>Next</Button>
+        <NextButton onClick={() => handleView('anxiety-sleep')}>
+          Next
+        </NextButton>
       </div>
     </>
   );
@@ -37,3 +48,14 @@ FormMood.propTypes = {
 };
 
 export default FormMood;
+
+const MoodWrapper = styled.div`
+  padding: 0 20px;
+
+  p {
+    text-align: center;
+    color: #fcb924;
+    font-size: 16px;
+    text-transform: capitalize;
+  }
+`;
