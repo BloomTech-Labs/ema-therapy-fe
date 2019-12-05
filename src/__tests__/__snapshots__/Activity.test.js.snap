@@ -1,9 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Activity component renders correctly 1`] = `
+<<<<<<< HEAD
 Object {
   "asFragment": [Function],
   "baseElement": .c1 {
+=======
+.c1 {
+>>>>>>> feature/add-mood-forms
   border: 1px solid black;
   border-radius: 100%;
   padding: 4px;
@@ -19,6 +23,7 @@ Object {
   color: limegreen;
 }
 
+<<<<<<< HEAD
 <body>
     <div>
       <button
@@ -115,4 +120,25 @@ Object {
   "rerender": [Function],
   "unmount": [Function],
 }
+=======
+<button
+  className="c0"
+  onClick={[Function]}
+  type="button"
+>
+  <svg
+    className="c1"
+    height="30"
+    viewBox="0 0 500 500"
+    width="30"
+  >
+    <path
+      d="mockIcon"
+    />
+  </svg>
+  <p>
+    mockType
+  </p>
+</button>
+>>>>>>> feature/add-mood-forms
 `;

@@ -22,4 +22,8 @@ const IconStyle = styled.svg`
   padding: 4px;
 `;
 
+Icon.propTypes = {
+  icon: PropTypes.string.isRequired,
+};
+
 export default Icon;

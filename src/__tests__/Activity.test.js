@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import Activity from '../components/Activity';
+import Activity from '../components/FormViews/Activity';
 import 'jest-styled-components';
 
 describe('Activity component', () => {
