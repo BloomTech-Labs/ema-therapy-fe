@@ -41,7 +41,7 @@ Object {
         data-testid="text"
         name="text"
         placeholder="Write your thoughts here..."
-        style="font-size: 16px; height: 315px; color: rgb(255, 255, 255); border-radius: 24px; padding: 35px 30px; background: rgb(199, 221, 218); box-shadow: 0px 0px 4px #C7DDDA;"
+        style="font-size: 16px; height: 315px; color: rgb(101, 136, 131); border-radius: 10; padding: 35px 30px; background: rgb(255, 255, 255); box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15); resize: none;"
       >
         testString
       </textarea>
@@ -117,7 +117,7 @@ Object {
       data-testid="text"
       name="text"
       placeholder="Write your thoughts here..."
-      style="font-size: 16px; height: 315px; color: rgb(255, 255, 255); border-radius: 24px; padding: 35px 30px; background: rgb(199, 221, 218); box-shadow: 0px 0px 4px #C7DDDA;"
+      style="font-size: 16px; height: 315px; color: rgb(101, 136, 131); border-radius: 10; padding: 35px 30px; background: rgb(255, 255, 255); box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15); resize: none;"
     >
       testString
     </textarea>

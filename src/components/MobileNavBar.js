@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Icon } from 'antd';
-import { NavLink } from 'react-router-dom';
-import moodIcon from '../assets/mood-icon.svg';
-import chartsIcon from '../assets/charts-icon.svg';
-import tasksIcon from '../assets/tasks-icon.svg';
-import settingsIcon from '../assets/settings-icon.svg';
+import { Link, NavLink } from 'react-router-dom';
 import styles from '../styles/theme';
+import {
+  MoodIcon,
+  ChartsIcon,
+  TasksIcon,
+  SettingsIcon,
+} from '../containers/Dashboard/icons';
 
 function MobileNavBar() {
   return (
@@ -16,8 +18,8 @@ function MobileNavBar() {
         activeStyle={{ color: styles.tealGreen }}
       >
         <ButtonWrapper>
-          <img src={moodIcon} alt="leaf" />
-          Mood
+          <MoodIcon size={28} />
+          <span>Mood</span>
         </ButtonWrapper>
       </NavButton>
       <NavButton
@@ -25,8 +27,8 @@ function MobileNavBar() {
         activeStyle={{ color: styles.rosyPink }}
       >
         <ButtonWrapper>
-          <img src={chartsIcon} alt="chart" />
-          Charts
+          <ChartsIcon size={28} />
+          <span>Charts</span>
         </ButtonWrapper>
       </NavButton>
       <AddButton to="/entryform">
@@ -37,8 +39,8 @@ function MobileNavBar() {
         activeStyle={{ color: styles.darkJungleGreen }}
       >
         <ButtonWrapper>
-          <img src={tasksIcon} alt="tasks" />
-          Tasks
+          <TasksIcon size={28} />
+          <span>Tasks</span>
         </ButtonWrapper>
       </NavButton>
       <NavButton
@@ -46,8 +48,8 @@ function MobileNavBar() {
         activeStyle={{ color: styles.brightYellow }}
       >
         <ButtonWrapper>
-          <img src={settingsIcon} alt="settings" />
-          Settings
+          <SettingsIcon size={28} />
+          <span>Settings</span>
         </ButtonWrapper>
       </NavButton>
     </StyledNavBar>
@@ -84,7 +86,7 @@ const NavButton = styled(NavLink)`
   align-items: center;
 `;
 
-const AddButton = styled(NavLink)`
+const AddButton = styled(Link)`
   background: white;
   height: 50px;
   width: 50px;

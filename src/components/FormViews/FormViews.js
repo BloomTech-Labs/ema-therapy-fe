@@ -167,8 +167,8 @@ const StyledForm = styled.form`
     width: 16px;
   }
 
-  .ant-input::placeholder {
-    color: #ffffff;
+  textarea.ant-input::placeholder {
+    color: '#658883';
   }
 
   .header {

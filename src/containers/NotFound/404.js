@@ -10,8 +10,8 @@ function NotFound() {
   return (
     <Dashboard>
       <Styled404>
-        <h1>Sorry Not Sorry</h1>
-        <AiOutlineFrown size={200} />
+        <h1>Page Not Found</h1>
+        <AiOutlineFrown size={140} />
         <button type="button" onClick={() => history.goBack()}>
           <IoIosArrowBack /> Go Back
         </button>
@@ -23,7 +23,7 @@ function NotFound() {
 export default NotFound;
 
 const Styled404 = styled.div`
-  height: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
