@@ -11,6 +11,8 @@ describe('FormActivityJournal component', () => {
           handleView={() => {}}
           addActivities={() => {}}
           handleChange={() => {}}
+          handleSubmit={() => {}}
+          isSubmitting={true}
           text="testString"
         />,
       ),
@@ -18,75 +20,65 @@ describe('FormActivityJournal component', () => {
   });
   test('changes view to mood on back button', () => {
     const handleViewMock = jest.fn();
-
     const { getByTestId } = render(
       <FormActivityJournal
         handleView={handleViewMock}
         addActivities={() => {}}
         handleChange={() => {}}
+        handleSubmit={() => {}}
+        isSubmitting={true}
         text="testString"
       />,
     );
-
     const backButton = getByTestId('back');
     fireEvent.click(backButton);
-    expect(handleViewMock).toHaveBeenLastCalledWith('mood');
+    expect(handleViewMock).toHaveBeenLastCalledWith('anxiety-sleep');
   });
-  // check to see if on change was called and if we need to keep recreating this mocked render every time
   test('handleChange gets called when text is entered into the text field', () => {
+    const handleChangeMock = jest.fn();
+    const { getByTestId } = render(
+      <FormActivityJournal
+        handleView={() => {}}
+        addActivities={() => {}}
+        handleChange={handleChangeMock}
+        handleSubmit={() => {}}
+        isSubmitting={true}
+        text="Good Day"
+      />,
+    );
+    const textChange = getByTestId('text');
+    expect(textChange.value).toBe('Good Day');
+  });
+  test('changes view to mood on back button', () => {
     const handleViewMock = jest.fn();
-
     const { getByTestId } = render(
       <FormActivityJournal
         handleView={handleViewMock}
         addActivities={() => {}}
         handleChange={() => {}}
+        handleSubmit={() => {}}
+        // eslint-disable-next-line react/jsx-boolean-value
+        isSubmitting={true}
         text="testString"
       />,
     );
+    const backButton = getByTestId('back');
+    fireEvent.click(backButton);
+    expect(handleViewMock).toHaveBeenLastCalledWith('anxiety-sleep');
+  });
+  test('changes view to anxiety-sleep after pressing Next button', () => {
+    const handleSubmitMock = jest.fn();
+    const { getByText } = render(
+      <FormActivityJournal
+        handleView={() => {}}
+        addActivities={() => {}}
+        handleChange={() => {}}
+        handleSubmit={handleSubmitMock}
+        isSubmitting={true}
+        text="testString"
+      />,
+    );
+    const nextButton = getByText(/Done/i);
+    fireEvent.click(nextButton);
   });
 });
-
-//   it('handleChange gets called when text is entered into the text field', () => {
-//     const handleChangeMock = jest.fn();
-//     const tree = renderer.create(
-//       <FormActivityJournal
-//         handleView={() => { }}
-//         addActivities={() => { }}
-//         handleChange={handleChangeMock}
-//         text={'testString'}
-//       />,
-//     );
-//     expect(tree.toJSON()).toMatchSnapshot();
-//     act(() => {
-//       tree.root
-//         .find((element) => element.props.type === 'text')
-//         .props.onChange();
-//     });
-//     expect(handleChangeMock.mock.calls.length).toBe(1);
-//   });
-
-//   it('handleView gets called with correct string when clicking anxiety-sleep button', () => {
-//     const handleViewMock = jest.fn();
-//     const tree = renderer.create(
-//       <FormActivityJournal
-//         handleView={handleViewMock}
-//         addActivities={() => { }}
-//         handleChange={() => { }}
-//         text={'testString'}
-//       />,
-//     );
-//     expect(tree.toJSON()).toMatchSnapshot();
-//     act(() => {
-//       tree.root
-//         .find(
-//           (element) =>
-//             element.props.className === 'main-button' &&
-//             element.props.type === 'button',
-//         )
-//         .props.onClick();
-//     });
-//     expect(handleViewMock.mock.calls.length).toBe(1);
-//     expect(handleViewMock.mock.calls[0][0]).toEqual('anxiety-sleep');
-//   });
-// });
