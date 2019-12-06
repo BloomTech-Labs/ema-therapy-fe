@@ -181,6 +181,7 @@ const StyledForm = styled.form`
     p {
       color: #0c423b;
       font-size: 21px;
+      font-weight: 500;
       line-height: 24px;
       text-align: center;
     }
