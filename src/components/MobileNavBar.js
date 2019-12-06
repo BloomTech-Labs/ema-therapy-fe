@@ -1,18 +1,42 @@
 import React from 'react';
 import styled from 'styled-components';
-import { MdAdd } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Icon } from 'antd';
+import { NavLink } from 'react-router-dom';
+import moodIcon from '../assets/mood-icon.svg';
+import chartsIcon from '../assets/charts-icon.svg';
+import tasksIcon from '../assets/tasks-icon.svg';
+import settingsIcon from '../assets/settings-icon.svg';
 
 function MobileNavBar() {
   return (
     <StyledNavBar>
-      <NavButton to="/dashboard/moods">Moods</NavButton>
-      <NavButton to="/dashboard/stories">Stories</NavButton>
+      <NavButton to="/dashboard/moods" activeStyle={{ color: 'red' }}>
+        <ButtonWrapper>
+          <img src={moodIcon} />
+          Mood
+        </ButtonWrapper>
+      </NavButton>
+      <NavButton to="/dashboard/charts">
+        <ButtonWrapper>
+          <img src={chartsIcon} />
+          Charts
+        </ButtonWrapper>
+      </NavButton>
       <AddButton to="/entryform">
-        <MdAdd />
+        <Icon type="plus" style={{ fontSize: '22px' }} />
       </AddButton>
-      <NavButton to="/dashboard/stats">Stats</NavButton>
-      <NavButton to="/dashboard/settings">Settings</NavButton>
+      <NavButton to="/dashboard/tasks">
+        <ButtonWrapper>
+          <img src={tasksIcon} />
+          Tasks
+        </ButtonWrapper>
+      </NavButton>
+      <NavButton to="/dashboard/settings">
+        <ButtonWrapper>
+          <img src={settingsIcon} />
+          Settings
+        </ButtonWrapper>
+      </NavButton>
     </StyledNavBar>
   );
 }
@@ -21,19 +45,25 @@ const StyledNavBar = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #c4c4c4;
-  height: 63px;
+  background-color: #ffffff;
+  height: 58px;
   width: 100%;
   position: fixed;
   bottom: 0;
   max-width: 500px;
+  border-radius: 14px;
 `;
 
-const NavButton = styled(Link)`
+const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const NavButton = styled(NavLink)`
   height: 30px;
   width: 60px;
   font-size: 12px;
-  border: 1px solid #000000;
   color: #000;
   text-decoration: none;
   display: flex;
@@ -41,21 +71,21 @@ const NavButton = styled(Link)`
   align-items: center;
 `;
 
-const AddButton = styled(Link)`
+const AddButton = styled(NavLink)`
   background: white;
-  height: 40px;
-  width: 40px;
-  line-height: 40px;
+  height: 50px;
+  width: 50px;
   border: none;
   border-radius: 50%;
-  background-color: #6f6c6c;
+  background-color: #00917a;
   font-size: 32px;
   display: flex;
   justify-content: center;
   align-items: center;
-  top: -20px;
-  position: absolute;
-  color: #000000;
+  top: -13px;
+  position: relative;
+  color: #ffffff;
+  /* box-shadow: 0px 0px 8px 2px #00917A; */
 `;
 
 export default MobileNavBar;
