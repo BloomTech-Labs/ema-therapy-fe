@@ -40,11 +40,12 @@ function FormActivityJournal({
         style={{
           fontSize: 16,
           height: '315px',
-          color: '#ffffff',
-          borderRadius: '24px',
+          color: '#658883',
+          borderRadius: '10',
           padding: '35px 30px',
-          background: '#c7ddda',
-          boxShadow: '0px 0px 4px #C7DDDA',
+          background: '#ffffff',
+          boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)',
+          resize: 'none',
         }}
         onChange={handleChange}
         placeholder="Write your thoughts here..."
