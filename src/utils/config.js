@@ -18,7 +18,7 @@ if (NODE_ENV === 'development') {
   AUTH0_AUDIENCE = 'https://moodmuse.herokuapp.com';
   AUTH0_CLIENT_ID = 'RWYKn1NSBG6LjReho2WItTjxxdtBxjXj';
   AUTH0_DOMAIN = 'moodmuse.auth0.com';
-  GRAPHQL_URI = 'http://moodmuse-production.herokuapp.com/backend';
+  GRAPHQL_URI = 'https://moodmuse-production.herokuapp.com/backend';
   GA_ID = 'UA-153720943-1';
 } else if (NODE_ENV === 'staging') {
   AUTH0_AUDIENCE = 'https://moodmuse-staging.herokuapp.com';
