@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 const TasksIcon = ({ size, strokeWidth, stroke }) => {
   return (
     <svg
-      width="auto"
       height={size}
       stroke={stroke}
       viewBox="0 0 217 188"
