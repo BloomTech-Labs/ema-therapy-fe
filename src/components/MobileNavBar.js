@@ -16,7 +16,7 @@ function MobileNavBar() {
           Mood
         </ButtonWrapper>
       </NavButton>
-      <NavButton to="/dashboard/charts">
+      <NavButton to="/dashboard/charts" activeStyle={{ color: 'red' }}>
         <ButtonWrapper>
           <img src={chartsIcon} />
           Charts
@@ -25,13 +25,13 @@ function MobileNavBar() {
       <AddButton to="/entryform">
         <Icon type="plus" style={{ fontSize: '22px' }} />
       </AddButton>
-      <NavButton to="/dashboard/tasks">
+      <NavButton to="/dashboard/tasks" activeStyle={{ color: 'red' }}>
         <ButtonWrapper>
           <img src={tasksIcon} />
           Tasks
         </ButtonWrapper>
       </NavButton>
-      <NavButton to="/dashboard/settings">
+      <NavButton to="/dashboard/settings" activeStyle={{ color: 'red' }}>
         <ButtonWrapper>
           <img src={settingsIcon} />
           Settings

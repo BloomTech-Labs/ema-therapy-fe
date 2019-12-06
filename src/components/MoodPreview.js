@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import Card from './Card';
 import moodToString from '../utils/moodToString';
 import flower from '../assets/yellow-flower.svg';
+// import pot from '../assets/potsvg.svg';
+import pot from '../assets/great-pot.svg';
 
 const formatDate = (timestamp, fmt) => {
   const ts = Number(timestamp);
@@ -19,9 +21,12 @@ function MoodPreview({ lastItem, count }) {
         <img src={flower} />
       </DayWrapper>
       <StyledMoodCard>
-        <p className="time">{formatDate(lastItem.createdAt, 'h:mm a')}</p>
-        <p className="mood">{moodToString(lastItem.mood)}</p>
-        <p className="count">{count > 1 ? `${count} entries` : '1 entry'}</p>
+        <div>
+          <p className="time">{formatDate(lastItem.createdAt, 'h:mm a')}</p>
+          <p className="mood">{moodToString(lastItem.mood)}</p>
+          <p className="count">{count > 1 ? `${count} entries` : '1 entry'}</p>
+        </div>
+        {/* <img src={pot} /> */}
       </StyledMoodCard>
     </PreviewContainer>
   );
@@ -59,10 +64,13 @@ const DayWrapper = styled.div`
 `;
 
 const StyledMoodCard = styled(Card)`
-  padding: 10px 16px 11px;
+  padding: 7px 16px 8px;
   margin-bottom: 23px;
-  min-height: 85px;
+  height: 95px;
   width: 100%;
+  background-image: url(${pot});
+  background-repeat: no-repeat;
+  background-position: top -3px right -4px;
 
   .time {
     margin: 0;
@@ -72,7 +80,7 @@ const StyledMoodCard = styled(Card)`
 
   .mood {
     font-size: 16px;
-    margin: 8px 0 22px;
+    margin: 8px 0 15px;
     font-weight: 500;
     text-transform: capitalize;
     color: #0c423b;
@@ -82,6 +90,6 @@ const StyledMoodCard = styled(Card)`
     color: #fca395;
     font-style: italic;
     font-size: 10px;
-    margin: unset;
+    margin-bottom: 10px;
   }
 `;
