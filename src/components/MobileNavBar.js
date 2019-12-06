@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Icon } from 'antd';
 import { Link, NavLink } from 'react-router-dom';
 import styles from '../styles/theme';
 import {
