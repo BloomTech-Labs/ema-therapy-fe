@@ -50,10 +50,9 @@ function MoodDisplay() {
   return loading ? null : (
     <StyledMoodDisplay>
       <Header>
-        <Logo>MoodBloom</Logo>
         <Icon
-          type="close-circle"
-          style={{ fontSize: 30, color: styles.paleRobinEggBlue }}
+          type="left"
+          style={{ fontSize: 22, color: '#9cd9dd' }}
           onClick={() => history.push('/dashboard')}
         />
       </Header>
