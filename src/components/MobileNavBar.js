@@ -8,6 +8,7 @@ import {
   ChartsIcon,
   TasksIcon,
   SettingsIcon,
+  PlusIcon,
 } from '../containers/Dashboard/icons';
 
 function MobileNavBar() {
@@ -32,7 +33,7 @@ function MobileNavBar() {
         </ButtonWrapper>
       </NavButton>
       <AddButton to="/entryform">
-        <Icon type="plus" style={{ fontSize: '22px' }} />
+        <PlusIcon size={20} />
       </AddButton>
       <NavButton
         to="/dashboard/tasks"
