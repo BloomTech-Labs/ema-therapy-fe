@@ -19,11 +19,11 @@ function FormActivityJournal({
         style={{
           top: 30,
           left: 25,
-          fontSize: 35,
+          fontSize: 22,
           color: '#9cd9dd',
           position: 'absolute',
         }}
-        type="left-circle"
+        type="left"
         onClick={() => handleView('anxiety-sleep')}
       />
       <div className="header center">

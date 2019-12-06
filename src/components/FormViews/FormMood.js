@@ -19,7 +19,7 @@ function FormMood({
     <>
       <div className="header">
         <Link to="/dashboard">
-          <Icon type="left-circle" style={{ fontSize: 35, color: '#9cd9dd' }} />
+          <Icon type="left" style={{ fontSize: 22, color: '#9cd9dd' }} />
         </Link>
         <p>
           How do you <br />
