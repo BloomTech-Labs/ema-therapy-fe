@@ -2,11 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { Icon } from 'antd';
 import { Link, NavLink } from 'react-router-dom';
-import { FiSettings } from 'react-icons/fi';
 import styles from '../styles/theme';
-import LeafIcon from '../containers/Dashboard/icons/MoodIcon';
-import ChartsIcon from '../containers/Dashboard/icons/ChartsIcon';
-import TasksIcon from '../containers/Dashboard/icons/TasksIcon';
+import {
+  MoodIcon,
+  ChartsIcon,
+  TasksIcon,
+  SettingsIcon,
+} from '../containers/Dashboard/icons';
 
 function MobileNavBar() {
   return (
@@ -16,7 +18,7 @@ function MobileNavBar() {
         activeStyle={{ color: styles.tealGreen }}
       >
         <ButtonWrapper>
-          <LeafIcon size={32} />
+          <MoodIcon size={28} />
           <span>Mood</span>
         </ButtonWrapper>
       </NavButton>
@@ -25,7 +27,7 @@ function MobileNavBar() {
         activeStyle={{ color: styles.rosyPink }}
       >
         <ButtonWrapper>
-          <ChartsIcon size={32} />
+          <ChartsIcon size={28} />
           <span>Charts</span>
         </ButtonWrapper>
       </NavButton>
@@ -37,7 +39,7 @@ function MobileNavBar() {
         activeStyle={{ color: styles.darkJungleGreen }}
       >
         <ButtonWrapper>
-          <TasksIcon size={32} />
+          <TasksIcon size={28} />
           <span>Tasks</span>
         </ButtonWrapper>
       </NavButton>
@@ -46,7 +48,7 @@ function MobileNavBar() {
         activeStyle={{ color: styles.brightYellow }}
       >
         <ButtonWrapper>
-          <FiSettings size={24} />
+          <SettingsIcon size={28} />
           <span>Settings</span>
         </ButtonWrapper>
       </NavButton>
