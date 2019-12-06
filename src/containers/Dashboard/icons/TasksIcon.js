@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TasksIcon2 = ({ size, strokeWidth, stroke }) => {
+const TasksIcon = ({ size, strokeWidth, stroke }) => {
   return (
     <svg
       width="auto"
@@ -51,15 +51,15 @@ const TasksIcon2 = ({ size, strokeWidth, stroke }) => {
   );
 };
 
-TasksIcon2.propTypes = {
+TasksIcon.propTypes = {
   size: PropTypes.number.isRequired,
   strokeWidth: PropTypes.number,
   stroke: PropTypes.string,
 };
 
-TasksIcon2.defaultProps = {
+TasksIcon.defaultProps = {
   strokeWidth: 5,
   stroke: 'currentColor',
 };
 
-export default TasksIcon2;
+export default TasksIcon;
