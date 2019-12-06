@@ -73,6 +73,8 @@ export default MoodDisplay;
 
 const StyledMoodDisplay = styled.div`
   padding: 30px;
+  background-color: #f0f8f7;
+  min-height: 100vh;
 `;
 
 const Header = styled.div`
