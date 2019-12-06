@@ -6,6 +6,7 @@ import Card from './Card';
 import moodToString from '../utils/moodToString';
 import flower from '../assets/yellow-flower.svg';
 import pot from '../assets/great-pot.svg';
+import styles from '../styles/theme';
 
 const formatDate = (timestamp, fmt) => {
   const ts = Number(timestamp);
@@ -73,7 +74,7 @@ const StyledMoodCard = styled(Card)`
   .time {
     margin: 0;
     font-size: 11px;
-    color: #fcb924;
+    color: ${styles.brightYellow};
   }
 
   .mood {

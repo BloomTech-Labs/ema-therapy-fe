@@ -6,34 +6,47 @@ import moodIcon from '../assets/mood-icon.svg';
 import chartsIcon from '../assets/charts-icon.svg';
 import tasksIcon from '../assets/tasks-icon.svg';
 import settingsIcon from '../assets/settings-icon.svg';
+import styles from '../styles/theme';
 
 function MobileNavBar() {
   return (
     <StyledNavBar>
-      <NavButton to="/dashboard/moods" activeStyle={{ color: 'red' }}>
+      <NavButton
+        to="/dashboard/moods"
+        activeStyle={{ color: styles.tealGreen }}
+      >
         <ButtonWrapper>
-          <img src={moodIcon} />
+          <img src={moodIcon} alt="leaf" />
           Mood
         </ButtonWrapper>
       </NavButton>
-      <NavButton to="/dashboard/charts" activeStyle={{ color: 'red' }}>
+      <NavButton
+        to="/dashboard/charts"
+        activeStyle={{ color: styles.rosyPink }}
+      >
         <ButtonWrapper>
-          <img src={chartsIcon} />
+          <img src={chartsIcon} alt="chart" />
           Charts
         </ButtonWrapper>
       </NavButton>
       <AddButton to="/entryform">
         <Icon type="plus" style={{ fontSize: '22px' }} />
       </AddButton>
-      <NavButton to="/dashboard/tasks" activeStyle={{ color: 'red' }}>
+      <NavButton
+        to="/dashboard/tasks"
+        activeStyle={{ color: styles.darkJungleGreen }}
+      >
         <ButtonWrapper>
-          <img src={tasksIcon} />
+          <img src={tasksIcon} alt="tasks" />
           Tasks
         </ButtonWrapper>
       </NavButton>
-      <NavButton to="/dashboard/settings" activeStyle={{ color: 'red' }}>
+      <NavButton
+        to="/dashboard/settings"
+        activeStyle={{ color: styles.brightYellow }}
+      >
         <ButtonWrapper>
-          <img src={settingsIcon} />
+          <img src={settingsIcon} alt="settings" />
           Settings
         </ButtonWrapper>
       </NavButton>

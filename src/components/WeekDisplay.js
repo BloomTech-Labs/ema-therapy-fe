@@ -30,9 +30,8 @@ function WeekDisplay() {
   }, [data, setMoods]);
 
   if (error) return <p>{error.message}</p>;
-  if (loading) return <p>Loading...</p>;
 
-  return (
+  return loading ? null : (
     <>
       <Greeting>Here you are, {user.given_name}!</Greeting>
       {moods &&
