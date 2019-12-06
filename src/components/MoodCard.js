@@ -16,17 +16,31 @@ const MoodCard = ({ mood: m }) => {
   return (
     <StyledMoodCard>
       <div className="date-time">
-        <p className="date">{formatDate(createdAt, 'iii LLL d')}</p>
+        <p className="date">{formatDate(createdAt, 'iiii d MMMM')}</p>
         <p className="time">{formatDate(createdAt, 'h:mm a')}</p>
       </div>
       <p className="mood">{moodToString(mood)}</p>
       <div className="mood-details">
-        {weather && <p className="weather">Weather: {weather}</p>}
-        {sleep !== null && <p className="sleep">Sleep: {sleep} h</p>}
-        {anxiety !== null && (
-          <p className="anxiety">Anxiety Level: {anxiety}</p>
-        )}
+        <div className="sleep-anxiety-wrapper">
+          {anxiety !== null && (
+            <div>
+              <p className="sleep-anxiety">ANXIETY</p>
+              <p className="counter">{anxiety} out of 10</p>
+            </div>
+          )}
+          {sleep !== null && (
+            <div>
+              <p className="sleep-anxiety">SLEEP</p>
+              <p className="counter">{sleep} hours</p>
+            </div>
+          )}
+        </div>
         {text && <p className="text">{text}</p>}
+        {weather && (
+          <div>
+            <p className="weather">Weather: {weather} </p>
+          </div>
+        )}
       </div>
     </StyledMoodCard>
   );
@@ -47,12 +61,13 @@ MoodCard.propTypes = {
 export default MoodCard;
 
 const StyledMoodCard = styled(Card)`
-  padding: 25px;
   margin-bottom: 23px;
 
   .date-time {
     display: flex;
     justify-content: space-between;
+    padding: 15px 12px 11px;
+    border-bottom: 1px solid #f0f8f7;
 
     .date,
     .time {
@@ -61,11 +76,20 @@ const StyledMoodCard = styled(Card)`
       line-height: 18px;
       color: ${styles.brightYellow};
     }
+
+    .time {
+      margin-right: 15px;
+      font-weight: 300;
+    }
+
+    .date {
+      color: ${styles.tealGreen};
+    }
   }
 
   .mood {
     text-align: center;
-    margin: 10px;
+    margin: 15px 0px 30px 0px;
     text-transform: capitalize;
     font-size: 18px;
     line-height: 20px;
@@ -77,13 +101,39 @@ const StyledMoodCard = styled(Card)`
     font-size: 14px;
     line-height: 18px;
 
+    .sleep-anxiety {
+      font-size: 11px;
+      border-bottom: 1px solid ${styles.darkJungleGreen};
+      color: ${styles.darkJungleGreen};
+    }
     p:not(.text) {
       margin: 0 0 4px;
     }
 
     .text {
       margin-top: 10px;
-      font-weight: 600;
+      padding: 0px 25px;
+      font-size: 11px;
+      color: #658883;
+      line-height: 20px;
+    }
+
+    .sleep-anxiety-wrapper {
+      display: flex;
+      justify-content: space-evenly;
+      text-align: center;
+
+      .counter {
+        font-size: 10px;
+        color: #658883;
+      }
+    }
+
+    .weather {
+      text-align: right;
+      font-size: 10px;
+      color: ${styles.brightYellow};
+      padding: 20px 25px 15px 0px;
     }
   }
 `;

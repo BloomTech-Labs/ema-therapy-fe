@@ -64,7 +64,7 @@ const StyledNavBar = styled.div`
   position: fixed;
   bottom: 0;
   max-width: 500px;
-  border-radius: 14px;
+  border-radius: 14px 14px 0px 0px;
 `;
 
 const ButtonWrapper = styled.div`
