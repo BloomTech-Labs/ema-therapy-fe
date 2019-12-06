@@ -1,0 +1,210 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormActivityJournal component renders correctly 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <i
+        aria-label="icon: left"
+        class="anticon anticon-left"
+        data-testid="back"
+        style="top: 30px; left: 25px; font-size: 22px; color: rgb(156, 217, 221); position: absolute;"
+        tabindex="-1"
+      >
+        <svg
+          aria-hidden="true"
+          class=""
+          data-icon="left"
+          fill="currentColor"
+          focusable="false"
+          height="1em"
+          viewBox="64 64 896 896"
+          width="1em"
+        >
+          <path
+            d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 0 0 0 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"
+          />
+        </svg>
+      </i>
+      <div
+        class="header center"
+      >
+        <p>
+          What are you
+          <br />
+           thinking?
+        </p>
+      </div>
+      <textarea
+        class="ant-input"
+        data-testid="text"
+        name="text"
+        placeholder="Write your thoughts here..."
+        style="font-size: 16px; height: 315px; color: rgb(101, 136, 131); border-radius: 10; padding: 35px 30px; background: rgb(255, 255, 255); box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15); resize: none;"
+      >
+        testString
+      </textarea>
+      <div
+        class="footer"
+      >
+        <button
+          class="ant-btn ant-btn-loading"
+          data-testid="next"
+          style="background: rgb(0, 145, 122); color: rgb(255, 255, 255); font-size: 18px; border-radius: 10px; width: 167px; height: 55px; box-shadow: 0px 4px 4px #CCE8E4;"
+          type="button"
+        >
+          <i
+            aria-label="icon: loading"
+            class="anticon anticon-loading"
+          >
+            <svg
+              aria-hidden="true"
+              class="anticon-spin"
+              data-icon="loading"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="0 0 1024 1024"
+              width="1em"
+            >
+              <path
+                d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 0 0-94.3-139.9 437.71 437.71 0 0 0-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z"
+              />
+            </svg>
+          </i>
+          <span>
+            Done
+          </span>
+        </button>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <i
+      aria-label="icon: left"
+      class="anticon anticon-left"
+      data-testid="back"
+      style="top: 30px; left: 25px; font-size: 22px; color: rgb(156, 217, 221); position: absolute;"
+      tabindex="-1"
+    >
+      <svg
+        aria-hidden="true"
+        class=""
+        data-icon="left"
+        fill="currentColor"
+        focusable="false"
+        height="1em"
+        viewBox="64 64 896 896"
+        width="1em"
+      >
+        <path
+          d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 0 0 0 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"
+        />
+      </svg>
+    </i>
+    <div
+      class="header center"
+    >
+      <p>
+        What are you
+        <br />
+         thinking?
+      </p>
+    </div>
+    <textarea
+      class="ant-input"
+      data-testid="text"
+      name="text"
+      placeholder="Write your thoughts here..."
+      style="font-size: 16px; height: 315px; color: rgb(101, 136, 131); border-radius: 10; padding: 35px 30px; background: rgb(255, 255, 255); box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15); resize: none;"
+    >
+      testString
+    </textarea>
+    <div
+      class="footer"
+    >
+      <button
+        class="ant-btn ant-btn-loading"
+        data-testid="next"
+        style="background: rgb(0, 145, 122); color: rgb(255, 255, 255); font-size: 18px; border-radius: 10px; width: 167px; height: 55px; box-shadow: 0px 4px 4px #CCE8E4;"
+        type="button"
+      >
+        <i
+          aria-label="icon: loading"
+          class="anticon anticon-loading"
+        >
+          <svg
+            aria-hidden="true"
+            class="anticon-spin"
+            data-icon="loading"
+            fill="currentColor"
+            focusable="false"
+            height="1em"
+            viewBox="0 0 1024 1024"
+            width="1em"
+          >
+            <path
+              d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 0 0-94.3-139.9 437.71 437.71 0 0 0-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z"
+            />
+          </svg>
+        </i>
+        <span>
+          Done
+        </span>
+      </button>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
