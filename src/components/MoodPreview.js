@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import Card from './Card';
 import moodToString from '../utils/moodToString';
 import flower from '../assets/yellow-flower.svg';
-// import pot from '../assets/potsvg.svg';
 import pot from '../assets/great-pot.svg';
 
 const formatDate = (timestamp, fmt) => {
@@ -18,7 +17,7 @@ function MoodPreview({ lastItem, count }) {
     <PreviewContainer>
       <DayWrapper>
         <p className="weekday">{formatDate(lastItem.createdAt, 'iii')}</p>
-        <img src={flower} />
+        <img src={flower} alt="flower" />
       </DayWrapper>
       <StyledMoodCard>
         <div>
@@ -26,7 +25,6 @@ function MoodPreview({ lastItem, count }) {
           <p className="mood">{moodToString(lastItem.mood)}</p>
           <p className="count">{count > 1 ? `${count} entries` : '1 entry'}</p>
         </div>
-        {/* <img src={pot} /> */}
       </StyledMoodCard>
     </PreviewContainer>
   );
