@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Slider, Icon } from 'antd';
 import NextButton from './NextButton';
 import moodToString from '../../utils/moodToString';
@@ -15,12 +15,15 @@ function FormMood({
   handleSubmit,
   isSubmitting,
 }) {
+  const history = useHistory();
   return (
     <>
       <div className="header">
-        <Link to="/dashboard">
-          <Icon type="left-circle" style={{ fontSize: 35, color: '#9cd9dd' }} />
-        </Link>
+        <Icon
+          type="left"
+          style={{ fontSize: 22, color: '#9cd9dd' }}
+          onClick={() => history.push('/dashboard')}
+        />
         <p>
           How do you <br />
           feel?

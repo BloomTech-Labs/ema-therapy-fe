@@ -1,5 +1,7 @@
 import React from 'react';
 import ApolloClient from 'apollo-boost';
+import styled from 'styled-components';
+import { Spin } from 'antd';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { Route, Switch } from 'react-router-dom';
 import { useAuth0 } from '../../utils/react-auth0-spa';
@@ -14,6 +16,7 @@ import NotFound from '../NotFound/404';
 import Settings from '../Settings';
 import SingleDay from '../SingleDay';
 import { MoodsPrevWeekProvider } from '../../contexts/MoodsPrevWeekContext';
+import styles from '../../styles/theme';
 
 function App() {
   const { loading, getTokenSilently } = useAuth0();
@@ -31,7 +34,9 @@ function App() {
   });
 
   return loading ? (
-    <p>Loading...</p>
+    <LoadingWrapper>
+      <Spin size="large" />
+    </LoadingWrapper>
   ) : (
     <ApolloProvider client={client}>
       <MoodsPrevWeekProvider>
@@ -52,5 +57,16 @@ function App() {
     </ApolloProvider>
   );
 }
+
+const LoadingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  .ant-spin-dot-item {
+    background-color: ${styles.darkJungleGreen} !important;
+  }
+`;
 
 export default App;

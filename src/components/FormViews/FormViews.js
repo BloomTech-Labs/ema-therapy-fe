@@ -156,7 +156,6 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-family: 'Fira Sans', sans-serif;
 
   .ant-slider-track,
   .ant-slider-rail {

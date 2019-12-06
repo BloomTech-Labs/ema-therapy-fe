@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import moodToString from '../utils/moodToString';
+import Card from './Card';
+import styles from '../styles/theme';
 
 const formatDate = (timestamp, fmt) => {
   const ts = Number(timestamp);
@@ -44,11 +46,8 @@ MoodCard.propTypes = {
 
 export default MoodCard;
 
-const StyledMoodCard = styled.div`
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 15px;
-  background-color: #e5e5e5;
-  padding: 48px 23px 10px;
+const StyledMoodCard = styled(Card)`
+  padding: 25px;
   margin-bottom: 23px;
 
   .date-time {
@@ -60,6 +59,7 @@ const StyledMoodCard = styled.div`
       margin: 0;
       font-size: 14px;
       line-height: 18px;
+      color: ${styles.brightYellow};
     }
   }
 
@@ -67,8 +67,10 @@ const StyledMoodCard = styled.div`
     text-align: center;
     margin: 10px;
     text-transform: capitalize;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 20px;
+    color: ${styles.darkJungleGreen};
+    font-weight: 500;
   }
 
   .mood-details {
@@ -77,10 +79,10 @@ const StyledMoodCard = styled.div`
 
     p:not(.text) {
       margin: 0 0 4px;
-      padding: 0 15px;
     }
 
     .text {
+      margin-top: 10px;
       font-weight: 600;
     }
   }

@@ -18,9 +18,9 @@ function FormAnxietySleep({
     <>
       <div className="header">
         <Icon
+          type="left"
           data-testid="back"
-          type="left-circle"
-          style={{ fontSize: 35, color: '#9cd9dd' }}
+          style={{ fontSize: 22, color: '#9cd9dd' }}
           onClick={() => handleView('mood')}
         />
         <p>

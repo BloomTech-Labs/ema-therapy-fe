@@ -9,12 +9,12 @@ import { checkForUserAndGetMoodsQuery } from '../queries';
 import { MoodsPrevWeekContext } from '../contexts/MoodsPrevWeekContext';
 import weekOfMoods from '../utils/weekOfMoods';
 import MoodCard from './MoodCard';
+import styles from '../styles/theme';
 
 function MoodDisplay() {
   const { moods, setMoods } = useContext(MoodsPrevWeekContext);
   const { day } = useParams();
   const [moodsToday, setMoodsToday] = useState(null);
-  const [isLoadingMoods, setIsLoadingMoods] = useState(true);
   const { user } = useAuth0();
   const [getMoods, { loading, data }] = useLazyQuery(
     checkForUserAndGetMoodsQuery,
@@ -27,7 +27,6 @@ function MoodDisplay() {
       for (let i = 0; i < moods.length; i += 1) {
         if (moods[i].length > 0 && +day === getDay(+moods[i][0].createdAt)) {
           setMoodsToday(moods[i]);
-          setIsLoadingMoods(false);
           break;
         }
       }
@@ -36,7 +35,7 @@ function MoodDisplay() {
       setMoods(weekOfMoods(data.user.moods));
       // run query to fetch missing moods data
     } else {
-      setIsLoadingMoods(false);
+      // setIsLoadingMoods(false);
       getMoods({
         variables: {
           sub: user.sub,
@@ -48,22 +47,20 @@ function MoodDisplay() {
     }
   }, [day, moods, data, getMoods, setMoods, user]);
 
-  if (loading) return <p>Loading ...</p>;
-
-  return (
+  return loading ? null : (
     <StyledMoodDisplay>
       <Header>
-        <Logo>Logo</Logo>
+        <Logo>MoodBloom</Logo>
         <Icon
           type="close-circle"
-          style={{ fontSize: 30 }}
+          style={{ fontSize: 30, color: styles.paleRobinEggBlue }}
           onClick={() => history.push('/dashboard')}
         />
       </Header>
       <MoodList>
         {moodsToday &&
           moodsToday.map((mood) => <MoodCard key={mood.id} mood={mood} />)}
-        {!isLoadingMoods && !moodsToday && <h1>No moods here :(</h1>}
+        {!moods && !moodsToday && <h1>No moods here :(</h1>}
       </MoodList>
     </StyledMoodDisplay>
   );
@@ -73,16 +70,19 @@ export default MoodDisplay;
 
 const StyledMoodDisplay = styled.div`
   padding: 30px;
+  background-color: #f0f8f7;
+  min-height: 100vh;
 `;
 
 const Header = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin-bottom: 20px;
 `;
 
 const Logo = styled.h1`
-  margin: auto;
+  margin-top: 0;
+  color: ${styles.darkJungleGreen};
 `;
 
 const MoodList = styled.div`

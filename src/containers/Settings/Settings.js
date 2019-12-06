@@ -71,6 +71,8 @@ const Settings = () => {
 export default Settings;
 
 const StyledSettings = styled.div`
+  padding: 20px;
+
   h1 {
     font-size: 24px;
     line-height: 30px;

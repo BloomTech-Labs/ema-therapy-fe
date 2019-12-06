@@ -6,37 +6,39 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="sc-bdVaJa cRJnvr"
+        class="sc-bwzfXH erBmPi"
       >
-        <p
-          class="weekday"
-        >
-          Mon
-        </p>
         <div
-          class="sc-bwzfXH ktnrii"
+          class="sc-htpNat eDFQGZ"
         >
-          <div
-            class="date-time"
+          <p
+            class="weekday"
           >
+            Mon
+          </p>
+          <img
+            alt="flower"
+            src="yellow-flower.svg"
+          />
+        </div>
+        <div
+          class="sc-bdVaJa fcqkUA sc-bxivhb lfbACC"
+        >
+          <div>
             <p
               class="time"
             >
               1:00 AM
             </p>
             <p
-              class="date"
+              class="mood"
+            >
+              unhappy
+            </p>
+            <p
+              class="count"
             >
               1 entry
-            </p>
-          </div>
-          <div
-            class="mood-details"
-          >
-            <p
-              class="text"
-            >
-              mockText
             </p>
           </div>
         </div>
@@ -45,37 +47,39 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="sc-bdVaJa cRJnvr"
+      class="sc-bwzfXH erBmPi"
     >
-      <p
-        class="weekday"
-      >
-        Mon
-      </p>
       <div
-        class="sc-bwzfXH ktnrii"
+        class="sc-htpNat eDFQGZ"
       >
-        <div
-          class="date-time"
+        <p
+          class="weekday"
         >
+          Mon
+        </p>
+        <img
+          alt="flower"
+          src="yellow-flower.svg"
+        />
+      </div>
+      <div
+        class="sc-bdVaJa fcqkUA sc-bxivhb lfbACC"
+      >
+        <div>
           <p
             class="time"
           >
             1:00 AM
           </p>
           <p
-            class="date"
+            class="mood"
+          >
+            unhappy
+          </p>
+          <p
+            class="count"
           >
             1 entry
-          </p>
-        </div>
-        <div
-          class="mood-details"
-        >
-          <p
-            class="text"
-          >
-            mockText
           </p>
         </div>
       </div>
