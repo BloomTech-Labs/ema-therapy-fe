@@ -9,6 +9,7 @@ import { checkForUserAndGetMoodsQuery } from '../queries';
 import { MoodsPrevWeekContext } from '../contexts/MoodsPrevWeekContext';
 import weekOfMoods from '../utils/weekOfMoods';
 import MoodCard from './MoodCard';
+import styles from '../styles/theme';
 
 function MoodDisplay() {
   const { moods, setMoods } = useContext(MoodsPrevWeekContext);
@@ -53,10 +54,10 @@ function MoodDisplay() {
   return (
     <StyledMoodDisplay>
       <Header>
-        <Logo>Logo</Logo>
+        <Logo>MoodBloom</Logo>
         <Icon
           type="close-circle"
-          style={{ fontSize: 30 }}
+          style={{ fontSize: 30, color: styles.paleRobinEggBlue }}
           onClick={() => history.push('/dashboard')}
         />
       </Header>
@@ -79,12 +80,13 @@ const StyledMoodDisplay = styled.div`
 
 const Header = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin-bottom: 20px;
 `;
 
 const Logo = styled.h1`
-  margin: auto;
+  margin-top: 0;
+  color: ${styles.darkJungleGreen};
 `;
 
 const MoodList = styled.div`
