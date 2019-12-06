@@ -1,83 +1,76 @@
 import React from 'react';
-import renderer, { act } from 'react-test-renderer';
-import 'jest-styled-components';
-import { exact } from 'prop-types';
+import { render, fireEvent } from '@testing-library/react';
 import FormAnxietySleep from '../components/FormViews/FormAnxietySleep';
+import 'jest-styled-components';
 
 describe('FormAnxietySleep component', () => {
-  it('renders correctly', () => {
-    const tree = renderer
-      .create(
+  test('renders correctly', () => {
+    expect(
+      render(
         <FormAnxietySleep
           handleView={() => {}}
           anxietyLevel={7}
           onAnxietySliderChange={() => {}}
           handleChange={() => {}}
-          sleep={'testString'}
+          onSleepSliderChange={() => {}}
+          handleSubmit={() => {}}
+          isSubmitting={true}
+          sleep={5}
         />,
-      )
-      .toJSON();
-    expect(tree).toMatchSnapshot();
+      ),
+    ).toMatchSnapshot();
   });
-
-  it('handleView gets called with correct string when clicking back button', () => {
+  test('changes view to activity-journal on back button', () => {
     const handleViewMock = jest.fn();
-    const tree = renderer.create(
+    const { getByTestId } = render(
       <FormAnxietySleep
         handleView={handleViewMock}
         anxietyLevel={7}
         onAnxietySliderChange={() => {}}
+        onSleepSliderChange={() => {}}
         handleChange={() => {}}
-        sleep={'testString'}
+        handleSubmit={() => {}}
+        isSubmitting={true}
+        sleep={5}
       />,
     );
-    expect(tree.toJSON()).toMatchSnapshot();
-    act(() => {
-      tree.root
-        .find((element) => element.props.className === 'back')
-        .props.onClick();
-    });
-    expect(handleViewMock.mock.calls.length).toBe(1);
-    expect(handleViewMock.mock.calls[0][0]).toEqual('activity-journal');
+    const backButton = getByTestId('back');
+    fireEvent.click(backButton);
+    expect(handleViewMock).toHaveBeenLastCalledWith('mood');
   });
-
-  // too much hassle to get this to work with ant design slider - someone else can do it if they want
-
-  // it('onAnxietySliderChange gets called when slider is moved', () => {
-  //   const onAnxietySliderMock = jest.fn();
-  //   const tree = renderer.create(
-  //     <FormAnxietySleep
-  //         handleView={() => {}}
-  //         anxietyLevel={7}
-  //         onAnxietySliderChange={() => {}}
-  //         handleChange={onAnxietySliderMock}
-  //         sleep={'testString'}
-  //     />,
-  //   );
-  //   expect(tree.toJSON()).toMatchSnapshot();
-  //   act(() => {
-  //     tree.root.find((element) => element.props.className === 'ant-slider-track').props.onChange();
-  //   });
-  //   expect(onAnxietySliderMock.mock.calls.length).toBe(1);
-  // });
-
-  it('handleChange gets called when a number is entered into the sleep hours field', () => {
-    const handleChangeMock = jest.fn();
-    const tree = renderer.create(
-      <FormAnxietySleep
-        handleView={() => {}}
-        anxietyLevel={7}
-        onAnxietySliderChange={() => {}}
-        handleChange={handleChangeMock}
-        sleep={'testString'}
-      />,
-    );
-    expect(tree.toJSON()).toMatchSnapshot();
-    act(() => {
-      tree.root
-        .find((element) => element.props.name === 'sleep')
-        .props.onChange();
-    });
-    expect(handleChangeMock.mock.calls.length).toBe(1);
-  });
+});
+test('onAnxietySliderChange gets called when slider is moved', () => {
+  const antSlider = jest.fn();
+  const { getAllByRole } = render(
+    <FormAnxietySleep
+      handleView={() => {}}
+      anxietyLevel={7}
+      onAnxietySliderChange={antSlider}
+      handleChange={() => {}}
+      onSleepSliderChange={() => {}}
+      handleSubmit={() => {}}
+      isSubmitting={true}
+      sleep={5}
+    />,
+  );
+  const moveSlider = getAllByRole('slider');
+  fireEvent.mouseDown(moveSlider[0]);
+  expect(antSlider).toHaveBeenCalled();
+});
+test('sleep number changes when sleep slider moves', () => {
+  const antSliderSleep = jest.fn();
+  const { getAllByRole } = render(
+    <FormAnxietySleep
+      handleView={() => {}}
+      anxietyLevel={7}
+      onAnxietySliderChange={() => {}}
+      onSleepSliderChange={antSliderSleep}
+      handleSubmit={() => {}}
+      isSubmitting={true}
+      sleep={5}
+    />,
+  );
+  const moveSlider = getAllByRole('slider');
+  fireEvent.mouseDown(moveSlider[1]);
+  expect(antSliderSleep).toHaveBeenCalled();
 });

@@ -15,7 +15,12 @@ const styles = {
 
 function NextButton({ children, onClick, loading }) {
   return (
-    <Button loading={loading} onClick={onClick} style={styles}>
+    <Button
+      data-testid="next"
+      loading={loading}
+      onClick={onClick}
+      style={styles}
+    >
       {children}
     </Button>
   );

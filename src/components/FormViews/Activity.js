@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Icon from './Icon';
+import Icon from '../Icon';
 
 const Activity = ({ activityType, addActivities }) => {
   const [active, setActive] = useState(true);

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import activities from '../utils/Activities';
+import activities from '../../utils/Activities';
 import Activity from './Activity';
 
 function generateUniqueKey() {

@@ -16,6 +16,7 @@ function FormActivityJournal({
   return (
     <>
       <Icon
+        data-testid="back"
         style={{
           top: 30,
           left: 25,
@@ -35,6 +36,7 @@ function FormActivityJournal({
       <TextArea
         name="text"
         value={text}
+        data-testid="text"
         style={{
           fontSize: 16,
           height: '315px',

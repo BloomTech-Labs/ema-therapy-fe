@@ -17,14 +17,12 @@ describe('Activity component', () => {
   test('handles click', () => {
     const addActivitiesMock = jest.fn();
     const activityTypeMock = { icon: 'mockIcon', type: 'mockType' };
-
     const { getByTestId } = render(
       <Activity
         addActivities={addActivitiesMock}
         activityType={activityTypeMock}
       />,
     );
-
     fireEvent.click(getByTestId('toggle'));
     expect(addActivitiesMock).toHaveBeenCalled();
   });

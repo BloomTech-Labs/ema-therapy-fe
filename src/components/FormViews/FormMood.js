@@ -45,7 +45,10 @@ function FormMood({
         />
       </MoodWrapper>
       <div className="footer">
-        <NextButton onClick={() => handleView('anxiety-sleep')}>
+        <NextButton
+          data-testid="next"
+          onClick={() => handleView('anxiety-sleep')}
+        >
           Next
         </NextButton>
       </div>
