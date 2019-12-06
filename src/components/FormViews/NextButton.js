@@ -4,8 +4,7 @@ import { Button } from 'antd';
 import theme from '../../styles/theme';
 
 const styles = {
-  background: theme.primaryColor,
-  fontFamily: theme.fontFamily,
+  background: theme.tealGreen,
   color: '#FFFFFF',
   fontSize: '18px',
   borderRadius: 10,
