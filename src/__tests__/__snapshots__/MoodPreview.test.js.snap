@@ -6,23 +6,19 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="sc-bwzfXH erBmPi"
+        class="sc-bwzfXH gLhJZY"
       >
         <div
-          class="sc-htpNat eDFQGZ"
+          class="sc-htpNat chPvqm"
         >
           <p
             class="weekday"
           >
             Mon
           </p>
-          <img
-            alt="flower"
-            src="yellow-flower.svg"
-          />
         </div>
         <div
-          class="sc-bdVaJa fcqkUA sc-bxivhb lfbACC"
+          class="sc-bdVaJa fcqkUA sc-bxivhb dXSmKN"
         >
           <div>
             <p
@@ -47,23 +43,19 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="sc-bwzfXH erBmPi"
+      class="sc-bwzfXH gLhJZY"
     >
       <div
-        class="sc-htpNat eDFQGZ"
+        class="sc-htpNat chPvqm"
       >
         <p
           class="weekday"
         >
           Mon
         </p>
-        <img
-          alt="flower"
-          src="yellow-flower.svg"
-        />
       </div>
       <div
-        class="sc-bdVaJa fcqkUA sc-bxivhb lfbACC"
+        class="sc-bdVaJa fcqkUA sc-bxivhb dXSmKN"
       >
         <div>
           <p
