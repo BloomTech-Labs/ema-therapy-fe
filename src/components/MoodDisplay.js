@@ -9,7 +9,6 @@ import { checkForUserAndGetMoodsQuery } from '../queries';
 import { MoodsPrevWeekContext } from '../contexts/MoodsPrevWeekContext';
 import weekOfMoods from '../utils/weekOfMoods';
 import MoodCard from './MoodCard';
-import styles from '../styles/theme';
 
 function MoodDisplay() {
   const { moods, setMoods } = useContext(MoodsPrevWeekContext);
@@ -35,7 +34,6 @@ function MoodDisplay() {
       setMoods(weekOfMoods(data.user.moods));
       // run query to fetch missing moods data
     } else {
-      // setIsLoadingMoods(false);
       getMoods({
         variables: {
           sub: user.sub,
@@ -77,11 +75,6 @@ const Header = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
-`;
-
-const Logo = styled.h1`
-  margin-top: 0;
-  color: ${styles.darkJungleGreen};
 `;
 
 const MoodList = styled.div`
