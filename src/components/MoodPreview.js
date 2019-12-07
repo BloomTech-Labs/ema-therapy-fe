@@ -5,7 +5,11 @@ import PropTypes from 'prop-types';
 import Card from './Card';
 import moodToString from '../utils/moodToString';
 import flower from '../assets/yellow-flower.svg';
-import pot from '../assets/great-pot.svg';
+import happyPot from '../assets/happy200h.png';
+import reallyHappyPot from '../assets/reallyhappy200h.png';
+import normalPot from '../assets/normal200h.png';
+import sadPot from '../assets/sad200h.png';
+import unhappyPot from '../assets/unhappy200h.png';
 import styles from '../styles/theme';
 
 const formatDate = (timestamp, fmt) => {
@@ -20,7 +24,7 @@ function MoodPreview({ lastItem, count }) {
         <p className="weekday">{formatDate(lastItem.createdAt, 'iii')}</p>
         <img src={flower} alt="flower" />
       </DayWrapper>
-      <StyledMoodCard>
+      <StyledMoodCard lastItem={lastItem}>
         <div>
           <p className="time">{formatDate(lastItem.createdAt, 'h:mm a')}</p>
           <p className="mood">{moodToString(lastItem.mood)}</p>
@@ -67,9 +71,18 @@ const StyledMoodCard = styled(Card)`
   margin-bottom: 23px;
   height: 95px;
   width: 100%;
-  background-image: url(${pot});
+  background-image: url(${(props) => {
+    let path;
+    if (props.lastItem.mood === 1) path = unhappyPot;
+    if (props.lastItem.mood === 2) path = sadPot;
+    if (props.lastItem.mood === 3) path = normalPot;
+    if (props.lastItem.mood === 4) path = happyPot;
+    if (props.lastItem.mood === 5) path = reallyHappyPot;
+    return path;
+  }});
   background-repeat: no-repeat;
-  background-position: top -3px right -4px;
+  background-position: top -4px right -8px;
+  background-size: 115px 135px;
 
   .time {
     margin: 0;
