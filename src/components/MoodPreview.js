@@ -64,19 +64,22 @@ const DayWrapper = styled.div`
   align-items: center;
 `;
 
+// conditionally render the bg img path based on props
+function getPath(p) {
+  let path;
+  if (p.lastItem.mood === 1) path = unhappyPot;
+  if (p.lastItem.mood === 2) path = sadPot;
+  if (p.lastItem.mood === 3) path = normalPot;
+  if (p.lastItem.mood === 4) path = happyPot;
+  if (p.lastItem.mood === 5) path = reallyHappyPot;
+  return path;
+}
+
 const StyledMoodCard = styled(Card)`
   padding: 7px 16px 8px;
   height: 95px;
   width: 100%;
-  background-image: url(${(props) => {
-    let path;
-    if (props.lastItem.mood === 1) path = unhappyPot;
-    if (props.lastItem.mood === 2) path = sadPot;
-    if (props.lastItem.mood === 3) path = normalPot;
-    if (props.lastItem.mood === 4) path = happyPot;
-    if (props.lastItem.mood === 5) path = reallyHappyPot;
-    return path;
-  }});
+  background-image: url(${getPath});
   background-repeat: no-repeat;
   background-position: top -18px right -22px;
   background-size: 115px 135px;
