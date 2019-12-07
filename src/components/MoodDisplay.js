@@ -9,7 +9,6 @@ import { checkForUserAndGetMoodsQuery } from '../queries';
 import { MoodsPrevWeekContext } from '../contexts/MoodsPrevWeekContext';
 import weekOfMoods from '../utils/weekOfMoods';
 import MoodCard from './MoodCard';
-import styles from '../styles/theme';
 
 function MoodDisplay() {
   const { moods, setMoods } = useContext(MoodsPrevWeekContext);
