@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Icon } from 'antd';
 import { Link, NavLink } from 'react-router-dom';
 import styles from '../styles/theme';
 import {
@@ -8,6 +7,7 @@ import {
   ChartsIcon,
   TasksIcon,
   SettingsIcon,
+  PlusIcon,
 } from '../containers/Dashboard/icons';
 
 function MobileNavBar() {
@@ -32,7 +32,7 @@ function MobileNavBar() {
         </ButtonWrapper>
       </NavButton>
       <AddButton to="/entryform">
-        <Icon type="plus" style={{ fontSize: '22px' }} />
+        <PlusIcon size={20} />
       </AddButton>
       <NavButton
         to="/dashboard/tasks"
