@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Card from './Card';
 import moodToString from '../utils/moodToString';
-import flower from '../assets/yellow-flower.svg';
 import happyPot from '../assets/happy200h.png';
 import reallyHappyPot from '../assets/reallyhappy200h.png';
 import normalPot from '../assets/normal200h.png';
@@ -22,7 +21,6 @@ function MoodPreview({ lastItem, count }) {
     <PreviewContainer>
       <DayWrapper>
         <p className="weekday">{formatDate(lastItem.createdAt, 'iii')}</p>
-        <img src={flower} alt="flower" />
       </DayWrapper>
       <StyledMoodCard lastItem={lastItem}>
         <div>
@@ -48,27 +46,26 @@ export default MoodPreview;
 
 const PreviewContainer = styled.div`
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
+  margin-bottom: 23px;
 
   .weekday {
     color: #0c423b;
     font-size: 12px;
     width: 30px;
-    margin-right: 6px;
-    margin-bottom: 7px;
+    margin: 0 6px 0 0;
   }
 `;
 
 const DayWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 `;
 
 const StyledMoodCard = styled(Card)`
   padding: 7px 16px 8px;
-  margin-bottom: 23px;
   height: 95px;
   width: 100%;
   background-image: url(${(props) => {
@@ -81,7 +78,7 @@ const StyledMoodCard = styled(Card)`
     return path;
   }});
   background-repeat: no-repeat;
-  background-position: top -4px right -8px;
+  background-position: top -18px right -22px;
   background-size: 115px 135px;
 
   .time {
@@ -103,5 +100,7 @@ const StyledMoodCard = styled(Card)`
     font-style: italic;
     font-size: 10px;
     margin-bottom: 10px;
+    text-align: end;
+    margin-right: 95px;
   }
 `;
