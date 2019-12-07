@@ -45,7 +45,6 @@ function App() {
             <Route path="/" exact component={Welcome} />
             <PrivateRoute path="/entryform" component={EntryForm} />
             <PrivateRoute path="/dashboard" exact component={Moods} />
-            <PrivateRoute path="/dashboard/moods" component={Moods} />
             <PrivateRoute path="/dashboard/day/:day" component={SingleDay} />
             <PrivateRoute path="/dashboard/settings" component={Settings} />
             <PrivateRoute path="/profile" component={Profile} />

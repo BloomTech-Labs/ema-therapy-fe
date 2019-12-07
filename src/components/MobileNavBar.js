@@ -14,7 +14,8 @@ function MobileNavBar() {
   return (
     <StyledNavBar>
       <NavButton
-        to="/dashboard/moods"
+        exact
+        to="/dashboard"
         activeStyle={{ color: styles.tealGreen }}
       >
         <ButtonWrapper>
