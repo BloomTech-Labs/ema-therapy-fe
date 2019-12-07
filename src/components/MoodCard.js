@@ -61,7 +61,11 @@ MoodCard.propTypes = {
 export default MoodCard;
 
 const StyledMoodCard = styled(Card)`
-  margin-bottom: 23px;
+  margin: 0 7px 23px;
+
+  p {
+    margin: unset;
+  }
 
   .date-time {
     display: flex;
@@ -101,27 +105,20 @@ const StyledMoodCard = styled(Card)`
     font-size: 14px;
     line-height: 18px;
 
-    .sleep-anxiety {
-      font-size: 11px;
-      border-bottom: 1px solid ${styles.darkJungleGreen};
-      color: ${styles.darkJungleGreen};
-    }
-    p:not(.text) {
-      margin: 0 0 4px;
-    }
-
-    .text {
-      margin-top: 10px;
-      padding: 0px 25px;
-      font-size: 11px;
-      color: #658883;
-      line-height: 20px;
-    }
-
     .sleep-anxiety-wrapper {
       display: flex;
       justify-content: space-evenly;
       text-align: center;
+
+      p {
+        margin: 0 0 4px;
+      }
+
+      .sleep-anxiety {
+        font-size: 11px;
+        border-bottom: 1px solid ${styles.darkJungleGreen};
+        color: ${styles.darkJungleGreen};
+      }
 
       .counter {
         font-size: 10px;
@@ -129,11 +126,19 @@ const StyledMoodCard = styled(Card)`
       }
     }
 
+    .text {
+      margin: 10px 0 0;
+      padding: 0px 25px 20px;
+      font-size: 11px;
+      color: #658883;
+      line-height: 20px;
+    }
+
     .weather {
       text-align: right;
       font-size: 10px;
       color: ${styles.brightYellow};
-      padding: 20px 25px 15px 0px;
+      padding: 0px 25px 15px 0px;
     }
   }
 `;
