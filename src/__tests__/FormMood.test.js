@@ -13,7 +13,7 @@ describe('FormMood component', () => {
             onMoodSliderChange={() => {}}
             handleView={() => {}}
             handleSubmit={() => {}}
-            isSubmitting={true}
+            isSubmitting
             mood={5}
           />
         </Router>,
@@ -28,7 +28,7 @@ describe('FormMood component', () => {
           onMoodSliderChange={() => {}}
           handleView={handleViewMock}
           handleSubmit={() => {}}
-          isSubmitting={true}
+          isSubmitting
           mood={5}
         />
       </Router>,

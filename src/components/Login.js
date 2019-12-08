@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useAuth0 } from '../utils/react-auth0-spa';
 import { Button } from 'antd';
+import { useAuth0 } from '../utils/react-auth0-spa';
 
 const Login = () => {
   const { isAuthenticated, loginWithRedirect } = useAuth0();
