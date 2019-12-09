@@ -17,9 +17,6 @@ import SingleDay from '../SingleDay';
 import { MoodsPrevWeekProvider } from '../../contexts/MoodsPrevWeekContext';
 // import styles from '../../styles/theme';
 
-function Hello() {
-  return <h1>Hello</h1>;
-}
 function App() {
   const client = new ApolloClient({
     uri: process.env.REACT_APP_BACKEND_URL,
