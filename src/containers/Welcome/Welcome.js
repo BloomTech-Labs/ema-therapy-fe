@@ -33,7 +33,7 @@ const StyledWelcome = styled.div`
   justify-content: space-between;
   background-color: ${styles.darkJungleGreen};
   background: url(${splash}) no-repeat center;
-  background-size: 150%;
+  background-size: 155%;
   color: white;
 
   h2 {
