@@ -6,7 +6,8 @@ import { Slider, Icon } from 'antd';
 import NextButton from './NextButton';
 import moodToString from '../../utils/moodToString';
 import DoneButton from './DoneButton';
-import happyPlant from '../../assets/happy-plant.svg';
+import happyPlant from '../../assets/plant-happy.svg';
+import useIsAppInStandalone from '../../hooks/useIsAppInStandalone';
 
 function FormMood({
   onMoodSliderChange,
@@ -16,6 +17,7 @@ function FormMood({
   isSubmitting,
 }) {
   const history = useHistory();
+  const isAppInStandalone = useIsAppInStandalone();
   return (
     <>
       <div className="header">
@@ -32,7 +34,7 @@ function FormMood({
           Done
         </DoneButton>
       </div>
-      <MoodWrapper>
+      <MoodWrapper isStandalone={isAppInStandalone}>
         <img src={happyPlant} alt="happy plant" />
 
         <p>{moodToString(mood)}</p>
@@ -77,5 +79,15 @@ const MoodWrapper = styled.div`
     font-size: 16px;
     text-transform: capitalize;
     margin-bottom: 0;
+  }
+
+  img {
+    margin-bottom: 15px;
+  }
+
+  @media only screen and (max-width: 375px) {
+    img {
+      height: ${(props) => (props.isStandalone ? '300px' : '250px')};
+    }
   }
 `;
