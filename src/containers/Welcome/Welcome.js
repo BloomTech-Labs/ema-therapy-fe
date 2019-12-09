@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useAuth0 } from '../../utils/react-auth0-spa';
 import Login from '../../components/Login';
 import styles from '../../styles/theme';
+import splash from '../../assets/splash-leaves.png';
 
 const Welcome = () => {
   const { isAuthenticated } = useAuth0();
@@ -31,6 +32,8 @@ const StyledWelcome = styled.div`
   flex-direction: column;
   justify-content: space-between;
   background-color: ${styles.darkJungleGreen};
+  background: url(${splash}) no-repeat center;
+  background-size: 150%;
   color: white;
 
   h2 {
