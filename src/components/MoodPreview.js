@@ -18,18 +18,22 @@ const formatDate = (timestamp, fmt) => {
 
 function MoodPreview({ lastItem, count }) {
   return (
-    <PreviewContainer>
-      <DayWrapper>
-        <p className="weekday">{formatDate(lastItem.createdAt, 'iii')}</p>
-      </DayWrapper>
-      <StyledMoodCard lastItem={lastItem}>
-        <div>
-          <p className="time">{formatDate(lastItem.createdAt, 'h:mm a')}</p>
-          <p className="mood">{moodToString(lastItem.mood)}</p>
-          <p className="count">{count > 1 ? `${count} entries` : '1 entry'}</p>
-        </div>
-      </StyledMoodCard>
-    </PreviewContainer>
+    <div className="mp-div">
+      <PreviewContainer>
+        <DayWrapper>
+          <p className="weekday">{formatDate(lastItem.createdAt, 'iii')}</p>
+        </DayWrapper>
+        <StyledMoodCard lastItem={lastItem}>
+          <div>
+            <p className="time">{formatDate(lastItem.createdAt, 'h:mm a')}</p>
+            <p className="mood">{moodToString(lastItem.mood)}</p>
+            <p className="count">
+              {count > 1 ? `${count} entries` : '1 entry'}
+            </p>
+          </div>
+        </StyledMoodCard>
+      </PreviewContainer>
+    </div>
   );
 }
 

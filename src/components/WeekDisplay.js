@@ -4,19 +4,17 @@ import { getDay } from 'date-fns';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { checkForUserAndGetMoodsQuery } from '../queries';
-import { useAuth0 } from '../utils/react-auth0-spa';
 import weekOfMoods from '../utils/weekOfMoods';
 import MoodPreview from './MoodPreview';
 import { MoodsPrevWeekContext } from '../contexts/MoodsPrevWeekContext';
 
 function WeekDisplay() {
-  const { user } = useAuth0();
   const { loading, error, data } = useQuery(checkForUserAndGetMoodsQuery, {
     variables: {
-      sub: user.sub,
-      email: user.email,
-      firstName: user.given_name,
-      lastName: user.family_name,
+      sub: 'google-oauth2|102992949753268395908',
+      email: 'jonathan.taylor.dev@gmail.com',
+      firstName: 'Jonathan',
+      lastName: 'Taylor',
     },
   });
 
@@ -33,7 +31,7 @@ function WeekDisplay() {
 
   return loading ? null : (
     <>
-      <Greeting>Here you are, {user.given_name}!</Greeting>
+      <Greeting>Here you are!</Greeting>
       {moods &&
         moods.map((list) => {
           // return mood preview card if mood entries exist in the list

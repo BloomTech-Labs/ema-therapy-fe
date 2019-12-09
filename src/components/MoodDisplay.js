@@ -15,7 +15,6 @@ function MoodDisplay() {
   const { moods, setMoods } = useContext(MoodsPrevWeekContext);
   const { day } = useParams();
   const [moodsToday, setMoodsToday] = useState(null);
-  const { user } = useAuth0();
   const [getMoods, { loading, data }] = useLazyQuery(
     checkForUserAndGetMoodsQuery,
   );
@@ -37,14 +36,14 @@ function MoodDisplay() {
     } else {
       getMoods({
         variables: {
-          sub: user.sub,
-          email: user.email,
-          firstName: user.given_name,
-          lastName: user.family_name,
+          sub: 'google-oauth2|102992949753268395908',
+          email: 'jonathan.taylor.dev@gmail.com',
+          firstName: 'Jonathan',
+          lastName: 'Taylor',
         },
       });
     }
-  }, [day, moods, data, getMoods, setMoods, user]);
+  }, [day, moods, data, getMoods, setMoods]);
 
   return loading ? null : (
     <StyledMoodDisplay>

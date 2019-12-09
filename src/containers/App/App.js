@@ -19,35 +19,34 @@ import { MoodsPrevWeekProvider } from '../../contexts/MoodsPrevWeekContext';
 import styles from '../../styles/theme';
 
 function App() {
-  const { loading, getTokenSilently } = useAuth0();
-
   const client = new ApolloClient({
     uri: GRAPHQL_URI,
-    request: async (operation) => {
-      const token = await getTokenSilently();
-      operation.setContext({
-        headers: {
-          authorization: token ? `Bearer ${token}` : '',
-        },
-      });
-    },
+    // request: async (operation) => {
+    //   const token = await getTokenSilently();
+    //   operation.setContext({
+    //     headers: {
+    //       authorization: token ? `Bearer ${token}` : '',
+    //     },
+    //   });
+    // },
   });
 
-  return loading ? (
-    <LoadingWrapper>
-      <Spin size="large" />
-    </LoadingWrapper>
-  ) : (
+  // return loading ? (
+  //   <LoadingWrapper>
+  //     <Spin size="large" />
+  //   </LoadingWrapper>
+  // ) : (
+  return (
     <ApolloProvider client={client}>
       <MoodsPrevWeekProvider>
         <div className="App">
           <Switch>
-            <Route path="/" exact component={Welcome} />
-            <PrivateRoute path="/entryform" component={EntryForm} />
-            <PrivateRoute path="/dashboard" exact component={Moods} />
-            <PrivateRoute path="/dashboard/day/:day" component={SingleDay} />
-            <PrivateRoute path="/dashboard/settings" component={Settings} />
-            <PrivateRoute path="/profile" component={Profile} />
+            <Route path="/" exact component={Moods} />
+            <Route path="/entryform" component={EntryForm} />
+            <Route path="/dashboard" exact component={Moods} />
+            <Route path="/dashboard/day/:day" component={SingleDay} />
+            <Route path="/dashboard/settings" component={Settings} />
+            <Route path="/profile" component={Profile} />
             <Route component={NotFound} />
           </Switch>
         </div>
@@ -57,15 +56,15 @@ function App() {
   );
 }
 
-const LoadingWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+// const LoadingWrapper = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 100vh;
 
-  .ant-spin-dot-item {
-    background-color: ${styles.darkJungleGreen} !important;
-  }
-`;
+//   .ant-spin-dot-item {
+//     background-color: ${styles.darkJungleGreen} !important;
+//   }
+// `;
 
 export default App;
