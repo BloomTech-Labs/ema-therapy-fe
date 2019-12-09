@@ -12,6 +12,7 @@ import Profile from '../../components/Profile';
 import PrivateRoute from '../../components/PrivateRoute';
 import EntryForm from '../EntryForm/EntryForm';
 import Moods from '../Moods';
+import Charts from '../Charts';
 import NotFound from '../NotFound/404';
 import Settings from '../Settings';
 import SingleDay from '../SingleDay';
@@ -48,6 +49,7 @@ function App() {
             <PrivateRoute path="/dashboard/day/:day" component={SingleDay} />
             <PrivateRoute path="/dashboard/settings" component={Settings} />
             <PrivateRoute path="/profile" component={Profile} />
+            <PrivateRoute path="/dashboard/charts" component={Charts} />
             <Route component={NotFound} />
           </Switch>
         </div>
