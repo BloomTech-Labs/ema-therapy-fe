@@ -191,7 +191,6 @@ const StyledForm = styled.form`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding-bottom: 40px;
   }
 `;
 
