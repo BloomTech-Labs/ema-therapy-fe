@@ -20,7 +20,7 @@ const Welcome = () => {
 
 const StyledWelcome = styled.div`
   max-width: 500px;
-  height: 100vh;
+  height: 100%;
   margin: 0 auto;
   padding: 30px 20px 60px;
   display: flex;

@@ -8,10 +8,16 @@ const Login = () => {
   return (
     <StyledNav>
       <>
-        <Button className="btn signup" onClick={history.push('/dashboard')}>
+        <Button
+          className="btn signup"
+          onClick={() => history.push('/dashboard')}
+        >
           Sign up
         </Button>
-        <Button className="btn signin" onClick={history.push('/dashboard')}>
+        <Button
+          className="btn signin"
+          onClick={() => history.push('/dashboard')}
+        >
           Sign in
         </Button>
       </>
