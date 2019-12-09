@@ -7,6 +7,10 @@ import NextButton from './NextButton';
 import moodToString from '../../utils/moodToString';
 import DoneButton from './DoneButton';
 import happyPlant from '../../assets/plant-happy.svg';
+import normalPlant from '../../assets/plant-normal.svg';
+import sadPlant from '../../assets/plant-sad.svg';
+import reallyHappyPlant from '../../assets/plant-reallyhappy.svg';
+import unhappyPlant from '../../assets/plant-unhappy.svg';
 import useIsAppInStandalone from '../../hooks/useIsAppInStandalone';
 
 function FormMood({
@@ -18,6 +22,17 @@ function FormMood({
 }) {
   const history = useHistory();
   const isAppInStandalone = useIsAppInStandalone();
+
+  const getPlant = (m) => {
+    let plant;
+    if (m === 1) plant = unhappyPlant;
+    if (m === 2) plant = sadPlant;
+    if (m === 3) plant = normalPlant;
+    if (m === 4) plant = happyPlant;
+    if (m === 5) plant = reallyHappyPlant;
+    return plant;
+  };
+
   return (
     <>
       <div className="header">
@@ -35,7 +50,7 @@ function FormMood({
         </DoneButton>
       </div>
       <MoodWrapper isStandalone={isAppInStandalone}>
-        <img src={happyPlant} alt="happy plant" />
+        <img src={getPlant(mood)} alt="happy plant" />
 
         <p>{moodToString(mood)}</p>
         <Slider
