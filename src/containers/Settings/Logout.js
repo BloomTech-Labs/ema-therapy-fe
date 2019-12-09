@@ -1,8 +1,9 @@
 import React from 'react';
-import { useAuth0 } from '../../utils/react-auth0-spa';
+import { useHistory } from 'react-router-dom';
 
 const Logout = () => {
-  const { logout } = useAuth0();
+  const history = useHistory();
+  const logout = () => history.push('/');
 
   return (
     <div

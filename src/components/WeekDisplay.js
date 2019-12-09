@@ -11,10 +11,10 @@ import { MoodsPrevWeekContext } from '../contexts/MoodsPrevWeekContext';
 function WeekDisplay() {
   const { loading, error, data } = useQuery(checkForUserAndGetMoodsQuery, {
     variables: {
-      sub: 'google-oauth2|102992949753268395908',
-      email: 'jonathan.taylor.dev@gmail.com',
-      firstName: 'Jonathan',
-      lastName: 'Taylor',
+      sub: process.env.REACT_APP_SUB_ID,
+      email: process.env.REACT_APP_EMAIL,
+      firstName: process.env.REACT_APP_FIRST_NAME,
+      lastName: process.env.REACT_APP_LAST_NAME,
     },
   });
 
@@ -31,7 +31,7 @@ function WeekDisplay() {
 
   return loading ? null : (
     <>
-      <Greeting>Here you are!</Greeting>
+      <Greeting>Here you are! {process.env.REACT_APP_FIRST_NAME}</Greeting>
       {moods &&
         moods.map((list) => {
           // return mood preview card if mood entries exist in the list

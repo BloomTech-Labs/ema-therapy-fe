@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { gql } from 'apollo-boost';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { Switch } from 'antd';
-import { useAuth0 } from '../../utils/react-auth0-spa';
 import Logout from './Logout';
 import Dashboard from '../Dashboard';
 
@@ -28,10 +27,9 @@ const UPDATE_IS_SHARING_LOCATION = gql`
 
 const Settings = () => {
   const [isSharingLocation, setIsSharingLocation] = useState(false);
-  const { user } = useAuth0();
   const [updateIsSharingLocation] = useMutation(UPDATE_IS_SHARING_LOCATION);
   const { loading, data } = useQuery(GET_IS_SHARING_LOCATION, {
-    variables: { sub: user.sub },
+    variables: { sub: process.env.REACT_APP_SUB_ID },
   });
 
   useEffect(() => {
@@ -61,7 +59,7 @@ const Settings = () => {
             />
           </div>
         </div>
-        <StyledLink to="/profile">Profile</StyledLink>
+        {/* <StyledLink to="/profile">Profile</StyledLink> */}
         <Logout />
       </StyledSettings>
     </Dashboard>
@@ -102,7 +100,7 @@ const StyledSettings = styled.div`
   }
 `;
 
-const StyledLink = styled(Link)`
-  color: #000;
-  text-decoration: none;
-`;
+// const StyledLink = styled(Link)`
+//   color: #000;
+//   text-decoration: none;
+// `;

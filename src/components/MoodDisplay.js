@@ -4,7 +4,6 @@ import { Icon } from 'antd';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { useParams, useHistory } from 'react-router-dom';
 import { getDay } from 'date-fns';
-import { useAuth0 } from '../utils/react-auth0-spa';
 import { checkForUserAndGetMoodsQuery } from '../queries';
 import { MoodsPrevWeekContext } from '../contexts/MoodsPrevWeekContext';
 import weekOfMoods from '../utils/weekOfMoods';
@@ -36,10 +35,10 @@ function MoodDisplay() {
     } else {
       getMoods({
         variables: {
-          sub: 'google-oauth2|102992949753268395908',
-          email: 'jonathan.taylor.dev@gmail.com',
-          firstName: 'Jonathan',
-          lastName: 'Taylor',
+          sub: process.env.REACT_APP_SUB_ID,
+          email: process.env.REACT_APP_EMAIL,
+          firstName: process.env.REACT_APP_FIRST_NAME,
+          lastName: process.env.REACT_APP_LAST_NAME,
         },
       });
     }

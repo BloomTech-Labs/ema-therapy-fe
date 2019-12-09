@@ -1,23 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import { Button } from 'antd';
-import { useAuth0 } from '../utils/react-auth0-spa';
 
 const Login = () => {
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
-
+  const history = useHistory();
   return (
     <StyledNav>
-      {!isAuthenticated && (
-        <>
-          <Button className="btn signup" onClick={() => loginWithRedirect({})}>
-            Sign up
-          </Button>
-          <Button className="btn signin" onClick={() => loginWithRedirect({})}>
-            Sign in
-          </Button>
-        </>
-      )}
+      <>
+        <Button className="btn signup" onClick={history.push('/dashboard')}>
+          Sign up
+        </Button>
+        <Button className="btn signin" onClick={history.push('/dashboard')}>
+          Sign in
+        </Button>
+      </>
     </StyledNav>
   );
 };

@@ -1,12 +1,9 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
-import { useAuth0 } from '../../utils/react-auth0-spa';
 import Login from '../../components/Login';
 import styles from '../../styles/theme';
 
 const Welcome = () => {
-  const { isAuthenticated } = useAuth0();
   return (
     <StyledWelcome>
       <h2>MoodBloom</h2>
@@ -17,7 +14,6 @@ const Welcome = () => {
         </div>
         <Login />
       </LoginWrapper>
-      {isAuthenticated && <Redirect to="/dashboard" />}
     </StyledWelcome>
   );
 };
