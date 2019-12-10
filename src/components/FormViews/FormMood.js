@@ -6,7 +6,12 @@ import { Slider, Icon } from 'antd';
 import NextButton from './NextButton';
 import moodToString from '../../utils/moodToString';
 import DoneButton from './DoneButton';
-import happyPlant from '../../assets/happy-plant.svg';
+import happyPlant from '../../assets/plant-happy.svg';
+import normalPlant from '../../assets/plant-normal.svg';
+import sadPlant from '../../assets/plant-sad.svg';
+import reallyHappyPlant from '../../assets/plant-reallyhappy.svg';
+import unhappyPlant from '../../assets/plant-unhappy.svg';
+import useStandalone from '../../hooks/useStandalone';
 
 function FormMood({
   onMoodSliderChange,
@@ -16,6 +21,18 @@ function FormMood({
   isSubmitting,
 }) {
   const history = useHistory();
+  const isStandalone = useStandalone();
+
+  const getPlant = (m) => {
+    let plant;
+    if (m === 1) plant = unhappyPlant;
+    if (m === 2) plant = sadPlant;
+    if (m === 3) plant = normalPlant;
+    if (m === 4) plant = happyPlant;
+    if (m === 5) plant = reallyHappyPlant;
+    return plant;
+  };
+
   return (
     <>
       <div className="header">
@@ -32,8 +49,8 @@ function FormMood({
           Done
         </DoneButton>
       </div>
-      <MoodWrapper>
-        <img src={happyPlant} alt="happy plant" />
+      <MoodWrapper isStandalone={isStandalone}>
+        <img src={getPlant(mood)} alt="happy plant" />
 
         <p>{moodToString(mood)}</p>
         <Slider
@@ -77,5 +94,15 @@ const MoodWrapper = styled.div`
     font-size: 16px;
     text-transform: capitalize;
     margin-bottom: 0;
+  }
+
+  img {
+    margin-bottom: 15px;
+  }
+
+  @media only screen and (max-width: 375px) {
+    img {
+      height: ${(props) => (props.isStandalone ? '300px' : '250px')};
+    }
   }
 `;
