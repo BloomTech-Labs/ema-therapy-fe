@@ -108,10 +108,9 @@ const FormViews = () => {
     history.push('/dashboard');
   };
 
-  if (loading) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
 
-  return (
+  return loading ? null : (
     <StyledForm view={view}>
       {view === 'mood' && (
         <FormMood
