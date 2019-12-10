@@ -67,7 +67,6 @@ export default MoodCard;
 
 const StyledMoodCard = styled(Card)`
   margin: 0 7px 23px;
-  /* padding-bottom: 20px; */
 
   p {
     margin: unset;
@@ -129,17 +128,17 @@ const StyledMoodCard = styled(Card)`
 
   }
   .text {
-    /* margin: 10px 0 0; */
     padding: 0px 25px 15px;
     font-size: 13px;
     color: #658883;
     line-height: 20px;
   }
 
-    /* .weather {
-      text-align: right;
-      font-size: 10px;
-      color: ${styles.darkJungleGreen};
-      padding: 0px 25px 15px 0px;
-    } */
+  /* Styles for location -- uncomment if added */
+  /* .location {
+    text-align: right;
+    font-size: 10px;
+    color: ${styles.darkJungleGreen};
+    padding: 0px 25px 15px 0px;
+  } */
 `;
