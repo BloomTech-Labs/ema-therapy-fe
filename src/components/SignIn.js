@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Button, Input } from 'antd';
-import Login from './Login';
 import splash from '../assets/splash-leaves.png';
 import styles from '../styles/theme';
 
