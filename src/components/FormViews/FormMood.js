@@ -11,7 +11,7 @@ import normalPlant from '../../assets/plant-normal.svg';
 import sadPlant from '../../assets/plant-sad.svg';
 import reallyHappyPlant from '../../assets/plant-reallyhappy.svg';
 import unhappyPlant from '../../assets/plant-unhappy.svg';
-import useIsAppInStandalone from '../../hooks/useIsAppInStandalone';
+import useStandalone from '../../hooks/useStandalone';
 
 function FormMood({
   onMoodSliderChange,
@@ -21,7 +21,7 @@ function FormMood({
   isSubmitting,
 }) {
   const history = useHistory();
-  const isAppInStandalone = useIsAppInStandalone();
+  const isStandalone = useStandalone();
 
   const getPlant = (m) => {
     let plant;
@@ -49,7 +49,7 @@ function FormMood({
           Done
         </DoneButton>
       </div>
-      <MoodWrapper isStandalone={isAppInStandalone}>
+      <MoodWrapper isStandalone={isStandalone}>
         <img src={getPlant(mood)} alt="happy plant" />
 
         <p>{moodToString(mood)}</p>
