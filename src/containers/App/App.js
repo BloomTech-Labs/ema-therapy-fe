@@ -9,6 +9,7 @@ import { GRAPHQL_URI } from '../../utils/config';
 import GlobalStyle from '../../styles/global-styles';
 import Welcome from '../Welcome/Welcome';
 import SignIn from '../../components/SignIn';
+import SignUp from '../../components/SignUp';
 import Profile from '../../components/Profile';
 import PrivateRoute from '../../components/PrivateRoute';
 import EntryForm from '../EntryForm/EntryForm';
@@ -45,6 +46,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={Welcome} />
             <Route path="/signin" exact component={SignIn} />
+            <Route path="/signup" exact component={SignUp} />
             <PrivateRoute path="/entryform" component={EntryForm} />
             <PrivateRoute path="/dashboard" exact component={Moods} />
             <PrivateRoute path="/dashboard/day/:day" component={SingleDay} />
