@@ -18,9 +18,9 @@ const SignIn = () => {
   return (
     <StyledSignIn>
       <h2>
-        Create
+        Welcome
         <br />
-        Account
+        Back
       </h2>
       <div className="form-wrapper">
         <div className="login-form">
