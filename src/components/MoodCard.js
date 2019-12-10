@@ -21,26 +21,31 @@ const MoodCard = ({ mood: m }) => {
       </div>
       <p className="mood">{moodToString(mood)}</p>
       <div className="mood-details">
-        <div className="sleep-anxiety-wrapper">
-          {anxiety !== null && (
-            <div>
-              <p className="sleep-anxiety">ANXIETY</p>
-              <p className="counter">{anxiety} out of 10</p>
-            </div>
-          )}
-          {sleep !== null && (
-            <div>
-              <p className="sleep-anxiety">SLEEP</p>
-              <p className="counter">{sleep} hours</p>
-            </div>
-          )}
-        </div>
-        {text && <p className="text">{text}</p>}
-        {weather && (
-          <div>
-            <p className="weather">Weather: {weather} </p>
+        {(anxiety || sleep || weather) && (
+          <div className="stat-wrapper">
+            {anxiety !== null && (
+              <div>
+                <p className="anxiety">ANXIETY</p>
+                <p className="counter">{anxiety} out of 10</p>
+              </div>
+            )}
+            {sleep !== null && (
+              <div>
+                <p className="sleep">SLEEP</p>
+                <p className="counter">
+                  {sleep === 1 ? `${sleep} hour` : `${sleep} hours`}
+                </p>
+              </div>
+            )}
+            {weather && (
+              <div>
+                <p className="weather">WEATHER</p>
+                <p className="counter">{weather}</p>
+              </div>
+            )}
           </div>
         )}
+        {text && <p className="text">{text}</p>}
       </div>
     </StyledMoodCard>
   );
@@ -76,12 +81,11 @@ const StyledMoodCard = styled(Card)`
     .date,
     .time {
       margin: 0;
-      font-size: 14px;
-      line-height: 18px;
-      color: ${styles.brightYellow};
+      font-size: 12px;
     }
 
     .time {
+      color: ${styles.darkJungleGreen};
       margin-right: 15px;
       font-weight: 300;
     }
@@ -93,52 +97,48 @@ const StyledMoodCard = styled(Card)`
 
   .mood {
     text-align: center;
-    margin: 15px 0px 30px 0px;
+    padding: 15px 0 25px;
     text-transform: capitalize;
-    font-size: 18px;
-    line-height: 20px;
+    font-size: 24px;
     color: ${styles.darkJungleGreen};
     font-weight: 500;
+
   }
 
-  .mood-details {
-    font-size: 14px;
-    line-height: 18px;
+  .stat-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    padding-bottom: 15px;
 
-    .sleep-anxiety-wrapper {
-      display: flex;
-      justify-content: space-evenly;
-      text-align: center;
-
-      p {
-        margin: 0 0 4px;
-      }
-
-      .sleep-anxiety {
-        font-size: 11px;
-        border-bottom: 1px solid ${styles.darkJungleGreen};
-        color: ${styles.darkJungleGreen};
-      }
-
-      .counter {
-        font-size: 10px;
-        color: #658883;
-      }
+    p {
+      margin: 0 0 4px;
     }
 
-    .text {
-      margin: 10px 0 0;
-      padding: 0px 25px 20px;
-      font-size: 11px;
+    .sleep, .anxiety, .weather {
+      font-size: 14px;
+      border-bottom: 1px solid ${styles.darkJungleGreen};
+      color: ${styles.darkJungleGreen};
+    }
+
+    .counter {
+      font-size: 12px;
       color: #658883;
-      line-height: 20px;
     }
 
-    .weather {
-      text-align: right;
-      font-size: 10px;
-      color: ${styles.brightYellow};
-      padding: 0px 25px 15px 0px;
-    }
   }
+  .text {
+    padding: 0px 25px 15px;
+    font-size: 13px;
+    color: #658883;
+    line-height: 20px;
+  }
+
+  /* Styles for location -- uncomment if added */
+  /* .location {
+    text-align: right;
+    font-size: 10px;
+    color: ${styles.darkJungleGreen};
+    padding: 0px 25px 15px 0px;
+  } */
 `;
