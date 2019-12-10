@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="sc-bdVaJa fcqkUA sc-bwzfXH jvFDUI"
+        class="sc-bdVaJa fcqkUA sc-bwzfXH cBIkih"
       >
         <div
           class="date-time"
@@ -31,11 +31,11 @@ Object {
           class="mood-details"
         >
           <div
-            class="sleep-anxiety-wrapper"
+            class="stat-wrapper"
           >
             <div>
               <p
-                class="sleep-anxiety"
+                class="anxiety"
               >
                 ANXIETY
               </p>
@@ -48,15 +48,26 @@ Object {
             </div>
             <div>
               <p
-                class="sleep-anxiety"
+                class="sleep"
               >
                 SLEEP
               </p>
               <p
                 class="counter"
               >
-                1
-                 hours
+                1 hour
+              </p>
+            </div>
+            <div>
+              <p
+                class="weather"
+              >
+                WEATHER
+              </p>
+              <p
+                class="counter"
+              >
+                mockWeather
               </p>
             </div>
           </div>
@@ -65,22 +76,13 @@ Object {
           >
             mockText
           </p>
-          <div>
-            <p
-              class="weather"
-            >
-              Weather: 
-              mockWeather
-               
-            </p>
-          </div>
         </div>
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="sc-bdVaJa fcqkUA sc-bwzfXH jvFDUI"
+      class="sc-bdVaJa fcqkUA sc-bwzfXH cBIkih"
     >
       <div
         class="date-time"
@@ -105,11 +107,11 @@ Object {
         class="mood-details"
       >
         <div
-          class="sleep-anxiety-wrapper"
+          class="stat-wrapper"
         >
           <div>
             <p
-              class="sleep-anxiety"
+              class="anxiety"
             >
               ANXIETY
             </p>
@@ -122,15 +124,26 @@ Object {
           </div>
           <div>
             <p
-              class="sleep-anxiety"
+              class="sleep"
             >
               SLEEP
             </p>
             <p
               class="counter"
             >
-              1
-               hours
+              1 hour
+            </p>
+          </div>
+          <div>
+            <p
+              class="weather"
+            >
+              WEATHER
+            </p>
+            <p
+              class="counter"
+            >
+              mockWeather
             </p>
           </div>
         </div>
@@ -139,15 +152,6 @@ Object {
         >
           mockText
         </p>
-        <div>
-          <p
-            class="weather"
-          >
-            Weather: 
-            mockWeather
-             
-          </p>
-        </div>
       </div>
     </div>
   </div>,
