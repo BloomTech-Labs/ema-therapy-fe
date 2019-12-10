@@ -35,7 +35,6 @@ function MoodDisplay() {
       setMoods(weekOfMoods(data.user.moods));
       // run query to fetch missing moods data
     } else {
-      // setIsLoadingMoods(false);
       getMoods({
         variables: {
           sub: user.sub,
@@ -69,22 +68,14 @@ export default MoodDisplay;
 
 const StyledMoodDisplay = styled.div`
   padding: 30px;
-  background-color: #f0f8f7;
+  background-color: ${styles.seafoamGreen};
   min-height: 100vh;
 `;
 
 const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
   margin-bottom: 20px;
-`;
-
-const Logo = styled.h1`
-  margin-top: 0;
-  color: ${styles.darkJungleGreen};
 `;
 
 const MoodList = styled.div`
   padding-bottom: 90px;
-  flex: 1;
 `;

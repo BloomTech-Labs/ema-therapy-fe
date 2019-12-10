@@ -14,7 +14,7 @@ describe('FormAnxietySleep component', () => {
           handleChange={() => {}}
           onSleepSliderChange={() => {}}
           handleSubmit={() => {}}
-          isSubmitting={true}
+          isSubmitting
           sleep={5}
         />,
       ),
@@ -30,7 +30,7 @@ describe('FormAnxietySleep component', () => {
         onSleepSliderChange={() => {}}
         handleChange={() => {}}
         handleSubmit={() => {}}
-        isSubmitting={true}
+        isSubmitting
         sleep={5}
       />,
     );
@@ -49,7 +49,7 @@ test('onAnxietySliderChange gets called when slider is moved', () => {
       handleChange={() => {}}
       onSleepSliderChange={() => {}}
       handleSubmit={() => {}}
-      isSubmitting={true}
+      isSubmitting
       sleep={5}
     />,
   );
@@ -66,7 +66,7 @@ test('sleep number changes when sleep slider moves', () => {
       onAnxietySliderChange={() => {}}
       onSleepSliderChange={antSliderSleep}
       handleSubmit={() => {}}
-      isSubmitting={true}
+      isSubmitting
       sleep={5}
     />,
   );

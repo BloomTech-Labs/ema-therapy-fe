@@ -4,8 +4,11 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Card from './Card';
 import moodToString from '../utils/moodToString';
-import flower from '../assets/yellow-flower.svg';
-import pot from '../assets/great-pot.svg';
+import happyPot from '../assets/happy200h.png';
+import reallyHappyPot from '../assets/reallyhappy200h.png';
+import normalPot from '../assets/normal200h.png';
+import sadPot from '../assets/sad200h.png';
+import unhappyPot from '../assets/unhappy200h.png';
 import styles from '../styles/theme';
 
 const formatDate = (timestamp, fmt) => {
@@ -18,9 +21,8 @@ function MoodPreview({ lastItem, count }) {
     <PreviewContainer>
       <DayWrapper>
         <p className="weekday">{formatDate(lastItem.createdAt, 'iii')}</p>
-        <img src={flower} alt="flower" />
       </DayWrapper>
-      <StyledMoodCard>
+      <StyledMoodCard lastItem={lastItem}>
         <div>
           <p className="time">{formatDate(lastItem.createdAt, 'h:mm a')}</p>
           <p className="mood">{moodToString(lastItem.mood)}</p>
@@ -44,32 +46,43 @@ export default MoodPreview;
 
 const PreviewContainer = styled.div`
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
+  margin-bottom: 23px;
 
   .weekday {
     color: #0c423b;
     font-size: 12px;
     width: 30px;
-    margin-right: 6px;
-    margin-bottom: 7px;
+    margin: 0 6px 0 0;
   }
 `;
 
 const DayWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 `;
+
+// conditionally render the bg img path based on props
+function getPath(p) {
+  let path;
+  if (p.lastItem.mood === 1) path = unhappyPot;
+  if (p.lastItem.mood === 2) path = sadPot;
+  if (p.lastItem.mood === 3) path = normalPot;
+  if (p.lastItem.mood === 4) path = happyPot;
+  if (p.lastItem.mood === 5) path = reallyHappyPot;
+  return path;
+}
 
 const StyledMoodCard = styled(Card)`
   padding: 7px 16px 8px;
-  margin-bottom: 23px;
   height: 95px;
   width: 100%;
-  background-image: url(${pot});
+  background-image: url(${getPath});
   background-repeat: no-repeat;
-  background-position: top -3px right -4px;
+  background-position: top -18px right -22px;
+  background-size: 115px 135px;
 
   .time {
     margin: 0;
@@ -90,5 +103,7 @@ const StyledMoodCard = styled(Card)`
     font-style: italic;
     font-size: 10px;
     margin-bottom: 10px;
+    text-align: end;
+    margin-right: 95px;
   }
 `;

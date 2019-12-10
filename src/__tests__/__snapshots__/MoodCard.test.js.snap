@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="sc-bdVaJa fcqkUA sc-bwzfXH bGCeCX"
+        class="sc-bdVaJa fcqkUA sc-bwzfXH cBIkih"
       >
         <div
           class="date-time"
@@ -14,7 +14,7 @@ Object {
           <p
             class="date"
           >
-            Fri Dec 31
+            Friday 31 December
           </p>
           <p
             class="time"
@@ -30,25 +30,47 @@ Object {
         <div
           class="mood-details"
         >
-          <p
-            class="weather"
+          <div
+            class="stat-wrapper"
           >
-            Weather: 
-            mockWeather
-          </p>
-          <p
-            class="sleep"
-          >
-            Sleep: 
-            1
-             h
-          </p>
-          <p
-            class="anxiety"
-          >
-            Anxiety Level: 
-            1
-          </p>
+            <div>
+              <p
+                class="anxiety"
+              >
+                ANXIETY
+              </p>
+              <p
+                class="counter"
+              >
+                1
+                 out of 10
+              </p>
+            </div>
+            <div>
+              <p
+                class="sleep"
+              >
+                SLEEP
+              </p>
+              <p
+                class="counter"
+              >
+                1 hour
+              </p>
+            </div>
+            <div>
+              <p
+                class="weather"
+              >
+                WEATHER
+              </p>
+              <p
+                class="counter"
+              >
+                mockWeather
+              </p>
+            </div>
+          </div>
           <p
             class="text"
           >
@@ -60,7 +82,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="sc-bdVaJa fcqkUA sc-bwzfXH bGCeCX"
+      class="sc-bdVaJa fcqkUA sc-bwzfXH cBIkih"
     >
       <div
         class="date-time"
@@ -68,7 +90,7 @@ Object {
         <p
           class="date"
         >
-          Fri Dec 31
+          Friday 31 December
         </p>
         <p
           class="time"
@@ -84,25 +106,47 @@ Object {
       <div
         class="mood-details"
       >
-        <p
-          class="weather"
+        <div
+          class="stat-wrapper"
         >
-          Weather: 
-          mockWeather
-        </p>
-        <p
-          class="sleep"
-        >
-          Sleep: 
-          1
-           h
-        </p>
-        <p
-          class="anxiety"
-        >
-          Anxiety Level: 
-          1
-        </p>
+          <div>
+            <p
+              class="anxiety"
+            >
+              ANXIETY
+            </p>
+            <p
+              class="counter"
+            >
+              1
+               out of 10
+            </p>
+          </div>
+          <div>
+            <p
+              class="sleep"
+            >
+              SLEEP
+            </p>
+            <p
+              class="counter"
+            >
+              1 hour
+            </p>
+          </div>
+          <div>
+            <p
+              class="weather"
+            >
+              WEATHER
+            </p>
+            <p
+              class="counter"
+            >
+              mockWeather
+            </p>
+          </div>
+        </div>
         <p
           class="text"
         >

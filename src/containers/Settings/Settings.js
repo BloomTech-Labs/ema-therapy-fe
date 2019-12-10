@@ -7,6 +7,7 @@ import { Switch } from 'antd';
 import { useAuth0 } from '../../utils/react-auth0-spa';
 import Logout from './Logout';
 import Dashboard from '../Dashboard';
+import styles from '../../styles/theme';
 
 const GET_IS_SHARING_LOCATION = gql`
   query($sub: ID) {
@@ -78,6 +79,10 @@ const StyledSettings = styled.div`
     line-height: 30px;
     padding: 20px 0;
     font-weight: normal;
+  }
+
+  .ant-switch-checked {
+    background-color: ${styles.darkJungleGreen} !important;
   }
 
   .setting-group {
