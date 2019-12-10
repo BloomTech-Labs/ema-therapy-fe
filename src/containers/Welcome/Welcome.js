@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Login from '../../components/Login';
 import styles from '../../styles/theme';
+import splash from '../../assets/splash-leaves.png';
 
 const Welcome = () => {
   return (
@@ -27,6 +28,8 @@ const StyledWelcome = styled.div`
   flex-direction: column;
   justify-content: space-between;
   background-color: ${styles.darkJungleGreen};
+  background: url(${splash}) no-repeat center;
+  background-size: 155%;
   color: white;
 
   h2 {
