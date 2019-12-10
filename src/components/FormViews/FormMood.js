@@ -6,12 +6,12 @@ import { Slider, Icon } from 'antd';
 import NextButton from './NextButton';
 import moodToString from '../../utils/moodToString';
 import DoneButton from './DoneButton';
-import happyPlant from '../../assets/plant-happy.svg';
-import normalPlant from '../../assets/plant-normal.svg';
-import sadPlant from '../../assets/plant-sad.svg';
-import reallyHappyPlant from '../../assets/plant-reallyhappy.svg';
-import unhappyPlant from '../../assets/plant-unhappy.svg';
 import useStandalone from '../../hooks/useStandalone';
+import happyPlant from '../../assets/plants-png/plant-happy.png';
+import normalPlant from '../../assets/plants-png/plant-normal.png';
+import sadPlant from '../../assets/plants-png/plant-sad.png';
+import reallyHappyPlant from '../../assets/plants-png/plant-really-happy.png';
+import unhappyPlant from '../../assets/plants-png/plant-unhappy.png';
 
 function FormMood({
   onMoodSliderChange,
@@ -98,11 +98,15 @@ const MoodWrapper = styled.div`
 
   img {
     margin-bottom: 15px;
+    height: 350px;
+    width: 228px;
+    align-self: center;
   }
 
   @media only screen and (max-width: 375px) {
     img {
       height: ${(props) => (props.isStandalone ? '300px' : '250px')};
+      width: ${(props) => (props.isStandalone ? '195px' : '163px')};
     }
   }
 `;
