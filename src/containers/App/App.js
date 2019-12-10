@@ -8,6 +8,7 @@ import { useAuth0 } from '../../utils/react-auth0-spa';
 import { GRAPHQL_URI } from '../../utils/config';
 import GlobalStyle from '../../styles/global-styles';
 import Welcome from '../Welcome/Welcome';
+import SignIn from '../../components/SignIn';
 import Profile from '../../components/Profile';
 import PrivateRoute from '../../components/PrivateRoute';
 import EntryForm from '../EntryForm/EntryForm';
@@ -43,6 +44,7 @@ function App() {
         <div className="App">
           <Switch>
             <Route path="/" exact component={Welcome} />
+            <Route path="/signin" exact component={SignIn} />
             <PrivateRoute path="/entryform" component={EntryForm} />
             <PrivateRoute path="/dashboard" exact component={Moods} />
             <PrivateRoute path="/dashboard/day/:day" component={SingleDay} />
