@@ -13,6 +13,8 @@ import useCurrentWeather from '../../hooks/useCurrentWeather';
 import FormMood from './FormMood';
 import FormActivityJournal from './FormActvityJournal';
 import FormAnxietySleep from './FormAnxietySleep';
+import backgroundImage from '../../assets/background-leaf.svg';
+import ladybug from '../../assets/ladybug.svg';
 
 const FormViews = () => {
   const history = useHistory();
@@ -112,7 +114,7 @@ const FormViews = () => {
   if (error) return <p>{error.message}</p>;
 
   return (
-    <StyledForm>
+    <StyledForm view={view}>
       {view === 'mood' && (
         <FormMood
           onMoodSliderChange={onMoodSliderChange}
@@ -156,6 +158,14 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 30px 25px;
+  background-color: #fafdfc;
+  background-image: ${(props) =>
+    props.view === 'mood'
+      ? `url(${backgroundImage})`
+      : `url(${backgroundImage}), url(${ladybug})`};
+  background-repeat: no-repeat;
+  background-position: top -36px right -20px, top 84% right 10%;
 
   .ant-slider-track,
   .ant-slider-rail {
