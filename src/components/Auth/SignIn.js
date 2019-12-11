@@ -29,35 +29,33 @@ const SignIn = () => {
     <StyledSignIn>
       <h2>Welcome Back</h2>
       <div className="form-wrapper">
-        <div className="login-form">
-          <Form onSubmit={handleSubmit}>
-            <Input
-              style={{ ...inputStyles, marginBottom: '15px' }}
-              placeholder="Email"
-              size="large"
-              name="email"
-              value={credentials.email}
-              type="text"
-              onChange={handleChange}
-            />
-            <Input
-              style={inputStyles}
-              placeholder="Password"
-              size="large"
-              name="password"
-              value={credentials.password}
-              type="password"
-              onChange={handleChange}
-            />
-            <p>Forgot Password?</p>
-            <Button className="btn login" htmlType="submit">
-              Log In
-            </Button>
-            <Button className="btn" onClick={() => history.push('/signup')}>
-              Sign Up
-            </Button>
-          </Form>
-        </div>
+        <Form onSubmit={handleSubmit}>
+          <Input
+            style={{ ...inputStyles, marginBottom: '15px' }}
+            placeholder="Email"
+            size="large"
+            name="email"
+            value={credentials.email}
+            type="text"
+            onChange={handleChange}
+          />
+          <Input
+            style={inputStyles}
+            placeholder="Password"
+            size="large"
+            name="password"
+            value={credentials.password}
+            type="password"
+            onChange={handleChange}
+          />
+          <p>Forgot Password?</p>
+          <Button className="btn login" htmlType="submit">
+            Log In
+          </Button>
+          <Button className="btn" onClick={() => history.push('/signup')}>
+            Sign Up
+          </Button>
+        </Form>
       </div>
       {isAuthenticated && <Redirect to="/dashboard" />}
     </StyledSignIn>

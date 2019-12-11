@@ -19,7 +19,6 @@ const SignIn = () => {
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
-    console.log(user);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,44 +29,42 @@ const SignIn = () => {
     <StyledSignIn>
       <h2>Create Account</h2>
       <div className="form-wrapper">
-        <div className="login-form">
-          <Form onSubmit={handleSubmit}>
-            <Input
-              style={inputStyles}
-              placeholder="Name"
-              type="text"
-              size="large"
-              name="name"
-              value={user.name}
-              onChange={handleChange}
-            />
-            <Input
-              style={inputStyles}
-              placeholder="Email"
-              type="text"
-              size="large"
-              name="email"
-              value={user.email}
-              onChange={handleChange}
-            />
-            <Input
-              style={{ ...inputStyles, marginBottom: 0 }}
-              placeholder="Password"
-              type="password"
-              size="large"
-              name="password"
-              value={user.password}
-              onChange={handleChange}
-            />
-            <p>Forgot Password?</p>
-            <Button className="btn login" htmlType="submit">
-              Sign Up
-            </Button>
-            <Button className="btn" onClick={() => history.push('/signin')}>
-              Log In
-            </Button>
-          </Form>
-        </div>
+        <Form onSubmit={handleSubmit}>
+          <Input
+            style={inputStyles}
+            placeholder="Name"
+            type="text"
+            size="large"
+            name="name"
+            value={user.name}
+            onChange={handleChange}
+          />
+          <Input
+            style={inputStyles}
+            placeholder="Email"
+            type="text"
+            size="large"
+            name="email"
+            value={user.email}
+            onChange={handleChange}
+          />
+          <Input
+            style={{ ...inputStyles, marginBottom: 0 }}
+            placeholder="Password"
+            type="password"
+            size="large"
+            name="password"
+            value={user.password}
+            onChange={handleChange}
+          />
+          <p>Forgot Password?</p>
+          <Button className="btn login" htmlType="submit">
+            Sign Up
+          </Button>
+          <Button className="btn" onClick={() => history.push('/signin')}>
+            Log In
+          </Button>
+        </Form>
       </div>
       {isAuthenticated && <Redirect to="/dashboard" />}
     </StyledSignIn>
