@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
 import { Button, Input } from 'antd';
@@ -15,6 +15,27 @@ const inputStyles = {
 
 const SignIn = () => {
   const { isAuthenticated } = useAuth0();
+  const [credentials, setCredentials] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+    console.log(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    console.log('Logging in!');
+  };
+
+  const handleKeyPress = (e) => {
+    // if(e.keyCode === 13){
+    //   console.log('Log in!')
+    // }
+    console.log(e);
+  };
+
   return (
     <StyledSignIn>
       <h2>
@@ -29,13 +50,31 @@ const SignIn = () => {
               style={{ ...inputStyles, marginBottom: '15px' }}
               placeholder="Email"
               size="large"
+              name="email"
+              value={credentials.email}
+              type="text"
+              onChange={handleChange}
             />
-            <Input style={inputStyles} placeholder="Password" size="large" />
+            <Input
+              style={inputStyles}
+              placeholder="Password"
+              size="large"
+              name="password"
+              value={credentials.password}
+              type="password"
+              onChange={handleChange}
+            />
             <p>Forgot Password?</p>
+            <Button
+              onKeyPress={handleKeyPress}
+              onClick={handleSubmit}
+              className="btn login"
+            >
+              Log In
+            </Button>
+            <Button className="btn">Sign Up</Button>
           </form>
         </div>
-        <Button className="btn login">Log In</Button>
-        <Button className="btn">Sign Up</Button>
       </div>
       {isAuthenticated && <Redirect to="/dashboard" />}
     </StyledSignIn>
