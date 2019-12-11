@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
-import { Button, Input } from 'antd';
+import { Button, Input, Form } from 'antd';
 import splash from '../assets/splash-leaves.png';
 import styles from '../styles/theme';
 import { useAuth0 } from '../utils/react-auth0-spa';
@@ -15,25 +15,15 @@ const inputStyles = {
 
 const SignIn = () => {
   const { isAuthenticated } = useAuth0();
-  const [credentials, setCredentials] = useState({
-    email: '',
-    password: '',
-  });
+  const [credentials, setCredentials] = useState({ email: '', password: '' });
 
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
-    console.log(e.target.value);
   };
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     console.log('Logging in!');
-  };
-
-  const handleKeyPress = (e) => {
-    // if(e.keyCode === 13){
-    //   console.log('Log in!')
-    // }
-    console.log(e);
   };
 
   return (
@@ -45,7 +35,7 @@ const SignIn = () => {
       </h2>
       <div className="form-wrapper">
         <div className="login-form">
-          <form>
+          <Form onSubmit={handleSubmit}>
             <Input
               style={{ ...inputStyles, marginBottom: '15px' }}
               placeholder="Email"
@@ -65,15 +55,11 @@ const SignIn = () => {
               onChange={handleChange}
             />
             <p>Forgot Password?</p>
-            <Button
-              onKeyPress={handleKeyPress}
-              onClick={handleSubmit}
-              className="btn login"
-            >
+            <Button className="btn login" htmlType="submit">
               Log In
             </Button>
             <Button className="btn">Sign Up</Button>
-          </form>
+          </Form>
         </div>
       </div>
       {isAuthenticated && <Redirect to="/dashboard" />}
