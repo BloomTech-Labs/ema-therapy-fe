@@ -1,11 +1,10 @@
-// entire view collects sub components and feeds them to container
-
 import React from 'react';
+import Graph from './Graph';
 
 const ChartViews = () => {
   return (
     <div>
-      <p>hello ChartViews .js</p>
+      <Graph />
     </div>
   );
 };
