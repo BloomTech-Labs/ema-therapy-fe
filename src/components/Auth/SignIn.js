@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Redirect } from 'react-router-dom';
 import { Button, Input, Form } from 'antd';
-import splash from '../assets/splash-leaves.png';
-import styles from '../styles/theme';
-import { useAuth0 } from '../utils/react-auth0-spa';
+import { Redirect, useHistory } from 'react-router-dom';
+import { useAuth0 } from '../../utils/react-auth0-spa';
+import StyledSignIn from './auth.styles';
 
 const inputStyles = {
   height: '50px',
@@ -15,6 +13,7 @@ const inputStyles = {
 
 const SignIn = () => {
   const { isAuthenticated } = useAuth0();
+  const history = useHistory();
   const [credentials, setCredentials] = useState({ email: '', password: '' });
 
   const handleChange = (e) => {
@@ -23,16 +22,12 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Logging in!');
+    console.log(credentials);
   };
 
   return (
     <StyledSignIn>
-      <h2>
-        Create
-        <br />
-        Account
-      </h2>
+      <h2>Welcome Back</h2>
       <div className="form-wrapper">
         <div className="login-form">
           <Form onSubmit={handleSubmit}>
@@ -58,7 +53,9 @@ const SignIn = () => {
             <Button className="btn login" htmlType="submit">
               Log In
             </Button>
-            <Button className="btn">Sign Up</Button>
+            <Button className="btn" onClick={() => history.push('/signup')}>
+              Sign Up
+            </Button>
           </Form>
         </div>
       </div>
@@ -66,63 +63,5 @@ const SignIn = () => {
     </StyledSignIn>
   );
 };
-
-const StyledSignIn = styled.div`
-  max-width: 500px;
-  height: 100%;
-  margin: 0 auto;
-  /* padding: 30px 20px 60px; */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: ${styles.darkJungleGreen};
-  background: url(${splash}) no-repeat;
-  background-position: top -430px left -310px;
-  background-size: 185%;
-  color: white;
-
-  .form-wrapper {
-    background: white;
-    padding: 43px 17px;
-  }
-
-  h2 {
-    color: white;
-    font-weight: 600;
-    font-size: 28px;
-    padding-left: 7px;
-    margin-top: 100px;
-    margin-left: 45px;
-    line-height: 1.2;
-  }
-
-  p {
-    color: ${styles.tealGreen};
-    text-align: right;
-    font-size: 12px;
-    line-height: 1.5;
-    margin-top: 5px;
-  }
-
-  .btn {
-    height: 48px;
-    width: 100%;
-    margin-bottom: 13px;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    color: #595959;
-    background-color: #f5f5f5;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .login {
-    background: ${styles.tealGreen};
-    color: white;
-  }
-`;
 
 export default SignIn;

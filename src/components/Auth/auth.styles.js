@@ -1,46 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
-import { Redirect } from 'react-router-dom';
-import { Button, Input } from 'antd';
-import splash from '../assets/splash-leaves.png';
-import styles from '../styles/theme';
-import { useAuth0 } from '../utils/react-auth0-spa';
-
-const inputStyles = {
-  height: '50px',
-  fontSize: '16px',
-  lineHeight: 1.5,
-  padding: '13px 12px',
-};
-
-const SignIn = () => {
-  const { isAuthenticated } = useAuth0();
-  return (
-    <StyledSignIn>
-      <h2>
-        Welcome
-        <br />
-        Back
-      </h2>
-      <div className="form-wrapper">
-        <div className="login-form">
-          <form>
-            <Input
-              style={{ ...inputStyles, marginBottom: '15px' }}
-              placeholder="Email"
-              size="large"
-            />
-            <Input style={inputStyles} placeholder="Password" size="large" />
-            <p>Forgot Password?</p>
-          </form>
-        </div>
-        <Button className="btn login">Log In</Button>
-        <Button className="btn">Sign Up</Button>
-      </div>
-      {isAuthenticated && <Redirect to="/dashboard" />}
-    </StyledSignIn>
-  );
-};
+import styles from '../../styles/theme';
+import splash from '../../assets/splash-leaves.png';
 
 const StyledSignIn = styled.div`
   max-width: 500px;
@@ -100,4 +60,4 @@ const StyledSignIn = styled.div`
   }
 `;
 
-export default SignIn;
+export default StyledSignIn;
