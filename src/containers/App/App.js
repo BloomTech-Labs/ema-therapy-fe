@@ -1,7 +1,7 @@
 import React from 'react';
 import ApolloClient from 'apollo-boost';
 import styled from 'styled-components';
-import { Spin } from 'antd';
+import { Spin, Calendar } from 'antd';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { Route, Switch } from 'react-router-dom';
 import { useAuth0 } from '../../utils/react-auth0-spa';
@@ -9,6 +9,7 @@ import { GRAPHQL_URI } from '../../utils/config';
 import GlobalStyle from '../../styles/global-styles';
 import Welcome from '../Welcome/Welcome';
 import Profile from '../../components/Profile';
+import Heatmap from '../../components/Heatmap';
 import PrivateRoute from '../../components/PrivateRoute';
 import EntryForm from '../EntryForm/EntryForm';
 import Moods from '../Moods';
@@ -43,6 +44,7 @@ function App() {
         <div className="App">
           <Switch>
             <Route path="/" exact component={Welcome} />
+            <Route path="/heatmap" component={Heatmap} />
             <PrivateRoute path="/entryform" component={EntryForm} />
             <PrivateRoute path="/dashboard" exact component={Moods} />
             <PrivateRoute path="/dashboard/day/:day" component={SingleDay} />

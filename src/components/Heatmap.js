@@ -4,6 +4,7 @@ import { getDay } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { Spin } from 'antd';
 import styled from 'styled-components';
+import Calendar from 'react-calendar';
 import { checkForUserAndGetMoodsQuery } from '../queries';
 import { useAuth0 } from '../utils/react-auth0-spa';
 import weekOfMoods from '../utils/weekOfMoods';
@@ -11,7 +12,7 @@ import MoodPreview from './MoodPreview';
 import { MoodsPrevWeekContext } from '../contexts/MoodsPrevWeekContext';
 import styles from '../styles/theme';
 
-function WeekDisplay() {
+function Heatmap() {
   const { user } = useAuth0();
   const { loading, error, data } = useQuery(checkForUserAndGetMoodsQuery, {
     variables: {
@@ -33,7 +34,7 @@ function WeekDisplay() {
 
   if (error) return <p>{error.message}</p>;
 
-  console.log('THIS', moods);
+  console.log('moods in Heatmap.js', moods, new Date());
   return loading ? (
     <LoadingWrapper>
       <Spin size="large" delay={300} />
@@ -41,29 +42,12 @@ function WeekDisplay() {
   ) : (
     <>
       <Greeting>Here you are, {user.given_name}!</Greeting>
-      {moods &&
-        moods.map((list) => {
-          // return mood preview card if mood entries exist in the list
-          if (list.length !== 0) {
-            return (
-              <Link
-                to={`/dashboard/day/${getDay(+list[0].createdAt)}`}
-                key={list[0].id}
-              >
-                <MoodPreview
-                  count={list.length}
-                  lastItem={list[list.length - 1]}
-                />
-              </Link>
-            );
-          }
-          return null;
-        })}
+      <Calendar value={new Date()} />
     </>
   );
 }
 
-export default WeekDisplay;
+export default Heatmap;
 
 const Greeting = styled.h2`
   color: #00917a;
