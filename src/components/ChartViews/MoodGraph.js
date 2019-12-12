@@ -6,7 +6,6 @@ function MoodGraph({ arrayOfDays }) {
   const dataForGraph = {
     datasets: [
       {
-        label: 'Mood',
         fill: false,
         lineTension: 0.1,
         backgroundColor: 'rgba(75,192,192,0.4)',
@@ -32,9 +31,18 @@ function MoodGraph({ arrayOfDays }) {
   };
 
   const options = {
+    legend: false,
     scales: {
       xAxes: [
         {
+          ticks: {
+            fontColor: 'rgb(0,145,122)',
+          },
+          gridLines: {
+            color: 'rgba(0,0,0,0)',
+            drawBorder: false,
+            display: false,
+          },
           display: true,
           type: 'category',
           labels: arrayOfDays.map((day) => {
@@ -44,6 +52,14 @@ function MoodGraph({ arrayOfDays }) {
       ],
       yAxes: [
         {
+          ticks: {
+            fontColor: 'rgb(0,145,122)',
+          },
+          gridLines: {
+            color: 'rgba(0,0,0,0)',
+            drawBorder: false,
+            display: false,
+          },
           display: true,
           type: 'category',
           labels: ['happy', 'good', 'fine', 'normal', 'sad', 'unhappy'],

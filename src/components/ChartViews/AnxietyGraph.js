@@ -7,7 +7,6 @@ function AnxietyGraph({ arrayOfDays }) {
   const dataForGraph = {
     datasets: [
       {
-        label: 'Anxiety',
         fill: false,
         lineTension: 0.1,
         backgroundColor: 'rgba(75,192,192,0.4)',
@@ -33,9 +32,18 @@ function AnxietyGraph({ arrayOfDays }) {
   };
 
   const options = {
+    legend: false,
     scales: {
       xAxes: [
         {
+          ticks: {
+            fontColor: 'rgb(0,145,122)',
+          },
+          gridLines: {
+            color: 'rgba(0,0,0,0)',
+            drawBorder: false,
+            display: false,
+          },
           display: true,
           type: 'category',
           labels: arrayOfDays.map((day) => {
@@ -45,6 +53,14 @@ function AnxietyGraph({ arrayOfDays }) {
       ],
       yAxes: [
         {
+          ticks: {
+            fontColor: 'rgb(0,145,122)',
+          },
+          gridLines: {
+            color: 'rgba(0,0,0,0)',
+            drawBorder: false,
+            display: false,
+          },
           display: true,
           type: 'category',
           labels: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
