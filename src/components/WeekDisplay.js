@@ -33,7 +33,6 @@ function WeekDisplay() {
 
   if (error) return <p>{error.message}</p>;
 
-  console.log('THIS', moods);
   return loading ? (
     <LoadingWrapper>
       <Spin size="large" delay={300} />

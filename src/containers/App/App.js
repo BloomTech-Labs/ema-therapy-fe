@@ -44,7 +44,8 @@ function App() {
         <div className="App">
           <Switch>
             <Route path="/" exact component={Welcome} />
-            <Route path="/heatmap" component={Heatmap} />
+            <PrivateRoute path="/calendar" component={Heatmap} />
+            {/* <PrivateRoute path="/calendar/day/:day" component={Heatmap} /> */}
             <PrivateRoute path="/entryform" component={EntryForm} />
             <PrivateRoute path="/dashboard" exact component={Moods} />
             <PrivateRoute path="/dashboard/day/:day" component={SingleDay} />

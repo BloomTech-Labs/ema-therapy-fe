@@ -1,19 +1,21 @@
-import React, { useEffect, useContext } from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { getDay } from 'date-fns';
-import { Link } from 'react-router-dom';
+import { format, isSameDay } from 'date-fns';
+import { useHistory } from 'react-router-dom';
 import { Spin } from 'antd';
 import styled from 'styled-components';
 import Calendar from 'react-calendar';
 import { checkForUserAndGetMoodsQuery } from '../queries';
 import { useAuth0 } from '../utils/react-auth0-spa';
-import weekOfMoods from '../utils/weekOfMoods';
-import MoodPreview from './MoodPreview';
-import { MoodsPrevWeekContext } from '../contexts/MoodsPrevWeekContext';
 import styles from '../styles/theme';
+
+const filterMoodByDay = (dateSelected, moodData) => {
+  return moodData.filter((mood) => isSameDay(+mood.createdAt, dateSelected));
+};
 
 function Heatmap() {
   const { user } = useAuth0();
+  const history = useHistory();
   const { loading, error, data } = useQuery(checkForUserAndGetMoodsQuery, {
     variables: {
       sub: user.sub,
@@ -23,39 +25,26 @@ function Heatmap() {
     },
   });
 
-  const { moods, setMoods } = useContext(MoodsPrevWeekContext);
-
-  // set moodsPrevWeek context if the data from query exists
-  useEffect(() => {
-    if (data) {
-      setMoods(weekOfMoods(data.user.moods));
-    }
-  }, [data, setMoods]);
-
   if (error) return <p>{error.message}</p>;
 
-  console.log('moods in Heatmap.js', moods, new Date());
   return loading ? (
     <LoadingWrapper>
       <Spin size="large" delay={300} />
     </LoadingWrapper>
   ) : (
-    <>
-      <Greeting>Here you are, {user.given_name}!</Greeting>
-      <Calendar value={new Date()} />
-    </>
+    <CalContainer>
+      <Calendar
+        calendarType="US"
+        formatShortWeekday={(locale, date) => format(date, 'iiiii')}
+        onClickDay={(value) => {
+          console.log(filterMoodByDay(value, data.user.moods));
+        }}
+      />
+    </CalContainer>
   );
 }
 
 export default Heatmap;
-
-const Greeting = styled.h2`
-  color: #00917a;
-  font-size: 21px;
-  font-style: normal;
-  font-weight: normal;
-  margin-bottom: 30px;
-`;
 
 const LoadingWrapper = styled.div`
   display: flex;
@@ -65,5 +54,14 @@ const LoadingWrapper = styled.div`
 
   .ant-spin-dot-item {
     background-color: ${styles.darkJungleGreen} !important;
+  }
+`;
+
+const CalContainer = styled.div`
+  .react-calendar {
+    width: unset;
+    border: unset;
+    font-family: unset;
+    line-height: unset;
   }
 `;
