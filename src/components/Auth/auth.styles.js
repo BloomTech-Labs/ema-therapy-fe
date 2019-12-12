@@ -1,24 +1,25 @@
 import styled from 'styled-components';
 import styles from '../../styles/theme';
-import splash from '../../assets/splash-leaves.png';
+import splash from '../../assets/splash.png';
 
 const StyledSignIn = styled.div`
   max-width: 500px;
   height: 100%;
   margin: 0 auto;
-  /* padding: 30px 20px 60px; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-color: ${styles.darkJungleGreen};
   background: url(${splash}) no-repeat;
-  background-position: top -430px left -310px;
-  background-size: 185%;
+  background-position: top 0px left 0px;
+  background-size: contain;
+  background-size: 115%;
   color: white;
 
   .form-wrapper {
     background: white;
     padding: 43px 17px;
+    padding-top: 10px;
   }
 
   h2 {
