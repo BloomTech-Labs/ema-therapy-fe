@@ -7,6 +7,7 @@ import weekOfMoods from '../../utils/weekOfMoods';
 import { useAuth0 } from '../../utils/react-auth0-spa';
 import MoodGraph from './MoodGraph';
 import AnxietyGraph from './AnxietyGraph';
+import SleepGraph from './SleepGraph';
 
 const ChartViews = () => {
   // query for user data
@@ -75,6 +76,7 @@ const ChartViews = () => {
 
       <MoodGraph arrayOfDays={getArrayOfDays(moods)} />
       <AnxietyGraph arrayOfDays={getArrayOfDays(moods)} />
+      <SleepGraph arrayOfDays={getArrayOfDays(moods)} />
     </div>
   );
 };
