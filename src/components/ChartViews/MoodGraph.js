@@ -7,21 +7,21 @@ function MoodGraph({ arrayOfDays }) {
     datasets: [
       {
         fill: false,
-        lineTension: 0.1,
+        lineTension: 0.5,
         backgroundColor: 'rgba(75,192,192,0.4)',
-        borderColor: 'rgba(75,192,192,1)',
+        borderColor: 'rgb(227, 113, 128)',
         borderCapStyle: 'butt',
         borderDash: [],
         borderDashOffset: 0.0,
         borderJoinStyle: 'miter',
-        pointBorderColor: 'rgba(75,192,192,1)',
-        pointBackgroundColor: '#fff',
+        pointBorderColor: 'rgb(227, 113, 128)',
+        pointBackgroundColor: 'rgb(227, 113, 128)',
         pointBorderWidth: 1,
         pointHoverRadius: 5,
-        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-        pointHoverBorderColor: 'rgba(220,220,220,1)',
+        pointHoverBackgroundColor: 'rgb(227, 113, 128)',
+        pointHoverBorderColor: 'rgb(227, 113, 128)',
         pointHoverBorderWidth: 2,
-        pointRadius: 1,
+        pointRadius: 3,
         pointHitRadius: 10,
         data: arrayOfDays.map((day) => {
           return day.mood;
@@ -31,6 +31,10 @@ function MoodGraph({ arrayOfDays }) {
   };
 
   const options = {
+    tooltips: {
+      backgroundColor: 'rgba(0,0,0,0)',
+      titleFontColor: 'rgb(227, 113, 128)',
+    },
     legend: false,
     scales: {
       xAxes: [
