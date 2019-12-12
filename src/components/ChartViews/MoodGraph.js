@@ -1,5 +1,5 @@
 import React from 'react';
-import { Line } from 'react-chartjs-2';
+import { Line, afterFit } from 'react-chartjs-2';
 import PropTypes from 'prop-types';
 
 function MoodGraph({ arrayOfDays }) {
@@ -31,14 +31,18 @@ function MoodGraph({ arrayOfDays }) {
   };
 
   const options = {
-    tooltips: {
-      backgroundColor: 'rgba(0,0,0,0)',
-      titleFontColor: 'rgb(227, 113, 128)',
-    },
+    // tooltips: {
+    //   backgroundColor: 'rgba(0,0,0,0)',
+    //   titleFontColor: 'rgb(227, 113, 128)',
+    //   color: 'rgb(227, 113, 128)',
+    // },
     legend: false,
     scales: {
       xAxes: [
         {
+          // afterFit: function(scale) {
+          //   scale.width = 300
+          // },
           ticks: {
             fontColor: 'rgb(0,145,122)',
           },
@@ -56,6 +60,9 @@ function MoodGraph({ arrayOfDays }) {
       ],
       yAxes: [
         {
+          // afterFit: function(scale) {
+          //   scale.width = 300
+          // },
           ticks: {
             fontColor: 'rgb(0,145,122)',
           },
