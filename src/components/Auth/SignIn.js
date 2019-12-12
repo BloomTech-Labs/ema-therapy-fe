@@ -3,6 +3,7 @@ import { Button, Input, Form, Icon } from 'antd';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useAuth0 } from '../../utils/react-auth0-spa';
 import StyledSignIn from './auth.styles';
+import splash from '../../assets/splash-image.png';
 
 const inputStyles = {
   fontSize: '16px',
@@ -25,59 +26,46 @@ const SignIn = () => {
 
   return (
     <StyledSignIn>
-      <h2>
-        Welcome
-        <br />
-        Back
-      </h2>
-      <div style={{ overflow: 'hidden' }}>
-        <svg
-          width="110%"
-          height="75"
-          viewBox="0 0 517 75"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          style={{ marginBottom: '-1.1em', marginLeft: '-2.3em' }}
-        >
-          <path
-            d="M516 50.2188V73.8681H1V55.8199C178.176 -32.0334 300.416 0.657511 516 50.2188Z"
-            fill="white"
-            stroke="white"
-          />
-        </svg>
-
-        <div className="form-wrapper">
-          <Form onSubmit={handleSubmit}>
-            <Input
-              style={{ ...inputStyles, marginBottom: '15px' }}
-              placeholder="Email"
-              size="large"
-              name="email"
-              value={credentials.email}
-              type="text"
-              onChange={handleChange}
-              prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
-            />
-            <Input.Password
-              style={inputStyles}
-              placeholder="Password"
-              size="large"
-              name="password"
-              value={credentials.password}
-              type="password"
-              onChange={handleChange}
-              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-            />
-            <p>Forgot Password?</p>
-            <Button className="btn login" htmlType="submit">
-              Log In
-            </Button>
-            <Button className="btn" onClick={() => history.push('/signup')}>
-              Sign Up
-            </Button>
-          </Form>
-        </div>
+      <div style={{ marginBottom: '-1px' }}>
+        <h2 style={{ position: 'absolute' }}>
+          Welcome
+          <br />
+          Back
+        </h2>
+        <img src={splash} alt="leaves" style={{ width: '100%' }} />
       </div>
+      <div className="form-wrapper">
+        <Form onSubmit={handleSubmit}>
+          <Input
+            style={{ ...inputStyles, marginBottom: '15px' }}
+            placeholder="Email"
+            size="large"
+            name="email"
+            value={credentials.email}
+            type="text"
+            onChange={handleChange}
+            prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
+          />
+          <Input.Password
+            style={inputStyles}
+            placeholder="Password"
+            size="large"
+            name="password"
+            value={credentials.password}
+            type="password"
+            onChange={handleChange}
+            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+          />
+          <p>Forgot Password?</p>
+          <Button className="btn login" htmlType="submit">
+            Log In
+          </Button>
+          <Button className="btn" onClick={() => history.push('/signup')}>
+            Sign Up
+          </Button>
+        </Form>
+      </div>
+
       {isAuthenticated && <Redirect to="/dashboard" />}
     </StyledSignIn>
   );
