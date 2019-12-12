@@ -64,7 +64,7 @@ const ChartViews = () => {
         anxietyLevel: Math.round(finalDay.anxietyLevel / numberOfEntries),
       };
     });
-    return arrayOfDays.filter((day) => day.mood);
+    return arrayOfDays.filter((day) => day.mood).reverse();
   };
 
   if (error) return <p>{error.message}</p>;
