@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Button, Input, Form } from 'antd';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { useAuth0 } from '../../utils/react-auth0-spa';
 import StyledSignIn from './auth.styles';
 import splash from '../../assets/splash-image.png';
+import google from '../../assets/google.png';
 
 const inputStyles = {
   height: '50px',
@@ -14,8 +15,7 @@ const inputStyles = {
 };
 
 const SignIn = () => {
-  const { isAuthenticated } = useAuth0();
-  const history = useHistory();
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
   const [user, setUser] = useState({ name: '', email: '', password: '' });
 
   const handleChange = (e) => {
@@ -30,9 +30,9 @@ const SignIn = () => {
     <StyledSignIn>
       <div style={{ marginBottom: '-1px' }}>
         <h2 style={{ position: 'absolute' }}>
-          Welcome
+          Create
           <br />
-          Back
+          Account
         </h2>
         <img src={splash} alt="leaves" style={{ width: '100%' }} />
       </div>
@@ -58,7 +58,7 @@ const SignIn = () => {
             onChange={handleChange}
           />
           <Input
-            style={{ ...inputStyles, marginBottom: 0 }}
+            style={{ ...inputStyles, marginBottom: 28 }}
             placeholder="Password"
             type="password"
             size="large"
@@ -66,15 +66,23 @@ const SignIn = () => {
             value={user.password}
             onChange={handleChange}
           />
-          <p>Forgot Password?</p>
-          <Button className="btn login" htmlType="submit">
+          <Button className="btn signup" htmlType="submit">
             Sign Up
           </Button>
-          <Button className="btn" onClick={() => history.push('/signin')}>
-            Log In
+          <Button className="btn google" onClick={() => loginWithRedirect({})}>
+            <img
+              src={google}
+              alt="google"
+              style={{ height: 32, marginRight: 24 }}
+            />
+            Sign in with Google
           </Button>
         </Form>
+        <div className="account">
+          <p>Already have an account?</p> <Link to="/signin">Sign In</Link>
+        </div>
       </div>
+
       {isAuthenticated && <Redirect to="/dashboard" />}
     </StyledSignIn>
   );

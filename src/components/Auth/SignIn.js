@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Button, Input, Form, Icon } from 'antd';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { useAuth0 } from '../../utils/react-auth0-spa';
 import StyledSignIn from './auth.styles';
 import splash from '../../assets/splash-image.png';
+import google from '../../assets/google.png';
 
 const inputStyles = {
   fontSize: '16px',
@@ -11,8 +12,7 @@ const inputStyles = {
 };
 
 const SignIn = () => {
-  const { isAuthenticated } = useAuth0();
-  const history = useHistory();
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
   const [credentials, setCredentials] = useState({ email: '', password: '' });
 
   const handleChange = (e) => {
@@ -56,14 +56,25 @@ const SignIn = () => {
             onChange={handleChange}
             prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
           />
-          <p>Forgot Password?</p>
+          <div className="forgot-password">
+            <Link to="/forgot-password">Forgot Password?</Link>
+          </div>
           <Button className="btn login" htmlType="submit">
             Log In
           </Button>
-          <Button className="btn" onClick={() => history.push('/signup')}>
-            Sign Up
+
+          <Button className="btn google" onClick={() => loginWithRedirect({})}>
+            <img
+              src={google}
+              alt="google"
+              style={{ height: 32, marginRight: 24 }}
+            />
+            Sign in with Google
           </Button>
         </Form>
+        <div className="account">
+          <p>Don&apos;t have an account?</p> <Link to="/signup">Sign Up</Link>
+        </div>
       </div>
 
       {isAuthenticated && <Redirect to="/dashboard" />}

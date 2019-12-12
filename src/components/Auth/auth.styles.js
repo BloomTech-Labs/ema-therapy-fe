@@ -31,13 +31,7 @@ const StyledSignIn = styled.div`
     line-height: 1.2;
   }
 
-  p {
-    color: ${styles.tealGreen};
-    text-align: right;
-    font-size: 12px;
-    line-height: 1.5;
-    margin-top: 5px;
-  }
+
 
   .btn {
     height: 48px;
@@ -52,11 +46,38 @@ const StyledSignIn = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &.login, &.signup {
+      background: ${styles.tealGreen};
+      color: white;
+    }
+
+    &.google {
+
+      background: white;
+      border: 1px solid ${styles.tealGreen};
+      color: ${styles.tealGreen};
+    }
   }
 
-  .login {
-    background: ${styles.tealGreen};
-    color: white;
+  .forgot-password {
+    color: ${styles.tealGreen};
+    text-align: right;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-top: 5px;
+    margin-bottom:30px;
+  }
+
+  .account {
+    font-size: 12px;
+    color: #BFBFBF;
+    justify-content: center;
+    display: flex;
+
+    a {
+      margin-left: 4px;
+    }
   }
 
   .ant-input-affix-wrapper .ant-input:not(:first-child) {
