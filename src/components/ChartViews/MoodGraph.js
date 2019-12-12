@@ -46,12 +46,11 @@ function MoodGraph({ arrayOfDays }) {
         {
           display: true,
           type: 'category',
-          labels: ['happy', 'good', 'normal', 'sad', 'unhappy'],
+          labels: ['happy', 'good', 'fine', 'normal', 'sad', 'unhappy'],
         },
       ],
     },
   };
-
   return (
     <div>
       <h2>Week Mood</h2>

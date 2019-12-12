@@ -37,48 +37,42 @@ const ChartViews = () => {
   }, [data]);
 
   // function for utils to collect days and averages for days
-  const arrayOfDays = [];
-  let finalDay = {
-    createdAt: '',
-    mood: 0,
-    anxietyLevel: 0,
-    sleep: 0,
-  };
 
-  let numberOfEntries = 1;
-
-  // eslint-disable-next-line array-callback-return
-  moods.map((day) => {
-    // eslint-disable-next-line array-callback-return
-    day.map(
-      (mood) => {
-        numberOfEntries += 1;
-
-        finalDay.createdAt = formatDate(mood.createdAt, 'iii');
-        finalDay.mood += mood.mood;
-        finalDay.anxietyLevel += mood.anxietyLevel;
-        finalDay.sleep += mood.sleep;
-      },
-      arrayOfDays.push({
-        ...finalDay,
-        mood: moodToString(Math.round(finalDay.mood / numberOfEntries)),
-        anxietyLevel: Math.round(finalDay.anxietyLevel / numberOfEntries),
-      }),
-      (numberOfEntries = 0),
-      (finalDay = {
+  const getArrayOfDays = (moodData) => {
+    const arrayOfDays = moods.map((day) => {
+      let numberOfEntries = 0;
+      const finalDay = {
         createdAt: '',
         mood: 0,
         anxietyLevel: 0,
         sleep: 0,
-      }),
-    );
-  });
+      };
+      // eslint-disable-next-line array-callback-return
+      day.map((entry) => {
+        numberOfEntries += 1;
+        finalDay.createdAt = formatDate(entry.createdAt, 'iii');
+        finalDay.mood += entry.mood;
+        finalDay.anxietyLevel += entry.anxietyLevel;
+        finalDay.sleep += entry.sleep;
+      });
+
+      return {
+        ...finalDay,
+        mood: moodToString(Math.round(finalDay.mood / numberOfEntries)),
+        anxietyLevel: Math.round(finalDay.anxietyLevel / numberOfEntries),
+      };
+    });
+    return arrayOfDays.filter((day) => day.mood);
+  };
 
   if (error) return <p>{error.message}</p>;
 
   return loading ? null : (
     <div>
-      <MoodGraph arrayOfDays={arrayOfDays.filter((day) => day.mood)} />
+      {console.log('moods in chartsview', moods)}
+      {console.log('arrayOfDays in chartsview', getArrayOfDays(moods))}
+
+      <MoodGraph arrayOfDays={getArrayOfDays(moods)} />
     </div>
   );
 };
