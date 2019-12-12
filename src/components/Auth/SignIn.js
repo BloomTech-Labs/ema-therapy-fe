@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Button, Input, Form } from 'antd';
 import { Redirect, useHistory } from 'react-router-dom';
-import { useAuth0 } from '../../utils/react-auth0-spa';
+// import { useAuth0 } from '../../utils/react-auth0-spa';
 import StyledSignIn from './auth.styles';
+
+import { userLogin } from './axiosAuth/axios';
 
 const inputStyles = {
   height: '50px',
@@ -12,9 +14,13 @@ const inputStyles = {
 };
 
 const SignIn = () => {
-  const { isAuthenticated } = useAuth0();
+  // const { isAuthenticated } = useAuth0();
   const history = useHistory();
   const [credentials, setCredentials] = useState({ email: '', password: '' });
+
+  const pushHistory = () => {
+    history.push('/dashboard');
+  };
 
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -22,7 +28,7 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(credentials);
+    userLogin(credentials, pushHistory);
   };
 
   return (
@@ -78,7 +84,7 @@ const SignIn = () => {
           </Form>
         </div>
       </div>
-      {isAuthenticated && <Redirect to="/dashboard" />}
+      {/* {isAuthenticated && <Redirect to="/dashboard" />} */}
     </StyledSignIn>
   );
 };

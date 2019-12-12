@@ -4,6 +4,8 @@ import { Redirect, useHistory } from 'react-router-dom';
 import { useAuth0 } from '../../utils/react-auth0-spa';
 import StyledSignIn from './auth.styles';
 
+import { postUser } from './axiosAuth/axios';
+
 const inputStyles = {
   height: '50px',
   fontSize: '16px',
@@ -15,14 +17,19 @@ const inputStyles = {
 const SignIn = () => {
   const { isAuthenticated } = useAuth0();
   const history = useHistory();
-  const [user, setUser] = useState({ name: '', email: '', password: '' });
+  const [user, setUser] = useState({ firstName: '', email: '', password: '' });
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
+
+  const pushHistory = () => {
+    history.push('/dashboard');
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
+    postUser(user, pushHistory);
   };
 
   return (
@@ -54,8 +61,8 @@ const SignIn = () => {
               placeholder="Name"
               type="text"
               size="large"
-              name="name"
-              value={user.name}
+              name="firstName"
+              value={user.firstName}
               onChange={handleChange}
             />
             <Input

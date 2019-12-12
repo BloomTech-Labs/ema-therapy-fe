@@ -12,7 +12,7 @@ import { MoodsPrevWeekContext } from '../contexts/MoodsPrevWeekContext';
 import styles from '../styles/theme';
 
 function WeekDisplay() {
-  const { user } = useAuth0();
+  // const { user } = useAuth0();
   const { loading, error, data } = useQuery(checkForUserAndGetMoodsQuery, {
     variables: {
       sub: user.sub,
