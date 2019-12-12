@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { format } from 'date-fns';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import Calendar from 'react-calendar';
 
 function CalendarDisplay({ handleDaySelected }) {
@@ -23,6 +24,10 @@ function CalendarDisplay({ handleDaySelected }) {
     </CalContainer>
   );
 }
+
+CalendarDisplay.propTypes = {
+  handleDaySelected: PropTypes.func.isRequired,
+};
 
 export default CalendarDisplay;
 

@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import styled from 'styled-components';
 import { Spin } from 'antd';
-import { isSameDay, setDay } from 'date-fns';
+import { isSameDay } from 'date-fns';
 import { checkForUserAndGetMoodsQuery } from '../../queries';
 import { useAuth0 } from '../../utils/react-auth0-spa';
 import CalendarDisplay from './CalendarDisplay';

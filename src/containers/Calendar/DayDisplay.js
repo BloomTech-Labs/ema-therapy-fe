@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Icon } from 'antd';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import MoodCard from '../../components/MoodCard';
 import styles from '../../styles/theme';
@@ -22,12 +23,26 @@ const DayDisplay = ({ moods }) => {
           {moods.length > 0 ? (
             moods.map((mood) => <MoodCard key={mood.id} mood={mood} />)
           ) : (
-            <h1>No moods here :(</h1>
+            <h1>No moods here</h1>
           )}
         </MoodList>
       )}
     </DayContainer>
   );
+};
+
+DayDisplay.propTypes = {
+  moods: PropTypes.arrayOf(
+    PropTypes.shape({
+      mood: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      anxietyLevel: PropTypes.number,
+      text: PropTypes.string,
+      sleep: PropTypes.number,
+      weather: PropTypes.string,
+    }),
+  ).isRequired,
 };
 
 export default DayDisplay;
