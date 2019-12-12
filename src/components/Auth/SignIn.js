@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { Button, Input, Form } from 'antd';
+import { Button, Input, Form, Icon } from 'antd';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useAuth0 } from '../../utils/react-auth0-spa';
 import StyledSignIn from './auth.styles';
 
 const inputStyles = {
-  height: '50px',
   fontSize: '16px',
   lineHeight: 1.5,
-  padding: '13px 12px',
 };
 
 const SignIn = () => {
@@ -58,8 +56,9 @@ const SignIn = () => {
               value={credentials.email}
               type="text"
               onChange={handleChange}
+              prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
             />
-            <Input
+            <Input.Password
               style={inputStyles}
               placeholder="Password"
               size="large"
@@ -67,6 +66,7 @@ const SignIn = () => {
               value={credentials.password}
               type="password"
               onChange={handleChange}
+              prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
             />
             <p>Forgot Password?</p>
             <Button className="btn login" htmlType="submit">

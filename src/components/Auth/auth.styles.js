@@ -59,6 +59,16 @@ const StyledSignIn = styled.div`
     background: ${styles.tealGreen};
     color: white;
   }
+
+  .ant-input-affix-wrapper .ant-input:not(:first-child) {
+    padding-left: 37px;
+  }
+
+  /* .ant-input:focus {
+    outline: 0;
+    box-shadow: 0 0 2px green;
+    border: 2px solid peachpuff;
+  } */
 `;
 
 export default StyledSignIn;
