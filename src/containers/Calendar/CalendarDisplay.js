@@ -14,7 +14,6 @@ function CalendarDisplay({ handleDaySelected }) {
         calendarType="US"
         formatShortWeekday={(locale, date) => format(date, 'iiiii')}
         onClickDay={async (value) => {
-          // console.log(filterMoodByDay(value, data.user.moods));
           // update day selected
           await handleDaySelected(value);
           // reroute to day display
