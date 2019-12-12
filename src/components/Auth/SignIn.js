@@ -62,7 +62,7 @@ const SignIn = () => {
           <Button className="btn login" htmlType="submit">
             Log In
           </Button>
-
+          <p className="divide">or</p>
           <Button className="btn google" onClick={() => loginWithRedirect({})}>
             <img
               src={google}

@@ -53,11 +53,16 @@ const StyledSignIn = styled.div`
     }
 
     &.google {
-
       background: white;
       border: 1px solid ${styles.tealGreen};
       color: ${styles.tealGreen};
     }
+  }
+
+  .divide {
+    text-align: center;
+    color: #BFBFBF;
+    margin: 8px 0;
   }
 
   .forgot-password {

@@ -69,14 +69,6 @@ const SignIn = () => {
           <Button className="btn signup" htmlType="submit">
             Sign Up
           </Button>
-          <Button className="btn google" onClick={() => loginWithRedirect({})}>
-            <img
-              src={google}
-              alt="google"
-              style={{ height: 32, marginRight: 24 }}
-            />
-            Sign in with Google
-          </Button>
         </Form>
         <div className="account">
           <p>Already have an account?</p> <Link to="/signin">Sign In</Link>
