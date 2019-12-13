@@ -19,6 +19,7 @@ export const userLogin = (credentials, cbOnSuccess) => {
       cbOnSuccess(user);
     })
     .catch((err) => {
+      // TODO handle error
       console.log(`unable to login user: ${err}`);
     });
 };
@@ -33,6 +34,7 @@ export const postUser = (credentials, cbOnSuccess) => {
       cbOnSuccess(user);
     })
     .catch((err) => {
+      // TODO handle error
       console.log(`unable to register user: ${err}`);
     });
 };

@@ -9,10 +9,8 @@ import google from '../../assets/google.png';
 import { postUser } from './axiosAuth/axios';
 
 const inputStyles = {
-  height: '50px',
   fontSize: '16px',
   lineHeight: 1.5,
-  padding: '13px 12px',
   marginBottom: '15px',
 };
 
@@ -73,7 +71,7 @@ const SignIn = () => {
             prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
           />
           <Input.Password
-            style={{ ...inputStyles, marginBottom: 0 }}
+            style={{ ...inputStyles, marginBottom: 28 }}
             placeholder="Password"
             type="password"
             size="large"
