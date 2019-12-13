@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Spin } from 'antd';
 import { isSameDay, isSameMonth, getDaysInMonth } from 'date-fns';
 import { checkForUserAndGetMoodsQuery } from '../../queries';
-import { useAuth0 } from '../../utils/react-auth0-spa';
+import { useAuth } from '../../utils/dataStore';
 import CalendarDisplay from './CalendarDisplay';
 import DayDisplay from './DayDisplay';
 import styles from '../../styles/theme';
@@ -31,10 +31,9 @@ const getMoodsByMonth = (date, moodData) => {
 };
 
 const CalendarView = () => {
-  const { user } = useAuth0();
+  const { user } = useAuth();
   const { loading, error, data } = useQuery(checkForUserAndGetMoodsQuery, {
     variables: {
-      sub: user.sub,
       email: user.email,
       firstName: user.given_name,
       lastName: user.family_name,
