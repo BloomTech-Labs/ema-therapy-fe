@@ -59,10 +59,20 @@ const StyledSignIn = styled.div`
     }
   }
 
-  .divide {
-    text-align: center;
+  .or {
+    display: flex;
+    justify-content:center;
+    align-items: center;
     color: #BFBFBF;
-    margin: 8px 0;
+  }
+
+  .or:after, .or:before {
+    content: "";
+    display: block;
+    background: #B4B4B4;
+    width: 30%;
+    height: 1px;
+    margin: 0 10px;
   }
 
   .forgot-password {
@@ -87,21 +97,6 @@ const StyledSignIn = styled.div`
 
   .ant-input-affix-wrapper .ant-input:not(:first-child) {
     padding-left: 37px;
-  }
-
-  .or {
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    color: #BFBFBF;
-  }
-  .or:after, .or:before {
-    content: “”;
-    display: block;
-    background: #B4B4B4;
-    width: 30%;
-    height: 1px;
-    margin: 0 10px;
   }
 `;
 
