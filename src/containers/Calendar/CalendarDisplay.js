@@ -17,7 +17,7 @@ function CalendarDisplay({
       <Calendar
         calendarType="US"
         activeStartDate={activeStartDate}
-        onActiveDateChange={({ activeStartDate: newActiveStartDate, view }) =>
+        onActiveDateChange={({ activeStartDate: newActiveStartDate }) =>
           handleActiveStartDate(newActiveStartDate)
         }
         formatShortWeekday={(locale, date) => format(date, 'iiiii')}
@@ -39,6 +39,8 @@ function CalendarDisplay({
 
 CalendarDisplay.propTypes = {
   handleDaySelected: PropTypes.func.isRequired,
+  activeStartDate: PropTypes.instanceOf(Date).isRequired,
+  handleActiveStartDate: PropTypes.func.isRequired,
 };
 
 export default CalendarDisplay;
