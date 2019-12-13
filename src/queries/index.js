@@ -60,20 +60,9 @@ export const checkForUserAndGetMoodsQuery = gql`
 `;
 
 export const addUserMutation = gql`
-  mutation(
-    $email: String!
-    $sub: String!
-    $firstName: String
-    $lastName: String
-  ) {
-    addUser(
-      email: $email
-      sub: $sub
-      firstName: $firstName
-      lastName: $lastName
-    ) {
+  mutation($email: String!, $firstName: String, $lastName: String) {
+    addUser(email: $email, firstName: $firstName, lastName: $lastName) {
       email
-      sub
       firstName
       lastName
       createdAt
