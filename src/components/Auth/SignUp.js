@@ -12,7 +12,7 @@ const inputStyles = {
   marginBottom: '15px',
 };
 
-const SignIn = () => {
+const SignUp = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useAuth();
   const history = useHistory();
   const [credentials, setCredentials] = useState({
@@ -93,4 +93,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
