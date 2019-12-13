@@ -71,7 +71,7 @@ const SignIn = () => {
           <Button className="btn login" htmlType="submit">
             Log In
           </Button>
-          <p className="divide">or</p>
+          <p className="or">or</p>
           <Button
             className="btn google"
             onClick={() => console.log('login w goog goes here')}
