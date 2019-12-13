@@ -15,6 +15,7 @@ const inputStyles = {
 const SignUp = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useAuth();
   const history = useHistory();
+  const [loading, setLoading] = useState(false);
   const [credentials, setCredentials] = useState({
     firstName: '',
     email: '',
@@ -33,6 +34,7 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     postUser(credentials, saveUserAndRedirect);
   };
 
@@ -78,7 +80,7 @@ const SignUp = () => {
             onChange={handleChange}
             prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
           />
-          <Button className="btn signup" htmlType="submit">
+          <Button loading={loading} className="btn signup" htmlType="submit">
             Sign Up
           </Button>
         </Form>

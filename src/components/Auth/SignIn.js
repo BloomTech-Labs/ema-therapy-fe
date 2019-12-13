@@ -5,7 +5,6 @@ import { useAuth } from '../../utils/dataStore';
 import StyledSignIn from './auth.styles';
 import splash from '../../assets/splash-image.png';
 import google from '../../assets/google.png';
-
 import { userLogin } from './axiosAuth/axios';
 
 const inputStyles = {
@@ -17,6 +16,7 @@ const SignIn = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useAuth();
   const history = useHistory();
   const [credentials, setCredentials] = useState({ email: '', password: '' });
+  const [loading, setLoading] = useState(false);
 
   const saveUserAndRedirect = (returnedUser) => {
     setUser(returnedUser);
@@ -30,6 +30,7 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
     userLogin(credentials, saveUserAndRedirect);
   };
 
@@ -68,7 +69,7 @@ const SignIn = () => {
           <div className="forgot-password">
             <Link to="/forgot-password">Forgot Password?</Link>
           </div>
-          <Button className="btn login" htmlType="submit">
+          <Button loading={loading} className="btn login" htmlType="submit">
             Log In
           </Button>
           <p className="or">or</p>
