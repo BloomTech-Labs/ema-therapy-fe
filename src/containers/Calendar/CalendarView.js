@@ -17,13 +17,14 @@ const getMoodsByDay = (dateSelected, moodData) => {
 };
 
 const getMoodsByMonth = (date, moodData) => {
+  const dateTracker = new Date(date.getTime());
   const monthOfMoods = [];
   const monthData = moodData.filter((mood) =>
-    isSameMonth(+mood.createdAt, date),
+    isSameMonth(+mood.createdAt, dateTracker),
   );
-  for (let i = 1, d = getDaysInMonth(date); i <= d; i += 1) {
+  for (let i = 1, d = getDaysInMonth(dateTracker); i <= d; i += 1) {
     const moodsToday = monthData.filter((mood) =>
-      isSameDay(+mood.createdAt, date.setDate(i)),
+      isSameDay(+mood.createdAt, dateTracker.setDate(i)),
     );
     monthOfMoods.push(moodsToday);
   }
