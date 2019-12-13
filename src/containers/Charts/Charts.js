@@ -7,7 +7,7 @@ const Charts = () => {
   return (
     <StyledCharts>
       <ChartViews />
-      <MobileNavBar />
+      {/* <MobileNavBar /> */}
     </StyledCharts>
   );
 };
