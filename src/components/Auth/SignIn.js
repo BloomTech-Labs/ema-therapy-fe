@@ -5,8 +5,7 @@ import { useAuth } from '../../utils/dataStore';
 import StyledSignIn from './auth.styles';
 import splash from '../../assets/splash-image.png';
 import google from '../../assets/google.png';
-
-import { userLogin } from './axiosAuth/axios';
+import { userLogin, postGoogleUser } from './axiosAuth/axios';
 
 const inputStyles = {
   fontSize: '16px',
@@ -74,7 +73,7 @@ const SignIn = () => {
           <p className="or">or</p>
           <Button
             className="btn google"
-            onClick={() => console.log('login w goog goes here')}
+            href="http://localhost:5000/auth/google"
           >
             <img
               src={google}
