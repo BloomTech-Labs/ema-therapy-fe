@@ -15,7 +15,7 @@ const inputStyles = {
 };
 
 const SignIn = () => {
-  const { isAuthenticated, setIsAuthenticated, setUser, user } = useAuth();
+  const { isAuthenticated, setIsAuthenticated, setUser } = useAuth();
   const history = useHistory();
   const [credentials, setCredentials] = useState({
     firstName: '',

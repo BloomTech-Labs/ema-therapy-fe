@@ -5,7 +5,6 @@ const parseJwt = (token) => {
   try {
     return JSON.parse(atob(token.split('.')[1]));
   } catch (e) {
-    console.log('parseJwt error:', e);
     return null;
   }
 };
@@ -15,10 +14,8 @@ export const userLogin = (credentials, cbOnSuccess) => {
   axios
     .post(`${AXIOS_URI}/auth/login`, credentials)
     .then((res) => {
-      console.log(res);
       localStorage.setItem('token', res.data.token);
       const user = parseJwt(res.data.token);
-      console.log(user);
       cbOnSuccess(user);
     })
     .catch((err) => {
@@ -31,10 +28,8 @@ export const postUser = (credentials, cbOnSuccess) => {
   axios
     .post(`${AXIOS_URI}/auth/register`, credentials)
     .then((res) => {
-      console.log(res);
       localStorage.setItem('token', res.data.token);
       const user = parseJwt(res.data.token);
-      console.log('signup', user);
       cbOnSuccess(user);
     })
     .catch((err) => {
@@ -47,7 +42,6 @@ export const postGoogleUser = () => {
   axios
     .post(`${AXIOS_URI}/auth/google`)
     .then((res) => {
-      console.log(res);
       localStorage.setItem('token', res.data.token);
     })
     .catch((err) => {

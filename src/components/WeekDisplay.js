@@ -16,7 +16,6 @@ function WeekDisplay() {
 
   const { loading, error, data } = useQuery(checkForUserAndGetMoodsQuery, {
     variables: {
-      // sub: user.sub,
       email: user.email,
       firstName: user.given_name,
       lastName: user.family_name,

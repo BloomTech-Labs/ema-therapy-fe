@@ -27,8 +27,6 @@ function App() {
     uri: GRAPHQL_URI,
     request: async (operation) => {
       const { token } = localStorage;
-
-      // const token = await getTokenSilently();
       operation.setContext({
         headers: {
           authorization: token ? `${token}` : '',

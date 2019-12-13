@@ -15,12 +15,12 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const initAuth = async () => {
-      const isAuthenticated = false; // await auth0FromHook.isAuthenticated();
+      const isAuthenticated = false;
 
       setIsAuthenticated(isAuthenticated);
 
       if (isAuthenticated) {
-        const user = null; // await auth0FromHook.getUser();
+        const user = null;
         setUser(user);
       }
 

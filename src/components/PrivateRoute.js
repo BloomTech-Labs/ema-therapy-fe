@@ -11,12 +11,6 @@ const PrivateRoute = ({ component: Component, path, ...rest }) => {
     if (loading || isAuthenticated) {
       return;
     }
-    // const fn = async () => {
-    //   await loginWithRedirect({
-    //     appState: { targetUrl: path },
-    //   });
-    // };
-    // fn();
     history.push('/signin');
   }, [loading, isAuthenticated, history]);
 

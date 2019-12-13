@@ -10,8 +10,8 @@ import Dashboard from '../Dashboard';
 import styles from '../../styles/theme';
 
 const GET_IS_SHARING_LOCATION = gql`
-  query($sub: ID) {
-    user(sub: $sub) {
+  query($email: String) {
+    user(email: $email) {
       isSharingLocation
       id
     }

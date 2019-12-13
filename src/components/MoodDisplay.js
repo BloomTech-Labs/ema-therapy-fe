@@ -38,7 +38,6 @@ function MoodDisplay() {
     } else {
       getMoods({
         variables: {
-          // sub: user.sub,
           email: user.email,
           firstName: user.given_name,
           lastName: user.family_name,

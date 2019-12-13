@@ -1,18 +1,5 @@
 import { gql } from 'apollo-boost';
 
-// export const getMoodsQuery = gql`
-//   query($sub: ID) {
-//     user(sub: $sub) {
-//       moods {
-//         mood
-//         text
-//         anxietyLevel
-//         sleep
-//       }
-//     }
-//   }
-// `;
-
 export const getMoodsQuery = gql`
   query($email: String) {
     user(email: $email) {
@@ -51,27 +38,6 @@ export const addMoodMutation = gql`
     }
   }
 `;
-
-// export const checkForUserAndGetMoodsQuery = gql`
-//   query($sub: ID, $email: String, $firstName: String, $lastName: String) {
-//     user(sub: $sub, email: $email, firstName: $firstName, lastName: $lastName) {
-//       sub
-//       email
-//       firstName
-//       lastName
-//       id
-//       moods {
-//         mood
-//         anxietyLevel
-//         text
-//         sleep
-//         createdAt
-//         id
-//         weather
-//       }
-//     }
-//   }
-// `;
 
 export const checkForUserAndGetMoodsQuery = gql`
   query($email: String, $firstName: String, $lastName: String) {
@@ -115,15 +81,6 @@ export const addUserMutation = gql`
     }
   }
 `;
-
-// export const getUserIdAndLocation = gql`
-//   query($sub: ID) {
-//     user(sub: $sub) {
-//       isSharingLocation
-//       id
-//     }
-//   }
-// `;
 
 export const getUserIdAndLocation = gql`
   query($email: String) {

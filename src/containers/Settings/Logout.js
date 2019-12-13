@@ -2,8 +2,6 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../utils/dataStore';
 
-// backend needs a /logout endpoint
-
 const Logout = () => {
   const { setUser, setIsAuthenticated, setLoading } = useAuth();
   const history = useHistory();

@@ -5,12 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import App from './containers/App';
 import 'sanitize.css/sanitize.css';
 import { AuthProvider } from './utils/dataStore';
-import {
-  AUTH0_DOMAIN,
-  AUTH0_CLIENT_ID,
-  AUTH0_AUDIENCE,
-  GA_ID,
-} from './utils/config';
+import { GA_ID } from './utils/config';
 import theme from './styles/theme';
 import * as serviceWorker from './utils/serviceWorker';
 import GAListener from './components/GAListener';
