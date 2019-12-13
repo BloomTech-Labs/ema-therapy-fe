@@ -1,5 +1,5 @@
 import React from 'react';
-import { Line, afterFit } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import PropTypes from 'prop-types';
 
 function MoodGraph({ arrayOfDays }) {
@@ -40,11 +40,9 @@ function MoodGraph({ arrayOfDays }) {
     scales: {
       xAxes: [
         {
-          // afterFit: function(scale) {
-          //   scale.width = 300
-          // },
           ticks: {
             fontColor: 'rgb(0,145,122)',
+            padding: 15,
           },
           gridLines: {
             color: 'rgba(0,0,0,0)',
@@ -60,11 +58,9 @@ function MoodGraph({ arrayOfDays }) {
       ],
       yAxes: [
         {
-          // afterFit: function(scale) {
-          //   scale.width = 300
-          // },
           ticks: {
             fontColor: 'rgb(0,145,122)',
+            padding: 10,
           },
           gridLines: {
             color: 'rgba(0,0,0,0)',
@@ -85,5 +81,14 @@ function MoodGraph({ arrayOfDays }) {
     </div>
   );
 }
-
+MoodGraph.propTypes = {
+  arrayOfDays: PropTypes.arrayOf(
+    PropTypes.shape({
+      mood: PropTypes.string,
+      anxietyLevel: PropTypes.number,
+      sleep: PropTypes.number,
+      createdAt: PropTypes.string,
+    }),
+  ).isRequired,
+};
 export default MoodGraph;

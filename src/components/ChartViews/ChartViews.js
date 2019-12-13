@@ -76,6 +76,7 @@ const ChartViews = () => {
       <ReactSwipe
         className="carousel"
         swipeOptions={{ continuous: false }}
+        // eslint-disable-next-line no-return-assign
         ref={(el) => (reactSwipeEl = el)}
       >
         <div>
@@ -88,8 +89,12 @@ const ChartViews = () => {
           <SleepGraph arrayOfDays={getArrayOfDays(moods)} />
         </div>
       </ReactSwipe>
-      <button onClick={() => reactSwipeEl.next()}>Next</button>
-      <button onClick={() => reactSwipeEl.prev()}>Previous</button>
+      <button type="button" onClick={() => reactSwipeEl.next()}>
+        Next
+      </button>
+      <button type="button" onClick={() => reactSwipeEl.prev()}>
+        Previous
+      </button>
     </div>
   );
 };
