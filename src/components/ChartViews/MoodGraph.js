@@ -1,6 +1,7 @@
 import React from 'react';
 import { Line } from 'react-chartjs-2';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 function MoodGraph({ arrayOfDays }) {
   const dataForGraph = {
@@ -69,18 +70,26 @@ function MoodGraph({ arrayOfDays }) {
           },
           display: true,
           type: 'category',
-          labels: ['happy', 'good', 'fine', 'normal', 'sad', 'unhappy'],
+          labels: ['happy', 'fine', 'normal', 'sad', 'unhappy'],
         },
       ],
     },
   };
   return (
     <div>
-      <h2>Week Mood</h2>
-      <Line data={dataForGraph} options={options} />
+      <h2>Mood Chart</h2>
+      <GraphWrapper>
+        <Line data={dataForGraph} options={options} />
+      </GraphWrapper>
     </div>
   );
 }
+
+const GraphWrapper = styled.div`
+  background-color: white;
+  padding: 5px;
+  border-radius: 10px;
+`;
 MoodGraph.propTypes = {
   arrayOfDays: PropTypes.arrayOf(
     PropTypes.shape({

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import format from 'date-fns/format';
+import styled from 'styled-components';
 import ReactSwipe from 'react-swipe';
 import { useQuery } from '@apollo/react-hooks';
 import { checkForUserAndGetMoodsQuery } from '../../queries';
@@ -9,6 +10,8 @@ import { useAuth0 } from '../../utils/react-auth0-spa';
 import MoodGraph from './MoodGraph';
 import AnxietyGraph from './AnxietyGraph';
 import SleepGraph from './SleepGraph';
+import Charts from '../../containers/Charts';
+import MoodePie from './MoodPie';
 
 const ChartViews = () => {
   let reactSwipeEl;
@@ -40,7 +43,7 @@ const ChartViews = () => {
     }
   }, [data]);
 
-  // function for utils to collect days and averages for days
+  // function perhaps for utils to collect days and averages for days
 
   const getArrayOfDays = (moodData) => {
     const arrayOfDays = moods.map((day) => {
@@ -72,31 +75,57 @@ const ChartViews = () => {
   if (error) return <p>{error.message}</p>;
 
   return loading ? null : (
-    <div>
-      <ReactSwipe
-        className="carousel"
-        swipeOptions={{ continuous: false }}
-        // eslint-disable-next-line no-return-assign
-        ref={(el) => (reactSwipeEl = el)}
-      >
-        <div>
-          <MoodGraph arrayOfDays={getArrayOfDays(moods)} />
-        </div>
-        <div>
-          <AnxietyGraph arrayOfDays={getArrayOfDays(moods)} />
-        </div>
-        <div>
-          <SleepGraph arrayOfDays={getArrayOfDays(moods)} />
-        </div>
-      </ReactSwipe>
-      <button type="button" onClick={() => reactSwipeEl.next()}>
-        Next
-      </button>
-      <button type="button" onClick={() => reactSwipeEl.prev()}>
-        Previous
-      </button>
-    </div>
+    <Charts>
+      <Wrapper>
+        <ReactSwipe
+          className="carousel"
+          swipeOptions={{ continuous: false }}
+          // eslint-disable-next-line no-return-assign
+          ref={(el) => (reactSwipeEl = el)}
+        >
+          <div>
+            <MoodGraph arrayOfDays={getArrayOfDays(moods)} />
+          </div>
+          <div>
+            <AnxietyGraph arrayOfDays={getArrayOfDays(moods)} />
+          </div>
+          <div>
+            <SleepGraph arrayOfDays={getArrayOfDays(moods)} />
+          </div>
+        </ReactSwipe>
+        <button
+          className="temp-slide-button"
+          type="button"
+          onClick={() => reactSwipeEl.next()}
+        >
+          next
+        </button>
+        <button
+          className="temp-slide-button"
+          type="button"
+          onClick={() => reactSwipeEl.prev()}
+        >
+          previous
+        </button>
+        <MoodePie arrayOfDays={getArrayOfDays(moods)} />
+      </Wrapper>
+    </Charts>
   );
 };
+
+const Wrapper = styled.div`
+  background-color: #f0f8f7;
+  padding: 27px 16px 80px;
+  min-height: 100vh;
+
+  .temp-slide-button {
+    background-color: #f0f8f7;
+    border: none;
+    font-size: 10px;
+    :focus {
+      outline: none;
+    }
+  }
+`;
 
 export default ChartViews;
