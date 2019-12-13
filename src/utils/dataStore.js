@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect, useContext } from 'react';
+import { parseJwt } from '../components/Auth/axiosAuth/axios';
 
 // const DEFAULT_REDIRECT_CALLBACK = () =>
 //   window.history.replaceState({}, document.title, window.location.pathname);
@@ -9,22 +10,18 @@ import React, { useState, useEffect, useContext } from 'react';
 export const AuthContext = React.createContext();
 export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState();
-  const [user, setUser] = useState();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const initAuth = async () => {
-      const isAuthenticated = false;
-
-      setIsAuthenticated(isAuthenticated);
-
-      if (isAuthenticated) {
-        const user = null;
-        setUser(user);
+      if (localStorage.token) {
+        const userFromToken = parseJwt(localStorage.token);
+        setUser(userFromToken);
+        setLoading(false);
+        setIsAuthenticated(true);
       }
-
-      setLoading(false);
     };
     initAuth();
     // eslint-disable-next-line
