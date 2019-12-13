@@ -1,9 +1,9 @@
 // src/components/Profile.js
 import React from 'react';
-import { useAuth0 } from '../utils/react-auth0-spa';
+import { useAuth } from '../utils/dataStore';
 
 const Profile = () => {
-  const { loading, user } = useAuth0();
+  const { loading, user } = useAuth();
 
   if (loading || !user) {
     return <div>Loading...</div>;

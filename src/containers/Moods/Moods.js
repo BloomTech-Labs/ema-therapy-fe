@@ -24,7 +24,7 @@ function Moods() {
 export default Moods;
 
 const StyledLogo = styled.h1`
-  font-size: 24px;
+  font-size: 21px;
   font-weight: 600;
   color: #0c423b;
   margin: unset;
