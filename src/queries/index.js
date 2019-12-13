@@ -1,8 +1,8 @@
 import { gql } from 'apollo-boost';
 
 export const getMoodsQuery = gql`
-  query($sub: ID) {
-    user(sub: $sub) {
+  query($email: String) {
+    user(email: $email) {
       moods {
         mood
         text
@@ -40,9 +40,8 @@ export const addMoodMutation = gql`
 `;
 
 export const checkForUserAndGetMoodsQuery = gql`
-  query($sub: ID, $email: String, $firstName: String, $lastName: String) {
-    user(sub: $sub, email: $email, firstName: $firstName, lastName: $lastName) {
-      sub
+  query($email: String, $firstName: String, $lastName: String) {
+    user(email: $email, firstName: $firstName, lastName: $lastName) {
       email
       firstName
       lastName
@@ -61,20 +60,9 @@ export const checkForUserAndGetMoodsQuery = gql`
 `;
 
 export const addUserMutation = gql`
-  mutation(
-    $email: String!
-    $sub: String!
-    $firstName: String
-    $lastName: String
-  ) {
-    addUser(
-      email: $email
-      sub: $sub
-      firstName: $firstName
-      lastName: $lastName
-    ) {
+  mutation($email: String!, $firstName: String, $lastName: String) {
+    addUser(email: $email, firstName: $firstName, lastName: $lastName) {
       email
-      sub
       firstName
       lastName
       createdAt
@@ -84,8 +72,8 @@ export const addUserMutation = gql`
 `;
 
 export const getUserIdAndLocation = gql`
-  query($sub: ID) {
-    user(sub: $sub) {
+  query($email: String) {
+    user(email: $email) {
       isSharingLocation
       id
     }

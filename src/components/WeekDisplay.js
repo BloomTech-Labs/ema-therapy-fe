@@ -5,17 +5,17 @@ import { Link } from 'react-router-dom';
 import { Spin } from 'antd';
 import styled from 'styled-components';
 import { checkForUserAndGetMoodsQuery } from '../queries';
-import { useAuth0 } from '../utils/react-auth0-spa';
+import { useAuth } from '../utils/dataStore';
 import weekOfMoods from '../utils/weekOfMoods';
 import MoodPreview from './MoodPreview';
 import { MoodsPrevWeekContext } from '../contexts/MoodsPrevWeekContext';
 import styles from '../styles/theme';
 
 function WeekDisplay() {
-  const { user } = useAuth0();
+  const { user } = useAuth();
+
   const { loading, error, data } = useQuery(checkForUserAndGetMoodsQuery, {
     variables: {
-      sub: user.sub,
       email: user.email,
       firstName: user.given_name,
       lastName: user.family_name,
