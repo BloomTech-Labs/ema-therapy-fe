@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import format from 'date-fns/format';
+import ReactSwipe from 'react-swipe';
 import { useQuery } from '@apollo/react-hooks';
 import { checkForUserAndGetMoodsQuery } from '../../queries';
 import moodToString from '../../utils/moodToString';
@@ -10,6 +11,7 @@ import AnxietyGraph from './AnxietyGraph';
 import SleepGraph from './SleepGraph';
 
 const ChartViews = () => {
+  let reactSwipeEl;
   // query for user data
 
   const { user } = useAuth0();
@@ -71,12 +73,23 @@ const ChartViews = () => {
 
   return loading ? null : (
     <div>
-      {console.log('moods in chartsview', moods)}
-      {console.log('arrayOfDays in chartsview', getArrayOfDays(moods))}
-
-      <MoodGraph arrayOfDays={getArrayOfDays(moods)} />
-      <AnxietyGraph arrayOfDays={getArrayOfDays(moods)} />
-      <SleepGraph arrayOfDays={getArrayOfDays(moods)} />
+      <ReactSwipe
+        className="carousel"
+        swipeOptions={{ continuous: false }}
+        ref={(el) => (reactSwipeEl = el)}
+      >
+        <div>
+          <MoodGraph arrayOfDays={getArrayOfDays(moods)} />
+        </div>
+        <div>
+          <AnxietyGraph arrayOfDays={getArrayOfDays(moods)} />
+        </div>
+        <div>
+          <SleepGraph arrayOfDays={getArrayOfDays(moods)} />
+        </div>
+      </ReactSwipe>
+      <button onClick={() => reactSwipeEl.next()}>Next</button>
+      <button onClick={() => reactSwipeEl.prev()}>Previous</button>
     </div>
   );
 };
