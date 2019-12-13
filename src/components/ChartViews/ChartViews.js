@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import format from 'date-fns/format';
 import styled from 'styled-components';

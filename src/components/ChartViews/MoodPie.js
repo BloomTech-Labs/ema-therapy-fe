@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable array-callback-return */
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
 import PropTypes from 'prop-types';

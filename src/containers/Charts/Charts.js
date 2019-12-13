@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import MobileNavBar from '../../components/MobileNavBar';
-import ChartViews from '../../components/ChartViews';
+// import ChartViews from '../../components/ChartViews';
 
 const Charts = ({ children }) => {
   return (
