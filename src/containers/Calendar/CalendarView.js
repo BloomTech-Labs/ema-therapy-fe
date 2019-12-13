@@ -27,9 +27,14 @@ const CalendarView = () => {
 
   const [daySelected, setDaySelected] = useState(null);
   const [moodsToDisplay, setMoodsToDisplay] = useState(null);
+  const [activeStartDate, setActiveStartDate] = useState(new Date());
 
   const handleDaySelected = (day) => {
     setDaySelected(day);
+  };
+
+  const handleActiveStartDate = (view) => {
+    setActiveStartDate(view);
   };
 
   useEffect(() => {
@@ -48,7 +53,11 @@ const CalendarView = () => {
           exact
           path="/calendar"
           render={() => (
-            <CalendarDisplay handleDaySelected={handleDaySelected} />
+            <CalendarDisplay
+              handleDaySelected={handleDaySelected}
+              activeStartDate={activeStartDate}
+              handleActiveStartDate={handleActiveStartDate}
+            />
           )}
         />
         <Route
