@@ -7,7 +7,7 @@ import styles from '../../styles/theme';
 import splash from '../../assets/splash-leaves.png';
 
 const Welcome = () => {
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
+  // const { isAuthenticated, loginWithRedirect } = useAuth0();
   const history = useHistory();
   return (
     <StyledWelcome>
@@ -33,7 +33,7 @@ const Welcome = () => {
         </StyledNav>
       </LoginWrapper>
 
-      {isAuthenticated && <Redirect to="/dashboard" />}
+      {/* {isAuthenticated && <Redirect to="/dashboard" />} */}
     </StyledWelcome>
   );
 };

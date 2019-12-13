@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import App from './containers/App';
 import 'sanitize.css/sanitize.css';
-// import { Auth0Provider } from './utils/react-auth0-spa';
+import { AuthProvider } from './utils/dataStore';
 import {
   AUTH0_DOMAIN,
   AUTH0_CLIENT_ID,
@@ -28,19 +28,19 @@ import GAListener from './components/GAListener';
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    {/* <Auth0Provider */}
-    {/* domain={AUTH0_DOMAIN}
-      client_id={AUTH0_CLIENT_ID}
-      redirect_uri={window.location.origin}
-      audience={AUTH0_AUDIENCE}
-      onRedirectCallback={onRedirectCallback}
-    > */}
-    <Router>
-      <GAListener trackingId={GA_ID}>
-        <App />
-      </GAListener>
-    </Router>
-    {/* </Auth0Provider> */}
+    <AuthProvider
+    // domain={AUTH0_DOMAIN}
+    //   client_id={AUTH0_CLIENT_ID}
+    //   redirect_uri={window.location.origin}
+    //   audience={AUTH0_AUDIENCE}
+    //   onRedirectCallback={onRedirectCallback}
+    >
+      <Router>
+        <GAListener trackingId={GA_ID}>
+          <App />
+        </GAListener>
+      </Router>
+    </AuthProvider>
   </ThemeProvider>,
   document.getElementById('root'),
 );

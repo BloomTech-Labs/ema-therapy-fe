@@ -39,10 +39,30 @@ export const addMoodMutation = gql`
   }
 `;
 
+// export const checkForUserAndGetMoodsQuery = gql`
+//   query($sub: ID, $email: String, $firstName: String, $lastName: String) {
+//     user(sub: $sub, email: $email, firstName: $firstName, lastName: $lastName) {
+//       sub
+//       email
+//       firstName
+//       lastName
+//       id
+//       moods {
+//         mood
+//         anxietyLevel
+//         text
+//         sleep
+//         createdAt
+//         id
+//         weather
+//       }
+//     }
+//   }
+// `;
+
 export const checkForUserAndGetMoodsQuery = gql`
-  query($sub: ID, $email: String, $firstName: String, $lastName: String) {
-    user(sub: $sub, email: $email, firstName: $firstName, lastName: $lastName) {
-      sub
+  query($email: String, $firstName: String, $lastName: String) {
+    user(email: $email, firstName: $firstName, lastName: $lastName) {
       email
       firstName
       lastName
