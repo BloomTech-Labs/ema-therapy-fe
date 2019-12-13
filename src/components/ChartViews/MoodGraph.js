@@ -87,7 +87,7 @@ function MoodGraph({ arrayOfDays }) {
 
 const GraphWrapper = styled.div`
   background-color: white;
-  padding: 5px;
+  padding: 20px 5px;
   border-radius: 10px;
 `;
 MoodGraph.propTypes = {

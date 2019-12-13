@@ -56,6 +56,7 @@ const MoodPie = ({ arrayOfDays }) => {
     ],
   };
   const options = {
+    cutoutPercentage: 90,
     legend: {
       display: true,
       position: 'bottom',
