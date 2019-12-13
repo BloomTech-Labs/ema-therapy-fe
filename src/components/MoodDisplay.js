@@ -22,6 +22,7 @@ function MoodDisplay() {
   const history = useHistory();
 
   useEffect(() => {
+    console.log('user in moodDisplay:', user);
     // if moods exist in context, find the mood that matches the day from url and set to state
     if (moods) {
       for (let i = 0; i < moods.length; i += 1) {

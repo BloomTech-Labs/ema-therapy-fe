@@ -1,8 +1,21 @@
 import { gql } from 'apollo-boost';
 
+// export const getMoodsQuery = gql`
+//   query($sub: ID) {
+//     user(sub: $sub) {
+//       moods {
+//         mood
+//         text
+//         anxietyLevel
+//         sleep
+//       }
+//     }
+//   }
+// `;
+
 export const getMoodsQuery = gql`
-  query($sub: ID) {
-    user(sub: $sub) {
+  query($email: String) {
+    user(email: $email) {
       moods {
         mood
         text
@@ -103,9 +116,18 @@ export const addUserMutation = gql`
   }
 `;
 
+// export const getUserIdAndLocation = gql`
+//   query($sub: ID) {
+//     user(sub: $sub) {
+//       isSharingLocation
+//       id
+//     }
+//   }
+// `;
+
 export const getUserIdAndLocation = gql`
-  query($sub: ID) {
-    user(sub: $sub) {
+  query($email: String) {
+    user(email: $email) {
       isSharingLocation
       id
     }

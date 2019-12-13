@@ -31,7 +31,7 @@ function App() {
       // const token = await getTokenSilently();
       operation.setContext({
         headers: {
-          authorization: token ? `Bearer ${token}` : '',
+          authorization: token ? `${token}` : '',
         },
       });
     },

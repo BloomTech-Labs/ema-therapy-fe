@@ -3,8 +3,8 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect, useContext } from 'react';
 
-const DEFAULT_REDIRECT_CALLBACK = () =>
-  window.history.replaceState({}, document.title, window.location.pathname);
+// const DEFAULT_REDIRECT_CALLBACK = () =>
+//   window.history.replaceState({}, document.title, window.location.pathname);
 
 export const AuthContext = React.createContext();
 export const useAuth = () => useContext(AuthContext);

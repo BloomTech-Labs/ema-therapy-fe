@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import ReactGA from 'react-ga';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
-import { useAuth0 } from '../../utils/react-auth0-spa';
+import { useAuth } from '../../utils/dataStore';
 import {
   addMoodMutation,
   getUserIdAndLocation,
@@ -19,10 +19,10 @@ import ladybug from '../../assets/ladybug.svg';
 const FormViews = () => {
   const history = useHistory();
   const { currentWeather } = useCurrentWeather();
-  const { user } = useAuth0();
+  const { user } = useAuth();
   const [addMood] = useMutation(addMoodMutation);
   const { loading, error, data } = useQuery(getUserIdAndLocation, {
-    variables: { sub: user.sub },
+    variables: { email: user.email },
   });
   const [view, setView] = useState('mood');
   const [input, setInput] = useState({
@@ -95,7 +95,7 @@ const FormViews = () => {
       refetchQueries: [
         {
           query: checkForUserAndGetMoodsQuery,
-          variables: { sub: user.sub },
+          variables: { email: user.email },
         },
       ],
       awaitRefetchQueries: true,

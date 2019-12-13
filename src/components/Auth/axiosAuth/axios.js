@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
 import { AXIOS_URI } from '../../../utils/config';
 
 const parseJwt = (token) => {
   try {
     return JSON.parse(atob(token.split('.')[1]));
   } catch (e) {
+    console.log('parseJwt error:', e);
     return null;
   }
 };
@@ -33,7 +33,9 @@ export const postUser = (credentials, cbOnSuccess) => {
     .then((res) => {
       console.log(res);
       localStorage.setItem('token', res.data.token);
-      cbOnSuccess();
+      const user = parseJwt(res.data.token);
+      console.log(user);
+      cbOnSuccess(user);
     })
     .catch((err) => {
       console.log(`unable to register user: ${err}`);
