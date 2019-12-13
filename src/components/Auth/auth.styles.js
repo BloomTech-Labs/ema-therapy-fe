@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import styles from '../../styles/theme';
-import splash from '../../assets/splash.png';
+import splash from '../../assets/splash-image.png';
 
 const StyledSignIn = styled.div`
   max-width: 500px;
@@ -8,18 +8,17 @@ const StyledSignIn = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   background-color: ${styles.darkJungleGreen};
-  background: url(${splash}) no-repeat;
+  /* background: url(${splash}) no-repeat;
   background-position: top 0px left 0px;
-  background-size: contain;
-  background-size: 115%;
+  background-size: contain; */
   color: white;
 
   .form-wrapper {
     background: white;
-    padding: 43px 17px;
-    padding-top: 10px;
+    padding: 10px 17px 43px 17px;
+    height: 100%;
   }
 
   h2 {
@@ -27,18 +26,12 @@ const StyledSignIn = styled.div`
     font-weight: 600;
     font-size: 28px;
     padding-left: 7px;
-    margin-top: 100px;
+    margin-top: 20%;
     margin-left: 45px;
     line-height: 1.2;
   }
 
-  p {
-    color: ${styles.tealGreen};
-    text-align: right;
-    font-size: 12px;
-    line-height: 1.5;
-    margin-top: 5px;
-  }
+
 
   .btn {
     height: 48px;
@@ -53,11 +46,62 @@ const StyledSignIn = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &.login, &.signup {
+      background: ${styles.tealGreen};
+      color: white;
+    }
+
+    &.google {
+      background: white;
+      border: 1px solid ${styles.tealGreen};
+      color: ${styles.tealGreen};
+    }
   }
 
-  .login {
-    background: ${styles.tealGreen};
-    color: white;
+  .divide {
+    text-align: center;
+    color: #BFBFBF;
+    margin: 8px 0;
+  }
+
+  .forgot-password {
+    color: ${styles.tealGreen};
+    text-align: right;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-top: 5px;
+    margin-bottom:30px;
+  }
+
+  .account {
+    font-size: 12px;
+    color: #BFBFBF;
+    justify-content: center;
+    display: flex;
+
+    a {
+      margin-left: 4px;
+    }
+  }
+
+  .ant-input-affix-wrapper .ant-input:not(:first-child) {
+    padding-left: 37px;
+  }
+
+  .or {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    color: #BFBFBF;
+  }
+  .or:after, .or:before {
+    content: “”;
+    display: block;
+    background: #B4B4B4;
+    width: 30%;
+    height: 1px;
+    margin: 0 10px;
   }
 `;
 

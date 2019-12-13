@@ -12,7 +12,8 @@ const PrivateRoute = ({ component: Component, path, ...rest }) => {
       return;
     }
     history.push('/signin');
-  }, [loading, isAuthenticated, history]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, isAuthenticated]);
 
   const render = (props) =>
     isAuthenticated === true ? <Component {...props} /> : null;

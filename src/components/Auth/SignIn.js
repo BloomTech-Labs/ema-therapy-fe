@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { Button, Input, Form } from 'antd';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Button, Input, Form, Icon } from 'antd';
+import { Redirect, useHistory, Link } from 'react-router-dom';
 import { useAuth } from '../../utils/dataStore';
 import StyledSignIn from './auth.styles';
+import splash from '../../assets/splash-image.png';
+import google from '../../assets/google.png';
 
 import { userLogin } from './axiosAuth/axios';
 
 const inputStyles = {
-  height: '50px',
   fontSize: '16px',
   lineHeight: 1.5,
-  padding: '13px 12px',
 };
 
 const SignIn = () => {
@@ -35,57 +35,60 @@ const SignIn = () => {
 
   return (
     <StyledSignIn>
-      <h2>
-        Welcome
-        <br />
-        Back
-      </h2>
-      <div style={{ overflow: 'hidden' }}>
-        <svg
-          width="110%"
-          height="75"
-          viewBox="0 0 517 75"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          style={{ marginBottom: '-1.1em', marginLeft: '-2.3em' }}
-        >
-          <path
-            d="M516 50.2188V73.8681H1V55.8199C178.176 -32.0334 300.416 0.657511 516 50.2188Z"
-            fill="white"
-            stroke="white"
+      <div style={{ marginBottom: '-1px' }}>
+        <h2 style={{ position: 'absolute' }}>
+          Welcome
+          <br />
+          Back
+        </h2>
+        <img src={splash} alt="leaves" style={{ width: '100%' }} />
+      </div>
+      <div className="form-wrapper">
+        <Form onSubmit={handleSubmit}>
+          <Input
+            style={{ ...inputStyles, marginBottom: '15px' }}
+            placeholder="Email"
+            size="large"
+            name="email"
+            value={credentials.email}
+            type="text"
+            onChange={handleChange}
+            prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
           />
-        </svg>
-
-        <div className="form-wrapper">
-          <Form onSubmit={handleSubmit}>
-            <Input
-              style={{ ...inputStyles, marginBottom: '15px' }}
-              placeholder="Email"
-              size="large"
-              name="email"
-              value={credentials.email}
-              type="text"
-              onChange={handleChange}
+          <Input.Password
+            style={inputStyles}
+            placeholder="Password"
+            size="large"
+            name="password"
+            value={credentials.password}
+            type="password"
+            onChange={handleChange}
+            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+          />
+          <div className="forgot-password">
+            <Link to="/forgot-password">Forgot Password?</Link>
+          </div>
+          <Button className="btn login" htmlType="submit">
+            Log In
+          </Button>
+          <p className="or">or</p>
+          <Button
+            className="btn google"
+            onClick={() => console.log('login w goog goes here')}
+          >
+            <img
+              src={google}
+              alt="google"
+              style={{ height: 32, marginRight: 24 }}
             />
-            <Input
-              style={inputStyles}
-              placeholder="Password"
-              size="large"
-              name="password"
-              value={credentials.password}
-              type="password"
-              onChange={handleChange}
-            />
-            <p>Forgot Password?</p>
-            <Button className="btn login" htmlType="submit">
-              Log In
-            </Button>
-            <Button className="btn" onClick={() => history.push('/signup')}>
-              Sign Up
-            </Button>
-          </Form>
+            Sign in with Google
+          </Button>
+        </Form>
+        <div className="account">
+          <p>Don&apos;t have an account?</p> <Link to="/signup">Sign Up</Link>
         </div>
       </div>
+
       {isAuthenticated && <Redirect to="/dashboard" />}
     </StyledSignIn>
   );
