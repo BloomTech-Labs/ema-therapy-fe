@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { Button, Input, Form } from 'antd';
-import { Redirect, Link } from 'react-router-dom';
-import { useAuth0 } from '../../utils/react-auth0-spa';
+import { Button, Input, Form, Icon } from 'antd';
+import { Redirect, useHistory, Link } from 'react-router-dom';
+import { useAuth } from '../../utils/dataStore';
 import StyledSignIn from './auth.styles';
 import splash from '../../assets/splash-image.png';
 import google from '../../assets/google.png';
+
+import { postUser } from './axiosAuth/axios';
 
 const inputStyles = {
   height: '50px',
@@ -15,15 +17,27 @@ const inputStyles = {
 };
 
 const SignIn = () => {
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
-  const [user, setUser] = useState({ name: '', email: '', password: '' });
+  const { isAuthenticated, setIsAuthenticated, setUser } = useAuth();
+  const history = useHistory();
+  const [credentials, setCredentials] = useState({
+    firstName: '',
+    email: '',
+    password: '',
+  });
 
   const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
+
+  const saveUserAndRedirect = (returnedUser) => {
+    setUser(returnedUser);
+    setIsAuthenticated(true);
+    history.push('/dashboard');
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
+    postUser(credentials, saveUserAndRedirect);
   };
 
   return (
@@ -44,8 +58,8 @@ const SignIn = () => {
             placeholder="Name"
             type="text"
             size="large"
-            name="name"
-            value={user.name}
+            name="firstName"
+            value={credentials.firstName}
             onChange={handleChange}
           />
           <Input
@@ -54,24 +68,27 @@ const SignIn = () => {
             type="text"
             size="large"
             name="email"
-            value={user.email}
+            value={credentials.email}
             onChange={handleChange}
+            prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
           />
-          <Input
-            style={{ ...inputStyles, marginBottom: 28 }}
+          <Input.Password
+            style={{ ...inputStyles, marginBottom: 0 }}
             placeholder="Password"
             type="password"
             size="large"
             name="password"
-            value={user.password}
+            value={credentials.password}
             onChange={handleChange}
+            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
           />
           <Button className="btn signup" htmlType="submit">
             Sign Up
           </Button>
         </Form>
         <div className="account">
-          <p>Already have an account?</p> <Link to="/signin">Sign In</Link>
+          <p>Already have an account?</p>
+          <Link to="/signin">Sign In</Link>
         </div>
       </div>
 

@@ -1,13 +1,14 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button } from 'antd';
-import { useAuth0 } from '../../utils/react-auth0-spa';
+import { useAuth } from '../../utils/dataStore';
 import styles from '../../styles/theme';
 import splash from '../../assets/splash-leaves.png';
 
 const Welcome = () => {
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
+  const { isAuthenticated } = useAuth();
+  const history = useHistory();
   return (
     <StyledWelcome>
       <h2>MoodBloom</h2>
@@ -17,10 +18,16 @@ const Welcome = () => {
           <p>Flourish into a healthier, happier you</p>
         </div>
         <StyledNav>
-          <Button className="btn signup" onClick={() => loginWithRedirect({})}>
+          <Button
+            className="btn signup"
+            onClick={() => history.push('/signup')}
+          >
             Sign up
           </Button>
-          <Button className="btn signin" onClick={() => loginWithRedirect({})}>
+          <Button
+            className="btn signin"
+            onClick={() => history.push('/signin')}
+          >
             Sign in
           </Button>
         </StyledNav>

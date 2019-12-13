@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Input, Form, Icon } from 'antd';
-import { Redirect, Link } from 'react-router-dom';
-import { useAuth0 } from '../../utils/react-auth0-spa';
+import { Redirect, useHistory, Link } from 'react-router-dom';
+import { useAuth } from '../../utils/dataStore';
 import StyledSignIn from './auth.styles';
 import splash from '../../assets/splash-image.png';
 import google from '../../assets/google.png';
+
+import { userLogin } from './axiosAuth/axios';
 
 const inputStyles = {
   fontSize: '16px',
@@ -12,8 +14,15 @@ const inputStyles = {
 };
 
 const SignIn = () => {
-  const { isAuthenticated, loginWithRedirect } = useAuth0();
+  const { isAuthenticated, setIsAuthenticated, setUser } = useAuth();
+  const history = useHistory();
   const [credentials, setCredentials] = useState({ email: '', password: '' });
+
+  const saveUserAndRedirect = (returnedUser) => {
+    setUser(returnedUser);
+    setIsAuthenticated(true);
+    history.push('/dashboard');
+  };
 
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -21,7 +30,7 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(credentials);
+    userLogin(credentials, saveUserAndRedirect);
   };
 
   return (
@@ -63,7 +72,10 @@ const SignIn = () => {
             Log In
           </Button>
           <p className="divide">or</p>
-          <Button className="btn google" onClick={() => loginWithRedirect({})}>
+          <Button
+            className="btn google"
+            onClick={() => console.log('login w goog goes here')}
+          >
             <img
               src={google}
               alt="google"

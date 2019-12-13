@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Spin } from 'antd';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { Route, Switch } from 'react-router-dom';
-import { useAuth0 } from '../../utils/react-auth0-spa';
+import { useAuth } from '../../utils/dataStore';
 import { GRAPHQL_URI } from '../../utils/config';
 import GlobalStyle from '../../styles/global-styles';
 import Welcome from '../Welcome/Welcome';
@@ -21,15 +21,15 @@ import { MoodsPrevWeekProvider } from '../../contexts/MoodsPrevWeekContext';
 import styles from '../../styles/theme';
 
 function App() {
-  const { loading, getTokenSilently } = useAuth0();
+  const { loading } = useAuth();
 
   const client = new ApolloClient({
     uri: GRAPHQL_URI,
     request: async (operation) => {
-      const token = await getTokenSilently();
+      const { token } = localStorage;
       operation.setContext({
         headers: {
-          authorization: token ? `Bearer ${token}` : '',
+          authorization: token ? `${token}` : '',
         },
       });
     },
