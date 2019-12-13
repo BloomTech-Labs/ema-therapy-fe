@@ -9,8 +9,13 @@ function CalendarDisplay({
   handleDaySelected,
   activeStartDate,
   handleActiveStartDate,
+  // moodsThisMonth
 }) {
   const history = useHistory();
+
+  // const tileClassName = ({ date }) => {
+  //   return moodsThisMonth && moodsThisMonth[date.getDate() - 1].length > 0 ? 'contains-moods' : null;
+  // }
 
   return (
     <CalContainer>
@@ -21,9 +26,10 @@ function CalendarDisplay({
           handleActiveStartDate(newActiveStartDate)
         }
         formatShortWeekday={(locale, date) => format(date, 'iiiii')}
-        // tileContent={({ activeStartDate, date, view }) =>
-        //   add tile content here
+        // tileContent={({ date }) =>
+        //   moodsThisMonth && moodsThisMonth[date.getDate() - 1].length > 0 ? 'YA' : null
         // }
+        // tileClassName={tileClassName}
         minDetail="month"
         minDate={new Date(2019, 10, 1)}
         onClickDay={async (value) => {
@@ -52,6 +58,10 @@ const CalContainer = styled.div`
     font-family: unset;
     line-height: unset;
   }
+
+  /* .contains-moods {
+    background-color: peachpuff;
+  } */
 
   .react-calendar__month-view__days__day--weekend {
     color: unset;
