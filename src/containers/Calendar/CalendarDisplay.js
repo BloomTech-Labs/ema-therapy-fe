@@ -15,12 +15,22 @@ function CalendarDisplay({
   const history = useHistory();
 
   const tileClassName = ({ date }) => {
+    // console.log('tileClassName run');
     return isSameMonth(date, activeStartDate) &&
       moodsThisMonth &&
       moodsThisMonth.length === getDaysInMonth(activeStartDate) &&
       moodsThisMonth[date.getDate() - 1].length > 0
       ? 'contains-moods'
       : null;
+  };
+
+  const tileDisabled = ({ date }) => {
+    return (
+      isSameMonth(date, activeStartDate) &&
+      moodsThisMonth &&
+      moodsThisMonth.length === getDaysInMonth(activeStartDate) &&
+      moodsThisMonth[date.getDate() - 1].length === 0
+    );
   };
 
   return (
@@ -33,6 +43,8 @@ function CalendarDisplay({
         }
         formatShortWeekday={(locale, date) => format(date, 'iiiii')}
         tileClassName={tileClassName}
+        tileDisabled={tileDisabled}
+        showNeighboringMonth={false}
         minDetail="month"
         minDate={new Date(2019, 10, 1)}
         onClickDay={async (value) => {
