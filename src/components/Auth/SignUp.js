@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Input, Form } from 'antd';
 import { Redirect, useHistory } from 'react-router-dom';
-import { useAuth0 } from '../../utils/react-auth0-spa';
+import { useAuth } from '../../utils/dataStore';
 import StyledSignIn from './auth.styles';
 
 import { postUser } from './axiosAuth/axios';
@@ -15,7 +15,7 @@ const inputStyles = {
 };
 
 const SignIn = () => {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
   const history = useHistory();
   const [user, setUser] = useState({ firstName: '', email: '', password: '' });
 
@@ -23,13 +23,15 @@ const SignIn = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const pushHistory = () => {
+  const saveUserAndRedirect = (returnedUser) => {
+    setUser(returnedUser);
+    setIsAuthenticated(true);
     history.push('/dashboard');
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    postUser(user, pushHistory);
+    postUser(user, saveUserAndRedirect);
   };
 
   return (

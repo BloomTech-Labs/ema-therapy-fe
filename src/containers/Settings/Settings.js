@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { gql } from 'apollo-boost';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { Switch } from 'antd';
-import { useAuth0 } from '../../utils/react-auth0-spa';
+import { useAuth } from '../../utils/dataStore';
 import Logout from './Logout';
 import Dashboard from '../Dashboard';
 import styles from '../../styles/theme';
@@ -29,10 +29,10 @@ const UPDATE_IS_SHARING_LOCATION = gql`
 
 const Settings = () => {
   const [isSharingLocation, setIsSharingLocation] = useState(false);
-  const { user } = useAuth0();
+  const { user } = useAuth();
   const [updateIsSharingLocation] = useMutation(UPDATE_IS_SHARING_LOCATION);
   const { loading, data } = useQuery(GET_IS_SHARING_LOCATION, {
-    variables: { sub: user.sub },
+    variables: { email: user.email },
   });
 
   useEffect(() => {
