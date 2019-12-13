@@ -4,8 +4,6 @@ import { Redirect, useHistory, Link } from 'react-router-dom';
 import { useAuth } from '../../utils/dataStore';
 import StyledSignIn from './auth.styles';
 import splash from '../../assets/splash-image.png';
-import google from '../../assets/google.png';
-
 import { postUser } from './axiosAuth/axios';
 
 const inputStyles = {
