@@ -77,7 +77,7 @@ const SignIn = () => {
             <img
               src={googleLogo}
               alt="Google logo"
-              style={{ height: 32, marginRight: 24 }}
+              style={{ height: 24, marginRight: 18 }}
             />
             Sign in with Google
           </Button>
