@@ -38,6 +38,7 @@ export const AuthProvider = ({ children }) => {
         setUser,
         setIsAuthenticated,
         loading,
+        setLoading,
       }}
     >
       {children}

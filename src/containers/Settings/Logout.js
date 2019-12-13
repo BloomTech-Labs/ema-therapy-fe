@@ -10,7 +10,7 @@ const Logout = () => {
     setUser({});
     setIsAuthenticated(false);
     setLoading(false);
-    history.push('/welcome');
+    history.push('/signin');
   };
 
   return (
