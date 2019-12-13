@@ -15,12 +15,16 @@ const inputStyles = {
 };
 
 const SignIn = () => {
-  const { isAuthenticated, setIsAuthenticated } = useAuth();
+  const { isAuthenticated, setIsAuthenticated, setUser, user } = useAuth();
   const history = useHistory();
-  const [user, setUser] = useState({ firstName: '', email: '', password: '' });
+  const [credentials, setCredentials] = useState({
+    firstName: '',
+    email: '',
+    password: '',
+  });
 
   const handleChange = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
   const saveUserAndRedirect = (returnedUser) => {
@@ -31,7 +35,7 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    postUser(user, saveUserAndRedirect);
+    postUser(credentials, saveUserAndRedirect);
   };
 
   return (
@@ -64,7 +68,7 @@ const SignIn = () => {
               type="text"
               size="large"
               name="firstName"
-              value={user.firstName}
+              value={credentials.firstName}
               onChange={handleChange}
             />
             <Input
@@ -73,7 +77,7 @@ const SignIn = () => {
               type="text"
               size="large"
               name="email"
-              value={user.email}
+              value={credentials.email}
               onChange={handleChange}
             />
             <Input
@@ -82,7 +86,7 @@ const SignIn = () => {
               type="password"
               size="large"
               name="password"
-              value={user.password}
+              value={credentials.password}
               onChange={handleChange}
             />
             <p>Forgot Password?</p>
