@@ -4,7 +4,7 @@ import { Redirect, useHistory, Link } from 'react-router-dom';
 import { useAuth } from '../../utils/dataStore';
 import StyledSignIn from './auth.styles';
 import splash from '../../assets/splash-image.png';
-import google from '../../assets/google.png';
+import googleLogo from '../../assets/google.png';
 import { userLogin } from './axiosAuth/axios';
 
 const inputStyles = {
@@ -73,13 +73,10 @@ const SignIn = () => {
             Log In
           </Button>
           <p className="or">or</p>
-          <Button
-            className="btn google"
-            onClick={() => console.log('login w goog goes here')}
-          >
+          <Button className="btn google" disabled>
             <img
-              src={google}
-              alt="google"
+              src={googleLogo}
+              alt="Google logo"
               style={{ height: 32, marginRight: 24 }}
             />
             Sign in with Google
