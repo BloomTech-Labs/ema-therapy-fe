@@ -1,21 +1,27 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { format } from 'date-fns';
+import { format, isSameMonth, getDaysInMonth } from 'date-fns';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Calendar from 'react-calendar';
+import styles from '../../styles/theme';
 
 function CalendarDisplay({
   handleDaySelected,
   activeStartDate,
   handleActiveStartDate,
-  // moodsThisMonth
+  moodsThisMonth,
 }) {
   const history = useHistory();
 
-  // const tileClassName = ({ date }) => {
-  //   return moodsThisMonth && moodsThisMonth[date.getDate() - 1].length > 0 ? 'contains-moods' : null;
-  // }
+  const tileClassName = ({ date }) => {
+    return isSameMonth(date, activeStartDate) &&
+      moodsThisMonth &&
+      moodsThisMonth.length === getDaysInMonth(activeStartDate) &&
+      moodsThisMonth[date.getDate() - 1].length > 0
+      ? 'contains-moods'
+      : null;
+  };
 
   return (
     <CalContainer>
@@ -26,10 +32,7 @@ function CalendarDisplay({
           handleActiveStartDate(newActiveStartDate)
         }
         formatShortWeekday={(locale, date) => format(date, 'iiiii')}
-        // tileContent={({ date }) =>
-        //   moodsThisMonth && moodsThisMonth[date.getDate() - 1].length > 0 ? 'YA' : null
-        // }
-        // tileClassName={tileClassName}
+        tileClassName={tileClassName}
         minDetail="month"
         minDate={new Date(2019, 10, 1)}
         onClickDay={async (value) => {
@@ -47,6 +50,11 @@ CalendarDisplay.propTypes = {
   handleDaySelected: PropTypes.func.isRequired,
   activeStartDate: PropTypes.instanceOf(Date).isRequired,
   handleActiveStartDate: PropTypes.func.isRequired,
+  moodsThisMonth: PropTypes.arrayOf(PropTypes.array),
+};
+
+CalendarDisplay.defaultProps = {
+  moodsThisMonth: null,
 };
 
 export default CalendarDisplay;
@@ -59,9 +67,9 @@ const CalContainer = styled.div`
     line-height: unset;
   }
 
-  /* .contains-moods {
-    background-color: peachpuff;
-  } */
+  .contains-moods {
+    background-color: ${styles.brightYellow};
+  }
 
   .react-calendar__month-view__days__day--weekend {
     color: unset;
