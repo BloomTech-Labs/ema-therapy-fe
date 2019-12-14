@@ -16,6 +16,7 @@ const SignUp = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useAuth();
   const history = useHistory();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [credentials, setCredentials] = useState({
     firstName: '',
     email: '',
@@ -26,6 +27,13 @@ const SignUp = () => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
+  const handleError = (err) => {
+    setError(err);
+    setLoading(false);
+  };
+
+  if (error) console.log(error);
+
   const saveUserAndRedirect = (returnedUser) => {
     setUser(returnedUser);
     setIsAuthenticated(true);
@@ -35,7 +43,7 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    postUser(credentials, saveUserAndRedirect);
+    postUser(credentials, saveUserAndRedirect, handleError);
   };
 
   return (
