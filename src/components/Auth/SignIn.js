@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Input, Form, Icon } from 'antd';
+import { Button, Input, Form, Icon, Alert } from 'antd';
 import { Redirect, useHistory, Link } from 'react-router-dom';
 import { useAuth } from '../../utils/dataStore';
 import StyledSignIn from './auth.styles';
@@ -24,8 +24,6 @@ const SignIn = () => {
     setLoading(false);
   };
 
-  if (error) console.log(error);
-
   const saveUserAndRedirect = (returnedUser) => {
     setUser(returnedUser);
     setIsAuthenticated(true);
@@ -44,6 +42,15 @@ const SignIn = () => {
 
   return (
     <StyledSignIn>
+      {error && (
+        <Alert
+          style={{ position: 'absolute', top: 0, left: 0, right: 0 }}
+          message={error}
+          type="error"
+          banner
+          closable
+        />
+      )}
       <div style={{ marginBottom: '-1px' }}>
         <h2 style={{ position: 'absolute' }}>
           Welcome
@@ -74,6 +81,7 @@ const SignIn = () => {
             onChange={handleChange}
             prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
           />
+
           <div className="forgot-password">
             <Link to="/forgot-password">Forgot Password?</Link>
           </div>
