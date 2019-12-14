@@ -4,23 +4,28 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { parseJwt } from '../components/Auth/axiosAuth/axios';
 
-// const DEFAULT_REDIRECT_CALLBACK = () =>
-//   window.history.replaceState({}, document.title, window.location.pathname);
-
 export const AuthContext = React.createContext();
 export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState();
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    console.log('stuff HERE');
     const initAuth = async () => {
+      setIsAuthenticated(false);
       if (localStorage.token) {
         const userFromToken = parseJwt(localStorage.token);
-        setUser(userFromToken);
-        setLoading(false);
-        setIsAuthenticated(true);
+        const userExpDate = new Date().setSeconds(userFromToken.exp);
+        if (userExpDate > Date.now()) {
+          setUser(userFromToken);
+          setIsAuthenticated(true);
+        } else {
+          localStorage.clear();
+          setUser(null);
+          setIsAuthenticated(false);
+        }
       }
     };
     initAuth();
