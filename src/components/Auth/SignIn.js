@@ -36,6 +36,7 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError(null);
     setLoading(true);
     userLogin(credentials, saveUserAndRedirect, handleError);
   };
