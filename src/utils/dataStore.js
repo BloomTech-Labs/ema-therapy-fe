@@ -12,7 +12,6 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    console.log('stuff HERE');
     const initAuth = async () => {
       setIsAuthenticated(false);
       if (localStorage.token) {
