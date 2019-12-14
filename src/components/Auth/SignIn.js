@@ -17,6 +17,14 @@ const SignIn = () => {
   const history = useHistory();
   const [credentials, setCredentials] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleError = (err) => {
+    setError(err);
+    setLoading(false);
+  };
+
+  if (error) console.log(error);
 
   const saveUserAndRedirect = (returnedUser) => {
     setUser(returnedUser);
@@ -31,7 +39,7 @@ const SignIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    userLogin(credentials, saveUserAndRedirect);
+    userLogin(credentials, saveUserAndRedirect, handleError);
   };
 
   return (
