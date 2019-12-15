@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Button, Input, Form, Icon } from 'antd';
+import { Button, Input, Form, Icon, Alert } from 'antd';
 import { Redirect, useHistory, Link } from 'react-router-dom';
 import { useAuth } from '../../utils/dataStore';
 import StyledSignIn from './auth.styles';
 import splash from '../../assets/splash-image.png';
-import google from '../../assets/google.png';
-
+import googleLogo from '../../assets/google.png';
 import { userLogin } from './axiosAuth/axios';
 
 const inputStyles = {
@@ -17,6 +16,13 @@ const SignIn = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useAuth();
   const history = useHistory();
   const [credentials, setCredentials] = useState({ email: '', password: '' });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleError = (err) => {
+    setError(err);
+    setLoading(false);
+  };
 
   const saveUserAndRedirect = (returnedUser) => {
     setUser(returnedUser);
@@ -30,11 +36,22 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    userLogin(credentials, saveUserAndRedirect);
+    setError(null);
+    setLoading(true);
+    userLogin(credentials, saveUserAndRedirect, handleError);
   };
 
   return (
     <StyledSignIn>
+      {error && (
+        <Alert
+          style={{ position: 'absolute', top: 0, left: 0, right: 0 }}
+          message={error}
+          type="error"
+          banner
+          closable
+        />
+      )}
       <div style={{ marginBottom: '-1px' }}>
         <h2 style={{ position: 'absolute' }}>
           Welcome
@@ -65,21 +82,19 @@ const SignIn = () => {
             onChange={handleChange}
             prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
           />
+
           <div className="forgot-password">
             <Link to="/forgot-password">Forgot Password?</Link>
           </div>
-          <Button className="btn login" htmlType="submit">
+          <Button loading={loading} className="btn login" htmlType="submit">
             Log In
           </Button>
           <p className="or">or</p>
-          <Button
-            className="btn google"
-            onClick={() => console.log('login w goog goes here')}
-          >
+          <Button className="btn google" disabled>
             <img
-              src={google}
-              alt="google"
-              style={{ height: 32, marginRight: 24 }}
+              src={googleLogo}
+              alt="Google logo"
+              style={{ height: 24, marginRight: 18 }}
             />
             Sign in with Google
           </Button>
