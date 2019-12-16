@@ -18,8 +18,8 @@ import ladybug from '../../assets/ladybug.svg';
 
 const FormViews = () => {
   const history = useHistory();
-  const { currentWeather } = useCurrentWeather();
   const { user } = useAuth();
+  const { currentWeather } = useCurrentWeather(user);
   const [addMood] = useMutation(addMoodMutation);
   const { loading, error, data } = useQuery(getUserIdAndLocation, {
     variables: { email: user.email },
