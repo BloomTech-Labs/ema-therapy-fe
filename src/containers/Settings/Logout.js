@@ -9,6 +9,7 @@ const Logout = () => {
   const handleLogout = () => {
     setUser({});
     setIsAuthenticated(false);
+    localStorage.clear();
     setLoading(false);
     history.push('/signin');
   };
