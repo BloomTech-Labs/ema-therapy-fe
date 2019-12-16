@@ -12,6 +12,14 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    function receiveMessage(event) {
+      if (event.origin !== 'http://localhost:5000') return;
+      localStorage.setItem(event.data);
+      console.log('Luke, I am your front end.', window.localStorage.token);
+    }
+
+    window.addEventListener('message', receiveMessage, false);
+
     const initAuth = async () => {
       setIsAuthenticated(false);
       if (localStorage.token) {
