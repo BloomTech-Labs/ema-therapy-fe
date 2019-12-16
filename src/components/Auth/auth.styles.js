@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import styles from '../../styles/theme';
-import splash from '../../assets/splash-image.png';
 
 const StyledSignIn = styled.div`
   max-width: 500px;
@@ -8,11 +7,7 @@ const StyledSignIn = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   background-color: ${styles.darkJungleGreen};
-  /* background: url(${splash}) no-repeat;
-  background-position: top 0px left 0px;
-  background-size: contain; */
   color: white;
 
   .form-wrapper {
@@ -31,8 +26,6 @@ const StyledSignIn = styled.div`
     line-height: 1.2;
   }
 
-
-
   .btn {
     height: 48px;
     width: 100%;
@@ -47,7 +40,8 @@ const StyledSignIn = styled.div`
     justify-content: center;
     align-items: center;
 
-    &.login, &.signup {
+    &.login,
+    &.signup {
       background: ${styles.tealGreen};
       color: white;
     }
@@ -59,10 +53,21 @@ const StyledSignIn = styled.div`
     }
   }
 
-  .divide {
-    text-align: center;
-    color: #BFBFBF;
-    margin: 8px 0;
+  .or {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #bfbfbf;
+  }
+
+  .or:after,
+  .or:before {
+    content: '';
+    display: block;
+    background: #b4b4b4;
+    width: 30%;
+    height: 1px;
+    margin: 0 10px;
   }
 
   .forgot-password {
@@ -71,12 +76,12 @@ const StyledSignIn = styled.div`
     font-size: 12px;
     line-height: 1.5;
     margin-top: 5px;
-    margin-bottom:30px;
+    margin-bottom: 30px;
   }
 
   .account {
     font-size: 12px;
-    color: #BFBFBF;
+    color: #bfbfbf;
     justify-content: center;
     display: flex;
 
@@ -87,21 +92,6 @@ const StyledSignIn = styled.div`
 
   .ant-input-affix-wrapper .ant-input:not(:first-child) {
     padding-left: 37px;
-  }
-
-  .or {
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    color: #BFBFBF;
-  }
-  .or:after, .or:before {
-    content: “”;
-    display: block;
-    background: #B4B4B4;
-    width: 30%;
-    height: 1px;
-    margin: 0 10px;
   }
 `;
 
