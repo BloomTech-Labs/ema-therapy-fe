@@ -7,9 +7,9 @@ import { parseJwt } from '../components/Auth/axiosAuth/axios';
 export const AuthContext = React.createContext();
 export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const initAuth = async () => {
@@ -20,10 +20,12 @@ export const AuthProvider = ({ children }) => {
         if (userExpDate > Date.now()) {
           setUser(userFromToken);
           setIsAuthenticated(true);
+          setLoading(false);
         } else {
           localStorage.clear();
           setUser(null);
           setIsAuthenticated(false);
+          setLoading(false);
         }
       }
     };
