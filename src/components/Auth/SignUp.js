@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { Button, Input, Form, Icon } from 'antd';
+import { Button, Input, Form, Icon, Alert } from 'antd';
 import { Redirect, useHistory, Link } from 'react-router-dom';
 import { useAuth } from '../../utils/dataStore';
 import StyledSignIn from './auth.styles';
 import splash from '../../assets/splash-image.png';
-import google from '../../assets/google.png';
-
 import { postUser } from './axiosAuth/axios';
 
 const inputStyles = {
@@ -14,9 +12,11 @@ const inputStyles = {
   marginBottom: '15px',
 };
 
-const SignIn = () => {
+const SignUp = () => {
   const { isAuthenticated, setIsAuthenticated, setUser } = useAuth();
   const history = useHistory();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [credentials, setCredentials] = useState({
     firstName: '',
     email: '',
@@ -27,6 +27,13 @@ const SignIn = () => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
+  const handleError = (err) => {
+    setError(err);
+    setLoading(false);
+  };
+
+  if (error) console.log(error);
+
   const saveUserAndRedirect = (returnedUser) => {
     setUser(returnedUser);
     setIsAuthenticated(true);
@@ -35,11 +42,22 @@ const SignIn = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    postUser(credentials, saveUserAndRedirect);
+    setError(null);
+    setLoading(true);
+    postUser(credentials, saveUserAndRedirect, handleError);
   };
 
   return (
     <StyledSignIn>
+      {error && (
+        <Alert
+          style={{ position: 'absolute', top: 0, left: 0, right: 0 }}
+          message={error}
+          type="error"
+          banner
+          closable
+        />
+      )}
       <div style={{ marginBottom: '-1px' }}>
         <h2 style={{ position: 'absolute' }}>
           Create
@@ -80,7 +98,7 @@ const SignIn = () => {
             onChange={handleChange}
             prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
           />
-          <Button className="btn signup" htmlType="submit">
+          <Button loading={loading} className="btn signup" htmlType="submit">
             Sign Up
           </Button>
         </Form>
@@ -95,4 +113,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;

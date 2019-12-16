@@ -10,7 +10,7 @@ export const parseJwt = (token) => {
 };
 
 // login existing user
-export const userLogin = (credentials, cbOnSuccess) => {
+export const userLogin = (credentials, cbOnSuccess, cbOnError) => {
   axios
     .post(`${AXIOS_URI}/auth/login`, credentials)
     .then((res) => {
@@ -18,14 +18,11 @@ export const userLogin = (credentials, cbOnSuccess) => {
       const user = parseJwt(res.data.token);
       cbOnSuccess(user);
     })
-    .catch((err) => {
-      // TODO handle error
-      console.log(`unable to login user: ${err}`);
-    });
+    .catch((err) => cbOnError(err.message));
 };
 
 // signup new user
-export const postUser = (credentials, cbOnSuccess) => {
+export const postUser = (credentials, cbOnSuccess, cbOnError) => {
   axios
     .post(`${AXIOS_URI}/auth/register`, credentials)
     .then((res) => {
@@ -33,10 +30,7 @@ export const postUser = (credentials, cbOnSuccess) => {
       const user = parseJwt(res.data.token);
       cbOnSuccess(user);
     })
-    .catch((err) => {
-      // TODO handle error
-      console.log(`unable to register user: ${err}`);
-    });
+    .catch((err) => cbOnError(err.message));
 };
 
 // use google auth
