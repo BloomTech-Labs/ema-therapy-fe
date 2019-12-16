@@ -2,29 +2,32 @@
 /* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect, useContext } from 'react';
-
-// const DEFAULT_REDIRECT_CALLBACK = () =>
-//   window.history.replaceState({}, document.title, window.location.pathname);
+import { parseJwt } from '../components/Auth/axiosAuth/axios';
 
 export const AuthContext = React.createContext();
 export const useAuth = () => useContext(AuthContext);
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState();
-  const [user, setUser] = useState();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const initAuth = async () => {
-      const isAuthenticated = false;
-
-      setIsAuthenticated(isAuthenticated);
-
-      if (isAuthenticated) {
-        const user = null;
-        setUser(user);
+      setIsAuthenticated(false);
+      if (localStorage.token) {
+        const userFromToken = parseJwt(localStorage.token);
+        const userExpDate = new Date().setSeconds(userFromToken.exp);
+        if (userExpDate > Date.now()) {
+          setUser(userFromToken);
+          setIsAuthenticated(true);
+          setLoading(false);
+        } else {
+          localStorage.clear();
+          setUser(null);
+          setIsAuthenticated(false);
+          setLoading(false);
+        }
       }
-
-      setLoading(false);
     };
     initAuth();
     // eslint-disable-next-line
