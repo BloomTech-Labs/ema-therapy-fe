@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import MoodPreview from './MoodPreview';
 import styles from '../styles/theme';
 
-function WeekDisplay({ moods, handleCurrentDay }) {
+function WeekDisplay({ moods, handleMoodsToDisplay }) {
   return (
     <>
       <StyledLogo>MoodBloom</StyledLogo>
@@ -19,7 +19,7 @@ function WeekDisplay({ moods, handleCurrentDay }) {
               <Link
                 to="/dashboard/day"
                 key={list[0].id}
-                onClick={() => handleCurrentDay(getDay(+list[0].createdAt))}
+                onClick={() => handleMoodsToDisplay(getDay(+list[0].createdAt))}
               >
                 <MoodPreview
                   count={list.length}
@@ -48,7 +48,7 @@ WeekDisplay.propTypes = {
       }),
     ),
   ),
-  handleCurrentDay: PropTypes.func.isRequired,
+  handleMoodsToDisplay: PropTypes.func.isRequired,
 };
 
 WeekDisplay.defaultProps = {

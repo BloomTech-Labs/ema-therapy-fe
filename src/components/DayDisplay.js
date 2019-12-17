@@ -9,7 +9,7 @@ import { checkForUserAndGetMoodsQuery, removeMoodMutation } from '../queries';
 import MoodCard from './MoodCard';
 import styles from '../styles/theme';
 
-const DayDisplay = ({ currentDay, handleCurrentDay }) => {
+const DayDisplay = ({ moodsToDisplay, handleMoodsToDisplay }) => {
   const { user } = useAuth();
   const history = useHistory();
 
@@ -18,6 +18,7 @@ const DayDisplay = ({ currentDay, handleCurrentDay }) => {
   );
 
   const deleteMood = (id) => {
+    // run the delete mutation
     removeMood({
       variables: { id },
       refetchQueries: [
@@ -29,8 +30,9 @@ const DayDisplay = ({ currentDay, handleCurrentDay }) => {
       awaitRefetchQueries: true,
     })
       .then((res) => {
-        handleCurrentDay(
-          currentDay.filter((mood) => mood.id !== res.data.removeMood.id),
+        // remove the deleted mood from state
+        handleMoodsToDisplay(
+          moodsToDisplay.filter((mood) => mood.id !== res.data.removeMood.id),
         );
       })
       .catch(() => {
@@ -39,10 +41,11 @@ const DayDisplay = ({ currentDay, handleCurrentDay }) => {
   };
 
   useEffect(() => {
-    if (!currentDay || currentDay.length === 0) {
+    // if moods are null or everything has been deleted, go back to the dashboard
+    if (!moodsToDisplay || moodsToDisplay.length === 0) {
       history.push('/dashboard');
     }
-  }, [history, currentDay]);
+  }, [history, moodsToDisplay]);
 
   return (
     <StyledMoodDisplay>
@@ -54,8 +57,8 @@ const DayDisplay = ({ currentDay, handleCurrentDay }) => {
         />
       </Header>
       <MoodList>
-        {currentDay &&
-          currentDay.map((mood) => (
+        {moodsToDisplay &&
+          moodsToDisplay.map((mood) => (
             <MoodCard
               key={mood.id}
               mood={mood}
@@ -69,7 +72,7 @@ const DayDisplay = ({ currentDay, handleCurrentDay }) => {
 };
 
 DayDisplay.propTypes = {
-  currentDay: PropTypes.arrayOf(
+  moodsToDisplay: PropTypes.arrayOf(
     PropTypes.shape({
       mood: PropTypes.number.isRequired,
       id: PropTypes.string.isRequired,
@@ -80,11 +83,11 @@ DayDisplay.propTypes = {
       weather: PropTypes.string,
     }),
   ),
-  handleCurrentDay: PropTypes.func.isRequired,
+  handleMoodsToDisplay: PropTypes.func.isRequired,
 };
 
 DayDisplay.defaultProps = {
-  currentDay: null,
+  moodsToDisplay: null,
 };
 
 export default DayDisplay;

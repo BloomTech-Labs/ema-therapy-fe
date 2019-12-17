@@ -13,8 +13,8 @@ import weekOfMoods from '../../utils/weekOfMoods';
 import styles from '../../styles/theme';
 
 const Moods = () => {
-  const [moods, setMoods] = useState(null);
-  const [currentDay, setCurrentDay] = useState(null);
+  const [moodsThisWeek, setMoodsThisWeek] = useState(null);
+  const [moodsToDisplay, setMoodsToDisplay] = useState(null);
   const { user } = useAuth();
 
   const { loading, error, data } = useQuery(checkForUserAndGetMoodsQuery, {
@@ -25,27 +25,33 @@ const Moods = () => {
     },
   });
 
-  const handleCurrentDay = (day) => {
+  const handleMoodsToDisplay = (day) => {
+    // if day param is a number, use it to find the correspoding mood array
     if (typeof day === 'number') {
-      for (let i = 0; i < moods.length; i += 1) {
-        if (moods[i].length > 0 && +day === getDay(+moods[i][0].createdAt)) {
-          setCurrentDay(moods[i]);
+      for (let i = 0; i < moodsThisWeek.length; i += 1) {
+        if (
+          moodsThisWeek[i].length > 0 &&
+          day === getDay(+moodsThisWeek[i][0].createdAt)
+        ) {
+          setMoodsToDisplay(moodsThisWeek[i]);
           break;
         }
       }
     } else {
-      setCurrentDay(day);
+      // day param is an updated mood array
+      setMoodsToDisplay(day);
     }
   };
 
   // set moods if the data from query exists
   useEffect(() => {
     if (data) {
-      setMoods(weekOfMoods(data.user.moods));
+      setMoodsThisWeek(weekOfMoods(data.user.moods));
     }
   }, [data]);
 
   if (error) return <p>{error.message}</p>;
+
   return loading ? (
     <LoadingWrapper>
       <Spin size="large" delay={300} />
@@ -57,15 +63,18 @@ const Moods = () => {
           exact
           path="/dashboard"
           render={() => (
-            <WeekDisplay moods={moods} handleCurrentDay={handleCurrentDay} />
+            <WeekDisplay
+              moods={moodsThisWeek}
+              handleMoodsToDisplay={handleMoodsToDisplay}
+            />
           )}
         />
         <PrivateRoute
           path="/dashboard/day"
           render={() => (
             <DayDisplay
-              currentDay={currentDay}
-              handleCurrentDay={handleCurrentDay}
+              moodsToDisplay={moodsToDisplay}
+              handleMoodsToDisplay={handleMoodsToDisplay}
             />
           )}
         />
