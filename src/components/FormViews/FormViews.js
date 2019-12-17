@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
@@ -185,6 +186,24 @@ const FormViews = ({ editInitial, stopEditing }) => {
       )}
     </StyledForm>
   );
+};
+
+FormViews.propTypes = {
+  editInitial: PropTypes.shape({
+    mood: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    anxietyLevel: PropTypes.number,
+    text: PropTypes.string,
+    sleep: PropTypes.number,
+    weather: PropTypes.string,
+  }),
+  stopEditing: PropTypes.func,
+};
+
+FormViews.defaultProps = {
+  editInitial: null,
+  stopEditing: null,
 };
 
 const StyledForm = styled.form`

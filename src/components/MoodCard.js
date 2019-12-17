@@ -103,6 +103,8 @@ MoodCard.propTypes = {
   }).isRequired,
   deleteMood: PropTypes.func.isRequired,
   deleteLoading: PropTypes.bool.isRequired,
+  editMood: PropTypes.func.isRequired,
+  isEditing: PropTypes.bool.isRequired,
 };
 
 export default MoodCard;
