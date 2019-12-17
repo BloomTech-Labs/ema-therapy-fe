@@ -1,22 +1,19 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
-import { useAuth0 } from '../utils/react-auth0-spa';
+import { Route, useHistory } from 'react-router-dom';
+import { useAuth } from '../utils/dataStore';
 
 const PrivateRoute = ({ component: Component, path, ...rest }) => {
-  const { loading, isAuthenticated, loginWithRedirect } = useAuth0();
+  const { loading, isAuthenticated } = useAuth();
+  const history = useHistory();
 
   useEffect(() => {
     if (loading || isAuthenticated) {
       return;
     }
-    const fn = async () => {
-      await loginWithRedirect({
-        appState: { targetUrl: path },
-      });
-    };
-    fn();
-  }, [loading, isAuthenticated, loginWithRedirect, path]);
+    history.push('/signin');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loading, isAuthenticated]);
 
   const render = (props) =>
     isAuthenticated === true ? <Component {...props} /> : null;

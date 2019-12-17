@@ -4,7 +4,7 @@ import { Icon } from 'antd';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { useParams, useHistory } from 'react-router-dom';
 import { getDay } from 'date-fns';
-import { useAuth0 } from '../utils/react-auth0-spa';
+import { useAuth } from '../utils/dataStore';
 import { checkForUserAndGetMoodsQuery } from '../queries';
 import { MoodsPrevWeekContext } from '../contexts/MoodsPrevWeekContext';
 import weekOfMoods from '../utils/weekOfMoods';
@@ -15,7 +15,7 @@ function MoodDisplay() {
   const { moods, setMoods } = useContext(MoodsPrevWeekContext);
   const { day } = useParams();
   const [moodsToday, setMoodsToday] = useState(null);
-  const { user } = useAuth0();
+  const { user } = useAuth();
   const [getMoods, { loading, data }] = useLazyQuery(
     checkForUserAndGetMoodsQuery,
   );
@@ -37,7 +37,6 @@ function MoodDisplay() {
     } else {
       getMoods({
         variables: {
-          sub: user.sub,
           email: user.email,
           firstName: user.given_name,
           lastName: user.family_name,
