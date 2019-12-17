@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect, useContext } from 'react';
+import queryString from 'query-string';
 import { parseJwt } from '../components/Auth/axiosAuth/axios';
 
 export const AuthContext = React.createContext();
@@ -12,14 +13,6 @@ export const AuthProvider = ({ children }, props) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log('props in dataStore', props);
-
-    // const query = queryString.parse(props.location.search);
-    // if (query.token) {
-    //   window.localStorage.setItem("jwt", query.token);
-    //   props.history.push("/");
-    // }
-
     const initAuth = async () => {
       setIsAuthenticated(false);
       if (localStorage.token) {

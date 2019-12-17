@@ -7,11 +7,22 @@ import { useAuth } from '../../utils/dataStore';
 import styles from '../../styles/theme';
 import splash from '../../assets/splash-leaves.png';
 
+import { parseJwt } from '../../components/Auth/axiosAuth/axios';
+
 const Welcome = (props) => {
+  console.log('props in dataStore', props);
+  const { setUser, setIsAuthenticated, setLoading } = useAuth();
+
   const query = queryString.parse(props.location.search);
   if (query.token) {
-    window.localStorage.setItem('token', query.token);
+    window.localStorage.setItem('token', `Bearer ${query.token}`);
+    const userFromToken = parseJwt(localStorage.token);
+    setUser(userFromToken);
+    setIsAuthenticated(true);
+    setLoading(false);
+    props.history.push('/dashboard');
   }
+
   const { isAuthenticated } = useAuth();
   const history = useHistory();
   return (

@@ -31,18 +31,10 @@ import GAListener from './components/GAListener';
 ReactDOM.render(
   <ThemeProvider theme={theme}>
     <Router>
-      <AuthProvider
-      // domain={AUTH0_DOMAIN}
-      //   client_id={AUTH0_CLIENT_ID}
-      //   redirect_uri={window.location.origin}
-      //   audience={AUTH0_AUDIENCE}
-      //   onRedirectCallback={onRedirectCallback}
-      >
-        <Router>
-          <GAListener trackingId={GA_ID}>
-            <App />
-          </GAListener>
-        </Router>
+      <AuthProvider>
+        <GAListener trackingId={GA_ID}>
+          <App />
+        </GAListener>
       </AuthProvider>
     </Router>
   </ThemeProvider>,
