@@ -32,15 +32,3 @@ export const postUser = (credentials, cbOnSuccess, cbOnError) => {
     })
     .catch((err) => cbOnError(err.message));
 };
-
-// use google auth
-export const postGoogleUser = () => {
-  axios
-    .post(`${AXIOS_URI}/auth/google`)
-    .then((res) => {
-      localStorage.setItem('token', res.data.token);
-    })
-    .catch((err) => {
-      console.log(`unable to register user through Google: ${err}`);
-    });
-};

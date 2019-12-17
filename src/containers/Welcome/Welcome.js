@@ -1,4 +1,5 @@
 import React from 'react';
+import queryString from 'query-string';
 import { Redirect, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button } from 'antd';
@@ -6,7 +7,11 @@ import { useAuth } from '../../utils/dataStore';
 import styles from '../../styles/theme';
 import splash from '../../assets/splash-leaves.png';
 
-const Welcome = () => {
+const Welcome = (props) => {
+  const query = queryString.parse(props.location.search);
+  if (query.token) {
+    window.localStorage.setItem('token', query.token);
+  }
   const { isAuthenticated } = useAuth();
   const history = useHistory();
   return (
