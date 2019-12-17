@@ -90,7 +90,10 @@ const SignIn = () => {
             Log In
           </Button>
           <p className="or">or</p>
-          <Button className="btn google" disabled>
+          <Button
+            className="btn google"
+            href="http://localhost:5000/auth/google"
+          >
             <img
               src={googleLogo}
               alt="Google logo"
