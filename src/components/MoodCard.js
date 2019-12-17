@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
+import { Icon, Button } from 'antd';
 import moodToString from '../utils/moodToString';
 import Card from './Card';
 import styles from '../styles/theme';
@@ -11,8 +12,16 @@ const formatDate = (timestamp, fmt) => {
   return format(new Date(ts), fmt);
 };
 
-const MoodCard = ({ mood: m }) => {
-  const { mood, sleep, anxietyLevel: anxiety, text, createdAt, weather } = m;
+const MoodCard = ({ mood: m, deleteMood }) => {
+  const {
+    mood,
+    sleep,
+    anxietyLevel: anxiety,
+    text,
+    createdAt,
+    weather,
+    id,
+  } = m;
   return (
     <StyledMoodCard>
       <div className="date-time">
@@ -46,6 +55,17 @@ const MoodCard = ({ mood: m }) => {
           </div>
         )}
         {text && <p className="text">{text}</p>}
+      </div>
+      <div className="icons">
+        <Button
+          shape="circle"
+          onClick={() => console.log('edit button clicked')}
+        >
+          <Icon type="edit" />
+        </Button>
+        <Button shape="circle" onClick={() => deleteMood(id)}>
+          <Icon type="delete" />
+        </Button>
       </div>
     </StyledMoodCard>
   );
@@ -132,6 +152,20 @@ const StyledMoodCard = styled(Card)`
     font-size: 13px;
     color: #658883;
     line-height: 20px;
+  }
+
+  .icons {
+    padding: 10px 25px 20px;
+    text-align: right;
+
+    .ant-btn {
+      margin: 0 6px;
+    }
+
+    .anticon{
+      color: ${styles.darkJungleGreen};
+      font-size: 18px;
+    }
   }
 
   /* Styles for location -- uncomment if added */

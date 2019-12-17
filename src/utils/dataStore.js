@@ -15,19 +15,15 @@ export const AuthProvider = ({ children }) => {
     const initAuth = async () => {
       setIsAuthenticated(false);
       if (localStorage.token) {
-        console.log('1');
         const userFromToken = parseJwt(localStorage.token);
         const userExpDate = new Date().setSeconds(userFromToken.exp);
         if (userExpDate > Date.now()) {
-          console.log('2');
           setUser(userFromToken);
           setIsAuthenticated(true);
-          setLoading(false);
         } else {
           localStorage.clear();
           setUser(null);
           setIsAuthenticated(false);
-          setLoading(false);
         }
       }
       setLoading(false);
