@@ -7,7 +7,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { checkForUserAndGetMoodsQuery } from '../../queries';
 import moodToString from '../../utils/moodToString';
 import weekOfMoods from '../../utils/weekOfMoods';
-import { useAuth0 } from '../../utils/react-auth0-spa';
+import { useAuth } from '../../utils/dataStore';
 import MoodGraph from './MoodGraph';
 import AnxietyGraph from './AnxietyGraph';
 import SleepGraph from './SleepGraph';
@@ -18,7 +18,7 @@ const ChartViews = () => {
   let reactSwipeEl;
   // query for user data
 
-  const { user } = useAuth0();
+  const { user } = useAuth();
   const { loading, error, data } = useQuery(checkForUserAndGetMoodsQuery, {
     variables: {
       sub: user.sub,
