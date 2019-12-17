@@ -1,14 +1,9 @@
-import React, { useEffect, useContext } from 'react';
-import { useQuery } from '@apollo/react-hooks';
+import React from 'react';
 import { getDay } from 'date-fns';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Spin } from 'antd';
 import styled from 'styled-components';
-import { checkForUserAndGetMoodsQuery } from '../queries';
-import { useAuth } from '../utils/dataStore';
-import weekOfMoods from '../utils/weekOfMoods';
 import MoodPreview from './MoodPreview';
-import { MoodsPrevWeekContext } from '../contexts/MoodsPrevWeekContext';
 import styles from '../styles/theme';
 
 function WeekDisplay({ moods, handleCurrentDay }) {
@@ -38,6 +33,27 @@ function WeekDisplay({ moods, handleCurrentDay }) {
     </>
   );
 }
+
+WeekDisplay.propTypes = {
+  moods: PropTypes.arrayOf(
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        mood: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
+        createdAt: PropTypes.string.isRequired,
+        anxietyLevel: PropTypes.number,
+        text: PropTypes.string,
+        sleep: PropTypes.number,
+        weather: PropTypes.string,
+      }),
+    ),
+  ),
+  handleCurrentDay: PropTypes.func.isRequired,
+};
+
+WeekDisplay.defaultProps = {
+  moods: null,
+};
 
 export default WeekDisplay;
 

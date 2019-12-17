@@ -1,13 +1,11 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { Icon, Spin, message } from 'antd';
-import { useLazyQuery, useMutation } from '@apollo/react-hooks';
-import { useParams, useHistory } from 'react-router-dom';
-import { getDay } from 'date-fns';
+import PropTypes from 'prop-types';
+import { Icon, message } from 'antd';
+import { useMutation } from '@apollo/react-hooks';
+import { useHistory } from 'react-router-dom';
 import { useAuth } from '../utils/dataStore';
 import { checkForUserAndGetMoodsQuery, removeMoodMutation } from '../queries';
-import { MoodsPrevWeekContext } from '../contexts/MoodsPrevWeekContext';
-import weekOfMoods from '../utils/weekOfMoods';
 import MoodCard from './MoodCard';
 import styles from '../styles/theme';
 
@@ -68,6 +66,25 @@ const DayDisplay = ({ currentDay, handleCurrentDay }) => {
       </MoodList>
     </StyledMoodDisplay>
   );
+};
+
+DayDisplay.propTypes = {
+  currentDay: PropTypes.arrayOf(
+    PropTypes.shape({
+      mood: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      anxietyLevel: PropTypes.number,
+      text: PropTypes.string,
+      sleep: PropTypes.number,
+      weather: PropTypes.string,
+    }),
+  ),
+  handleCurrentDay: PropTypes.func.isRequired,
+};
+
+DayDisplay.defaultProps = {
+  currentDay: null,
 };
 
 export default DayDisplay;

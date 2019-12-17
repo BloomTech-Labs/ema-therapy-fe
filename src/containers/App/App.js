@@ -16,7 +16,6 @@ import EntryForm from '../EntryForm/EntryForm';
 import Moods from '../Moods';
 import NotFound from '../NotFound/404';
 import Settings from '../Settings';
-import { MoodsPrevWeekProvider } from '../../contexts/MoodsPrevWeekContext';
 import styles from '../../styles/theme';
 
 function App() {
@@ -40,21 +39,19 @@ function App() {
     </LoadingWrapper>
   ) : (
     <ApolloProvider client={client}>
-      <MoodsPrevWeekProvider>
-        <div className="App">
-          <Switch>
-            <Route path="/" exact component={Welcome} />
-            <Route path="/signin" exact component={SignIn} />
-            <Route path="/signup" exact component={SignUp} />
-            <PrivateRoute path="/entryform" component={EntryForm} />
-            <PrivateRoute path="/dashboard/settings" component={Settings} />
-            <PrivateRoute path="/dashboard" component={Moods} />
-            <PrivateRoute path="/profile" component={Profile} />
-            <Route component={NotFound} />
-          </Switch>
-        </div>
-        <GlobalStyle />
-      </MoodsPrevWeekProvider>
+      <div className="App">
+        <Switch>
+          <Route path="/" exact component={Welcome} />
+          <Route path="/signin" exact component={SignIn} />
+          <Route path="/signup" exact component={SignUp} />
+          <PrivateRoute path="/entryform" component={EntryForm} />
+          <PrivateRoute path="/dashboard/settings" component={Settings} />
+          <PrivateRoute path="/dashboard" component={Moods} />
+          <PrivateRoute path="/profile" component={Profile} />
+          <Route component={NotFound} />
+        </Switch>
+      </div>
+      <GlobalStyle />
     </ApolloProvider>
   );
 }

@@ -38,10 +38,6 @@ const Moods = () => {
     }
   };
 
-  // const handleMoods = (m) => {
-  //   setMoods(m);
-  // }
-
   // set moods if the data from query exists
   useEffect(() => {
     if (data) {
