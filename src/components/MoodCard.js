@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
-import { Icon, Button } from 'antd';
+import { Icon, Button, Modal } from 'antd';
 import moodToString from '../utils/moodToString';
 import Card from './Card';
 import styles from '../styles/theme';
@@ -12,7 +12,9 @@ const formatDate = (timestamp, fmt) => {
   return format(new Date(ts), fmt);
 };
 
-const MoodCard = ({ mood: m, deleteMood }) => {
+const { confirm } = Modal;
+
+const MoodCard = ({ mood: m, deleteMood, deleteLoading }) => {
   const {
     mood,
     sleep,
@@ -22,6 +24,19 @@ const MoodCard = ({ mood: m, deleteMood }) => {
     weather,
     id,
   } = m;
+
+  const showDeleteConfirm = () => {
+    confirm({
+      title: 'Are you sure you want to delete this mood entry?',
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
+      onOk() {
+        deleteMood(id);
+      },
+    });
+  };
+
   return (
     <StyledMoodCard>
       <div className="date-time">
@@ -63,7 +78,11 @@ const MoodCard = ({ mood: m, deleteMood }) => {
         >
           <Icon type="edit" />
         </Button>
-        <Button shape="circle" onClick={() => deleteMood(id)}>
+        <Button
+          shape="circle"
+          onClick={() => showDeleteConfirm()}
+          disabled={deleteLoading}
+        >
           <Icon type="delete" />
         </Button>
       </div>
@@ -81,6 +100,8 @@ MoodCard.propTypes = {
     sleep: PropTypes.number,
     weather: PropTypes.string,
   }).isRequired,
+  deleteMood: PropTypes.func.isRequired,
+  deleteLoading: PropTypes.bool.isRequired,
 };
 
 export default MoodCard;

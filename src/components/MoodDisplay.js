@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Icon, Spin } from 'antd';
+import { Icon, Spin, message } from 'antd';
 import { useLazyQuery, useMutation } from '@apollo/react-hooks';
 import { useParams, useHistory } from 'react-router-dom';
 import { getDay } from 'date-fns';
@@ -35,14 +35,15 @@ function MoodDisplay() {
           variables: { email: user.email },
         },
       ],
+      awaitRefetchQueries: true,
     })
       .then((res) => {
         setMoodsToday(
           moodsToday.filter((mood) => mood.id !== res.data.removeMood.id),
         );
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        message.error('Mood entry could not be deleted');
       });
   };
 
@@ -85,7 +86,7 @@ function MoodDisplay() {
     isFirstLoading,
   ]);
 
-  return loading || deleteLoading ? (
+  return loading ? (
     <LoadingWrapper>
       <Spin size="large" delay={200} />
     </LoadingWrapper>
@@ -101,7 +102,12 @@ function MoodDisplay() {
       <MoodList>
         {moodsToday &&
           moodsToday.map((mood) => (
-            <MoodCard key={mood.id} mood={mood} deleteMood={deleteMood} />
+            <MoodCard
+              key={mood.id}
+              mood={mood}
+              deleteMood={deleteMood}
+              deleteLoading={deleteLoading}
+            />
           ))}
         {!moods && !moodsToday && <h1>No moods here :(</h1>}
       </MoodList>
