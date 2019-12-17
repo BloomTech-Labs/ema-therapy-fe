@@ -137,10 +137,10 @@ const FormViews = ({ editInitial, stopEditing }) => {
       })
         .then((res) => {
           // tell DayDisplay to stop editing and update with payload
-          stopEditing(res.data.editMood);
+          stopEditing('success', res.data.editMood);
         })
         .catch(() => {
-          stopEditing(null);
+          stopEditing('error', null);
         });
     }
   };
@@ -158,6 +158,7 @@ const FormViews = ({ editInitial, stopEditing }) => {
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           isSubmitting={isSubmitting}
+          stopEditing={stopEditing}
         />
       )}
 

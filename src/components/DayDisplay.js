@@ -48,17 +48,18 @@ const DayDisplay = ({ moodsToDisplay, handleMoodsToDisplay }) => {
     setMoodToEdit(mood);
   };
 
-  const stopEditing = (updatedMood) => {
+  const stopEditing = (status, updatedMood) => {
     setIsEditing(false);
-    if (updatedMood) {
+    if (status === 'success') {
       handleMoodsToDisplay(
         moodsToDisplay.map((mood) =>
           mood.id === updatedMood.id ? updatedMood : mood,
         ),
       );
-    } else {
+    } else if (status === 'error') {
       message.error('Error: Unable to edit mood');
     }
+    // if status is cancel or anything else, do nothing
   };
 
   useEffect(() => {
