@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Icon, message } from 'antd';
@@ -8,10 +8,13 @@ import { useAuth } from '../utils/dataStore';
 import { checkForUserAndGetMoodsQuery, removeMoodMutation } from '../queries';
 import MoodCard from './MoodCard';
 import styles from '../styles/theme';
+import FormViews from './FormViews';
 
 const DayDisplay = ({ moodsToDisplay, handleMoodsToDisplay }) => {
   const { user } = useAuth();
   const history = useHistory();
+  const [isEditing, setIsEditing] = useState(false);
+  const [moodToEdit, setMoodToEdit] = useState(null);
 
   const [removeMood, { loading: deleteLoading }] = useMutation(
     removeMoodMutation,
@@ -40,6 +43,24 @@ const DayDisplay = ({ moodsToDisplay, handleMoodsToDisplay }) => {
       });
   };
 
+  const editMood = (mood) => {
+    setIsEditing(true);
+    setMoodToEdit(mood);
+  };
+
+  const stopEditing = (updatedMood) => {
+    setIsEditing(false);
+    if (updatedMood) {
+      handleMoodsToDisplay(
+        moodsToDisplay.map((mood) =>
+          mood.id === updatedMood.id ? updatedMood : mood,
+        ),
+      );
+    } else {
+      message.error('Error: Unable to edit mood');
+    }
+  };
+
   useEffect(() => {
     // if moods are null or everything has been deleted, go back to the dashboard
     if (!moodsToDisplay || moodsToDisplay.length === 0) {
@@ -47,7 +68,9 @@ const DayDisplay = ({ moodsToDisplay, handleMoodsToDisplay }) => {
     }
   }, [history, moodsToDisplay]);
 
-  return (
+  return isEditing ? (
+    <FormViews editInitial={moodToEdit} stopEditing={stopEditing} />
+  ) : (
     <StyledMoodDisplay>
       <Header>
         <Icon
@@ -64,6 +87,8 @@ const DayDisplay = ({ moodsToDisplay, handleMoodsToDisplay }) => {
               mood={mood}
               deleteMood={deleteMood}
               deleteLoading={deleteLoading}
+              editMood={editMood}
+              isEditing={isEditing}
             />
           ))}
       </MoodList>

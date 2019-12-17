@@ -89,3 +89,29 @@ export const removeMoodMutation = gql`
     }
   }
 `;
+
+export const editMoodMutation = gql`
+  mutation(
+    $id: ID!
+    $mood: Int!
+    $text: String
+    $anxietyLevel: Int
+    $sleep: Float
+  ) {
+    editMood(
+      id: $id
+      mood: $mood
+      text: $text
+      anxietyLevel: $anxietyLevel
+      sleep: $sleep
+    ) {
+      id
+      createdAt
+      mood
+      text
+      anxietyLevel
+      sleep
+      weather
+    }
+  }
+`;

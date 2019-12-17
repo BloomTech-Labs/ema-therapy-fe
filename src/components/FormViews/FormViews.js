@@ -8,6 +8,7 @@ import {
   addMoodMutation,
   getUserIdAndLocation,
   checkForUserAndGetMoodsQuery,
+  editMoodMutation,
 } from '../../queries';
 import useCurrentWeather from '../../hooks/useCurrentWeather';
 import FormMood from './FormMood';
@@ -16,21 +17,25 @@ import FormAnxietySleep from './FormAnxietySleep';
 import backgroundImage from '../../assets/background-leaf.svg';
 import ladybug from '../../assets/ladybug.svg';
 
-const FormViews = () => {
+const FormViews = ({ editInitial, stopEditing }) => {
   const history = useHistory();
   const { currentWeather } = useCurrentWeather();
   const { user } = useAuth();
+
   const [addMood] = useMutation(addMoodMutation);
+  const [editMood] = useMutation(editMoodMutation);
   const { loading, error, data } = useQuery(getUserIdAndLocation, {
     variables: { email: user.email },
   });
+
   const [view, setView] = useState('mood');
   const [input, setInput] = useState({
-    mood: 3,
+    mood: editInitial ? editInitial.mood : 3,
     activities: [],
-    text: '',
-    anxietyLevel: 5,
-    sleep: 5,
+    text: editInitial && editInitial.text ? editInitial.text : '',
+    anxietyLevel:
+      editInitial && editInitial.anxietyLevel ? editInitial.anxietyLevel : 5,
+    sleep: editInitial && editInitial.sleep ? editInitial.sleep : 5,
     weather: null,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -39,13 +44,13 @@ const FormViews = () => {
   const [isSleepChanged, setIsSleepChanged] = useState(null);
 
   useEffect(() => {
-    if (data && data.user.isSharingLocation) {
+    if (!editInitial && data && data.user.isSharingLocation) {
       if (currentWeather) {
         // eslint-disable-next-line no-shadow
         setInput((input) => ({ ...input, weather: currentWeather }));
       }
     }
-  }, [currentWeather, data]);
+  }, [currentWeather, data, editInitial]);
 
   const handleView = (newView) => setView(newView);
 
@@ -82,32 +87,61 @@ const FormViews = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // adds mood and refetches mood data
-    await addMood({
-      variables: {
-        userId: data.user.id,
-        weather: input.weather,
-        mood: input.mood,
-        anxietyLevel: isAnxietyChanged ? input.anxietyLevel : null,
-        sleep: isSleepChanged ? input.sleep : null,
-        text: input.text.length > 0 ? input.text : null,
-      },
-      refetchQueries: [
-        {
-          query: checkForUserAndGetMoodsQuery,
-          variables: { email: user.email },
+    if (!editInitial) {
+      // adds mood and refetches mood data
+      await addMood({
+        variables: {
+          userId: data.user.id,
+          weather: input.weather,
+          mood: input.mood,
+          anxietyLevel: isAnxietyChanged ? input.anxietyLevel : null,
+          sleep: isSleepChanged ? input.sleep : null,
+          text: input.text.length > 0 ? input.text : null,
         },
-      ],
-      awaitRefetchQueries: true,
-    });
+        refetchQueries: [
+          {
+            query: checkForUserAndGetMoodsQuery,
+            variables: { email: user.email },
+          },
+        ],
+        awaitRefetchQueries: true,
+      });
 
-    // tracks add mood event
-    ReactGA.event({
-      category: 'Moods',
-      action: 'Add mood entry',
-    });
+      // tracks add mood event
+      ReactGA.event({
+        category: 'Moods',
+        action: 'Add mood entry',
+      });
 
-    history.push('/dashboard');
+      history.push('/dashboard');
+    } else {
+      // run edit mutation & refetch data
+      editMood({
+        variables: {
+          id: editInitial.id,
+          mood: input.mood,
+          anxietyLevel: isAnxietyChanged
+            ? input.anxietyLevel
+            : editInitial.anxietyLevel,
+          sleep: isSleepChanged ? input.sleep : editInitial.sleep,
+          text: input.text.length > 0 ? input.text : null,
+        },
+        refetchQueries: [
+          {
+            query: checkForUserAndGetMoodsQuery,
+            variables: { email: user.email },
+          },
+        ],
+        awaitRefetchQueries: true,
+      })
+        .then((res) => {
+          // tell DayDisplay to stop editing and update with payload
+          stopEditing(res.data.editMood);
+        })
+        .catch(() => {
+          stopEditing(null);
+        });
+    }
   };
 
   if (loading) return <p>Loading...</p>;

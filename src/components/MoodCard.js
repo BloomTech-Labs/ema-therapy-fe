@@ -14,7 +14,13 @@ const formatDate = (timestamp, fmt) => {
 
 const { confirm } = Modal;
 
-const MoodCard = ({ mood: m, deleteMood, deleteLoading }) => {
+const MoodCard = ({
+  mood: m,
+  deleteMood,
+  deleteLoading,
+  editMood,
+  isEditing,
+}) => {
   const {
     mood,
     sleep,
@@ -50,15 +56,13 @@ const MoodCard = ({ mood: m, deleteMood, deleteLoading }) => {
             {anxiety !== null && (
               <div>
                 <p className="anxiety">ANXIETY</p>
-                <p className="counter">{anxiety} out of 10</p>
+                <p className="counter">{anxiety}</p>
               </div>
             )}
             {sleep !== null && (
               <div>
                 <p className="sleep">SLEEP</p>
-                <p className="counter">
-                  {sleep === 1 ? `${sleep} hour` : `${sleep} hours`}
-                </p>
+                <p className="counter">{`${sleep}h`}</p>
               </div>
             )}
             {weather && (
@@ -72,10 +76,7 @@ const MoodCard = ({ mood: m, deleteMood, deleteLoading }) => {
         {text && <p className="text">{text}</p>}
       </div>
       <div className="icons">
-        <Button
-          shape="circle"
-          onClick={() => console.log('edit button clicked')}
-        >
+        <Button shape="circle" onClick={() => editMood(m)} disabled={isEditing}>
           <Icon type="edit" />
         </Button>
         <Button
