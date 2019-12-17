@@ -6,19 +6,19 @@ import { parseJwt } from '../components/Auth/axiosAuth/axios';
 
 export const AuthContext = React.createContext();
 export const useAuth = () => useContext(AuthContext);
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }, props) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    function receiveMessage(event) {
-      if (event.origin !== 'http://localhost:5000') return;
-      localStorage.setItem(event.data);
-      console.log('Luke, I am your front end.', window.localStorage.token);
-    }
+    console.log('props in dataStore', props);
 
-    window.addEventListener('message', receiveMessage, false);
+    // const query = queryString.parse(props.location.search);
+    // if (query.token) {
+    //   window.localStorage.setItem("jwt", query.token);
+    //   props.history.push("/");
+    // }
 
     const initAuth = async () => {
       setIsAuthenticated(false);
