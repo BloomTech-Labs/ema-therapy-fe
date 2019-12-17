@@ -19,6 +19,7 @@ import Settings from '../Settings';
 import SingleDay from '../SingleDay';
 import { MoodsPrevWeekProvider } from '../../contexts/MoodsPrevWeekContext';
 import styles from '../../styles/theme';
+import Wheel from '../../components/Wheel';
 
 function App() {
   const { loading } = useAuth();
@@ -44,6 +45,7 @@ function App() {
       <MoodsPrevWeekProvider>
         <div className="App">
           <Switch>
+            <Route path="/wheel" component={Wheel} />
             <Route path="/" exact component={Welcome} />
             <Route path="/signin" exact component={SignIn} />
             <Route path="/signup" exact component={SignUp} />
