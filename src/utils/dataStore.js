@@ -28,6 +28,7 @@ export const AuthProvider = ({ children }) => {
           setLoading(false);
         }
       }
+      setLoading(false);
     };
     initAuth();
     // eslint-disable-next-line
