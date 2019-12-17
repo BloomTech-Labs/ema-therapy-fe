@@ -70,8 +70,10 @@ const wheelStyles = {
   borderSize: '5px',
   neutralColor: '#ffffff',
   spinningDuration: '4s',
-  nbTurn: 5,
+  wheelSliceSpacing: '10px',
 };
+
+const PI = 3.14159265358979;
 
 const WheelWrapper = styled.div`
   padding-top: 1rem;
@@ -198,7 +200,7 @@ const StyledWheel = styled.div`
     opacity: 0.25;
 
     --slice-max-width: calc(
-      var(--PI) * var(--wheel-size) + var(--wheel-size) / 2
+      ${PI} * ${wheelStyles.size} + ${wheelStyles.size} / 2
     );
 
     --slice-width: calc(
