@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { Spin } from 'antd';
 import { getDay } from 'date-fns';
+import { Switch } from 'react-router-dom';
 import Dashboard from '../Dashboard';
 import WeekDisplay from '../../components/WeekDisplay';
 import PrivateRoute from '../../components/PrivateRoute';
@@ -57,29 +58,31 @@ const Moods = () => {
       <Spin size="large" delay={300} />
     </LoadingWrapper>
   ) : (
-    <Dashboard>
-      <Wrapper>
-        <PrivateRoute
-          exact
-          path="/dashboard"
-          render={() => (
-            <WeekDisplay
-              moods={moodsThisWeek}
-              handleMoodsToDisplay={handleMoodsToDisplay}
-            />
-          )}
-        />
-        <PrivateRoute
-          path="/dashboard/day"
-          render={() => (
-            <DayDisplay
-              moodsToDisplay={moodsToDisplay}
-              handleMoodsToDisplay={handleMoodsToDisplay}
-            />
-          )}
-        />
-      </Wrapper>
-    </Dashboard>
+    <Switch>
+      <PrivateRoute
+        exact
+        path="/dashboard"
+        render={() => (
+          <Dashboard>
+            <Wrapper>
+              <WeekDisplay
+                moods={moodsThisWeek}
+                handleMoodsToDisplay={handleMoodsToDisplay}
+              />
+            </Wrapper>
+          </Dashboard>
+        )}
+      />
+      <PrivateRoute
+        path="/dashboard/day"
+        render={() => (
+          <DayDisplay
+            moodsToDisplay={moodsToDisplay}
+            handleMoodsToDisplay={handleMoodsToDisplay}
+          />
+        )}
+      />
+    </Switch>
   );
 };
 

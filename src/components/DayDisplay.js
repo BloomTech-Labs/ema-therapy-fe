@@ -119,7 +119,7 @@ DayDisplay.defaultProps = {
 export default DayDisplay;
 
 const StyledMoodDisplay = styled.div`
-  padding: 0 14px;
+  padding: 30px;
   background-color: ${styles.seafoamGreen};
   min-height: 100vh;
 `;
