@@ -31,6 +31,11 @@ function Wheel() {
 
   return (
     <WheelWrapper>
+      <h2>
+        Spin the wheel for your
+        <br />
+        daily task
+      </h2>
       <StyledWheel>
         <div className="wheel-container">
           <div
@@ -68,7 +73,15 @@ const styles = {
 const PI = 3.14159265358979;
 
 const WheelWrapper = styled.div`
-  padding-top: 1rem;
+  padding: 0 25px;
+
+  h2 {
+    text-align: center;
+    font-size: 24px;
+    color: ${theme.darkJungleGreen};
+    margin: 0;
+    margin-bottom: 44px;
+  }
 `;
 
 const StyledWheel = styled.div`
