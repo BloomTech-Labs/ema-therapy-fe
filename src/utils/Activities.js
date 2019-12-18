@@ -14,22 +14,13 @@ const activities = [
       'Pizza',
       'Sweets',
       'Dinner',
-      'Soup',
       'Fruits',
       'Chocolate',
     ],
   },
   {
     name: 'drink',
-    drinks: [
-      'water',
-      'tea',
-      'water',
-      'alcoholic',
-      'milk',
-      'coffee',
-      'esspresso',
-    ],
+    drinks: ['water', 'tea', 'alcoholic', 'milk', 'coffee', 'esspresso'],
   },
   {
     name: 'fun',
@@ -53,7 +44,7 @@ const activities = [
   },
   {
     name: 'leisure',
-    leasures: ['Facebook', 'Instagram', 'Twitter', 'Git'],
+    leisures: ['Facebook', 'Instagram', 'Twitter', 'Git'],
   },
   {
     name: 'misc',

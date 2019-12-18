@@ -149,8 +149,8 @@ const Activities = ({
                 />
               );
             })}
-          {type === 'misc' &&
-            activities[3].miscs.map((activityType) => {
+          {type === 'leisure' &&
+            activities[3].leisures.map((activityType) => {
               return (
                 <Activity
                   key={activityType}
@@ -159,8 +159,8 @@ const Activities = ({
                 />
               );
             })}
-          {type === 'leisure' &&
-            activities[4].leisure.map((activityType) => {
+          {type === 'misc' &&
+            activities[4].misc.map((activityType) => {
               return (
                 <Activity
                   key={activityType}
