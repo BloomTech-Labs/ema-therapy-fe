@@ -57,7 +57,7 @@ const Activities = ({
             );
           })}
         </div>
-        <div>
+        <ActivitiesWrapper>
           {type === 'food' &&
             activities[0].foods.map((activityType) => {
               return (
@@ -108,7 +108,7 @@ const Activities = ({
                 />
               );
             })}
-        </div>
+        </ActivitiesWrapper>
       </InputWrapper>
       <div className="footer">
         <NextButton
@@ -131,10 +131,9 @@ const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 300px;
+  margin-top: 100px;
 `;
 
-//  change to have buttons with underline
 const TypeButton = styled.button`
   width: 105px;
   height: 50px;
@@ -156,6 +155,10 @@ const TypeButton = styled.button`
   &:first-of-type {
     margin-bottom: 30px;
   }
+`;
+
+const ActivitiesWrapper = styled.div`
+  height: 500px;
 `;
 
 export default Activities;

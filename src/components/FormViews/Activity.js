@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Tag } from 'antd';
+import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import MyTag from './MyTag';
@@ -13,12 +12,11 @@ const Activity = ({ activityType, addActivities }) => {
     <>
       <ActivityButtonToggle>
         <MyTag>{activityType}</MyTag>
-        <EditableTagGroup />
+        {/* <EditableTagGroup /> */}
       </ActivityButtonToggle>
     </>
   );
 };
-// data-testid="toggle"
 
 Activity.propTypes = {
   activityType: PropTypes.string.isRequired,
@@ -30,18 +28,14 @@ const ActivityButtonToggle = styled.div`
 
   .ant-tag {
     padding: 5px;
-    width: 70px;
-
-    margin-right: 3px;
+    margin-left: 18px;
     margin-top: 27px;
     outline: none;
     padding: 9px 8px;
-
     border-radius: 9px;
     font-family: Fira Sans;
     font-size: 14px;
     line-height: 20px;
-    /* background-color:#f4faf9; */
     text-align: center;
   }
 `;

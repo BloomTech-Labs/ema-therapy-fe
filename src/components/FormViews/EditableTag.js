@@ -31,7 +31,7 @@ const EditableTagGroup = () => {
     if (inputValue && tags.indexOf(inputValue) === -1) {
       newTags = [...newTags, inputValue];
     }
-    // console.log(tags);
+
     setTags(newTags);
     setInputVisible(false);
     setInputValue('');

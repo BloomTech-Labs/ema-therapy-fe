@@ -33,7 +33,7 @@ const Wrapper = styled.div`
     font-size: 14px;
     text-align: center;
     color: #9e9c9c;
-    border: unset;
+    border: 1px solid transparent;
   }
 `;
 
