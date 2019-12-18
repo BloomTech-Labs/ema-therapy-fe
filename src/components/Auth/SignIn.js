@@ -6,6 +6,7 @@ import StyledSignIn from './auth.styles';
 import splash from '../../assets/splash-image.png';
 import googleLogo from '../../assets/google.png';
 import { userLogin } from './axiosAuth/axios';
+import { GOOGLE_BUTTON_REDIRECT } from '../../utils/config';
 
 const inputStyles = {
   fontSize: '16px',
@@ -90,10 +91,7 @@ const SignIn = () => {
             Log In
           </Button>
           <p className="or">or</p>
-          <Button
-            className="btn google"
-            href="http://localhost:5000/auth/google"
-          >
+          <Button className="btn google" href={GOOGLE_BUTTON_REDIRECT}>
             <img
               src={googleLogo}
               alt="Google logo"
