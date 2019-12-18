@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import queryString from 'query-string';
 import { Redirect, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button } from 'antd';
@@ -6,9 +8,28 @@ import { useAuth } from '../../utils/dataStore';
 import styles from '../../styles/theme';
 import splash from '../../assets/splash-leaves.png';
 
-const Welcome = () => {
-  const { isAuthenticated } = useAuth();
+import { parseJwt } from '../../components/Auth/axiosAuth/axios';
+
+const Welcome = ({ location }) => {
+  const {
+    setUser,
+    setIsAuthenticated,
+    setLoading,
+    isAuthenticated,
+  } = useAuth();
   const history = useHistory();
+
+  // this gets the token from the URL query string and saves it to local storage
+  const query = queryString.parse(location.search);
+  if (query.token) {
+    window.localStorage.setItem('token', `Bearer ${query.token}`);
+    const userFromToken = parseJwt(localStorage.token);
+    setUser(userFromToken);
+    setIsAuthenticated(true);
+    setLoading(false);
+    history.push('/dashboard');
+  }
+
   return (
     <StyledWelcome>
       <h2>MoodBloom</h2>
@@ -36,6 +57,16 @@ const Welcome = () => {
       {isAuthenticated && <Redirect to="/dashboard" />}
     </StyledWelcome>
   );
+};
+
+Welcome.propTypes = {
+  location: {
+    search: PropTypes.string,
+  },
+};
+
+Welcome.defaultProps = {
+  location: '',
 };
 
 const StyledWelcome = styled.div`

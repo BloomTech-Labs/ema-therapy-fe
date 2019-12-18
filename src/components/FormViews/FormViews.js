@@ -20,9 +20,8 @@ import ladybug from '../../assets/ladybug.svg';
 
 const FormViews = ({ editInitial, stopEditing }) => {
   const history = useHistory();
-  const { currentWeather } = useCurrentWeather();
   const { user } = useAuth();
-
+  const { currentWeather } = useCurrentWeather(user);
   const [addMood] = useMutation(addMoodMutation);
   const [editMood] = useMutation(editMoodMutation);
   const { loading, error, data } = useQuery(getUserIdAndLocation, {
