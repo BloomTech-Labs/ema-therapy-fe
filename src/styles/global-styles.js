@@ -25,13 +25,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   :root {
-    ${'' /* --wheel-size: 400px; */}
-    --wheel-size: 300px;
     --wheel-slice-spacing: 10px;
-    --wheel-border-size: 5px;
-    --wheel-color: #0C423B;
-    --neutral-color: white;
-    --PI: 3.14159265358979;
     --nb-item: 0;
     --item-nb: 0;
     --selected-item: 0;
