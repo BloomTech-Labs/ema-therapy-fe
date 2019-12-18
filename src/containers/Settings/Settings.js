@@ -42,6 +42,16 @@ const Settings = () => {
   }, [isSharingLocation, data, loading]);
 
   const toggleLocationPermissions = (checked) => {
+    if (checked && 'geolocation' in navigator) {
+      // if user switches the toggle permission setting to true
+      // and has yet to give permission for the browser to use their location,
+      // fire `getCurrentPosition`, so that we can get the
+      // browser request now even though we aren't using their coords yet.
+      navigator.geolocation.getCurrentPosition((p) => {
+        // eslint-disable-next-line no-unused-vars
+        const { latitude, longitude } = p.coords;
+      });
+    }
     updateIsSharingLocation({
       variables: { id: data.user.id, isSharingLocation: checked },
     });
