@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Icon } from 'antd';
 import styled from 'styled-components';
 import activities from '../../utils/Activities';
 import Activity from './Activity';
+import NextButton from './NextButton';
+import DoneButton from './DoneButton';
 
 function generateUniqueKey() {
   return `_${Math.random()
@@ -10,112 +13,149 @@ function generateUniqueKey() {
     .substr(2, 9)}`;
 }
 
-const Activities = ({ addActivities }) => {
+const Activities = ({
+  addActivities,
+  handleView,
+  isSubmitting,
+  handleSubmit,
+}) => {
   const [type, setType] = useState('food');
 
   const handleTypeView = (view) => {
     setType(view);
   };
   return (
-    <ActivitiesWrapper>
-      <div>
-        {activities.map((cur) => {
-          return (
-            <TypeButton
-              key={generateUniqueKey()}
-              onClick={() => handleTypeView(cur.name)}
-              type="button"
-            >
-              {cur.name}
-            </TypeButton>
-          );
-        })}
+    <>
+      <div className="header">
+        <Icon
+          type="left"
+          data-testid="back"
+          style={{ fontSize: 22, color: '#9cd9dd' }}
+          onClick={() => handleView('mood')}
+        />
+        <p>
+          What have you
+          <br />
+          been up to?
+        </p>
+        <DoneButton loading={isSubmitting} onClick={handleSubmit}>
+          Done
+        </DoneButton>
       </div>
-      <ActivitiesView>
-        {type === 'food' &&
-          activities[0].foods.map((activityType) => {
+      <InputWrapper>
+        <div>
+          {activities.map((cur, i) => {
             return (
-              <Activity
+              <TypeButton
                 key={generateUniqueKey()}
-                activityType={activityType}
-                addActivities={addActivities}
-              />
+                onClick={() => handleTypeView(cur.name)}
+                type="button"
+                active={type === cur.name}
+              >
+                {cur.name}
+              </TypeButton>
             );
           })}
-        {type === 'drink' &&
-          activities[1].drinks.map((activityType) => {
-            return (
-              <Activity
-                key={generateUniqueKey()}
-                activityType={activityType}
-                addActivities={addActivities}
-              />
-            );
-          })}
-        {type === 'fun' &&
-          activities[2].funs.map((activityType) => {
-            return (
-              <Activity
-                key={generateUniqueKey()}
-                activityType={activityType}
-                addActivities={addActivities}
-              />
-            );
-          })}
-        {type === 'misc' &&
-          activities[3].miscs.map((activityType) => {
-            return (
-              <Activity
-                key={generateUniqueKey()}
-                activityType={activityType}
-                addActivities={addActivities}
-              />
-            );
-          })}
-        {type === 'leisure' &&
-          activities[4].leisures.map((activityType) => {
-            return (
-              <Activity
-                key={generateUniqueKey()}
-                activityType={activityType}
-                addActivities={addActivities}
-              />
-            );
-          })}
-      </ActivitiesView>
-    </ActivitiesWrapper>
+        </div>
+        <div>
+          {type === 'food' &&
+            activities[0].foods.map((activityType) => {
+              return (
+                <Activity
+                  key={generateUniqueKey()}
+                  activityType={activityType}
+                  addActivities={addActivities}
+                />
+              );
+            })}
+          {type === 'drink' &&
+            activities[1].drinks.map((activityType) => {
+              return (
+                <Activity
+                  key={generateUniqueKey()}
+                  activityType={activityType}
+                  addActivities={addActivities}
+                />
+              );
+            })}
+          {type === 'fun' &&
+            activities[2].funs.map((activityType) => {
+              return (
+                <Activity
+                  key={generateUniqueKey()}
+                  activityType={activityType}
+                  addActivities={addActivities}
+                />
+              );
+            })}
+          {type === 'misc' &&
+            activities[3].miscs.map((activityType) => {
+              return (
+                <Activity
+                  key={generateUniqueKey()}
+                  activityType={activityType}
+                  addActivities={addActivities}
+                />
+              );
+            })}
+          {type === 'leisure' &&
+            activities[4].leisures.map((activityType) => {
+              return (
+                <Activity
+                  key={generateUniqueKey()}
+                  activityType={activityType}
+                  addActivities={addActivities}
+                />
+              );
+            })}
+        </div>
+      </InputWrapper>
+      <div className="footer">
+        <NextButton
+          data-testid="next"
+          onClick={() => handleView('activity-journal')}
+        >
+          Next
+        </NextButton>
+      </div>
+    </>
   );
 };
 
 Activities.propTypes = {
   addActivities: PropTypes.func.isRequired,
+  handleView: PropTypes.func.isRequired,
 };
 
-const ActivitiesWrapper = styled.div`
+const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 400px;
   align-items: center;
-  margin: 0 auto;
+  margin-bottom: 300px;
 `;
 
-const ActivitiesView = styled.div`
-  margin-left: 15px;
-`;
-
+//  change to have buttons with underline
 const TypeButton = styled.button`
-  width: 62px;
-  height: 16px;
-  background: #c4c4c4;
-  border-radius: 2px;
-  margin-right: 9px;
+  width: 105px;
+  height: 50px;
   align-items: center;
-  font-family: Muli;
+  border: none;
+  border-bottom: 2px solid #595959;
+  background-color: #fafdfc;
+  font-family: Fira Sans;
   font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 15px;
-  margin-top: 50px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  outline: none;
+  color: #595959;
+  font-weight: ${(props) => (props.active ? '600' : 'normal')};
+  border-bottom: ${(props) =>
+    props.active ? '2px solid #595959' : '1.5px solid lightgrey'};
+  &:first-of-type {
+    margin-bottom: 30px;
+  }
 `;
 
 export default Activities;

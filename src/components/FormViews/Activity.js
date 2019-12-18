@@ -1,49 +1,47 @@
 import React, { useState } from 'react';
+import { Tag } from 'antd';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Icon from '../Icon';
+import MyTag from './MyTag';
 
 const Activity = ({ activityType, addActivities }) => {
-  const [active, setActive] = useState(true);
-
   const handleActiveAndAddActivity = (addedActivity) => {
     addActivities(addedActivity);
-    setActive(!active);
   };
   return (
     <>
-      <ActivityButtonToggle
-        active={active}
-        type="button"
-        data-testid="toggle"
-        onClick={() => handleActiveAndAddActivity(activityType)}
-      >
-        <Icon icon={activityType.icon} />
-        <p>{activityType.type}</p>
+      <ActivityButtonToggle>
+        <MyTag>{activityType}</MyTag>
       </ActivityButtonToggle>
     </>
   );
 };
+// data-testid="toggle"
 
 Activity.propTypes = {
-  activityType: PropTypes.shape({
-    type: PropTypes.string.isRequired,
-    icon: PropTypes.string.isRequired,
-  }).isRequired,
+  activityType: PropTypes.string.isRequired,
   addActivities: PropTypes.func.isRequired,
 };
 
-const ActivityButton = styled.button`
-  padding: 5px;
-  width: 70px;
-  border: none;
-  background: none;
-  margin-right: 3px;
-  margin-top: 27px;
-`;
+const ActivityButtonToggle = styled.div`
+  display: inline-block;
 
-const ActivityButtonToggle = styled(ActivityButton)`
-  color: ${(props) => (props.active ? 'limegreen' : 'darkred')};
+  .ant-tag {
+    padding: 5px;
+    width: 70px;
+
+    margin-right: 3px;
+    margin-top: 27px;
+    outline: none;
+    padding: 9px 8px;
+
+    border-radius: 9px;
+    font-family: Fira Sans;
+    font-size: 14px;
+    line-height: 20px;
+    /* background-color:#f4faf9; */
+    text-align: center;
+  }
 `;
 
 export default Activity;

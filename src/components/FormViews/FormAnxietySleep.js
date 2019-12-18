@@ -60,10 +60,7 @@ function FormAnxietySleep({
         </div>
       </div>
       <div className="footer">
-        <NextButton
-          data-testid="next"
-          onClick={() => handleView('activity-journal')}
-        >
+        <NextButton data-testid="next" onClick={() => handleView('activities')}>
           Next
         </NextButton>
       </div>

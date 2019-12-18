@@ -15,6 +15,7 @@ import FormActivityJournal from './FormActvityJournal';
 import FormAnxietySleep from './FormAnxietySleep';
 import backgroundImage from '../../assets/background-leaf.svg';
 import ladybug from '../../assets/ladybug.svg';
+import Activities from './Activities';
 
 const FormViews = () => {
   const history = useHistory();
@@ -34,7 +35,7 @@ const FormViews = () => {
     weather: null,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  console.log(input);
   const [isAnxietyChanged, setIsAnxietyChanged] = useState(null);
   const [isSleepChanged, setIsSleepChanged] = useState(null);
 
@@ -64,19 +65,19 @@ const FormViews = () => {
     setIsSleepChanged(true);
   };
 
-  // const addActivities = (activityObject) => {
-  //   const hasActivity = input.activities.some(
-  //     (activity) => activity.type === activityObject.type,
-  //   );
-  //   if (hasActivity) {
-  //     const removeActivity = input.activities.filter((obj) => {
-  //       return obj.type !== activityObject.type;
-  //     });
-  //     setInput({ ...input, activities: removeActivity });
-  //   } else {
-  //     setInput({ ...input, activities: [...input.activities, activityObject] });
-  //   }
-  // };
+  const addActivities = (activityObject) => {
+    const hasActivity = input.activities.some(
+      (activity) => activity === activityObject,
+    );
+    if (hasActivity) {
+      const removeActivity = input.activities.filter((obj) => {
+        return obj !== activityObject;
+      });
+      setInput({ ...input, activities: removeActivity });
+    } else {
+      setInput({ ...input, activities: [...input.activities, activityObject] });
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -87,6 +88,7 @@ const FormViews = () => {
       variables: {
         userId: data.user.id,
         weather: input.weather,
+        activities: input.activities,
         mood: input.mood,
         anxietyLevel: isAnxietyChanged ? input.anxietyLevel : null,
         sleep: isSleepChanged ? input.sleep : null,
@@ -138,10 +140,17 @@ const FormViews = () => {
           isSubmitting={isSubmitting}
         />
       )}
+      {view === 'activities' && (
+        <Activities
+          handleView={handleView}
+          handleSubmit={handleSubmit}
+          addActivities={addActivities}
+          isSubmitting={isSubmitting}
+        />
+      )}
 
       {view === 'activity-journal' && (
         <FormActivityJournal
-          // addActivities={addActivities}
           text={input.text}
           handleView={handleView}
           handleChange={handleChange}
@@ -182,6 +191,7 @@ const StyledForm = styled.form`
   }
 
   .header {
+    color: red;
     display: flex;
     justify-content: space-between;
     &.center {

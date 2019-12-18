@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Tag } from 'antd';
 import { format } from 'date-fns';
 import moodToString from '../utils/moodToString';
 import Card from './Card';
@@ -12,7 +13,15 @@ const formatDate = (timestamp, fmt) => {
 };
 
 const MoodCard = ({ mood: m }) => {
-  const { mood, sleep, anxietyLevel: anxiety, text, createdAt, weather } = m;
+  const {
+    activities,
+    mood,
+    sleep,
+    anxietyLevel: anxiety,
+    text,
+    createdAt,
+    weather,
+  } = m;
   return (
     <StyledMoodCard>
       <div className="date-time">
@@ -20,6 +29,9 @@ const MoodCard = ({ mood: m }) => {
         <p className="time">{formatDate(createdAt, 'h:mm a')}</p>
       </div>
       <p className="mood">{moodToString(mood)}</p>
+      {activities.map((activity) => {
+        return <Tag>{activity}</Tag>;
+      })}
       <div className="mood-details">
         {(anxiety || sleep || weather) && (
           <div className="stat-wrapper">

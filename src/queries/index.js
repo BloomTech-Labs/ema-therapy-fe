@@ -4,6 +4,7 @@ export const getMoodsQuery = gql`
   query($email: String) {
     user(email: $email) {
       moods {
+        activities
         mood
         text
         anxietyLevel
@@ -20,11 +21,13 @@ export const addMoodMutation = gql`
     $text: String
     $anxietyLevel: Int
     $sleep: Float
+    $activities: [String]
     $weather: String
   ) {
     addMood(
       userId: $userId
       mood: $mood
+      activities: $activities
       text: $text
       anxietyLevel: $anxietyLevel
       sleep: $sleep
@@ -32,6 +35,7 @@ export const addMoodMutation = gql`
     ) {
       mood
       text
+      activities
       anxietyLevel
       sleep
       weather
@@ -49,6 +53,7 @@ export const checkForUserAndGetMoodsQuery = gql`
       moods {
         mood
         anxietyLevel
+        activities
         text
         sleep
         createdAt
