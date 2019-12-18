@@ -20,6 +20,7 @@ import SingleDay from '../SingleDay';
 import { MoodsPrevWeekProvider } from '../../contexts/MoodsPrevWeekContext';
 import styles from '../../styles/theme';
 import Tasks from '../Tasks';
+import Task from '../../components/Task';
 
 function App() {
   const { loading } = useAuth();
@@ -52,7 +53,8 @@ function App() {
             <PrivateRoute path="/dashboard" exact component={Moods} />
             <PrivateRoute path="/dashboard/day/:day" component={SingleDay} />
             <PrivateRoute path="/dashboard/settings" component={Settings} />
-            <PrivateRoute path="/dashboard/tasks" component={Tasks} />
+            <PrivateRoute path="/dashboard/tasks" exact component={Tasks} />
+            <PrivateRoute path="/dashboard/tasks/:task" component={Task} />
             <PrivateRoute path="/profile" component={Profile} />
             <Route component={NotFound} />
           </Switch>

@@ -1,22 +1,15 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import styles from '../styles/theme';
 
-const tasks = [
-  'I am statements',
-  'Listen to 3 songs',
-  'Random',
-  'Give back',
-  // 'Spend time with someone great',
-  'Try an adventure',
-  // 'Breathing Meditation',
-  'Stroll in the park',
-];
+const tasks = ['Task 1', 'Task 2', 'Task 3', 'Task 4', 'Task 5', 'Task 6'];
 
 function Wheel() {
   const [selectedTask, setSelectedTask] = useState(null);
+  const history = useHistory();
 
   const wheelVars = {
     '--nb-item': tasks.length,
@@ -24,17 +17,23 @@ function Wheel() {
   };
   const spinning = selectedTask !== null ? 'spinning' : '';
 
-  const onSelectItem = (item) => console.log(item);
+  const onSelectItem = (item) => {
+    setTimeout(() => {
+      // console.log(item);
+      history.push(`tasks/${item + 1}`);
+    }, 5500);
+  };
 
   const selectItem = () => {
-    if (selectedTask === null) {
-      const selectedItem = Math.floor(Math.random() * tasks.length);
-      onSelectItem(tasks[selectedItem]);
-      setSelectedTask(selectedItem);
-    } else {
-      setSelectedTask(null);
-      setTimeout(selectItem, 500);
-    }
+    // if (selectedTask === null) {
+    const selectedItem = Math.floor(Math.random() * tasks.length);
+    onSelectItem(selectedItem);
+    setSelectedTask(selectedItem);
+    // } else {
+    //   setSelectedTask(null);
+    //   console.log('null');
+    //   setTimeout(selectItem, 500);
+    // }
   };
 
   return (
