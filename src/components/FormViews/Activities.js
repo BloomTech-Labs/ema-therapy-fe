@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import ReactSwipe from 'react-swipe';
 import { Icon } from 'antd';
 import styled from 'styled-components';
 import activities from '../../utils/Activities';
@@ -20,6 +21,8 @@ const Activities = ({
   handleSubmit,
 }) => {
   const [type, setType] = useState('food');
+
+  let reactSwipeEl;
 
   const handleTypeView = (view) => {
     setType(view);
@@ -43,11 +46,11 @@ const Activities = ({
         </DoneButton>
       </div>
       <InputWrapper>
-        <div>
+        {/* <div>
           {activities.map((cur, i) => {
             return (
               <TypeButton
-                key={generateUniqueKey()}
+                key={cur.name}
                 onClick={() => handleTypeView(cur.name)}
                 type="button"
                 active={type === cur.name}
@@ -56,13 +59,71 @@ const Activities = ({
               </TypeButton>
             );
           })}
-        </div>
+        </div> */}
+        <ReactSwipe
+          className="carousel"
+          swipeOptions={{ continuous: false }}
+          // eslint-disable-next-line no-return-assign
+          ref={(el) => (reactSwipeEl = el)}
+        >
+          <div>
+            {activities.map((cur, i) => {
+              if (i >= 0 && i < 4) {
+                return (
+                  <TypeButton
+                    key={cur.name}
+                    onClick={() => handleTypeView(cur.name)}
+                    type="button"
+                    active={type === cur.name}
+                  >
+                    {cur.name}
+                  </TypeButton>
+                );
+              }
+              return null;
+            })}
+          </div>
+          <div>
+            {activities.map((cur, i) => {
+              if (i >= 4 && i < 8) {
+                return (
+                  <TypeButton
+                    key={cur.name}
+                    onClick={() => handleTypeView(cur.name)}
+                    type="button"
+                    active={type === cur.name}
+                  >
+                    {cur.name}
+                  </TypeButton>
+                );
+              }
+              return null;
+            })}
+          </div>
+          <div>
+            {activities.map((cur, i) => {
+              if (i >= 8 && i < 12) {
+                return (
+                  <TypeButton
+                    key={cur.name}
+                    onClick={() => handleTypeView(cur.name)}
+                    type="button"
+                    active={type === cur.name}
+                  >
+                    {cur.name}
+                  </TypeButton>
+                );
+              }
+              return null;
+            })}
+          </div>
+        </ReactSwipe>
         <ActivitiesWrapper>
           {type === 'food' &&
             activities[0].foods.map((activityType) => {
               return (
                 <Activity
-                  key={generateUniqueKey()}
+                  key={activityType}
                   activityType={activityType}
                   addActivities={addActivities}
                 />
@@ -72,7 +133,7 @@ const Activities = ({
             activities[1].drinks.map((activityType) => {
               return (
                 <Activity
-                  key={generateUniqueKey()}
+                  key={activityType}
                   activityType={activityType}
                   addActivities={addActivities}
                 />
@@ -82,7 +143,7 @@ const Activities = ({
             activities[2].funs.map((activityType) => {
               return (
                 <Activity
-                  key={generateUniqueKey()}
+                  key={activityType}
                   activityType={activityType}
                   addActivities={addActivities}
                 />
@@ -92,17 +153,17 @@ const Activities = ({
             activities[3].miscs.map((activityType) => {
               return (
                 <Activity
-                  key={generateUniqueKey()}
+                  key={activityType}
                   activityType={activityType}
                   addActivities={addActivities}
                 />
               );
             })}
           {type === 'leisure' &&
-            activities[4].leisures.map((activityType) => {
+            activities[4].leisure.map((activityType) => {
               return (
                 <Activity
-                  key={generateUniqueKey()}
+                  key={activityType}
                   activityType={activityType}
                   addActivities={addActivities}
                 />
@@ -131,11 +192,15 @@ const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 100px;
+  /* margin-top: 100px; */
+
+  .carousel {
+    width: 100%;
+  }
 `;
 
 const TypeButton = styled.button`
-  width: 105px;
+  width: 25%;
   height: 50px;
   align-items: center;
   border: none;
@@ -158,7 +223,7 @@ const TypeButton = styled.button`
 `;
 
 const ActivitiesWrapper = styled.div`
-  height: 500px;
+  min-height: 400px;
 `;
 
 export default Activities;

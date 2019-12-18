@@ -55,6 +55,24 @@ const activities = [
     name: 'leisure',
     leasures: ['Facebook', 'Instagram', 'Twitter', 'Git'],
   },
+  {
+    name: 'misc',
+  },
+  {
+    name: 'social',
+  },
+  {
+    name: 'media',
+  },
+  {
+    name: 'work',
+  },
+  {
+    name: 'occasions',
+  },
+  {
+    name: 'sports',
+  },
 ];
 
 export default activities;

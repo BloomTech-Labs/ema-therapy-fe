@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import MyTag from './MyTag';
-import EditableTagGroup from './EditableTag';
 
 const Activity = ({ activityType, addActivities }) => {
   const handleActiveAndAddActivity = (addedActivity) => {
@@ -12,7 +11,6 @@ const Activity = ({ activityType, addActivities }) => {
     <>
       <ActivityButtonToggle>
         <MyTag>{activityType}</MyTag>
-        {/* <EditableTagGroup /> */}
       </ActivityButtonToggle>
     </>
   );
