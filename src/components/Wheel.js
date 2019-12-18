@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import styles from '../styles/theme';
+import theme from '../styles/theme';
 
 const tasks = ['Task 1', 'Task 2', 'Task 3', 'Task 4', 'Task 5', 'Task 6'];
 
@@ -19,21 +19,14 @@ function Wheel() {
 
   const onSelectItem = (item) => {
     setTimeout(() => {
-      // console.log(item);
       history.push(`tasks/${item + 1}`);
     }, 5500);
   };
 
   const selectItem = () => {
-    // if (selectedTask === null) {
     const selectedItem = Math.floor(Math.random() * tasks.length);
     onSelectItem(selectedItem);
     setSelectedTask(selectedItem);
-    // } else {
-    //   setSelectedTask(null);
-    //   console.log('null');
-    //   setTimeout(selectItem, 500);
-    // }
   };
 
   return (
@@ -63,9 +56,9 @@ function Wheel() {
 
 export default Wheel;
 
-const wheelStyles = {
+const styles = {
   size: '300px',
-  color: styles.darkJungleGreen,
+  color: theme.darkJungleGreen,
   borderSize: '5px',
   neutralColor: '#ffffff',
   spinningDuration: '4s',
@@ -83,15 +76,11 @@ const StyledWheel = styled.div`
     display: block;
     position: relative;
     box-sizing: content-box;
-    /* width: calc(var(--wheel-size) + 2 * var(--wheel-border-size));
-    height: calc(var(--wheel-size) + 2 * var(--wheel-border-size)); */
-    width: calc(${wheelStyles.size} + 2 * ${wheelStyles.borderSize});
+    width: calc(${styles.size} + 2 * ${styles.borderSize});
     padding: 3px;
     margin: auto;
-    /* background-color: var(--neutral-color); */
-    background-color: ${wheelStyles.neutralColor};
-    /* border: solid var(--wheel-color) 3px; */
-    border: solid ${wheelStyles.color} 3px;
+    background-color: ${styles.neutralColor};
+    border: solid ${styles.color} 3px;
     border-radius: 50%;
     user-select: none;
   }
@@ -112,14 +101,12 @@ const StyledWheel = styled.div`
 
   .wheel-container::before {
     right: 0px;
-    /* border-right-color: var(--wheel-color); */
-    border-right-color: ${wheelStyles.color};
+    border-right-color: ${styles.color};
   }
 
   .wheel-container::after {
     right: -5px;
-    /* border-right-color: var(--neutral-color); */
-    border-right-color: ${wheelStyles.neutralColor};
+    border-right-color: ${styles.neutralColor};
   }
 
   .wheel {
@@ -127,23 +114,19 @@ const StyledWheel = styled.div`
     position: relative;
     box-sizing: content-box;
     margin: auto;
-    /* width: var(--wheel-size);
-    height: var(--wheel-size); */
-    width: ${wheelStyles.size};
-    height: ${wheelStyles.size};
+    width: ${styles.size};
+    height: ${styles.size};
     overflow: hidden;
     border-radius: 50%;
-    /* border: solid var(--wheel-color) var(--wheel-border-size); */
-    border: solid ${wheelStyles.color} ${wheelStyles.borderSize};
-    background-color: var(--wheel-color);
+    border: solid ${styles.color} ${styles.borderSize};
+    background-color: ${styles.color};
     transition: transform var(--reset-duration);
     transform: rotate(0deg);
     cursor: pointer;
   }
 
   .wheel.spinning {
-    /* transition: transform var(--spinning-duration); */
-    transition: transform ${wheelStyles.spinningDuration};
+    transition: transform ${styles.spinningDuration};
     transform: rotate(
       calc(
         var(--nb-turn) * 360deg +
@@ -156,8 +139,7 @@ const StyledWheel = styled.div`
     display: block;
     position: absolute;
     content: '';
-    /* background-color: var(--neutral-color); */
-    background-color: ${wheelStyles.neutralColor};
+    background-color: ${styles.neutralColor};
     width: 25px;
     height: 25px;
     z-index: 2;
@@ -178,10 +160,9 @@ const StyledWheel = styled.div`
     transform-origin: center left;
     transform: translateY(-50%)
       rotate(calc(var(--item-nb) * (360deg / var(--nb-item, 1))));
-    color: var(--neutral-color);
+    color: ${styles.neutralColor};
     text-align: center;
     padding: 0 25px 0 50px;
-    /* font-family: var(--wheel-font); */
   }
 
   .wheel-item:before {
@@ -198,21 +179,14 @@ const StyledWheel = styled.div`
     padding-left: 0px;
     opacity: 0.25;
 
-    --slice-max-width: calc(
-      ${PI} * ${wheelStyles.size} + ${wheelStyles.size} / 2
-    );
+    --slice-max-width: calc(${PI} * ${styles.size} + ${styles.size} / 2);
 
     --slice-width: calc(
       (var(--slice-max-width) / var(--nb-item)) - var(--wheel-slice-spacing)
     );
 
     border: solid transparent calc(var(--slice-width) / 2);
-
     border-left: solid transparent 0;
-
-    /* triangle depth = from the center of the wheel to the border = 300px / 2 */
-    /* border-right: solid var(--neutral-color) calc(var(--wheel-size) / 2); */
-    border-right: solid ${wheelStyles.neutralColor}
-      calc(${wheelStyles.size} / 2);
+    border-right: solid ${styles.neutralColor} calc(${styles.size} / 2);
   }
 `;
