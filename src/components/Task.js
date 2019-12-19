@@ -4,6 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import NotFound from '../containers/NotFound/404';
 import styles from '../styles/theme';
+import Button from './Button';
 
 const { TextArea } = Input;
 
@@ -13,6 +14,10 @@ function Task() {
   const [text, setText] = useState();
 
   const handleChange = (e) => setText(e.target.value);
+
+  const handleSubmit = () => {
+    console.log(text);
+  };
 
   if (!(task >= 1 && task <= 7)) return <NotFound />;
   return (
@@ -26,22 +31,30 @@ function Task() {
         <Title>Daily Task {task}</Title>
       </Header>
 
-      <TextArea
-        name="text"
-        value={text}
-        style={{
-          fontSize: 16,
-          height: '315px',
-          color: '#658883',
-          borderRadius: '10',
-          padding: '35px 30px',
-          background: '#ffffff',
-          boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)',
-          resize: 'none',
-        }}
-        onChange={handleChange}
-        placeholder="Write your thoughts here..."
-      />
+      <div>
+        <StyledPrompt>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
+          hendrerit condimentum nisi, at convallis sapien pellentesque quis.
+        </StyledPrompt>
+
+        <TextArea
+          name="text"
+          value={text}
+          style={{
+            fontSize: 16,
+            height: '250px',
+            color: '#658883',
+            borderRadius: '10',
+            padding: '35px 30px',
+            background: '#ffffff',
+            boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)',
+            resize: 'none',
+          }}
+          onChange={handleChange}
+          placeholder="Write your thoughts here..."
+        />
+      </div>
+      <Button onClick={handleSubmit}>Done</Button>
     </TaskWrapper>
   );
 }
@@ -52,6 +65,9 @@ const TaskWrapper = styled.div`
   background-color: ${styles.seafoamGreen};
   height: 100%;
   padding: 30px 25px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
 `;
 
 const Header = styled.div`
@@ -65,4 +81,9 @@ const Title = styled.h1`
   font-size: 24px;
   margin: 0;
   margin: 0 20px;
+`;
+
+const StyledPrompt = styled.p`
+  color: ${styles.tealGreen};
+  margin-bottom: 24px;
 `;
