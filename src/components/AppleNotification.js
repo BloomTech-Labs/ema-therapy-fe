@@ -29,6 +29,9 @@ function AppleNotification() {
     <Modal
       visible={isModalOpen}
       closable={false}
+      // if masClosable is true then a click outside of the modal will fire
+      // onCancel() which will set showIosNotification to false
+      maskClosable={false}
       cancelText="Don't show this again"
       onOk={() => setIsModalOpen(false)}
       onCancel={() => {
@@ -38,9 +41,9 @@ function AppleNotification() {
     >
       <Title>Add MoodBloom to Home Screen</Title>
       <StyledContent>
-        For a better experience,{' '}
+        For a better experience using MoodBloom,{' '}
         {!iOSSafari && <strong>open this page in Safari, </strong>} press the
-        share button <IoIosShare size={24} /> and choose{' '}
+        share button <IoIosShare size={24} /> in the menu bar and select{' '}
         <strong>Add to Home Screen</strong>.
       </StyledContent>
     </Modal>
