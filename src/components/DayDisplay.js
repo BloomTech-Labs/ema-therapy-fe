@@ -82,16 +82,18 @@ const DayDisplay = ({ moodsToDisplay, handleMoodsToDisplay }) => {
       </Header>
       <MoodList>
         {moodsToDisplay &&
-          moodsToDisplay.map((mood) => (
-            <MoodCard
-              key={mood.id}
-              mood={mood}
-              deleteMood={deleteMood}
-              deleteLoading={deleteLoading}
-              editMood={editMood}
-              isEditing={isEditing}
-            />
-          ))}
+          moodsToDisplay
+            .reverse()
+            .map((mood) => (
+              <MoodCard
+                key={mood.id}
+                mood={mood}
+                deleteMood={deleteMood}
+                deleteLoading={deleteLoading}
+                editMood={editMood}
+                isEditing={isEditing}
+              />
+            ))}
       </MoodList>
     </StyledMoodDisplay>
   );
