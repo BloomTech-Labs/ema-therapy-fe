@@ -7,6 +7,7 @@ import { Button } from 'antd';
 import { useAuth } from '../../utils/dataStore';
 import styles from '../../styles/theme';
 import splash from '../../assets/splash-leaves.png';
+import AppleNotification from '../../components/AppleNotification';
 
 import { parseJwt } from '../../components/Auth/axiosAuth/axios';
 
@@ -32,6 +33,7 @@ const Welcome = ({ location }) => {
 
   return (
     <StyledWelcome>
+      <AppleNotification />
       <h2>MoodBloom</h2>
       <LoginWrapper>
         <div className="slogan-text">
