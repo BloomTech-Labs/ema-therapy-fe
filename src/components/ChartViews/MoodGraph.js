@@ -37,6 +37,7 @@ function MoodGraph({ arrayOfDays }) {
     //   titleFontColor: 'rgb(227, 113, 128)',
     //   color: 'rgb(227, 113, 128)',
     // },
+    responsive: true,
     legend: false,
     scales: {
       xAxes: [
