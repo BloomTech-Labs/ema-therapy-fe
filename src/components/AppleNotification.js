@@ -5,6 +5,11 @@ import styled from 'styled-components';
 import useStandalone from '../hooks/useStandalone';
 import styles from '../styles/theme';
 
+// Checks if the app was opened from a browser on iOS and if so, provides
+// instructions for adding the app to the home screen.  Add to Home Screen only
+// works in Safari, so there is also a check to see whether the mobile browser
+// used is Safari and if it is not includes an extra sentence of instructions.
+
 function AppleNotification() {
   const isStandalone = useStandalone();
   const showModal = localStorage.getItem('iOSNotification') === null;
