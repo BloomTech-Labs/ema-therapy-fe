@@ -10,32 +10,33 @@ import theme from './styles/theme';
 import * as serviceWorker from './utils/serviceWorker';
 import GAListener from './components/GAListener';
 
-// A function that routes the user to the right place after login
-// const onRedirectCallback = (appState) => {
-//   window.history.replaceState(
-//     {},
-//     document.title,
-//     appState && appState.targetUrl
-//       ? appState.targetUrl
-//       : window.location.pathname,
-//   );
-// };
+// replace Router with DebugRouter if you need to debug routes
+
+// class DebugRouter extends Router {
+//   constructor(props) {
+//     super(props);
+//     console.log('initial history is: ', JSON.stringify(this.history, null, 2));
+//     this.history.listen((location, action) => {
+//       console.log(
+//         `The current URL is ${location.pathname}${location.search}${location.hash}`,
+//       );
+//       console.log(
+//         `The last navigation action was ${action}`,
+//         JSON.stringify(this.history, null, 2),
+//       );
+//     });
+//   }
+// }
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <AuthProvider
-    // domain={AUTH0_DOMAIN}
-    //   client_id={AUTH0_CLIENT_ID}
-    //   redirect_uri={window.location.origin}
-    //   audience={AUTH0_AUDIENCE}
-    //   onRedirectCallback={onRedirectCallback}
-    >
-      <Router>
+    <Router>
+      <AuthProvider>
         <GAListener trackingId={GA_ID}>
           <App />
         </GAListener>
-      </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </Router>
   </ThemeProvider>,
   document.getElementById('root'),
 );
