@@ -1,22 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button as Btn } from 'antd';
+import theme from '../styles/theme';
 
 const styles = {
-  background: '#ffffff',
-  color: '#89D2D6',
-  fontSize: '12px',
+  background: theme.tealGreen,
+  color: '#FFFFFF',
+  fontSize: '18px',
   borderRadius: 10,
-  width: 70,
-  height: 30,
-  border: 'none',
-  marginRight: '-7px',
-  marginTop: '6px',
+  width: 167,
+  height: 55,
+  boxShadow: '0px 4px 4px #CCE8E4',
 };
 
-function Button({ loading, children, onClick }) {
+function Button({ children, onClick, loading }) {
   return (
-    <Btn loading={loading} onClick={onClick} style={styles}>
+    <Btn
+      data-testid="button"
+      loading={loading}
+      onClick={onClick}
+      style={styles}
+    >
       {children}
     </Btn>
   );
@@ -24,11 +28,15 @@ function Button({ loading, children, onClick }) {
 
 Button.propTypes = {
   onClick: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+  loading: PropTypes.bool,
+};
+
+Button.defaultProps = {
+  loading: false,
 };
 
 export default Button;
