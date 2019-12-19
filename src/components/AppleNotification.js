@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Modal } from 'antd';
 import { IoIosShare } from 'react-icons/io';
 import useStandalone from '../hooks/useStandalone';
