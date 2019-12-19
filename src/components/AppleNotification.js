@@ -5,21 +5,19 @@ import styled from 'styled-components';
 import useStandalone from '../hooks/useStandalone';
 import styles from '../styles/theme';
 
+const showModal = () => {
+  let showIosNotification;
+  if (window.localStorage.getItem('showIosNotification') !== null) {
+    showIosNotification = false;
+  } else {
+    showIosNotification = true;
+  }
+  return showIosNotification;
+};
+
 function AppleNotification() {
   const isStandalone = useStandalone();
-
-  const showModal = () => {
-    let showIosNotification;
-    if (window.localStorage.getItem('showIosNotification') !== null) {
-      showIosNotification = false;
-    } else {
-      showIosNotification = true;
-    }
-    return showIosNotification;
-  };
-
   const [isModalOpen, setIsModalOpen] = useState(showModal);
-
   const ua = window.navigator.userAgent;
   const iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
   const webkit = !!ua.match(/WebKit/i);
