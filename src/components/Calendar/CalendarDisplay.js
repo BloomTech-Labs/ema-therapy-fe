@@ -5,6 +5,7 @@ import { Spin, Icon } from 'antd';
 import { isSameDay, isSameMonth, getDaysInMonth } from 'date-fns';
 import styles from '../../styles/theme';
 import Calendar from './Calendar';
+import Card from '../Card';
 
 const getMoodsByDay = (dateSelected, moodData) => {
   return moodData[dateSelected.getDate() - 1].filter((mood) =>
@@ -63,19 +64,24 @@ const CalendarDisplay = ({ moods, handleMoodsToDisplay }) => {
   //   </LoadingWrapper>
   // ) : (
   return (
-    <>
-      <Icon
-        type="left"
-        style={{ fontSize: 22, color: '#9cd9dd' }}
-        onClick={() => history.goBack()}
-      />
-      <Calendar
-        handleDaySelected={handleDaySelected}
-        activeStartDate={activeStartDate}
-        handleActiveStartDate={handleActiveStartDate}
-        moodsThisMonth={moodsThisMonth}
-      />
-    </>
+    <Wrapper>
+      <StyledCard>
+        <div className="header">
+          <p>Select date to see your mood</p>
+          <Icon
+            type="close"
+            style={{ color: '#8C8C8C' }}
+            onClick={() => history.goBack()}
+          />
+        </div>
+        <Calendar
+          handleDaySelected={handleDaySelected}
+          activeStartDate={activeStartDate}
+          handleActiveStartDate={handleActiveStartDate}
+          moodsThisMonth={moodsThisMonth}
+        />
+      </StyledCard>
+    </Wrapper>
   );
 };
 
@@ -89,5 +95,30 @@ const LoadingWrapper = styled.div`
 
   .ant-spin-dot-item {
     background-color: ${styles.darkJungleGreen} !important;
+  }
+`;
+
+const Wrapper = styled.div`
+  background-color: ${styles.seafoamGreen};
+  height: 100%;
+  padding: 60px 10px 0;
+`;
+
+const StyledCard = styled(Card)`
+  height: 475px;
+  padding: 20px 10px;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding: 0 12px;
+
+    p {
+      color: #bfbfbf;
+      font-size: 12px;
+      margin: unset;
+    }
   }
 `;

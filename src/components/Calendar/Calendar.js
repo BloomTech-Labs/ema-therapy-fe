@@ -26,10 +26,11 @@ const Calendar = ({
 
   const tileDisabled = ({ date }) => {
     return (
-      isSameMonth(date, activeStartDate) &&
-      moodsThisMonth &&
-      moodsThisMonth.length === getDaysInMonth(activeStartDate) &&
-      moodsThisMonth[date.getDate() - 1].length === 0
+      (isSameMonth(date, activeStartDate) &&
+        moodsThisMonth &&
+        moodsThisMonth.length === getDaysInMonth(activeStartDate) &&
+        moodsThisMonth[date.getDate() - 1].length === 0) ||
+      !isSameMonth(date, activeStartDate)
     );
   };
 
@@ -44,7 +45,6 @@ const Calendar = ({
         formatShortWeekday={(locale, date) => format(date, 'iiiii')}
         tileClassName={tileClassName}
         tileDisabled={tileDisabled}
-        showNeighboringMonth={false}
         minDetail="month"
         minDate={new Date(2019, 10, 1)}
         onClickDay={async (value) => {
@@ -72,6 +72,9 @@ Calendar.defaultProps = {
 export default Calendar;
 
 const CalContainer = styled.div`
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e8e8e8;
+
   .react-calendar {
     width: unset;
     border: unset;
@@ -103,5 +106,25 @@ const CalContainer = styled.div`
 
   .react-calendar__month-view__days__day--neighboringMonth {
     color: #757575;
+  }
+
+  .react-calendar__month-view__weekdays__weekday {
+    color: ${styles.darkJungleGreen};
+  }
+
+  .react-calendar__navigation {
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .react-calendar__navigation__prev2-button,
+  .react-calendar__navigation__next2-button {
+    display: none;
+  }
+
+  .react-calendar__navigation__label {
+    color: ${styles.darkJungleGreen};
+    font-weight: 600;
+    font-size: 14px;
   }
 `;
