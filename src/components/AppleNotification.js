@@ -5,18 +5,9 @@ import styled from 'styled-components';
 import useStandalone from '../hooks/useStandalone';
 import styles from '../styles/theme';
 
-const showModal = () => {
-  let showIosNotification;
-  if (window.localStorage.getItem('showIosNotification') !== null) {
-    showIosNotification = false;
-  } else {
-    showIosNotification = true;
-  }
-  return showIosNotification;
-};
-
 function AppleNotification() {
   const isStandalone = useStandalone();
+  const showModal = localStorage.getItem('iOSNotification') === null;
   const [isModalOpen, setIsModalOpen] = useState(showModal);
   const ua = window.navigator.userAgent;
   const iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
@@ -27,13 +18,11 @@ function AppleNotification() {
     <Modal
       visible={isModalOpen}
       closable={false}
-      // if masClosable is true then a click outside of the modal will fire
-      // onCancel() which will set showIosNotification to false
-      maskClosable={false}
+      maskClosable={false} // or else a click outside modal will fire onCancel()
       cancelText="Don't show this again"
       onOk={() => setIsModalOpen(false)}
       onCancel={() => {
-        window.localStorage.setItem('showIosNotification', false);
+        window.localStorage.setItem('iOSNotification', 'false');
         setIsModalOpen(false);
       }}
     >
