@@ -1,23 +1,24 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import queryString from 'query-string';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect, useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button } from 'antd';
 import { useAuth } from '../../utils/dataStore';
 import styles from '../../styles/theme';
 import splash from '../../assets/splash-leaves.png';
+import AppleNotification from '../../components/AppleNotification';
 
 import { parseJwt } from '../../components/Auth/axiosAuth/axios';
 
-const Welcome = ({ location }) => {
+const Welcome = () => {
+  const location = useLocation();
+  const history = useHistory();
   const {
     setUser,
     setIsAuthenticated,
     setLoading,
     isAuthenticated,
   } = useAuth();
-  const history = useHistory();
 
   // this gets the token from the URL query string and saves it to local storage
   const query = queryString.parse(location.search);
@@ -32,6 +33,7 @@ const Welcome = ({ location }) => {
 
   return (
     <StyledWelcome>
+      <AppleNotification />
       <h2>MoodBloom</h2>
       <LoginWrapper>
         <div className="slogan-text">
@@ -57,16 +59,6 @@ const Welcome = ({ location }) => {
       {isAuthenticated && <Redirect to="/dashboard" />}
     </StyledWelcome>
   );
-};
-
-Welcome.propTypes = {
-  location: {
-    search: PropTypes.string,
-  },
-};
-
-Welcome.defaultProps = {
-  location: '',
 };
 
 const StyledWelcome = styled.div`
