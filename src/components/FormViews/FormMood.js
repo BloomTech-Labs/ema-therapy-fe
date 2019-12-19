@@ -19,6 +19,7 @@ function FormMood({
   handleView,
   handleSubmit,
   isSubmitting,
+  stopEditing,
 }) {
   const history = useHistory();
   const isStandalone = useStandalone();
@@ -39,7 +40,9 @@ function FormMood({
         <Icon
           type="left"
           style={{ fontSize: 22, color: '#9cd9dd' }}
-          onClick={() => history.push('/dashboard')}
+          onClick={() =>
+            stopEditing ? stopEditing() : history.push('/dashboard')
+          }
         />
         <p>
           How do you <br />
@@ -79,6 +82,11 @@ FormMood.propTypes = {
   onMoodSliderChange: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   isSubmitting: PropTypes.bool.isRequired,
+  stopEditing: PropTypes.func,
+};
+
+FormMood.defaultProps = {
+  stopEditing: null,
 };
 
 export default FormMood;
