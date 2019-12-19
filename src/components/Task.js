@@ -4,6 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import NotFound from '../containers/NotFound/404';
 import styles from '../styles/theme';
+import TaskImage from './TaskImage';
 import Button from './Button';
 
 const { TextArea } = Input;
@@ -42,7 +43,7 @@ function Task() {
           value={text}
           style={{
             fontSize: 16,
-            height: '250px',
+            height: '200px',
             color: '#658883',
             borderRadius: '10',
             padding: '35px 30px',
@@ -54,6 +55,9 @@ function Task() {
           placeholder="Write your thoughts here..."
         />
       </main>
+      <PicturesWrapper>
+        <TaskImage />
+      </PicturesWrapper>
       <ButtonWrapper>
         <Button onClick={handleSubmit}>Done</Button>
       </ButtonWrapper>
@@ -69,10 +73,6 @@ const TaskWrapper = styled.div`
   padding: 30px 25px;
   display: flex;
   flex-direction: column;
-
-  main {
-    flex: 1;
-  }
 `;
 
 const Header = styled.div`
@@ -95,4 +95,14 @@ const StyledPrompt = styled.p`
 
 const ButtonWrapper = styled.div`
   align-self: center;
+`;
+
+const PicturesWrapper = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 2px solid green;
+  display: flex;
+  align-items: center; */
 `;
