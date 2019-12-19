@@ -119,7 +119,7 @@ const StyledWheel = styled.div`
 
   .wheel-container::after {
     right: -5px;
-    border-right-color: ${styles.neutralColor};
+    border-right-color: ${theme.seafoamGreen};
   }
 
   .wheel {
