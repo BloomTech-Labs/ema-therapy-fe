@@ -36,7 +36,7 @@ function WeekDisplay({ moods, handleMoodsToDisplay }) {
           <CalendarIcon />
         </Link>
       </Header>
-      <Greeting>Weekly moods</Greeting>
+      <Greeting>Your weekly moods</Greeting>
       {moodsThisWeek &&
         moodsThisWeek.map((list) => {
           // return mood preview card if mood entries exist in the list
@@ -82,10 +82,10 @@ WeekDisplay.defaultProps = {
 export default WeekDisplay;
 
 const Greeting = styled.h2`
-  color: ${styles.rosyPink};
-  font-size: 18px;
+  color: ${styles.darkJungleGreen};
+  font-size: 16px;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 500;
   margin-bottom: 30px;
 `;
 
@@ -94,7 +94,6 @@ const StyledLogo = styled.h1`
   font-weight: 600;
   color: #0c423b;
   margin: unset;
-  margin-bottom: 31px;
 `;
 
 const Header = styled.div`
