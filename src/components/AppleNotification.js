@@ -3,7 +3,7 @@ import { Modal } from 'antd';
 import { IoIosShare } from 'react-icons/io';
 import styled from 'styled-components';
 import useStandalone from '../hooks/useStandalone';
-import theme from '../styles/theme';
+import styles from '../styles/theme';
 
 function AppleNotification() {
   const isStandalone = useStandalone();
@@ -36,9 +36,7 @@ function AppleNotification() {
         setIsModalOpen(false);
       }}
     >
-      <h3 style={{ color: theme.darkJungleGreen }}>
-        Add MoodBloom to Home Screen
-      </h3>
+      <Title>Add MoodBloom to Home Screen</Title>
       <StyledContent>
         For a better experience,{' '}
         {!iOSSafari && (
@@ -55,6 +53,9 @@ function AppleNotification() {
 
 export default AppleNotification;
 
+const Title = styled.h3`
+  color: ${styles.darkJungleGreen};
+`;
 const StyledContent = styled.p`
   margin: 0;
   padding-top: 10px;
