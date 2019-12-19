@@ -23,7 +23,7 @@ function AppleNotification() {
     <Modal
       visible={isModalOpen}
       closable={false}
-      maskClosable={false} // or else a click outside modal will fire onCancel()
+      maskClosable={false} // prevents an outside click from firing onCancel()
       cancelText="Don't show this again"
       onOk={() => setIsModalOpen(false)}
       onCancel={() => {
