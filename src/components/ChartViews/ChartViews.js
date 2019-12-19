@@ -13,6 +13,7 @@ import AnxietyGraph from './AnxietyGraph';
 import SleepGraph from './SleepGraph';
 import Charts from '../../containers/Charts';
 import MoodePie from './MoodPie';
+import styles from '../../styles/theme';
 
 const ChartViews = () => {
   let reactSwipeEl;
@@ -73,6 +74,51 @@ const ChartViews = () => {
     return arrayOfDays.filter((day) => day.mood).reverse();
   };
 
+  const totalMoods = (moodData) => {
+    const moodCount = { '5': 0, '4': 0, '3': 0, '2': 0, '1': 0 };
+
+    let totalEntries = 0;
+    moodData.forEach((day) => {
+      day.forEach((entry) => {
+        totalEntries += 1;
+
+        moodCount[entry.mood] += 1;
+      });
+    });
+    const totalMoodsArray = [
+      {
+        mood: 'happy',
+        color: `${styles.darkJungleGreen}`,
+        percent: Math.floor((moodCount['5'] / totalEntries) * 100),
+      },
+      {
+        mood: 'fine',
+        color: `${styles.cerulean}`,
+        percent: Math.floor((moodCount['4'] / totalEntries) * 100),
+      },
+      {
+        mood: 'normal',
+        color: `${styles.brightYellow}`,
+        percent: Math.floor((moodCount['3'] / totalEntries) * 100),
+      },
+      {
+        mood: 'sad',
+        color: `${styles.sherbertOrange}`,
+        percent: Math.floor((moodCount['2'] / totalEntries) * 100),
+      },
+      {
+        mood: 'unhappy',
+        color: `${styles.rosyPink}`,
+        percent: Math.floor((moodCount['1'] / totalEntries) * 100),
+      },
+    ];
+    console.log('mood count', moodCount);
+    return totalMoodsArray;
+  };
+  if (moods.length > 0) {
+    console.log(totalMoods(moods));
+  }
+
   if (error) return <p>{error.message}</p>;
 
   return loading ? null : (
@@ -98,17 +144,16 @@ const ChartViews = () => {
           className="temp-slide-button"
           type="button"
           onClick={() => reactSwipeEl.next()}
-        >
-          next
-        </button>
+        ></button>
         <button
           className="temp-slide-button"
           type="button"
           onClick={() => reactSwipeEl.prev()}
-        >
-          previous
-        </button>
-        <MoodePie arrayOfDays={getArrayOfDays(moods)} />
+        ></button>
+        <MoodePie
+          totalMoods={totalMoods(moods)}
+          arrayOfDays={getArrayOfDays(moods)}
+        />
       </Wrapper>
     </Charts>
   );

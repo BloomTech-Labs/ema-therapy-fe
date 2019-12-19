@@ -3,8 +3,9 @@
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
 import PropTypes from 'prop-types';
+import PieLegend from './PieLegend';
 
-const MoodPie = ({ arrayOfDays }) => {
+const MoodPie = ({ totalMoods, arrayOfDays }) => {
   const findMoodPercent = (moodData) => {
     const moodArray = [0, 0, 0, 0, 0];
     moodData.map((entry) => {
@@ -58,7 +59,7 @@ const MoodPie = ({ arrayOfDays }) => {
   const options = {
     cutoutPercentage: 90,
     legend: {
-      display: true,
+      display: false,
       position: 'bottom',
       labels: {
         fontColor: '#333',
@@ -71,6 +72,7 @@ const MoodPie = ({ arrayOfDays }) => {
     <div>
       <h2>Frequent Moods</h2>
       <Pie data={data} options={options} />
+      <PieLegend totalMoods={totalMoods} />
     </div>
   );
 };
