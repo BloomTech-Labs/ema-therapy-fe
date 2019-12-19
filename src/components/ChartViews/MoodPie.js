@@ -34,11 +34,17 @@ const MoodPie = ({ totalMoods, arrayOfDays }) => {
   };
   const totalMoodPercent = findMoodPercent(arrayOfDays);
 
+  const moodsPercentageArray = [];
+  totalMoods.map((item) => {
+    moodsPercentageArray.push(item.percent);
+    return moodsPercentageArray;
+  });
+
   const data = {
     labels: ['happy', 'fine', 'normal', 'sad', 'unhappy'],
     datasets: [
       {
-        data: totalMoodPercent,
+        data: moodsPercentageArray,
         backgroundColor: [
           '#00917A',
           '#53BBC9',

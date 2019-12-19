@@ -1,0 +1,17 @@
+diff a/src/containers/Welcome/Welcome.js b/src/containers/Welcome/Welcome.js	(rejected hunks)
+@@ -14 +14,6 @@ const Welcome = ({ location }) => {
+-  const { setUser, setIsAuthenticated, setLoading, isAuthenticated } = useAuth();
++  const {
++    setUser,
++    setIsAuthenticated,
++    setLoading,
++    isAuthenticated,
++  } = useAuth();
+@@ -28 +32,0 @@ const Welcome = ({ location }) => {
+-  
+@@ -60 +64 @@ Welcome.propTypes = {
+-    search: PropTypes.string
++    search: PropTypes.string,
+@@ -65 +69 @@ Welcome.defaultProps = {
+-  location: ''
++  location: '',
