@@ -160,7 +160,7 @@ const ChartViews = () => {
 };
 
 const Wrapper = styled.div`
-  background-color: #f0f8f7;
+  background-color: #fafdfc;
   padding: 27px 16px 80px;
   min-height: 100vh;
 
