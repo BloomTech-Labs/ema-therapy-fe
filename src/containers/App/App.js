@@ -7,18 +7,18 @@ import { Route, Switch } from 'react-router-dom';
 import { useAuth } from '../../utils/dataStore';
 import { GRAPHQL_URI } from '../../utils/config';
 import GlobalStyle from '../../styles/global-styles';
-import Welcome from '../Welcome/Welcome';
+import styles from '../../styles/theme';
 import SignIn from '../../components/Auth/SignIn';
 import SignUp from '../../components/Auth/SignUp';
+import Task from '../../components/Task';
 import Profile from '../../components/Profile';
 import PrivateRoute from '../../components/PrivateRoute';
 import EntryForm from '../EntryForm/EntryForm';
 import Moods from '../Moods';
 import NotFound from '../NotFound/404';
 import Settings from '../Settings';
-import styles from '../../styles/theme';
 import Tasks from '../Tasks';
-import Task from '../../components/Task';
+import Welcome from '../Welcome/Welcome';
 
 function App() {
   const { loading } = useAuth();
