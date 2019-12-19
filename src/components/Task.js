@@ -31,7 +31,7 @@ function Task() {
         <Title>Daily Task {task}</Title>
       </Header>
 
-      <div>
+      <main>
         <StyledPrompt>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
           hendrerit condimentum nisi, at convallis sapien pellentesque quis.
@@ -53,8 +53,10 @@ function Task() {
           onChange={handleChange}
           placeholder="Write your thoughts here..."
         />
-      </div>
-      <Button onClick={handleSubmit}>Done</Button>
+      </main>
+      <ButtonWrapper>
+        <Button onClick={handleSubmit}>Done</Button>
+      </ButtonWrapper>
     </TaskWrapper>
   );
 }
@@ -67,7 +69,10 @@ const TaskWrapper = styled.div`
   padding: 30px 25px;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
+
+  main {
+    flex: 1;
+  }
 `;
 
 const Header = styled.div`
@@ -86,4 +91,8 @@ const Title = styled.h1`
 const StyledPrompt = styled.p`
   color: ${styles.tealGreen};
   margin-bottom: 24px;
+`;
+
+const ButtonWrapper = styled.div`
+  align-self: center;
 `;
