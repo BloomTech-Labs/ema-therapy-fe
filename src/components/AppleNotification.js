@@ -39,12 +39,8 @@ function AppleNotification() {
       <Title>Add MoodBloom to Home Screen</Title>
       <StyledContent>
         For a better experience,{' '}
-        {!iOSSafari && (
-          <>
-            <strong>open this page in Safari,</strong>{' '}
-          </>
-        )}{' '}
-        press the share button <IoIosShare size={24} /> and choose{' '}
+        {!iOSSafari && <strong>open this page in Safari, </strong>} press the
+        share button <IoIosShare size={24} /> and choose{' '}
         <strong>Add to Home Screen</strong>.
       </StyledContent>
     </Modal>
