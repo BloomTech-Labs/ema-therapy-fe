@@ -17,7 +17,6 @@ import Moods from '../Moods';
 import NotFound from '../NotFound/404';
 import Settings from '../Settings';
 import styles from '../../styles/theme';
-import Calendar from '../Calendar';
 
 function App() {
   const { loading } = useAuth();
@@ -45,7 +44,6 @@ function App() {
           <Route path="/" exact component={Welcome} />
           <Route path="/signin" exact component={SignIn} />
           <Route path="/signup" exact component={SignUp} />
-          <PrivateRoute path="/calendar" component={Calendar} />
           <PrivateRoute path="/entryform" component={EntryForm} />
           <PrivateRoute path="/dashboard/settings" component={Settings} />
           <PrivateRoute path="/dashboard" component={Moods} />

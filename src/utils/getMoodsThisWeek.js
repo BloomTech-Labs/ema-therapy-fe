@@ -3,7 +3,7 @@ import startOfDay from 'date-fns/startOfDay';
 import subDays from 'date-fns/subDays';
 import getDay from 'date-fns/getDay';
 
-function weekOfMoods(data) {
+function getMoodsThisWeek(data) {
   // get only the mood entries from the previous week
   const prevWeekMoodArr = data.filter((mood) => {
     return isAfter(startOfDay(+mood.createdAt), subDays(Date.now(), 7));
@@ -25,4 +25,4 @@ function weekOfMoods(data) {
   return week.reverse();
 }
 
-export default weekOfMoods;
+export default getMoodsThisWeek;

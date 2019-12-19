@@ -77,7 +77,7 @@ const DayDisplay = ({ moodsToDisplay, handleMoodsToDisplay }) => {
         <Icon
           type="left"
           style={{ fontSize: 22, color: '#9cd9dd' }}
-          onClick={() => history.push('/dashboard')}
+          onClick={() => history.goBack()}
         />
       </Header>
       <MoodList>

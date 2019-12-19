@@ -3,15 +3,15 @@ import { useHistory } from 'react-router-dom';
 import { format, isSameMonth, getDaysInMonth } from 'date-fns';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Calendar from 'react-calendar';
+import ReactCalendar from 'react-calendar';
 import styles from '../../styles/theme';
 
-function CalendarDisplay({
+const Calendar = ({
   handleDaySelected,
   activeStartDate,
   handleActiveStartDate,
   moodsThisMonth,
-}) {
+}) => {
   const history = useHistory();
 
   const tileClassName = ({ date }) => {
@@ -35,7 +35,7 @@ function CalendarDisplay({
 
   return (
     <CalContainer>
-      <Calendar
+      <ReactCalendar
         calendarType="US"
         activeStartDate={activeStartDate}
         onActiveDateChange={({ activeStartDate: newActiveStartDate }) =>
@@ -51,25 +51,25 @@ function CalendarDisplay({
           // update day selected
           await handleDaySelected(value);
           // reroute to day display
-          history.push('/calendar/day');
+          history.push('/dashboard/day');
         }}
       />
     </CalContainer>
   );
-}
+};
 
-CalendarDisplay.propTypes = {
+Calendar.propTypes = {
   handleDaySelected: PropTypes.func.isRequired,
   activeStartDate: PropTypes.instanceOf(Date).isRequired,
   handleActiveStartDate: PropTypes.func.isRequired,
   moodsThisMonth: PropTypes.arrayOf(PropTypes.array),
 };
 
-CalendarDisplay.defaultProps = {
+Calendar.defaultProps = {
   moodsThisMonth: null,
 };
 
-export default CalendarDisplay;
+export default Calendar;
 
 const CalContainer = styled.div`
   .react-calendar {
