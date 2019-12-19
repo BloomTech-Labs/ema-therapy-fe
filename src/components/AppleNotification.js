@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Modal } from 'antd';
 import { IoIosShare } from 'react-icons/io';
+import styled from 'styled-components';
 import useStandalone from '../hooks/useStandalone';
 import theme from '../styles/theme';
 
@@ -38,7 +39,7 @@ function AppleNotification() {
       <h3 style={{ color: theme.darkJungleGreen }}>
         Add MoodBloom to Home Screen
       </h3>
-      <p>
+      <StyledContent>
         For a better experience,{' '}
         {!iOSSafari && (
           <>
@@ -47,9 +48,14 @@ function AppleNotification() {
         )}{' '}
         press the share button <IoIosShare size={24} /> and choose{' '}
         <strong>Add to Home Screen</strong>.
-      </p>
+      </StyledContent>
     </Modal>
   ) : null;
 }
 
 export default AppleNotification;
+
+const StyledContent = styled.p`
+  margin: 0;
+  padding-top: 10px;
+`;
