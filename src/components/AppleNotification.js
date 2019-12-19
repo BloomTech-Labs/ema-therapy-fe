@@ -13,7 +13,7 @@ import styles from '../styles/theme';
 function AppleNotification() {
   const isStandalone = useStandalone();
   const showModal = localStorage.getItem('iOSNotification') === null;
-  const [isModalOpen, setIsModalOpen] = useState(showModal);
+  const [isVisible, setIsVisible] = useState(showModal);
   const ua = window.navigator.userAgent;
   const iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
   const webkit = !!ua.match(/WebKit/i);
@@ -21,14 +21,14 @@ function AppleNotification() {
 
   return !isStandalone && iOS ? (
     <Modal
-      visible={isModalOpen}
+      visible={isVisible}
       closable={false}
       maskClosable={false} // prevents an outside click from firing onCancel()
       cancelText="Don't show this again"
-      onOk={() => setIsModalOpen(false)}
+      onOk={() => setIsVisible(false)}
       onCancel={() => {
         window.localStorage.setItem('iOSNotification', 'false');
-        setIsModalOpen(false);
+        setIsVisible(false);
       }}
     >
       <Title>Add MoodBloom to Home Screen</Title>
