@@ -27,6 +27,6 @@ const StyledDashboard = styled.div`
   height: 100%;
 
   .dashboard-main {
-    min-height: 100%;
+    height: 100%;
   }
 `;
