@@ -4,7 +4,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import NotFound from '../../containers/NotFound/404';
 import styles from '../../styles/theme';
-import TaskImage from './TaskImage';
+import UploadPic from './UploadPic';
 import Button from '../Button';
 
 const { TextArea } = Input;
@@ -56,7 +56,7 @@ function Task() {
         />
       </main>
       <PicturesWrapper>
-        <TaskImage />
+        <UploadPic />
       </PicturesWrapper>
       <ButtonWrapper>
         <Button onClick={handleSubmit}>Done</Button>

@@ -10,7 +10,7 @@ function getBase64(file) {
   });
 }
 
-function TaskImage() {
+function UploadPic() {
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
   const [fileList, setFileList] = useState([
@@ -30,20 +30,6 @@ function TaskImage() {
     // },
     // {
     //   uid: '-3',
-    //   name: 'image.png',
-    //   status: 'done',
-    //   url:
-    //     'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    // },
-    // {
-    //   uid: '-4',
-    //   name: 'image.png',
-    //   status: 'done',
-    //   url:
-    //     'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    // },
-    // {
-    //   uid: '-5',
     //   name: 'image.png',
     //   status: 'error',
     // },
@@ -90,7 +76,7 @@ function TaskImage() {
         onPreview={handlePreview}
         onChange={handleChange}
       >
-        {fileList.length >= 1 ? null : uploadButton}
+        {fileList.length >= 3 ? null : uploadButton}
       </Upload>
       <Modal visible={previewVisible} footer={null} onCancel={handleCancel}>
         <img alt="example" style={{ width: '100%' }} src={previewImage} />
@@ -99,4 +85,4 @@ function TaskImage() {
   );
 }
 
-export default TaskImage;
+export default UploadPic;
