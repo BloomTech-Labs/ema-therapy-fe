@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ReactCalendar from 'react-calendar';
 import styles from '../../styles/theme';
+import InnerRing from './Ring';
+import DateRings from './DateRings';
 
 const Calendar = ({
   handleDaySelected,
@@ -14,23 +16,23 @@ const Calendar = ({
 }) => {
   const history = useHistory();
 
-  const tileClassName = ({ date }) => {
-    // console.log('tileClassName run');
-    return isSameMonth(date, activeStartDate) &&
-      moodsThisMonth &&
-      moodsThisMonth.length === getDaysInMonth(activeStartDate) &&
-      moodsThisMonth[date.getDate() - 1].length > 0
-      ? 'contains-moods'
-      : null;
-  };
+  // const tileClassName = ({ date }) => {
+  //   // console.log('tileClassName run');
+  //   return isSameMonth(date, activeStartDate) &&
+  //     moodsThisMonth &&
+  //     moodsThisMonth.length === getDaysInMonth(activeStartDate) &&
+  //     moodsThisMonth[date.getDate() - 1].length > 0
+  //     ? 'contains-moods'
+  //     : null;
+  // };
 
   const tileContent = ({ date }) => {
     return isSameMonth(date, activeStartDate) &&
       moodsThisMonth &&
       moodsThisMonth.length === getDaysInMonth(activeStartDate) &&
-      moodsThisMonth[date.getDate() - 1].length > 0
-      ? 'HEY'
-      : null;
+      moodsThisMonth[date.getDate() - 1].length > 0 ? (
+      <DateRings moodList={moodsThisMonth[date.getDate() - 1]} />
+    ) : null;
   };
 
   const tileDisabled = ({ date }) => {
@@ -53,7 +55,7 @@ const Calendar = ({
         }
         formatShortWeekday={(locale, date) => format(date, 'iiiii')}
         // tileClassName={tileClassName}
-        // tileContent={tileContent}
+        tileContent={tileContent}
         tileDisabled={tileDisabled}
         minDetail="month"
         minDate={new Date(2019, 10, 1)}
@@ -118,6 +120,7 @@ const CalContainer = styled.div`
     font-family: sans-serif;
     font-size: 14px;
     color: #595959;
+    position: relative;
   }
 
   .react-calendar__month-view__days__day--neighboringMonth {
@@ -146,5 +149,26 @@ const CalContainer = styled.div`
 
   .react-calendar__viewContainer {
     padding: 30px 0;
+    width: 335px;
+    margin: 0 auto;
+  }
+
+  .ring {
+    position: absolute;
+  }
+
+  .inner-ring {
+    top: 7px;
+    left: 10px;
+  }
+
+  .middle-ring {
+    top: 5px;
+    left: 8px;
+  }
+
+  .outer-ring {
+    top: 3px;
+    left: 6px;
   }
 `;
