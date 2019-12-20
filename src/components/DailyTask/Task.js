@@ -65,15 +65,10 @@ function Task() {
     } else if (task === '7') {
       prompt = 'task 7';
     }
-    console.log(prompt);
     return prompt;
   };
 
   const handleSubmit = async () => {
-    console.log(text);
-    console.log('photo upload: ', photoUrl);
-    // TODO
-    // const taskPrompt = getPrompt();
     await addTask({
       variables: {
         userEmail: user.email,

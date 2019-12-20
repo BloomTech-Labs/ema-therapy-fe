@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Confetti from 'react-confetti';
 import styles from '../../styles/theme';
 import lady from '../../assets/lady.png';
 import Dashboard from '../../containers/Dashboard';
@@ -7,6 +8,17 @@ import Dashboard from '../../containers/Dashboard';
 function TaskComplete() {
   return (
     <Dashboard>
+      <Confetti
+        height={window.innerHeight - 58}
+        colors={[
+          styles.brightYellow,
+          styles.darkJungleGreen,
+          styles.paleRobinEggBlue,
+          styles.rosyPink,
+          styles.seafoamGreen,
+          styles.tealGreen,
+        ]}
+      />
       <Wrapper>
         <h1>Fantastic!</h1>
         <h2>You completed a task</h2>
@@ -18,14 +30,6 @@ function TaskComplete() {
 }
 
 export default TaskComplete;
-
-// const TaskWrapper = styled.div`
-//   background-color: ${styles.seafoamGreen};
-//   height: 100%;
-//   padding: 30px 25px;
-//   display: flex;
-//   flex-direction: column;
-// `;
 
 const Wrapper = styled.div`
   background: ${styles.seafoamGreen};
