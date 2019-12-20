@@ -93,13 +93,10 @@ const CalContainer = styled.div`
     color: unset;
   }
 
-  .react-calendar__navigation button[disabled] {
-    background-color: unset;
-    cursor: unset;
-  }
-
+  .react-calendar__navigation button[disabled],
   .react-calendar__tile:disabled {
     background-color: unset;
+    cursor: unset;
   }
 
   abbr[title] {

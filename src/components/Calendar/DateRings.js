@@ -6,7 +6,7 @@ import Ring from './Ring';
 const DateRings = ({ moodList }) => {
   const getMoodColor = (length, offset) => {
     let index;
-    if (length > 3) index = length - 3 + offset;
+    if (length >= 3) index = length - 3 + offset;
     else if (length === 2) index = length - 2 + offset;
     else index = 0;
 
