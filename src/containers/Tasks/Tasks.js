@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import Dashboard from '../Dashboard';
-import Wheel from '../../components/Wheel';
+import TaskWheel from '../../components/DailyTask/TaskWheel';
 
 function Moods() {
   return (
     <Dashboard>
       <Wrapper>
-        <Wheel />
+        <TaskWheel />
       </Wrapper>
     </Dashboard>
   );

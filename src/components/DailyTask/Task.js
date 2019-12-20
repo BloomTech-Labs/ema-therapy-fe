@@ -24,12 +24,13 @@ const ADD_TASK = gql`
 `;
 
 function Task() {
-  const { task } = useParams();
   const history = useHistory();
+  const { task } = useParams();
   const [text, setText] = useState();
   const [taskComplete, setTaskComplete] = useState(false);
   const [photoUrl, setPhotoUrl] = useState(null);
   const [addTask] = useMutation(ADD_TASK);
+
   const handleChange = (e) => setText(e.target.value);
 
   const handleSubmit = async () => {

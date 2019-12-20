@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import theme from '../styles/theme';
+import theme from '../../styles/theme';
 
 const tasks = ['Task 1', 'Task 2', 'Task 3', 'Task 4', 'Task 5', 'Task 6'];
 
@@ -20,7 +20,7 @@ function Wheel() {
   const onSelectItem = (item) => {
     setTimeout(() => {
       history.push(`tasks/${item + 1}`);
-    }, 5500);
+    }, 4500);
   };
 
   const selectItem = () => {
