@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Icon, Upload, Modal } from 'antd';
+import request from 'superagent';
 import theme from '../../styles/theme';
 
 function getBase64(file) {
@@ -35,12 +36,36 @@ function UploadPic() {
     // },
   ]);
 
+  const onPhotoSelected = (file) => {
+    const cloudName = 'moodbloom';
+    const uploadPreset = 'jqzoqbwo';
+    const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+
+    request
+      .post(url)
+      .field('upload_preset', uploadPreset)
+      .field('file', file)
+      .field('multiple', false)
+      // .field('tags', title ? `myphotoalbum,${title}` : 'myphotoalbum')
+      // .field('context', title ? `photo=${title}` : '')
+      // .on('progress', (progress) => onPhotoUploadProgress(photoId, file.name, progress))
+      // .end((error, response) => {
+      //     onPhotoUploaded(photoId, fileName, response);
+      // });
+      .on('progress', (progress) => console.log(progress))
+      .end((error, response) => {
+        console.log(error, response);
+        // set local state to response.body.secure_url for when we submit form to our database
+      });
+  };
+
   const uploadPhoto = ({ file, onSuccess }) => {
     console.log(file);
     // dummy success...upload to cloudinary
     setTimeout(() => {
       onSuccess('ok');
-    });
+      onPhotoSelected(file);
+    }, 0);
   };
 
   const handleCancel = () => setPreviewVisible(false);

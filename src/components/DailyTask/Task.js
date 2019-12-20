@@ -13,6 +13,7 @@ function Task() {
   const { task } = useParams();
   const history = useHistory();
   const [text, setText] = useState();
+  const [photoUrl, setPhotoUrl] = useState();
 
   const handleChange = (e) => setText(e.target.value);
 
@@ -57,6 +58,11 @@ function Task() {
       </main>
       <PicturesWrapper>
         <UploadPic />
+        {/* <Icon
+          type="file-image"
+          style={{ fontSize: '50px', cursor: 'pointer' }}
+        />
+        <p>Upload Photo</p> */}
       </PicturesWrapper>
       <ButtonWrapper>
         <Button onClick={handleSubmit}>Done</Button>
