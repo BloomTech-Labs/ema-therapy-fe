@@ -5,7 +5,6 @@ import { Route, Switch } from 'react-router-dom';
 import { useAuth } from '../../utils/dataStore';
 import { GRAPHQL_URI } from '../../utils/config';
 import GlobalStyle from '../../styles/global-styles';
-import styles from '../../styles/theme';
 import SignIn from '../../components/Auth/SignIn';
 import SignUp from '../../components/Auth/SignUp';
 import DailyTask from '../../components/DailyTask';
