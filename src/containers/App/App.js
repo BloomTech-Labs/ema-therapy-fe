@@ -14,6 +14,8 @@ import Profile from '../../components/Profile';
 import PrivateRoute from '../../components/PrivateRoute';
 import EntryForm from '../EntryForm/EntryForm';
 import Moods from '../Moods';
+// import Charts from '../Charts';
+import ChartsViews from '../../components/ChartViews';
 import NotFound from '../NotFound/404';
 import Settings from '../Settings';
 import styles from '../../styles/theme';
