@@ -77,21 +77,23 @@ const DayDisplay = ({ moodsToDisplay, handleMoodsToDisplay }) => {
         <Icon
           type="left"
           style={{ fontSize: 22, color: '#9cd9dd' }}
-          onClick={() => history.push('/dashboard')}
+          onClick={() => history.goBack()}
         />
       </Header>
       <MoodList>
         {moodsToDisplay &&
-          moodsToDisplay.map((mood) => (
-            <MoodCard
-              key={mood.id}
-              mood={mood}
-              deleteMood={deleteMood}
-              deleteLoading={deleteLoading}
-              editMood={editMood}
-              isEditing={isEditing}
-            />
-          ))}
+          moodsToDisplay
+            .reverse()
+            .map((mood) => (
+              <MoodCard
+                key={mood.id}
+                mood={mood}
+                deleteMood={deleteMood}
+                deleteLoading={deleteLoading}
+                editMood={editMood}
+                isEditing={isEditing}
+              />
+            ))}
       </MoodList>
     </StyledMoodDisplay>
   );

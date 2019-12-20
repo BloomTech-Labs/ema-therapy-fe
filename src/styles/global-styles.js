@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
   }
-  
+
   *, *:before, *:after {
     box-sizing: inherit;
   }
@@ -22,6 +22,16 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     max-width: 500px;
     position: relative;
+  }
+
+  :root {
+    --wheel-slice-spacing: 10px;
+    --nb-item: 0;
+    --item-nb: 0;
+    --selected-item: 0;
+    --nb-turn: 5;
+    --spinning-duration: 4s;
+    --reset-duration: 0.25s;
   }
 `;
 

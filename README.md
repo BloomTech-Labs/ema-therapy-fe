@@ -108,6 +108,7 @@ When you do it your way you can go anywhere you choose. Let your heart take you 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
     *  REACT_APP_OPEN_WEATHER_API_KEY - this is your Open Weather API key, which can be generated at https://openweathermap.org/api.
+    *  REACT_APP_CLOUDINARY_KEY - Cloudinary upload preset key
 
 # 5️⃣ Content Licenses
 

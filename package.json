@@ -20,6 +20,8 @@
     "query-string": "^6.9.0",
     "react": "^16.12.0",
     "react-app-rewired": "^2.1.5",
+    "react-calendar": "^2.19.2",
+    "react-confetti": "^5.0.1",
     "react-chartjs-2": "^2.8.0",
     "react-dom": "^16.11.0",
     "react-ga": "^2.7.0",
@@ -31,6 +33,7 @@
     "sanitize.css": "^11.0.0",
     "source-map-explorer": "^2.1.1",
     "styled-components": "^4.4.1",
+    "superagent": "^5.1.2",
     "swipe-js-iso": "^2.1.5"
   },
   "scripts": {

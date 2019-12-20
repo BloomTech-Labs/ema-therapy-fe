@@ -111,6 +111,7 @@ export default MoodCard;
 
 const StyledMoodCard = styled(Card)`
   margin: 0 7px 23px;
+  box-shadow: 0px 0px 15px #E5E5E5;
 
   p {
     margin: unset;
