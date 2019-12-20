@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Icon, Input } from 'antd';
+import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 import { useParams, useHistory } from 'react-router-dom';
 import request from 'superagent';
 import styled from 'styled-components';
@@ -10,17 +12,34 @@ import Button from '../Button';
 
 const { TextArea } = Input;
 
+const ADD_TASK = gql`
+  mutation($userId: ID!, $prompt: String!, $inputList: [String]) {
+    addTask(userId: $userId, prompt: $prompt, inputList: $inputList) {
+      completedAt
+      prompt
+      inputList
+    }
+  }
+`;
+
 function Task() {
   const { task } = useParams();
   const history = useHistory();
   const [text, setText] = useState(null);
   const [photoUrl, setPhotoUrl] = useState(null);
-
+  const [addTask] = useMutation(ADD_TASK);
   const handleChange = (e) => setText(e.target.value);
 
   const handleSubmit = () => {
     console.log(text);
     console.log('photo upload: ', photoUrl);
+    addTask({
+      variables: {
+        userId: '5df934b26258283c8c7eeb39',
+        prompt: 'I am statements',
+        inputList: [text, photoUrl],
+      },
+    });
   };
 
   const upload = (file) => {
