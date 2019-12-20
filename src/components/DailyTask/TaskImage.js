@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Icon, Upload, Modal } from 'antd';
-import styled from 'styled-components';
-import theme from '../styles/theme';
+import theme from '../../styles/theme';
 
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -52,6 +51,7 @@ function TaskImage() {
 
   const uploadPhoto = ({ file, onSuccess }) => {
     console.log(file);
+    // dummy success...upload to cloudinary
     setTimeout(() => {
       onSuccess('ok');
     });
@@ -77,7 +77,6 @@ function TaskImage() {
         type="picture"
         style={{ fontSize: 32, color: theme.darkJungleGreen }}
       />
-      {/* <UploadText>Upload Img</UploadText> */}
     </div>
   );
 
@@ -101,8 +100,3 @@ function TaskImage() {
 }
 
 export default TaskImage;
-
-// const UploadText = styled.p`
-//   margin-top: 8px;
-//   color: ${theme.darkJungleGreen};
-// `;

@@ -10,7 +10,7 @@ import GlobalStyle from '../../styles/global-styles';
 import styles from '../../styles/theme';
 import SignIn from '../../components/Auth/SignIn';
 import SignUp from '../../components/Auth/SignUp';
-import Task from '../../components/Task';
+import DailyTask from '../../components/DailyTask';
 import Profile from '../../components/Profile';
 import PrivateRoute from '../../components/PrivateRoute';
 import EntryForm from '../EntryForm/EntryForm';
@@ -49,7 +49,7 @@ function App() {
           <PrivateRoute path="/entryform" component={EntryForm} />
           <PrivateRoute path="/dashboard/settings" component={Settings} />
           <PrivateRoute path="/dashboard/tasks" exact component={Tasks} />
-          <PrivateRoute path="/dashboard/tasks/:task" component={Task} />
+          <PrivateRoute path="/dashboard/tasks/:task" component={DailyTask} />
           <PrivateRoute path="/dashboard" component={Moods} />
           <PrivateRoute path="/profile" component={Profile} />
           <Route component={NotFound} />

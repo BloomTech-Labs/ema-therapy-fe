@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Icon, Input } from 'antd';
 import { useParams, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import NotFound from '../containers/NotFound/404';
-import styles from '../styles/theme';
+import NotFound from '../../containers/NotFound/404';
+import styles from '../../styles/theme';
 import TaskImage from './TaskImage';
-import Button from './Button';
+import Button from '../Button';
 
 const { TextArea } = Input;
 
