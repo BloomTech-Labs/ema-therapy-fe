@@ -20,12 +20,10 @@ export const AuthProvider = ({ children }) => {
         if (userExpDate > Date.now()) {
           setUser(userFromToken);
           setIsAuthenticated(true);
-          setLoading(false);
         } else {
           localStorage.clear();
           setUser(null);
           setIsAuthenticated(false);
-          setLoading(false);
         }
       }
       setLoading(false);

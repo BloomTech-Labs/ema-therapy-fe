@@ -4,10 +4,12 @@ export const getMoodsQuery = gql`
   query($email: String) {
     user(email: $email) {
       moods {
+        id
         mood
         text
         anxietyLevel
         sleep
+        weather
       }
     }
   }
@@ -76,6 +78,40 @@ export const getUserIdAndLocation = gql`
     user(email: $email) {
       isSharingLocation
       id
+    }
+  }
+`;
+
+export const removeMoodMutation = gql`
+  mutation($id: String!) {
+    removeMood(id: $id) {
+      id
+    }
+  }
+`;
+
+export const editMoodMutation = gql`
+  mutation(
+    $id: ID!
+    $mood: Int!
+    $text: String
+    $anxietyLevel: Int
+    $sleep: Float
+  ) {
+    editMood(
+      id: $id
+      mood: $mood
+      text: $text
+      anxietyLevel: $anxietyLevel
+      sleep: $sleep
+    ) {
+      id
+      createdAt
+      mood
+      text
+      anxietyLevel
+      sleep
+      weather
     }
   }
 `;
