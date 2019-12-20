@@ -15,8 +15,7 @@ import Profile from '../../components/Profile';
 import PrivateRoute from '../../components/PrivateRoute';
 import EntryForm from '../EntryForm/EntryForm';
 import Moods from '../Moods';
-// import Charts from '../Charts';
-import ChartsViews from '../../components/ChartViews';
+import ChartViews from '../../components/ChartViews';
 import NotFound from '../NotFound/404';
 import Settings from '../Settings';
 import Tasks from '../Tasks';
@@ -50,6 +49,7 @@ function App() {
           <Route path="/signup" exact component={SignUp} />
           <PrivateRoute path="/entryform" component={EntryForm} />
           <PrivateRoute path="/dashboard/settings" component={Settings} />
+          <PrivateRoute path="/dashboard/charts" component={ChartViews} />
           <PrivateRoute path="/dashboard/tasks" exact component={Tasks} />
           <PrivateRoute path="/dashboard/tasks/:task" component={DailyTask} />
           <PrivateRoute path="/dashboard" component={Moods} />
