@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from '../../styles/theme';
 import Ring from './Ring';
 
@@ -56,6 +57,20 @@ const DateRings = ({ moodList }) => {
       )}
     </>
   );
+};
+
+DateRings.propTypes = {
+  moodList: PropTypes.arrayOf(
+    PropTypes.shape({
+      mood: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      anxietyLevel: PropTypes.number,
+      text: PropTypes.string,
+      sleep: PropTypes.number,
+      weather: PropTypes.string,
+    }),
+  ).isRequired,
 };
 
 export default DateRings;

@@ -21,12 +21,14 @@ InnerRing.propTypes = {
   color: PropTypes.string,
   size: PropTypes.string,
   strokeWidth: PropTypes.string,
+  className: PropTypes.string,
 };
 
 InnerRing.defaultProps = {
   color: styles.darkJungleGreen,
   size: '28',
   strokeWidth: '2',
+  className: '',
 };
 
 export default InnerRing;

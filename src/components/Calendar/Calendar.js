@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ReactCalendar from 'react-calendar';
 import styles from '../../styles/theme';
-import InnerRing from './Ring';
 import DateRings from './DateRings';
 
 const Calendar = ({
@@ -16,21 +15,14 @@ const Calendar = ({
 }) => {
   const history = useHistory();
 
-  // const tileClassName = ({ date }) => {
-  //   // console.log('tileClassName run');
-  //   return isSameMonth(date, activeStartDate) &&
-  //     moodsThisMonth &&
-  //     moodsThisMonth.length === getDaysInMonth(activeStartDate) &&
-  //     moodsThisMonth[date.getDate() - 1].length > 0
-  //     ? 'contains-moods'
-  //     : null;
-  // };
-
+  // eslint-disable-next-line react/prop-types
   const tileContent = ({ date }) => {
     return isSameMonth(date, activeStartDate) &&
       moodsThisMonth &&
       moodsThisMonth.length === getDaysInMonth(activeStartDate) &&
+      // eslint-disable-next-line react/prop-types
       moodsThisMonth[date.getDate() - 1].length > 0 ? (
+      // eslint-disable-next-line react/prop-types
       <DateRings moodList={moodsThisMonth[date.getDate() - 1]} />
     ) : null;
   };
@@ -54,7 +46,6 @@ const Calendar = ({
           handleActiveStartDate(newActiveStartDate)
         }
         formatShortWeekday={(locale, date) => format(date, 'iiiii')}
-        // tileClassName={tileClassName}
         tileContent={tileContent}
         tileDisabled={tileDisabled}
         minDetail="month"

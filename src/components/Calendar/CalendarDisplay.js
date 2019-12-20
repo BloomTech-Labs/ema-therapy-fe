@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
-import { Spin, Icon } from 'antd';
+import { Icon } from 'antd';
+import PropTypes from 'prop-types';
 import { isSameDay, isSameMonth, getDaysInMonth } from 'date-fns';
 import styles from '../../styles/theme';
 import Calendar from './Calendar';
@@ -59,11 +60,6 @@ const CalendarDisplay = ({ moods, handleMoodsToDisplay }) => {
     }
   }, [history, moods]);
 
-  // return loading ? (
-  //   <LoadingWrapper>
-  //     <Spin size="large" delay={300} />
-  //   </LoadingWrapper>
-  // ) : (
   return (
     <Wrapper>
       <StyledCard>
@@ -87,18 +83,26 @@ const CalendarDisplay = ({ moods, handleMoodsToDisplay }) => {
   );
 };
 
+CalendarDisplay.propTypes = {
+  moods: PropTypes.arrayOf(
+    PropTypes.shape({
+      mood: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      anxietyLevel: PropTypes.number,
+      text: PropTypes.string,
+      sleep: PropTypes.number,
+      weather: PropTypes.string,
+    }),
+  ),
+  handleMoodsToDisplay: PropTypes.func.isRequired,
+};
+
+CalendarDisplay.defaultProps = {
+  moods: null,
+};
+
 export default CalendarDisplay;
-
-const LoadingWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50%;
-
-  .ant-spin-dot-item {
-    background-color: ${styles.darkJungleGreen} !important;
-  }
-`;
 
 const Wrapper = styled.div`
   background-color: ${styles.seafoamGreen};
