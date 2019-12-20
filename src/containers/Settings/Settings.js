@@ -72,8 +72,13 @@ const Settings = () => {
             />
           </div>
         </div>
-        <StyledLink to="/profile">Profile</StyledLink>
-        <Logout />
+        <div className="setting-group">
+          <h2 className="setting-group__heading">Account</h2>
+          <div className="setting-group__item">
+            <Logout />
+          </div>
+        </div>
+        {/* <StyledLink to="/profile">Profile</StyledLink> */}
       </StyledSettings>
     </Dashboard>
   );
@@ -88,11 +93,16 @@ const StyledSettings = styled.div`
     font-size: 24px;
     line-height: 30px;
     padding: 20px 0;
-    font-weight: normal;
+    font-weight: 600;
+    color: ${styles.tealGreen};
   }
 
   .ant-switch-checked {
-    background-color: ${styles.darkJungleGreen} !important;
+    background-color: white !important;
+  }
+
+  .ant-switch-checked::after {
+    background-color: ${styles.tealGreen};
   }
 
   .setting-group {
@@ -100,20 +110,22 @@ const StyledSettings = styled.div`
   }
 
   .setting-group__heading {
-    font-size: 15px;
-    font-weight: normal;
-    margin: 0 0 3px;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 0 10px;
+    color: ${styles.tealGreen};
   }
 
   .setting-group__item {
     height: 34px;
-    background: #c4c4c4;
+    background: ${styles.tealGreen};
     border-radius: 5px;
     padding: 0 10px;
     display: flex;
     align-items: center;
     margin-bottom: 6px;
     justify-content: space-between;
+    color: white;
   }
 `;
 
