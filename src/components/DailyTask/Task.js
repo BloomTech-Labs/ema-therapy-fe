@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Icon, Input } from 'antd';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
@@ -7,6 +7,7 @@ import request from 'superagent';
 import styled from 'styled-components';
 import NotFound from '../../containers/NotFound/404';
 import styles from '../../styles/theme';
+import { useAuth } from '../../utils/dataStore';
 import UploadPic from './UploadPic';
 import Button from '../Button';
 import TaskComplete from './TaskComplete';
@@ -14,18 +15,31 @@ import TaskComplete from './TaskComplete';
 const { TextArea } = Input;
 
 const ADD_TASK = gql`
-  mutation($userId: ID!, $prompt: String!, $inputList: [String]) {
-    addTask(userId: $userId, prompt: $prompt, inputList: $inputList) {
+  mutation(
+    $userEmail: String!
+    $prompt: String!
+    $text: String
+    $photoUrl: String
+  ) {
+    addTask(
+      userEmail: $userEmail
+      prompt: $prompt
+      text: $text
+      photoUrl: $photoUrl
+    ) {
       completedAt
       prompt
-      inputList
+      text
+      photoUrl
     }
   }
 `;
 
 function Task() {
+  const { user } = useAuth();
   const history = useHistory();
   const { task } = useParams();
+
   const [text, setText] = useState();
   const [taskComplete, setTaskComplete] = useState(false);
   const [photoUrl, setPhotoUrl] = useState(null);
@@ -33,15 +47,39 @@ function Task() {
 
   const handleChange = (e) => setText(e.target.value);
 
+  let prompt;
+
+  const getPrompt = () => {
+    if (task === '1') {
+      prompt = 'task 1';
+    } else if (task === '2') {
+      prompt = 'task 2';
+    } else if (task === '3') {
+      prompt = 'task 3';
+    } else if (task === '4') {
+      prompt = 'task 4';
+    } else if (task === '5') {
+      prompt = 'task 5';
+    } else if (task === '6') {
+      prompt = 'task 6';
+    } else if (task === '7') {
+      prompt = 'task 7';
+    }
+    console.log(prompt);
+    return prompt;
+  };
+
   const handleSubmit = async () => {
     console.log(text);
     console.log('photo upload: ', photoUrl);
     // TODO
+    // const taskPrompt = getPrompt();
     await addTask({
       variables: {
-        userId: '5df934b26258283c8c7eeb39',
-        prompt: 'I am statements',
-        inputList: [text, photoUrl],
+        userEmail: user.email,
+        prompt: getPrompt(),
+        text,
+        photoUrl,
       },
     });
     setTaskComplete(true);
