@@ -17,6 +17,7 @@ import FormActivityJournal from './FormActvityJournal';
 import FormAnxietySleep from './FormAnxietySleep';
 import backgroundImage from '../../assets/background-leaf.svg';
 import ladybug from '../../assets/ladybug.svg';
+import LoadingSpinner from '../LoadingSpinner';
 
 const FormViews = ({ editInitial, stopEditing }) => {
   const history = useHistory();
@@ -144,7 +145,7 @@ const FormViews = ({ editInitial, stopEditing }) => {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <LoadingSpinner bgColor="#fafdfc" />;
   if (error) return <p>{error.message}</p>;
 
   return (

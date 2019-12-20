@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
-import { Spin } from 'antd';
 import { getDay } from 'date-fns';
 import { Switch, Route } from 'react-router-dom';
 import Dashboard from '../Dashboard';
@@ -92,7 +91,7 @@ const Moods = () => {
 export default Moods;
 
 const Wrapper = styled.div`
-  background-color: #f0f8f7;
+  background-color: ${styles.seafoamGreen};
   padding: 27px 16px 80px;
   min-height: 100vh;
 `;
