@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
-import { getDay } from 'date-fns';
 import { Switch, Route } from 'react-router-dom';
 import Dashboard from '../Dashboard';
 import WeekDisplay from '../../components/WeekDisplay';
@@ -9,13 +8,13 @@ import PrivateRoute from '../../components/PrivateRoute';
 import DayDisplay from '../../components/DayDisplay';
 import { useAuth } from '../../utils/dataStore';
 import { checkForUserAndGetMoodsQuery } from '../../queries';
-import weekOfMoods from '../../utils/weekOfMoods';
 import styles from '../../styles/theme';
 import NotFound from '../NotFound/404';
 import LoadingSpinner from '../../components/LoadingSpinner';
+import CalendarDisplay from '../../components/Calendar/CalendarDisplay';
 
 const Moods = () => {
-  const [moodsThisWeek, setMoodsThisWeek] = useState(null);
+  const [moods, setMoods] = useState(null);
   const [moodsToDisplay, setMoodsToDisplay] = useState(null);
   const { user } = useAuth();
 
@@ -27,28 +26,14 @@ const Moods = () => {
     },
   });
 
-  const handleMoodsToDisplay = (day) => {
-    // if day param is a number, use it to find the correspoding mood array
-    if (typeof day === 'number') {
-      for (let i = 0; i < moodsThisWeek.length; i += 1) {
-        if (
-          moodsThisWeek[i].length > 0 &&
-          day === getDay(+moodsThisWeek[i][0].createdAt)
-        ) {
-          setMoodsToDisplay(moodsThisWeek[i]);
-          break;
-        }
-      }
-    } else {
-      // day param is an updated mood array
-      setMoodsToDisplay(day);
-    }
+  const handleMoodsToDisplay = (updatedMoods) => {
+    setMoodsToDisplay(updatedMoods);
   };
 
   // set moods if the data from query exists
   useEffect(() => {
     if (data) {
-      setMoodsThisWeek(weekOfMoods(data.user.moods));
+      setMoods(data.user.moods);
     }
   }, [data]);
 
@@ -66,7 +51,7 @@ const Moods = () => {
                 <LoadingSpinner margin="50% 0 0 0" />
               ) : (
                 <WeekDisplay
-                  moods={moodsThisWeek}
+                  moods={moods}
                   handleMoodsToDisplay={handleMoodsToDisplay}
                 />
               )}
@@ -79,6 +64,15 @@ const Moods = () => {
         render={() => (
           <DayDisplay
             moodsToDisplay={moodsToDisplay}
+            handleMoodsToDisplay={handleMoodsToDisplay}
+          />
+        )}
+      />
+      <PrivateRoute
+        path="/dashboard/calendar"
+        render={() => (
+          <CalendarDisplay
+            moods={moods}
             handleMoodsToDisplay={handleMoodsToDisplay}
           />
         )}

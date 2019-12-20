@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { Route, useHistory } from 'react-router-dom';
 import { useAuth } from '../utils/dataStore';
 
