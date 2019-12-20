@@ -8,18 +8,18 @@ import Dashboard from '../../containers/Dashboard';
 function TaskComplete() {
   return (
     <Dashboard>
-      <Confetti
-        height={window.innerHeight - 58}
-        colors={[
-          styles.brightYellow,
-          styles.darkJungleGreen,
-          styles.paleRobinEggBlue,
-          styles.rosyPink,
-          styles.seafoamGreen,
-          styles.tealGreen,
-        ]}
-      />
       <Wrapper>
+        <Confetti
+          height={window.innerHeight - 58}
+          colors={[
+            styles.brightYellow,
+            styles.darkJungleGreen,
+            styles.paleRobinEggBlue,
+            styles.rosyPink,
+            styles.seafoamGreen,
+            styles.tealGreen,
+          ]}
+        />
         <h1>Fantastic!</h1>
         <h2>You completed a task</h2>
         <img src={lady} alt="a happy gardener" />
