@@ -9,6 +9,7 @@ function TaskComplete() {
   return (
     <Dashboard>
       <Confetti
+        width={500}
         height={window.innerHeight - 58}
         colors={[
           styles.brightYellow,
