@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Icon, Input } from 'antd';
 import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
