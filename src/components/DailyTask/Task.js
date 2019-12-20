@@ -35,6 +35,7 @@ function Task() {
   const handleSubmit = async () => {
     console.log(text);
     console.log('photo upload: ', photoUrl);
+    // TODO
     await addTask({
       variables: {
         userId: '5df934b26258283c8c7eeb39',
@@ -47,7 +48,7 @@ function Task() {
 
   const upload = (file) => {
     const cloudName = 'moodbloom';
-    const uploadPreset = 'jqzoqbwo';
+    const uploadPreset = process.env.REACT_APP_CLOUDINARY_KEY;
     const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
 
     request
