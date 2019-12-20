@@ -76,7 +76,7 @@ function UploadPic() {
         onPreview={handlePreview}
         onChange={handleChange}
       >
-        {fileList.length >= 3 ? null : uploadButton}
+        {fileList.length >= 1 ? null : uploadButton}
       </Upload>
       <Modal visible={previewVisible} footer={null} onCancel={handleCancel}>
         <img alt="example" style={{ width: '100%' }} src={previewImage} />
