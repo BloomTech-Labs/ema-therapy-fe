@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Tag } from 'antd';
 import { format } from 'date-fns';
 import moodToString from '../utils/moodToString';
 import Card from './Card';
 import styles from '../styles/theme';
+import ActivityTag from './FormViews/ActivityTag';
 
 const formatDate = (timestamp, fmt) => {
   const ts = Number(timestamp);
@@ -29,9 +29,11 @@ const MoodCard = ({ mood: m }) => {
         <p className="time">{formatDate(createdAt, 'h:mm a')}</p>
       </div>
       <p className="mood">{moodToString(mood)}</p>
-      {activities.map((activity) => {
-        return <Tag>{activity}</Tag>;
-      })}
+      <div className="activities-list">
+        {activities.map((activity) => {
+          return <ActivityTag key={activity}>{activity}</ActivityTag>;
+        })}
+      </div>
       <div className="mood-details">
         {(anxiety || sleep || weather) && (
           <div className="stat-wrapper">
@@ -105,8 +107,18 @@ const StyledMoodCard = styled(Card)`
     .date {
       color: ${styles.tealGreen};
     }
+
+  
+    }
   }
 
+  .activities-list {
+      margin: 0 auto;
+      display:flex;
+      max-width: 400px;
+      flex-wrap: wrap;
+      justify-content: left;
+  }
   .mood {
     text-align: center;
     padding: 15px 0 25px;

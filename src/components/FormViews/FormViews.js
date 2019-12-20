@@ -35,7 +35,6 @@ const FormViews = () => {
     weather: null,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  console.log(input);
   const [isAnxietyChanged, setIsAnxietyChanged] = useState(null);
   const [isSleepChanged, setIsSleepChanged] = useState(null);
 

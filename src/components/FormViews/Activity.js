@@ -1,16 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import MyTag from './MyTag';
+import ActivityTag from './ActivityTag';
 
 const Activity = ({ activityType, addActivities }) => {
-  const handleActiveAndAddActivity = (addedActivity) => {
-    addActivities(addedActivity);
-  };
   return (
     <>
       <ActivityButtonToggle>
-        <MyTag>{activityType}</MyTag>
+        <ActivityTag activityType={activityType} addActivities={addActivities}>
+          {activityType}
+        </ActivityTag>
       </ActivityButtonToggle>
     </>
   );

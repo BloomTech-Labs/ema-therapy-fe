@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ReactSwipe from 'react-swipe';
@@ -23,7 +24,6 @@ const Activities = ({
   const [type, setType] = useState('food');
 
   let reactSwipeEl;
-
   const handleTypeView = (view) => {
     setType(view);
   };
@@ -46,20 +46,6 @@ const Activities = ({
         </DoneButton>
       </div>
       <InputWrapper>
-        {/* <div>
-          {activities.map((cur, i) => {
-            return (
-              <TypeButton
-                key={cur.name}
-                onClick={() => handleTypeView(cur.name)}
-                type="button"
-                active={type === cur.name}
-              >
-                {cur.name}
-              </TypeButton>
-            );
-          })}
-        </div> */}
         <ReactSwipe
           className="carousel"
           swipeOptions={{ continuous: false }}
@@ -186,6 +172,8 @@ const Activities = ({
 Activities.propTypes = {
   addActivities: PropTypes.func.isRequired,
   handleView: PropTypes.func.isRequired,
+  isSubmitting: PropTypes.bool.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 const InputWrapper = styled.div`
