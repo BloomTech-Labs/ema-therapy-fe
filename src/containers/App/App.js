@@ -1,13 +1,10 @@
 import React from 'react';
 import ApolloClient from 'apollo-boost';
-import styled from 'styled-components';
-import { Spin } from 'antd';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { Route, Switch } from 'react-router-dom';
 import { useAuth } from '../../utils/dataStore';
 import { GRAPHQL_URI } from '../../utils/config';
 import GlobalStyle from '../../styles/global-styles';
-import styles from '../../styles/theme';
 import SignIn from '../../components/Auth/SignIn';
 import SignUp from '../../components/Auth/SignUp';
 import DailyTask from '../../components/DailyTask';
@@ -18,6 +15,7 @@ import Moods from '../Moods';
 import ChartViews from '../../components/ChartViews';
 import NotFound from '../NotFound/404';
 import Settings from '../Settings';
+import LoadingSpinner from '../../components/LoadingSpinner';
 import Tasks from '../Tasks';
 import Welcome from '../Welcome/Welcome';
 
@@ -37,9 +35,7 @@ function App() {
   });
 
   return loading ? (
-    <LoadingWrapper>
-      <Spin size="large" />
-    </LoadingWrapper>
+    <LoadingSpinner height="100vh" />
   ) : (
     <ApolloProvider client={client}>
       <div className="App">
@@ -61,16 +57,5 @@ function App() {
     </ApolloProvider>
   );
 }
-
-const LoadingWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-
-  .ant-spin-dot-item {
-    background-color: ${styles.darkJungleGreen} !important;
-  }
-`;
 
 export default App;

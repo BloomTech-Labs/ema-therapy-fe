@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
-import { Spin } from 'antd';
-import { Switch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Dashboard from '../Dashboard';
 import WeekDisplay from '../../components/WeekDisplay';
 import PrivateRoute from '../../components/PrivateRoute';
@@ -10,6 +9,8 @@ import DayDisplay from '../../components/DayDisplay';
 import { useAuth } from '../../utils/dataStore';
 import { checkForUserAndGetMoodsQuery } from '../../queries';
 import styles from '../../styles/theme';
+import NotFound from '../NotFound/404';
+import LoadingSpinner from '../../components/LoadingSpinner';
 import CalendarDisplay from '../../components/Calendar/CalendarDisplay';
 
 const Moods = () => {
@@ -38,11 +39,7 @@ const Moods = () => {
 
   if (error) return <p>{error.message}</p>;
 
-  return loading ? (
-    <LoadingWrapper>
-      <Spin size="large" delay={300} />
-    </LoadingWrapper>
-  ) : (
+  return (
     <Switch>
       <PrivateRoute
         exact
@@ -50,10 +47,14 @@ const Moods = () => {
         render={() => (
           <Dashboard>
             <Wrapper>
-              <WeekDisplay
-                moods={moods}
-                handleMoodsToDisplay={handleMoodsToDisplay}
-              />
+              {loading ? (
+                <LoadingSpinner margin="50% 0 0 0" />
+              ) : (
+                <WeekDisplay
+                  moods={moods}
+                  handleMoodsToDisplay={handleMoodsToDisplay}
+                />
+              )}
             </Wrapper>
           </Dashboard>
         )}
@@ -76,6 +77,7 @@ const Moods = () => {
           />
         )}
       />
+      <Route component={NotFound} />
     </Switch>
   );
 };
@@ -83,18 +85,7 @@ const Moods = () => {
 export default Moods;
 
 const Wrapper = styled.div`
-  background-color: #f0f8f7;
-  padding: 27px 27px 80px;
+  background-color: ${styles.seafoamGreen};
+  padding: 27px 16px 80px;
   min-height: 100vh;
-`;
-
-const LoadingWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50%;
-
-  .ant-spin-dot-item {
-    background-color: ${styles.darkJungleGreen} !important;
-  }
 `;
