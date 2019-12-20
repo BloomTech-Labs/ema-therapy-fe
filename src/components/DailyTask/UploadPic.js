@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Icon, Upload, Modal } from 'antd';
-import request from 'superagent';
+import PropTypes from 'prop-types';
 import theme from '../../styles/theme';
 
 function getBase64(file) {
@@ -11,60 +11,15 @@ function getBase64(file) {
   });
 }
 
-function UploadPic() {
+function UploadPic({ upload }) {
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
-  const [fileList, setFileList] = useState([
-    // {
-    //   uid: '-1',
-    //   name: 'image.png',
-    //   status: 'done',
-    //   url:
-    //     'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    // },
-    // {
-    //   uid: '-2',
-    //   name: 'image.png',
-    //   status: 'done',
-    //   url:
-    //     'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    // },
-    // {
-    //   uid: '-3',
-    //   name: 'image.png',
-    //   status: 'error',
-    // },
-  ]);
-
-  const onPhotoSelected = (file) => {
-    const cloudName = 'moodbloom';
-    const uploadPreset = 'jqzoqbwo';
-    const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
-
-    request
-      .post(url)
-      .field('upload_preset', uploadPreset)
-      .field('file', file)
-      .field('multiple', false)
-      // .field('tags', title ? `myphotoalbum,${title}` : 'myphotoalbum')
-      // .field('context', title ? `photo=${title}` : '')
-      // .on('progress', (progress) => onPhotoUploadProgress(photoId, file.name, progress))
-      // .end((error, response) => {
-      //     onPhotoUploaded(photoId, fileName, response);
-      // });
-      .on('progress', (progress) => console.log(progress))
-      .end((error, response) => {
-        console.log(error, response);
-        // set local state to response.body.secure_url for when we submit form to our database
-      });
-  };
+  const [fileList, setFileList] = useState([]);
 
   const uploadPhoto = ({ file, onSuccess }) => {
-    console.log(file);
-    // dummy success...upload to cloudinary
     setTimeout(() => {
       onSuccess('ok');
-      onPhotoSelected(file);
+      upload(file);
     }, 0);
   };
 
@@ -95,7 +50,6 @@ function UploadPic() {
     <div>
       <Upload
         customRequest={uploadPhoto}
-        // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
         listType="picture-card"
         fileList={fileList}
         onPreview={handlePreview}
@@ -109,5 +63,9 @@ function UploadPic() {
     </div>
   );
 }
+
+UploadPic.propTypes = {
+  upload: PropTypes.func.isRequired,
+};
 
 export default UploadPic;

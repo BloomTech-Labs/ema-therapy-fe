@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Icon, Input } from 'antd';
 import { useParams, useHistory } from 'react-router-dom';
+import request from 'superagent';
 import styled from 'styled-components';
 import NotFound from '../../containers/NotFound/404';
 import styles from '../../styles/theme';
@@ -12,13 +13,38 @@ const { TextArea } = Input;
 function Task() {
   const { task } = useParams();
   const history = useHistory();
-  const [text, setText] = useState();
-  const [photoUrl, setPhotoUrl] = useState();
+  const [text, setText] = useState(null);
+  const [photoUrl, setPhotoUrl] = useState(null);
 
   const handleChange = (e) => setText(e.target.value);
 
   const handleSubmit = () => {
     console.log(text);
+    console.log('photo upload: ', photoUrl);
+  };
+
+  const upload = (file) => {
+    const cloudName = 'moodbloom';
+    const uploadPreset = 'jqzoqbwo';
+    const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+
+    request
+      .post(url)
+      .field('upload_preset', uploadPreset)
+      .field('file', file)
+      .field('multiple', false)
+      // .field('tags', title ? `myphotoalbum,${title}` : 'myphotoalbum')
+      // .field('context', title ? `photo=${title}` : '')
+      // .on('progress', (progress) => onPhotoUploadProgress(photoId, file.name, progress))
+      // .end((error, response) => {
+      //     onPhotoUploaded(photoId, fileName, response);
+      // });
+      .on('progress', (progress) => console.log(progress))
+      .end((error, response) => {
+        console.log(error, response);
+        // set local state to response.body.secure_url for when we submit form to our database
+        setPhotoUrl(response.body.secure_url);
+      });
   };
 
   if (!(task >= 1 && task <= 7)) return <NotFound />;
@@ -57,12 +83,7 @@ function Task() {
         />
       </main>
       <PicturesWrapper>
-        <UploadPic />
-        {/* <Icon
-          type="file-image"
-          style={{ fontSize: '50px', cursor: 'pointer' }}
-        />
-        <p>Upload Photo</p> */}
+        <UploadPic upload={upload} />
       </PicturesWrapper>
       <ButtonWrapper>
         <Button onClick={handleSubmit}>Done</Button>
