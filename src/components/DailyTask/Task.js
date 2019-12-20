@@ -36,7 +36,6 @@ function Task() {
   const handleSubmit = async () => {
     console.log(text);
     console.log('photo upload: ', photoUrl);
-    // TODO
     await addTask({
       variables: {
         userId: '5df934b26258283c8c7eeb39',
