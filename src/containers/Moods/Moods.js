@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { Spin } from 'antd';
 import { getDay } from 'date-fns';
-import { Switch } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Dashboard from '../Dashboard';
 import WeekDisplay from '../../components/WeekDisplay';
 import PrivateRoute from '../../components/PrivateRoute';
@@ -12,6 +12,7 @@ import { useAuth } from '../../utils/dataStore';
 import { checkForUserAndGetMoodsQuery } from '../../queries';
 import weekOfMoods from '../../utils/weekOfMoods';
 import styles from '../../styles/theme';
+import NotFound from '../NotFound/404';
 
 const Moods = () => {
   const [moodsThisWeek, setMoodsThisWeek] = useState(null);
@@ -82,6 +83,7 @@ const Moods = () => {
           />
         )}
       />
+      <Route component={NotFound} />
     </Switch>
   );
 };
