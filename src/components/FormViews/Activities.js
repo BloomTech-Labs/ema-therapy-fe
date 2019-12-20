@@ -155,6 +155,56 @@ const Activities = ({
                 />
               );
             })}
+          {type === 'social' &&
+            activities[5].social.map((activityType) => {
+              return (
+                <Activity
+                  key={activityType}
+                  activityType={activityType}
+                  addActivities={addActivities}
+                />
+              );
+            })}
+          {type === 'media' &&
+            activities[6].media.map((activityType) => {
+              return (
+                <Activity
+                  key={activityType}
+                  activityType={activityType}
+                  addActivities={addActivities}
+                />
+              );
+            })}
+          {type === 'work' &&
+            activities[7].work.map((activityType) => {
+              return (
+                <Activity
+                  key={activityType}
+                  activityType={activityType}
+                  addActivities={addActivities}
+                />
+              );
+            })}
+          {type === 'occasions' &&
+            activities[8].occasions.map((activityType) => {
+              return (
+                <Activity
+                  key={activityType}
+                  activityType={activityType}
+                  addActivities={addActivities}
+                />
+              );
+            })}
+          {type === 'sports' &&
+            activities[8].sports.map((activityType) => {
+              return (
+                <Activity
+                  key={activityType}
+                  activityType={activityType}
+                  addActivities={addActivities}
+                />
+              );
+            })}
         </ActivitiesWrapper>
       </InputWrapper>
       <div className="footer">
