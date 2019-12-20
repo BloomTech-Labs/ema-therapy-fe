@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from '../../styles/theme';
 
-const InnerRing = ({ color, size, strokeWidth, className }) => {
+const Ring = ({ color, size, strokeWidth, className }) => {
   return (
     <svg
       className={className}
@@ -17,18 +17,18 @@ const InnerRing = ({ color, size, strokeWidth, className }) => {
   );
 };
 
-InnerRing.propTypes = {
+Ring.propTypes = {
   color: PropTypes.string,
   size: PropTypes.string,
   strokeWidth: PropTypes.string,
   className: PropTypes.string,
 };
 
-InnerRing.defaultProps = {
+Ring.defaultProps = {
   color: styles.darkJungleGreen,
   size: '28',
   strokeWidth: '2',
   className: '',
 };
 
-export default InnerRing;
+export default Ring;

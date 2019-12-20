@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import MoodPreview from './MoodPreview';
 import styles from '../styles/theme';
 import CalendarIcon from '../containers/Moods/CalendarIcon';
-import getMoodsThisWeek from '../utils/getMoodsThisWeek';
+import getMoodsThisWeek from '../utils/weekOfMoods';
 
 function WeekDisplay({ moods, handleMoodsToDisplay }) {
   const [moodsThisWeek, setMoodsThisWeek] = useState(null);
