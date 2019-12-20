@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Icon, Upload, Modal } from 'antd';
+import PropTypes from 'prop-types';
 import theme from '../../styles/theme';
 
 function getBase64(file) {
@@ -10,37 +11,16 @@ function getBase64(file) {
   });
 }
 
-function UploadPic() {
+function UploadPic({ upload }) {
   const [previewVisible, setPreviewVisible] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
-  const [fileList, setFileList] = useState([
-    // {
-    //   uid: '-1',
-    //   name: 'image.png',
-    //   status: 'done',
-    //   url:
-    //     'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    // },
-    // {
-    //   uid: '-2',
-    //   name: 'image.png',
-    //   status: 'done',
-    //   url:
-    //     'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    // },
-    // {
-    //   uid: '-3',
-    //   name: 'image.png',
-    //   status: 'error',
-    // },
-  ]);
+  const [fileList, setFileList] = useState([]);
 
   const uploadPhoto = ({ file, onSuccess }) => {
-    console.log(file);
-    // dummy success...upload to cloudinary
     setTimeout(() => {
       onSuccess('ok');
-    });
+      upload(file);
+    }, 0);
   };
 
   const handleCancel = () => setPreviewVisible(false);
@@ -70,7 +50,6 @@ function UploadPic() {
     <div>
       <Upload
         customRequest={uploadPhoto}
-        // action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
         listType="picture-card"
         fileList={fileList}
         onPreview={handlePreview}
@@ -84,5 +63,9 @@ function UploadPic() {
     </div>
   );
 }
+
+UploadPic.propTypes = {
+  upload: PropTypes.func.isRequired,
+};
 
 export default UploadPic;

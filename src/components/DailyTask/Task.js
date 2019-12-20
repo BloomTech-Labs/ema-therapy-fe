@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Icon, Input } from 'antd';
+import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 import { useParams, useHistory } from 'react-router-dom';
+import request from 'superagent';
 import styled from 'styled-components';
 import NotFound from '../../containers/NotFound/404';
 import styles from '../../styles/theme';
@@ -10,16 +13,60 @@ import TaskComplete from './TaskComplete';
 
 const { TextArea } = Input;
 
+const ADD_TASK = gql`
+  mutation($userId: ID!, $prompt: String!, $inputList: [String]) {
+    addTask(userId: $userId, prompt: $prompt, inputList: $inputList) {
+      completedAt
+      prompt
+      inputList
+    }
+  }
+`;
+
 function Task() {
   const { task } = useParams();
   const history = useHistory();
   const [text, setText] = useState();
   const [taskComplete, setTaskComplete] = useState(false);
+  const [photoUrl, setPhotoUrl] = useState(null);
+  const [addTask] = useMutation(ADD_TASK);
   const handleChange = (e) => setText(e.target.value);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log(text);
+    console.log('photo upload: ', photoUrl);
+    await addTask({
+      variables: {
+        userId: '5df934b26258283c8c7eeb39',
+        prompt: 'I am statements',
+        inputList: [text, photoUrl],
+      },
+    });
     setTaskComplete(true);
+  };
+
+  const upload = (file) => {
+    const cloudName = 'moodbloom';
+    const uploadPreset = 'jqzoqbwo';
+    const url = `https://api.cloudinary.com/v1_1/${cloudName}/upload`;
+
+    request
+      .post(url)
+      .field('upload_preset', uploadPreset)
+      .field('file', file)
+      .field('multiple', false)
+      // .field('tags', title ? `myphotoalbum,${title}` : 'myphotoalbum')
+      // .field('context', title ? `photo=${title}` : '')
+      // .on('progress', (progress) => onPhotoUploadProgress(photoId, file.name, progress))
+      // .end((error, response) => {
+      //     onPhotoUploaded(photoId, fileName, response);
+      // });
+      .on('progress', (progress) => console.log(progress))
+      .end((error, response) => {
+        console.log(error, response);
+        // set local state to response.body.secure_url for when we submit form to our database
+        setPhotoUrl(response.body.secure_url);
+      });
   };
 
   if (!(task >= 1 && task <= 7)) return <NotFound />;
@@ -60,7 +107,7 @@ function Task() {
         />
       </main>
       <PicturesWrapper>
-        <UploadPic />
+        <UploadPic upload={upload} />
       </PicturesWrapper>
       <ButtonWrapper>
         <Button onClick={handleSubmit}>Done</Button>
@@ -106,7 +153,4 @@ const PicturesWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* border: 2px solid green;
-  display: flex;
-  align-items: center; */
 `;
