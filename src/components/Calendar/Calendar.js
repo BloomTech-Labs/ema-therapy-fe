@@ -22,8 +22,8 @@ const Calendar = ({
       moodsThisMonth.length === getDaysInMonth(activeStartDate) &&
       // eslint-disable-next-line react/prop-types
       moodsThisMonth[date.getDate() - 1].length > 0 &&
-      // eslint-disable-next-line react/prop-types
       isSameMonth(
+        // eslint-disable-next-line react/prop-types
         +moodsThisMonth[date.getDate() - 1][0].createdAt,
         activeStartDate,
       ) ? (

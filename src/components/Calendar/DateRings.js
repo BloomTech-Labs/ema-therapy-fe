@@ -4,11 +4,10 @@ import styles from '../../styles/theme';
 import Ring from './Ring';
 
 const DateRings = ({ moodList }) => {
-  const getMoodColor = (length, offset) => {
+  const getMoodColor = (length, ringNum) => {
     let index;
-    if (length >= 3) index = length - 3 + offset;
-    else if (length === 2) index = length - 2 + offset;
-    else index = 0;
+    if (length >= 3) index = length - 3 + ringNum;
+    else index = ringNum;
 
     let color = '';
     switch (moodList[index].mood) {
