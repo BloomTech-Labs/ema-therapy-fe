@@ -24,9 +24,7 @@ function Task() {
 
   if (!(task >= 1 && task <= 7)) return <NotFound />;
   return taskComplete ? (
-    <TaskWrapper>
-      <TaskComplete />
-    </TaskWrapper>
+    <TaskComplete />
   ) : (
     <TaskWrapper>
       <Header>
