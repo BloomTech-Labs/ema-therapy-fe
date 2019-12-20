@@ -6,6 +6,7 @@ import NotFound from '../../containers/NotFound/404';
 import styles from '../../styles/theme';
 import UploadPic from './UploadPic';
 import Button from '../Button';
+import TaskComplete from './TaskComplete';
 
 const { TextArea } = Input;
 
@@ -13,15 +14,20 @@ function Task() {
   const { task } = useParams();
   const history = useHistory();
   const [text, setText] = useState();
-
+  const [taskComplete, setTaskComplete] = useState(false);
   const handleChange = (e) => setText(e.target.value);
 
   const handleSubmit = () => {
     console.log(text);
+    setTaskComplete(true);
   };
 
   if (!(task >= 1 && task <= 7)) return <NotFound />;
-  return (
+  return taskComplete ? (
+    <TaskWrapper>
+      <TaskComplete />
+    </TaskWrapper>
+  ) : (
     <TaskWrapper>
       <Header>
         <Icon
