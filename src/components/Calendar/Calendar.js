@@ -24,6 +24,15 @@ const Calendar = ({
       : null;
   };
 
+  const tileContent = ({ date }) => {
+    return isSameMonth(date, activeStartDate) &&
+      moodsThisMonth &&
+      moodsThisMonth.length === getDaysInMonth(activeStartDate) &&
+      moodsThisMonth[date.getDate() - 1].length > 0
+      ? 'HEY'
+      : null;
+  };
+
   const tileDisabled = ({ date }) => {
     return (
       (isSameMonth(date, activeStartDate) &&
@@ -43,7 +52,8 @@ const Calendar = ({
           handleActiveStartDate(newActiveStartDate)
         }
         formatShortWeekday={(locale, date) => format(date, 'iiiii')}
-        tileClassName={tileClassName}
+        // tileClassName={tileClassName}
+        // tileContent={tileContent}
         tileDisabled={tileDisabled}
         minDetail="month"
         minDate={new Date(2019, 10, 1)}
@@ -104,8 +114,14 @@ const CalContainer = styled.div`
     cursor: unset;
   }
 
+  .react-calendar__month-view__days__day {
+    font-family: sans-serif;
+    font-size: 14px;
+    color: #595959;
+  }
+
   .react-calendar__month-view__days__day--neighboringMonth {
-    color: #757575;
+    color: #bfbfbf;
   }
 
   .react-calendar__month-view__weekdays__weekday {
@@ -126,5 +142,9 @@ const CalContainer = styled.div`
     color: ${styles.darkJungleGreen};
     font-weight: 600;
     font-size: 14px;
+  }
+
+  .react-calendar__viewContainer {
+    padding: 30px 0;
   }
 `;

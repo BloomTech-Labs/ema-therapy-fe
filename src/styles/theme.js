@@ -6,6 +6,8 @@ const theme = {
   brightYellow: '#FCB924',
   rosyPink: '#FCA395',
   paleRobinEggBlue: '#9CD9DD',
+  sherbertOrange: '#F2812E',
+  cerulean: '#53BBC9',
 };
 
 export default theme;

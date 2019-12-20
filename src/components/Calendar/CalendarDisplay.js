@@ -6,6 +6,7 @@ import { isSameDay, isSameMonth, getDaysInMonth } from 'date-fns';
 import styles from '../../styles/theme';
 import Calendar from './Calendar';
 import Card from '../Card';
+import CalendarLegend from './CalendarLegend';
 
 const getMoodsByDay = (dateSelected, moodData) => {
   return moodData[dateSelected.getDate() - 1].filter((mood) =>
@@ -45,7 +46,7 @@ const CalendarDisplay = ({ moods, handleMoodsToDisplay }) => {
   useEffect(() => {
     if (daySelected)
       handleMoodsToDisplay(getMoodsByDay(daySelected, moodsThisMonth));
-  }, [daySelected, moodsThisMonth]);
+  }, [daySelected, moodsThisMonth, handleMoodsToDisplay]);
 
   useEffect(() => {
     if (moods) setMoodsThisMonth(getMoodsByMonth(activeStartDate, moods));
@@ -80,6 +81,7 @@ const CalendarDisplay = ({ moods, handleMoodsToDisplay }) => {
           handleActiveStartDate={handleActiveStartDate}
           moodsThisMonth={moodsThisMonth}
         />
+        <CalendarLegend />
       </StyledCard>
     </Wrapper>
   );
@@ -105,8 +107,9 @@ const Wrapper = styled.div`
 `;
 
 const StyledCard = styled(Card)`
-  height: 475px;
-  padding: 20px 10px;
+  /* height: 475px; */
+  padding: 20px 10px 10px;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.25);
 
   .header {
     display: flex;
