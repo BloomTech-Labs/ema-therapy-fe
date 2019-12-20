@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { format, isSameMonth, getDaysInMonth } from 'date-fns';
+import { format, isSameMonth, getDaysInMonth, getMonth } from 'date-fns';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ReactCalendar from 'react-calendar';
@@ -21,7 +21,12 @@ const Calendar = ({
       moodsThisMonth &&
       moodsThisMonth.length === getDaysInMonth(activeStartDate) &&
       // eslint-disable-next-line react/prop-types
-      moodsThisMonth[date.getDate() - 1].length > 0 ? (
+      moodsThisMonth[date.getDate() - 1].length > 0 &&
+      // eslint-disable-next-line react/prop-types
+      isSameMonth(
+        +moodsThisMonth[date.getDate() - 1][0].createdAt,
+        activeStartDate,
+      ) ? (
       // eslint-disable-next-line react/prop-types
       <DateRings moodList={moodsThisMonth[date.getDate() - 1]} />
     ) : null;
