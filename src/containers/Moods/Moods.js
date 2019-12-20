@@ -13,6 +13,7 @@ import { checkForUserAndGetMoodsQuery } from '../../queries';
 import weekOfMoods from '../../utils/weekOfMoods';
 import styles from '../../styles/theme';
 import NotFound from '../NotFound/404';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const Moods = () => {
   const [moodsThisWeek, setMoodsThisWeek] = useState(null);
@@ -54,11 +55,7 @@ const Moods = () => {
 
   if (error) return <p>{error.message}</p>;
 
-  return loading ? (
-    <LoadingWrapper>
-      <Spin size="large" delay={300} />
-    </LoadingWrapper>
-  ) : (
+  return (
     <Switch>
       <PrivateRoute
         exact
@@ -66,10 +63,14 @@ const Moods = () => {
         render={() => (
           <Dashboard>
             <Wrapper>
-              <WeekDisplay
-                moods={moodsThisWeek}
-                handleMoodsToDisplay={handleMoodsToDisplay}
-              />
+              {loading ? (
+                <LoadingSpinner margin="50% 0 0 0" />
+              ) : (
+                <WeekDisplay
+                  moods={moodsThisWeek}
+                  handleMoodsToDisplay={handleMoodsToDisplay}
+                />
+              )}
             </Wrapper>
           </Dashboard>
         )}
@@ -94,15 +95,4 @@ const Wrapper = styled.div`
   background-color: #f0f8f7;
   padding: 27px 16px 80px;
   min-height: 100vh;
-`;
-
-const LoadingWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50%;
-
-  .ant-spin-dot-item {
-    background-color: ${styles.darkJungleGreen} !important;
-  }
 `;
