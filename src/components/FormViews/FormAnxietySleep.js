@@ -35,23 +35,23 @@ function FormAnxietySleep({
         <div className="inputs">
           <Label>Anxiety Level</Label>
           <SliderWrapper>
-            <span>1</span>
+            <span>0</span>
             <Slider
               value={anxietyLevel}
               onChange={onAnxietySliderChange}
-              min={1}
+              min={0}
               max={10}
               style={{ flexGrow: 1 }}
             />
             <span>10</span>
           </SliderWrapper>
-          <Label>Hours of sleep:</Label>
+          <Label>Hours of sleep (since last entry)</Label>
           <SliderWrapper>
-            <span>1</span>
+            <span>0</span>
             <Slider
               value={sleep}
               onChange={onSleepSliderChange}
-              min={1}
+              min={0}
               max={10}
               style={{ flexGrow: 1 }}
             />

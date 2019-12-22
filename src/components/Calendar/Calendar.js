@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { format, isSameMonth, getDaysInMonth, getMonth } from 'date-fns';
+import { format, isSameMonth, getDaysInMonth } from 'date-fns';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ReactCalendar from 'react-calendar';
