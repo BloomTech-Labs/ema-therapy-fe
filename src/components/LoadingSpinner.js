@@ -15,8 +15,8 @@ const LoadingSpinner = ({ delay, height, margin, bgColor }) => {
 LoadingSpinner.propTypes = {
   delay: PropTypes.number,
   height: PropTypes.string,
-  margin: PropTypes.string,
   bgColor: PropTypes.string,
+  margin: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 LoadingSpinner.defaultProps = {
