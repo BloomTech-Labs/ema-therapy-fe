@@ -66,16 +66,21 @@ function SleepGraph({ arrayOfDays }) {
           },
           display: true,
           type: 'category',
-          labels: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+          labels: [10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
         },
       ],
     },
   };
   return (
     <div>
-      <h2>Sleep Chart</h2>
+      <SleepChartH2>Sleep</SleepChartH2>
       <GraphWrapper>
-        <Line data={dataForGraph} options={options} />
+        <Line
+          data={dataForGraph}
+          options={options}
+          maintainAspectRatio={false}
+          height={200}
+        />
       </GraphWrapper>
     </div>
   );
@@ -83,8 +88,27 @@ function SleepGraph({ arrayOfDays }) {
 
 const GraphWrapper = styled.div`
   background-color: white;
-  padding: 20px 5px;
-  border-radius: 10px;
+  padding: 34px 9px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 20px rgba(0, 142, 122, 0.1);
+  margin-bottom: 20px;
+  margin-right: 16px;
+  margin-left: 16px;
+`;
+
+const SleepChartH2 = styled.div`
+  width: 85px;
+  height: 19px;
+  margin-left: 9px;
+  margin-bottom: 19px;
+
+  font-family: Fira Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+
+  color: #0c423b;
 `;
 
 SleepGraph.propTypes = {

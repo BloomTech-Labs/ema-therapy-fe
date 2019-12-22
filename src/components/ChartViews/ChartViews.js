@@ -112,50 +112,49 @@ const ChartViews = () => {
         percent: Math.floor((moodCount['1'] / totalEntries) * 100),
       },
     ];
-    console.log('mood count', moodCount);
     return totalMoodsArray;
   };
-  if (moods.length > 0) {
-    console.log(totalMoods(moods));
-  }
 
   if (error) return <p>{error.message}</p>;
 
   return loading ? null : (
-    <Charts>
-      <Wrapper>
-        <ReactSwipe
-          className="carousel"
-          swipeOptions={{ continuous: false }}
-          // eslint-disable-next-line no-return-assign
-          ref={(el) => (reactSwipeEl = el)}
-        >
-          <div>
-            <MoodGraph arrayOfDays={getArrayOfDays(moods)} />
-          </div>
-          <div>
-            <AnxietyGraph arrayOfDays={getArrayOfDays(moods)} />
-          </div>
-          <div>
-            <SleepGraph arrayOfDays={getArrayOfDays(moods)} />
-          </div>
-        </ReactSwipe>
-        <button
-          className="temp-slide-button"
-          type="button"
-          onClick={() => reactSwipeEl.next()}
-        ></button>
-        <button
-          className="temp-slide-button"
-          type="button"
-          onClick={() => reactSwipeEl.prev()}
-        ></button>
-        <MoodePie
-          totalMoods={totalMoods(moods)}
-          arrayOfDays={getArrayOfDays(moods)}
-        />
-      </Wrapper>
-    </Charts>
+    <>
+      <TitleDiv>Charts</TitleDiv>
+      <Charts>
+        <Wrapper>
+          <ReactSwipe
+            className="carousel"
+            swipeOptions={{ continuous: false }}
+            // eslint-disable-next-line no-return-assign
+            ref={(el) => (reactSwipeEl = el)}
+          >
+            <div>
+              <MoodGraph arrayOfDays={getArrayOfDays(moods)} />
+            </div>
+            <div>
+              <AnxietyGraph arrayOfDays={getArrayOfDays(moods)} />
+            </div>
+            <div>
+              <SleepGraph arrayOfDays={getArrayOfDays(moods)} />
+            </div>
+          </ReactSwipe>
+          {/* <button
+            className="temp-slide-button"
+            type="button"
+            onClick={() => reactSwipeEl.next()}
+          />
+          <button
+            className="temp-slide-button"
+            type="button"
+            onClick={() => reactSwipeEl.prev()}
+          /> */}
+          <MoodePie
+            totalMoods={totalMoods(moods)}
+            arrayOfDays={getArrayOfDays(moods)}
+          />
+        </Wrapper>
+      </Charts>
+    </>
   );
 };
 
@@ -163,6 +162,7 @@ const Wrapper = styled.div`
   background-color: #fafdfc;
   padding: 27px 16px 80px;
   min-height: 100vh;
+  margin-top: 50px;
 
   .temp-slide-button {
     background-color: #f0f8f7;
@@ -172,6 +172,23 @@ const Wrapper = styled.div`
       outline: none;
     }
   }
+`;
+
+const TitleDiv = styled.div`
+  position: absolute;
+  width: 62px;
+  height: 25px;
+  left: 16px;
+  top: 32px;
+
+  font-family: Fira Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 25px;
+
+  color: #0c423b;
+  padding-bottom: 50px;
 `;
 
 export default ChartViews;

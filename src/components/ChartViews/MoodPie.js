@@ -3,37 +3,10 @@
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import PieLegend from './PieLegend';
 
-const MoodPie = ({ totalMoods, arrayOfDays }) => {
-  const findMoodPercent = (moodData) => {
-    const moodArray = [0, 0, 0, 0, 0];
-    moodData.map((entry) => {
-      switch (entry.mood) {
-        case 'happy':
-          moodArray[0] += 1;
-          break;
-        case 'fine':
-          moodArray[1] += 1;
-          break;
-        case 'normal':
-          moodArray[2] += 1;
-          break;
-        case 'sad':
-          moodArray[3] += 1;
-          break;
-        case 'unhappy':
-          moodArray[4] += 1;
-          break;
-
-        default:
-          return 1;
-      }
-    });
-    return moodArray;
-  };
-  const totalMoodPercent = findMoodPercent(arrayOfDays);
-
+const MoodPie = ({ totalMoods }) => {
   const moodsPercentageArray = [];
   totalMoods.map((item) => {
     moodsPercentageArray.push(item.percent);
@@ -76,20 +49,33 @@ const MoodPie = ({ totalMoods, arrayOfDays }) => {
 
   return (
     <div>
-      <h2>Frequent Moods</h2>
+      <PieChartH2>Frequent Moods</PieChartH2>
       <Pie data={data} options={options} />
       <PieLegend totalMoods={totalMoods} />
     </div>
   );
 };
 
+const PieChartH2 = styled.div`
+  height: 19px;
+  margin-left: 9px;
+  margin-bottom: 19px;
+
+  font-family: Fira Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+
+  color: #0c423b;
+`;
+
 MoodPie.propTypes = {
-  arrayOfDays: PropTypes.arrayOf(
+  totalMoods: PropTypes.arrayOf(
     PropTypes.shape({
+      color: PropTypes.string,
       mood: PropTypes.string,
-      anxietyLevel: PropTypes.number,
-      sleep: PropTypes.number,
-      createdAt: PropTypes.string,
+      percent: PropTypes.number,
     }),
   ).isRequired,
 };
