@@ -45,7 +45,7 @@ function FormAnxietySleep({
             />
             <span>10</span>
           </SliderWrapper>
-          <Label>Hours of sleep (since last entry):</Label>
+          <Label>Hours of sleep (since last entry)</Label>
           <SliderWrapper>
             <span>0</span>
             <Slider
