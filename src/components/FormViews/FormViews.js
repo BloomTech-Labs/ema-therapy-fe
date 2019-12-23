@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import ReactGA from 'react-ga';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
-import { useAuth0 } from '../../utils/react-auth0-spa';
+import { useAuth } from '../../utils/dataStore';
 import {
   addMoodMutation,
   getUserIdAndLocation,
   checkForUserAndGetMoodsQuery,
+  editMoodMutation,
 } from '../../queries';
 import useCurrentWeather from '../../hooks/useCurrentWeather';
 import FormMood from './FormMood';
@@ -15,22 +17,26 @@ import FormActivityJournal from './FormActvityJournal';
 import FormAnxietySleep from './FormAnxietySleep';
 import backgroundImage from '../../assets/background-leaf.svg';
 import ladybug from '../../assets/ladybug.svg';
+import LoadingSpinner from '../LoadingSpinner';
 
-const FormViews = () => {
+const FormViews = ({ editInitial, stopEditing }) => {
   const history = useHistory();
-  const { currentWeather } = useCurrentWeather();
-  const { user } = useAuth0();
+  const { user } = useAuth();
+  const { currentWeather } = useCurrentWeather(user);
   const [addMood] = useMutation(addMoodMutation);
+  const [editMood] = useMutation(editMoodMutation);
   const { loading, error, data } = useQuery(getUserIdAndLocation, {
-    variables: { sub: user.sub },
+    variables: { email: user.email },
   });
+
   const [view, setView] = useState('mood');
   const [input, setInput] = useState({
-    mood: 3,
+    mood: editInitial ? editInitial.mood : 3,
     activities: [],
-    text: '',
-    anxietyLevel: 5,
-    sleep: 5,
+    text: editInitial && editInitial.text ? editInitial.text : '',
+    anxietyLevel:
+      editInitial && editInitial.anxietyLevel ? editInitial.anxietyLevel : 5,
+    sleep: editInitial && editInitial.sleep ? editInitial.sleep : 5,
     weather: null,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -39,13 +45,13 @@ const FormViews = () => {
   const [isSleepChanged, setIsSleepChanged] = useState(null);
 
   useEffect(() => {
-    if (data && data.user.isSharingLocation) {
+    if (!editInitial && data && data.user.isSharingLocation) {
       if (currentWeather) {
         // eslint-disable-next-line no-shadow
         setInput((input) => ({ ...input, weather: currentWeather }));
       }
     }
-  }, [currentWeather, data]);
+  }, [currentWeather, data, editInitial]);
 
   const handleView = (newView) => setView(newView);
 
@@ -82,35 +88,64 @@ const FormViews = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // adds mood and refetches mood data
-    await addMood({
-      variables: {
-        userId: data.user.id,
-        weather: input.weather,
-        mood: input.mood,
-        anxietyLevel: isAnxietyChanged ? input.anxietyLevel : null,
-        sleep: isSleepChanged ? input.sleep : null,
-        text: input.text.length > 0 ? input.text : null,
-      },
-      refetchQueries: [
-        {
-          query: checkForUserAndGetMoodsQuery,
-          variables: { sub: user.sub },
+    if (!editInitial) {
+      // adds mood and refetches mood data
+      await addMood({
+        variables: {
+          userId: data.user.id,
+          weather: input.weather,
+          mood: input.mood,
+          anxietyLevel: isAnxietyChanged ? input.anxietyLevel : null,
+          sleep: isSleepChanged ? input.sleep : null,
+          text: input.text.length > 0 ? input.text : null,
         },
-      ],
-      awaitRefetchQueries: true,
-    });
+        refetchQueries: [
+          {
+            query: checkForUserAndGetMoodsQuery,
+            variables: { email: user.email },
+          },
+        ],
+        awaitRefetchQueries: true,
+      });
 
-    // tracks add mood event
-    ReactGA.event({
-      category: 'Moods',
-      action: 'Add mood entry',
-    });
+      // tracks add mood event
+      ReactGA.event({
+        category: 'Moods',
+        action: 'Add mood entry',
+      });
 
-    history.push('/dashboard');
+      history.push('/dashboard');
+    } else {
+      // run edit mutation & refetch data
+      editMood({
+        variables: {
+          id: editInitial.id,
+          mood: input.mood,
+          anxietyLevel: isAnxietyChanged
+            ? input.anxietyLevel
+            : editInitial.anxietyLevel,
+          sleep: isSleepChanged ? input.sleep : editInitial.sleep,
+          text: input.text.length > 0 ? input.text : null,
+        },
+        refetchQueries: [
+          {
+            query: checkForUserAndGetMoodsQuery,
+            variables: { email: user.email },
+          },
+        ],
+        awaitRefetchQueries: true,
+      })
+        .then((res) => {
+          // tell DayDisplay to stop editing and update with payload
+          stopEditing('success', res.data.editMood);
+        })
+        .catch(() => {
+          stopEditing('error', null);
+        });
+    }
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <LoadingSpinner bgColor="#fafdfc" />;
   if (error) return <p>{error.message}</p>;
 
   return (
@@ -123,6 +158,7 @@ const FormViews = () => {
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           isSubmitting={isSubmitting}
+          stopEditing={stopEditing}
         />
       )}
 
@@ -151,6 +187,24 @@ const FormViews = () => {
       )}
     </StyledForm>
   );
+};
+
+FormViews.propTypes = {
+  editInitial: PropTypes.shape({
+    mood: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
+    createdAt: PropTypes.string.isRequired,
+    anxietyLevel: PropTypes.number,
+    text: PropTypes.string,
+    sleep: PropTypes.number,
+    weather: PropTypes.string,
+  }),
+  stopEditing: PropTypes.func,
+};
+
+FormViews.defaultProps = {
+  editInitial: null,
+  stopEditing: null,
 };
 
 const StyledForm = styled.form`

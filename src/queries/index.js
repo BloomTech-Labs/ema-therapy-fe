@@ -1,13 +1,15 @@
 import { gql } from 'apollo-boost';
 
 export const getMoodsQuery = gql`
-  query($sub: ID) {
-    user(sub: $sub) {
+  query($email: String) {
+    user(email: $email) {
       moods {
+        id
         mood
         text
         anxietyLevel
         sleep
+        weather
       }
     }
   }
@@ -40,9 +42,8 @@ export const addMoodMutation = gql`
 `;
 
 export const checkForUserAndGetMoodsQuery = gql`
-  query($sub: ID, $email: String, $firstName: String, $lastName: String) {
-    user(sub: $sub, email: $email, firstName: $firstName, lastName: $lastName) {
-      sub
+  query($email: String, $firstName: String, $lastName: String) {
+    user(email: $email, firstName: $firstName, lastName: $lastName) {
       email
       firstName
       lastName
@@ -61,20 +62,9 @@ export const checkForUserAndGetMoodsQuery = gql`
 `;
 
 export const addUserMutation = gql`
-  mutation(
-    $email: String!
-    $sub: String!
-    $firstName: String
-    $lastName: String
-  ) {
-    addUser(
-      email: $email
-      sub: $sub
-      firstName: $firstName
-      lastName: $lastName
-    ) {
+  mutation($email: String!, $firstName: String, $lastName: String) {
+    addUser(email: $email, firstName: $firstName, lastName: $lastName) {
       email
-      sub
       firstName
       lastName
       createdAt
@@ -84,10 +74,44 @@ export const addUserMutation = gql`
 `;
 
 export const getUserIdAndLocation = gql`
-  query($sub: ID) {
-    user(sub: $sub) {
+  query($email: String) {
+    user(email: $email) {
       isSharingLocation
       id
+    }
+  }
+`;
+
+export const removeMoodMutation = gql`
+  mutation($id: String!) {
+    removeMood(id: $id) {
+      id
+    }
+  }
+`;
+
+export const editMoodMutation = gql`
+  mutation(
+    $id: ID!
+    $mood: Int!
+    $text: String
+    $anxietyLevel: Int
+    $sleep: Float
+  ) {
+    editMood(
+      id: $id
+      mood: $mood
+      text: $text
+      anxietyLevel: $anxietyLevel
+      sleep: $sleep
+    ) {
+      id
+      createdAt
+      mood
+      text
+      anxietyLevel
+      sleep
+      weather
     }
   }
 `;

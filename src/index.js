@@ -4,43 +4,39 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import App from './containers/App';
 import 'sanitize.css/sanitize.css';
-import { Auth0Provider } from './utils/react-auth0-spa';
-import {
-  AUTH0_DOMAIN,
-  AUTH0_CLIENT_ID,
-  AUTH0_AUDIENCE,
-  GA_ID,
-} from './utils/config';
+import { AuthProvider } from './utils/dataStore';
+import { GA_ID } from './utils/config';
 import theme from './styles/theme';
 import * as serviceWorker from './utils/serviceWorker';
 import GAListener from './components/GAListener';
 
-// A function that routes the user to the right place after login
-const onRedirectCallback = (appState) => {
-  window.history.replaceState(
-    {},
-    document.title,
-    appState && appState.targetUrl
-      ? appState.targetUrl
-      : window.location.pathname,
-  );
-};
+// replace Router with DebugRouter if you need to debug routes
+
+// class DebugRouter extends Router {
+//   constructor(props) {
+//     super(props);
+//     console.log('initial history is: ', JSON.stringify(this.history, null, 2));
+//     this.history.listen((location, action) => {
+//       console.log(
+//         `The current URL is ${location.pathname}${location.search}${location.hash}`,
+//       );
+//       console.log(
+//         `The last navigation action was ${action}`,
+//         JSON.stringify(this.history, null, 2),
+//       );
+//     });
+//   }
+// }
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <Auth0Provider
-      domain={AUTH0_DOMAIN}
-      client_id={AUTH0_CLIENT_ID}
-      redirect_uri={window.location.origin}
-      audience={AUTH0_AUDIENCE}
-      onRedirectCallback={onRedirectCallback}
-    >
-      <Router>
+    <Router>
+      <AuthProvider>
         <GAListener trackingId={GA_ID}>
           <App />
         </GAListener>
-      </Router>
-    </Auth0Provider>
+      </AuthProvider>
+    </Router>
   </ThemeProvider>,
   document.getElementById('root'),
 );
