@@ -4,16 +4,10 @@ import PropTypes from 'prop-types';
 import ReactSwipe from 'react-swipe';
 import { Icon } from 'antd';
 import styled from 'styled-components';
-import activities from '../../utils/Activities';
+import { activities, categories } from '../../utils/Activities';
 import Activity from './Activity';
 import NextButton from './NextButton';
 import DoneButton from './DoneButton';
-
-function generateUniqueKey() {
-  return `_${Math.random()
-    .toString()
-    .substr(2, 9)}`;
-}
 
 const Activities = ({
   addActivities,
@@ -52,159 +46,35 @@ const Activities = ({
           // eslint-disable-next-line no-return-assign
           ref={(el) => (reactSwipeEl = el)}
         >
-          <div>
-            {activities.map((cur, i) => {
-              if (i >= 0 && i < 4) {
-                return (
-                  <TypeButton
-                    key={cur.name}
-                    onClick={() => handleTypeView(cur.name)}
-                    type="button"
-                    active={type === cur.name}
-                  >
-                    {cur.name}
-                  </TypeButton>
-                );
-              }
-              return null;
-            })}
-          </div>
-          <div>
-            {activities.map((cur, i) => {
-              if (i >= 4 && i < 8) {
-                return (
-                  <TypeButton
-                    key={cur.name}
-                    onClick={() => handleTypeView(cur.name)}
-                    type="button"
-                    active={type === cur.name}
-                  >
-                    {cur.name}
-                  </TypeButton>
-                );
-              }
-              return null;
-            })}
-          </div>
-          <div>
-            {activities.map((cur, i) => {
-              if (i >= 8 && i < 12) {
-                return (
-                  <TypeButton
-                    key={cur.name}
-                    onClick={() => handleTypeView(cur.name)}
-                    type="button"
-                    active={type === cur.name}
-                  >
-                    {cur.name}
-                  </TypeButton>
-                );
-              }
-              return null;
-            })}
-          </div>
+          {categories.map((arr) => {
+            return (
+              <div>
+                {arr.map((category) => {
+                  return (
+                    <TypeButton
+                      key={category}
+                      onClick={() => handleTypeView(category)}
+                      type="button"
+                      active={type === category}
+                    >
+                      {category}
+                    </TypeButton>
+                  );
+                })}
+              </div>
+            );
+          })}
         </ReactSwipe>
         <ActivitiesWrapper>
-          {type === 'food' &&
-            activities[0].foods.map((activityType) => {
-              return (
-                <Activity
-                  key={activityType}
-                  activityType={activityType}
-                  addActivities={addActivities}
-                />
-              );
-            })}
-          {type === 'drink' &&
-            activities[1].drinks.map((activityType) => {
-              return (
-                <Activity
-                  key={activityType}
-                  activityType={activityType}
-                  addActivities={addActivities}
-                />
-              );
-            })}
-          {type === 'fun' &&
-            activities[2].funs.map((activityType) => {
-              return (
-                <Activity
-                  key={activityType}
-                  activityType={activityType}
-                  addActivities={addActivities}
-                />
-              );
-            })}
-          {type === 'leisure' &&
-            activities[3].leisures.map((activityType) => {
-              return (
-                <Activity
-                  key={activityType}
-                  activityType={activityType}
-                  addActivities={addActivities}
-                />
-              );
-            })}
-          {type === 'misc' &&
-            activities[4].misc.map((activityType) => {
-              return (
-                <Activity
-                  key={activityType}
-                  activityType={activityType}
-                  addActivities={addActivities}
-                />
-              );
-            })}
-          {type === 'social' &&
-            activities[5].social.map((activityType) => {
-              return (
-                <Activity
-                  key={activityType}
-                  activityType={activityType}
-                  addActivities={addActivities}
-                />
-              );
-            })}
-          {type === 'media' &&
-            activities[6].media.map((activityType) => {
-              return (
-                <Activity
-                  key={activityType}
-                  activityType={activityType}
-                  addActivities={addActivities}
-                />
-              );
-            })}
-          {type === 'work' &&
-            activities[7].work.map((activityType) => {
-              return (
-                <Activity
-                  key={activityType}
-                  activityType={activityType}
-                  addActivities={addActivities}
-                />
-              );
-            })}
-          {type === 'occasions' &&
-            activities[8].occasions.map((activityType) => {
-              return (
-                <Activity
-                  key={activityType}
-                  activityType={activityType}
-                  addActivities={addActivities}
-                />
-              );
-            })}
-          {type === 'sports' &&
-            activities[8].sports.map((activityType) => {
-              return (
-                <Activity
-                  key={activityType}
-                  activityType={activityType}
-                  addActivities={addActivities}
-                />
-              );
-            })}
+          {activities[type].map((activityType) => {
+            return (
+              <Activity
+                key={activityType}
+                activityType={activityType}
+                addActivities={addActivities}
+              />
+            );
+          })}
         </ActivitiesWrapper>
       </InputWrapper>
       <div className="footer">
