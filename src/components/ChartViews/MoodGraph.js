@@ -37,6 +37,7 @@ function MoodGraph({ arrayOfDays }) {
     //   titleFontColor: 'rgb(227, 113, 128)',
     //   color: 'rgb(227, 113, 128)',
     // },
+    responsive: true,
     legend: false,
     scales: {
       xAxes: [
@@ -77,9 +78,14 @@ function MoodGraph({ arrayOfDays }) {
   };
   return (
     <div>
-      <h2>Mood Chart</h2>
+      <MoodChartH2>Mood</MoodChartH2>
       <GraphWrapper>
-        <Line data={dataForGraph} options={options} />
+        <Line
+          data={dataForGraph}
+          options={options}
+          maintainAspectRatio={false}
+          height={200}
+        />
       </GraphWrapper>
     </div>
   );
@@ -87,9 +93,29 @@ function MoodGraph({ arrayOfDays }) {
 
 const GraphWrapper = styled.div`
   background-color: white;
-  padding: 20px 5px;
-  border-radius: 10px;
+  padding: 34px 9px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 20px rgba(0, 142, 122, 0.1);
+  margin-bottom: 20px;
+  margin-right: 16px;
+  margin-left: 16px;
 `;
+
+const MoodChartH2 = styled.div`
+  width: 85px;
+  height: 19px;
+  margin-left: 9px;
+  margin-bottom: 19px;
+
+  font-family: Fira Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+
+  color: #0c423b;
+`;
+
 MoodGraph.propTypes = {
   arrayOfDays: PropTypes.arrayOf(
     PropTypes.shape({

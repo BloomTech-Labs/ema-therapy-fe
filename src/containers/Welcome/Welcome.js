@@ -1,21 +1,39 @@
 import React from 'react';
 import queryString from 'query-string';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect, useHistory, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button } from 'antd';
 import { useAuth } from '../../utils/dataStore';
 import styles from '../../styles/theme';
 import splash from '../../assets/splash-leaves.png';
+import AppleNotification from '../../components/AppleNotification';
 
-const Welcome = (props) => {
-  const query = queryString.parse(props.location.search);
-  if (query.token) {
-    window.localStorage.setItem('token', query.token);
-  }
-  const { isAuthenticated } = useAuth();
+import { parseJwt } from '../../components/Auth/axiosAuth/axios';
+
+const Welcome = () => {
+  const location = useLocation();
   const history = useHistory();
+  const {
+    setUser,
+    setIsAuthenticated,
+    setLoading,
+    isAuthenticated,
+  } = useAuth();
+
+  // this gets the token from the URL query string and saves it to local storage
+  const query = queryString.parse(location.search);
+  if (query.token) {
+    window.localStorage.setItem('token', `Bearer ${query.token}`);
+    const userFromToken = parseJwt(localStorage.token);
+    setUser(userFromToken);
+    setIsAuthenticated(true);
+    setLoading(false);
+    history.push('/dashboard');
+  }
+
   return (
     <StyledWelcome>
+      <AppleNotification />
       <h2>MoodBloom</h2>
       <LoginWrapper>
         <div className="slogan-text">

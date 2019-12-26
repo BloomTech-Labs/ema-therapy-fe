@@ -13,6 +13,7 @@ import AnxietyGraph from './AnxietyGraph';
 import SleepGraph from './SleepGraph';
 import Charts from '../../containers/Charts';
 import MoodePie from './MoodPie';
+import styles from '../../styles/theme';
 
 const ChartViews = () => {
   let reactSwipeEl;
@@ -73,51 +74,95 @@ const ChartViews = () => {
     return arrayOfDays.filter((day) => day.mood).reverse();
   };
 
+  const totalMoods = (moodData) => {
+    const moodCount = { '5': 0, '4': 0, '3': 0, '2': 0, '1': 0 };
+
+    let totalEntries = 0;
+    moodData.forEach((day) => {
+      day.forEach((entry) => {
+        totalEntries += 1;
+
+        moodCount[entry.mood] += 1;
+      });
+    });
+    const totalMoodsArray = [
+      {
+        mood: 'happy',
+        color: `${styles.darkJungleGreen}`,
+        percent: Math.floor((moodCount['5'] / totalEntries) * 100),
+      },
+      {
+        mood: 'fine',
+        color: `${styles.cerulean}`,
+        percent: Math.floor((moodCount['4'] / totalEntries) * 100),
+      },
+      {
+        mood: 'normal',
+        color: `${styles.brightYellow}`,
+        percent: Math.floor((moodCount['3'] / totalEntries) * 100),
+      },
+      {
+        mood: 'sad',
+        color: `${styles.sherbertOrange}`,
+        percent: Math.floor((moodCount['2'] / totalEntries) * 100),
+      },
+      {
+        mood: 'unhappy',
+        color: `${styles.rosyPink}`,
+        percent: Math.floor((moodCount['1'] / totalEntries) * 100),
+      },
+    ];
+    return totalMoodsArray;
+  };
+
   if (error) return <p>{error.message}</p>;
 
   return loading ? null : (
-    <Charts>
-      <Wrapper>
-        <ReactSwipe
-          className="carousel"
-          swipeOptions={{ continuous: false }}
-          // eslint-disable-next-line no-return-assign
-          ref={(el) => (reactSwipeEl = el)}
-        >
-          <div>
-            <MoodGraph arrayOfDays={getArrayOfDays(moods)} />
-          </div>
-          <div>
-            <AnxietyGraph arrayOfDays={getArrayOfDays(moods)} />
-          </div>
-          <div>
-            <SleepGraph arrayOfDays={getArrayOfDays(moods)} />
-          </div>
-        </ReactSwipe>
-        <button
-          className="temp-slide-button"
-          type="button"
-          onClick={() => reactSwipeEl.next()}
-        >
-          next
-        </button>
-        <button
-          className="temp-slide-button"
-          type="button"
-          onClick={() => reactSwipeEl.prev()}
-        >
-          previous
-        </button>
-        <MoodePie arrayOfDays={getArrayOfDays(moods)} />
-      </Wrapper>
-    </Charts>
+    <>
+      <TitleDiv>Charts</TitleDiv>
+      <Charts>
+        <Wrapper>
+          <ReactSwipe
+            className="carousel"
+            swipeOptions={{ continuous: false }}
+            // eslint-disable-next-line no-return-assign
+            ref={(el) => (reactSwipeEl = el)}
+          >
+            <div>
+              <MoodGraph arrayOfDays={getArrayOfDays(moods)} />
+            </div>
+            <div>
+              <AnxietyGraph arrayOfDays={getArrayOfDays(moods)} />
+            </div>
+            <div>
+              <SleepGraph arrayOfDays={getArrayOfDays(moods)} />
+            </div>
+          </ReactSwipe>
+          {/* <button
+            className="temp-slide-button"
+            type="button"
+            onClick={() => reactSwipeEl.next()}
+          />
+          <button
+            className="temp-slide-button"
+            type="button"
+            onClick={() => reactSwipeEl.prev()}
+          /> */}
+          <MoodePie
+            totalMoods={totalMoods(moods)}
+            arrayOfDays={getArrayOfDays(moods)}
+          />
+        </Wrapper>
+      </Charts>
+    </>
   );
 };
 
 const Wrapper = styled.div`
-  background-color: #f0f8f7;
+  background-color: #fafdfc;
   padding: 27px 16px 80px;
   min-height: 100vh;
+  margin-top: 50px;
 
   .temp-slide-button {
     background-color: #f0f8f7;
@@ -127,6 +172,23 @@ const Wrapper = styled.div`
       outline: none;
     }
   }
+`;
+
+const TitleDiv = styled.div`
+  position: absolute;
+  width: 62px;
+  height: 25px;
+  left: 16px;
+  top: 32px;
+
+  font-family: Fira Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 21px;
+  line-height: 25px;
+
+  color: #0c423b;
+  padding-bottom: 50px;
 `;
 
 export default ChartViews;

@@ -83,6 +83,7 @@ const StyledMoodCard = styled(Card)`
   background-repeat: no-repeat;
   background-position: top -18px right -22px;
   background-size: 115px 135px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
 
   .time {
     margin: 0;

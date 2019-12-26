@@ -1,17 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
-import { AiOutlineFrown } from 'react-icons/ai';
 import { IoIosArrowBack } from 'react-icons/io';
 import Dashboard from '../Dashboard';
+import styles from '../../styles/theme';
+import plant from '../../assets/plants-svg/plant-unhappy.svg';
 
 function NotFound() {
   const history = useHistory();
   return (
     <Dashboard>
       <Styled404>
-        <h1>Page Not Found</h1>
-        <AiOutlineFrown size={140} />
+        <h1>
+          Error
+          <br />
+          404
+        </h1>
+        <img src={plant} alt="Unhappy plant fallen over" />
         <button type="button" onClick={() => history.goBack()}>
           <IoIosArrowBack /> Go Back
         </button>
@@ -33,6 +38,11 @@ const Styled404 = styled.div`
     text-align: center;
     font-size: 40px;
     margin: 0 0 20px;
+    color: ${styles.tealGreen};
+  }
+
+  img {
+    transform: rotate(-90deg);
   }
 
   button {

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
+import { Icon, Button, Modal } from 'antd';
 import moodToString from '../utils/moodToString';
 import Card from './Card';
 import styles from '../styles/theme';
@@ -12,7 +13,15 @@ const formatDate = (timestamp, fmt) => {
   return format(new Date(ts), fmt);
 };
 
-const MoodCard = ({ mood: m }) => {
+const { confirm } = Modal;
+
+const MoodCard = ({
+  mood: m,
+  deleteMood,
+  deleteLoading,
+  editMood,
+  isEditing,
+}) => {
   const {
     activities,
     mood,
@@ -21,7 +30,21 @@ const MoodCard = ({ mood: m }) => {
     text,
     createdAt,
     weather,
+    id,
   } = m;
+
+  const showDeleteConfirm = () => {
+    confirm({
+      title: 'Are you sure you want to delete this mood entry?',
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
+      onOk() {
+        deleteMood(id);
+      },
+    });
+  };
+
   return (
     <StyledMoodCard>
       <div className="date-time">
@@ -40,15 +63,13 @@ const MoodCard = ({ mood: m }) => {
             {anxiety !== null && (
               <div>
                 <p className="anxiety">ANXIETY</p>
-                <p className="counter">{anxiety} out of 10</p>
+                <p className="counter">{anxiety}</p>
               </div>
             )}
             {sleep !== null && (
               <div>
                 <p className="sleep">SLEEP</p>
-                <p className="counter">
-                  {sleep === 1 ? `${sleep} hour` : `${sleep} hours`}
-                </p>
+                <p className="counter">{`${sleep}h`}</p>
               </div>
             )}
             {weather && (
@@ -60,6 +81,18 @@ const MoodCard = ({ mood: m }) => {
           </div>
         )}
         {text && <p className="text">{text}</p>}
+      </div>
+      <div className="icons">
+        <Button shape="circle" onClick={() => editMood(m)} disabled={isEditing}>
+          <Icon type="edit" />
+        </Button>
+        <Button
+          shape="circle"
+          onClick={() => showDeleteConfirm()}
+          disabled={deleteLoading}
+        >
+          <Icon type="delete" />
+        </Button>
       </div>
     </StyledMoodCard>
   );
@@ -75,12 +108,17 @@ MoodCard.propTypes = {
     sleep: PropTypes.number,
     weather: PropTypes.string,
   }).isRequired,
+  deleteMood: PropTypes.func.isRequired,
+  deleteLoading: PropTypes.bool.isRequired,
+  editMood: PropTypes.func.isRequired,
+  isEditing: PropTypes.bool.isRequired,
 };
 
 export default MoodCard;
 
 const StyledMoodCard = styled(Card)`
   margin: 0 7px 23px;
+  box-shadow: 0px 0px 15px #E5E5E5;
 
   p {
     margin: unset;
@@ -156,6 +194,20 @@ const StyledMoodCard = styled(Card)`
     font-size: 13px;
     color: #658883;
     line-height: 20px;
+  }
+
+  .icons {
+    padding: 10px 25px 20px;
+    text-align: right;
+
+    .ant-btn {
+      margin: 0 6px;
+    }
+
+    .anticon{
+      color: ${styles.darkJungleGreen};
+      font-size: 18px;
+    }
   }
 
   /* Styles for location -- uncomment if added */
