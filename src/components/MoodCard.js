@@ -216,5 +216,5 @@ const StyledMoodCard = styled(Card)`
     font-size: 10px;
     color: ${styles.darkJungleGreen};
     padding: 0px 25px 15px 0px;
-  } */
+  }
 `;

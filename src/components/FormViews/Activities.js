@@ -48,7 +48,7 @@ const Activities = ({
         >
           {categories.map((arr) => {
             return (
-              <div>
+              <div key={arr[0]}>
                 {arr.map((category) => {
                   return (
                     <TypeButton
