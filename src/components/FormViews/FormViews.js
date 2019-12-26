@@ -13,7 +13,7 @@ import {
 } from '../../queries';
 import useCurrentWeather from '../../hooks/useCurrentWeather';
 import FormMood from './FormMood';
-import FormActivityJournal from './FormActvityJournal';
+import FormJournal from './FormJournal';
 import FormAnxietySleep from './FormAnxietySleep';
 import backgroundImage from '../../assets/background-leaf.svg';
 import ladybug from '../../assets/ladybug.svg';
@@ -184,8 +184,8 @@ const FormViews = ({ editInitial, stopEditing }) => {
         />
       )}
 
-      {view === 'activity-journal' && (
-        <FormActivityJournal
+      {view === 'journal' && (
+        <FormJournal
           text={input.text}
           handleView={handleView}
           handleChange={handleChange}

@@ -28,7 +28,7 @@ const Activities = ({
           type="left"
           data-testid="back"
           style={{ fontSize: 22, color: '#9cd9dd' }}
-          onClick={() => handleView('mood')}
+          onClick={() => handleView('anxiety-sleep')}
         />
         <p>
           What have you
@@ -78,10 +78,7 @@ const Activities = ({
         </ActivitiesWrapper>
       </InputWrapper>
       <div className="footer">
-        <NextButton
-          data-testid="next"
-          onClick={() => handleView('activity-journal')}
-        >
+        <NextButton data-testid="next" onClick={() => handleView('journal')}>
           Next
         </NextButton>
       </div>
