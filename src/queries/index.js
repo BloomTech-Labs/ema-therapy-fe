@@ -4,11 +4,8 @@ export const getMoodsQuery = gql`
   query($email: String) {
     user(email: $email) {
       moods {
-<<<<<<< HEAD
         activities
-=======
         id
->>>>>>> 3edf77918e3a81393da48b652ac9c06e54dd65bf
         mood
         text
         anxietyLevel
