@@ -120,10 +120,13 @@ const ChartViews = () => {
   if (error) return <p>{error.message}</p>;
 
   const [activeGraph, setActiveGraph] = useState(0);
-
   const swipeOptions = {
+    startSlide: activeGraph,
+    auto: 0,
+    speed: 300,
     continuous: false,
-    transitionEnd(index) {
+    widthOfSiblingSlidePreview: 0,
+    callback(index) {
       setActiveGraph(index);
     },
   };

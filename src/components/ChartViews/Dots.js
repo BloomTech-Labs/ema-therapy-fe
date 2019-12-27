@@ -1,15 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Dots = ({ activeGraph }) => {
-  console.log(activeGraph);
   return (
     <DotsWrapper>
-      <Dot activegraph={activeGraph} active="0" className="dot" />
+      <Dot activegraph={activeGraph} active={0} className="dot" />
       <Dot activegraph={activeGraph} active={1} className="dot" />
       <Dot activegraph={activeGraph} active={2} className="dot" />
     </DotsWrapper>
   );
+};
+
+Dots.propTypes = {
+  activeGraph: PropTypes.number.isRequired,
 };
 
 const DotsWrapper = styled.div`
@@ -23,7 +27,7 @@ const Dot = styled.div`
   height: 10px;
   margin: 5px;
   background: ${(props) =>
-    props.active === props.activeGraph ? 'darkred' : 'limegreen'};
+    props.active === props.activegraph ? 'black' : 'transparent'};
 `;
 
 export default Dots;
