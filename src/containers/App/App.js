@@ -16,6 +16,7 @@ import EntryForm from '../EntryForm/EntryForm';
 import Moods from '../Moods';
 import NotFound from '../NotFound/404';
 import Settings from '../Settings';
+import ExportPdf from '../ExportPdf/ExportPdf';
 import styles from '../../styles/theme';
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
           <PrivateRoute path="/dashboard/settings" component={Settings} />
           <PrivateRoute path="/dashboard" component={Moods} />
           <PrivateRoute path="/profile" component={Profile} />
+          <PrivateRoute path="/exportpdf" component={ExportPdf} />
           <Route component={NotFound} />
         </Switch>
       </div>

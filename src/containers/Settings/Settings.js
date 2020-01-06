@@ -72,7 +72,14 @@ const Settings = () => {
             />
           </div>
         </div>
-        <StyledLink to="/profile">Profile</StyledLink>
+        <div className="setting-group__item">
+          <StyledLink to="/profile">Profile</StyledLink>
+        </div>
+
+        <div className="setting-group__item">
+          <StyledLink to="/exportpdf">Export PDF</StyledLink>
+        </div>
+
         <Logout />
       </StyledSettings>
     </Dashboard>
