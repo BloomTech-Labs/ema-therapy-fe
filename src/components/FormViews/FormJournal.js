@@ -25,7 +25,7 @@ function FormActivityJournal({
           position: 'absolute',
         }}
         type="left"
-        onClick={() => handleView('anxiety-sleep')}
+        onClick={() => handleView('activities')}
       />
       <div className="header center">
         <p>

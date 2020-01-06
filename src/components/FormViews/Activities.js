@@ -1,121 +1,137 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import ReactSwipe from 'react-swipe';
+import { Icon } from 'antd';
 import styled from 'styled-components';
-import activities from '../../utils/Activities';
+import { activities, categories } from '../../utils/Activities';
 import Activity from './Activity';
+import NextButton from './NextButton';
+import DoneButton from './DoneButton';
 
-function generateUniqueKey() {
-  return `_${Math.random()
-    .toString()
-    .substr(2, 9)}`;
-}
-
-const Activities = ({ addActivities }) => {
+const Activities = ({
+  addActivities,
+  handleView,
+  isSubmitting,
+  handleSubmit,
+  activitiesToEdit,
+}) => {
   const [type, setType] = useState('food');
 
+  let reactSwipeEl;
   const handleTypeView = (view) => {
     setType(view);
   };
   return (
-    <ActivitiesWrapper>
-      <div>
-        {activities.map((cur) => {
-          return (
-            <TypeButton
-              key={generateUniqueKey()}
-              onClick={() => handleTypeView(cur.name)}
-              type="button"
-            >
-              {cur.name}
-            </TypeButton>
-          );
-        })}
+    <>
+      <div className="header">
+        <Icon
+          type="left"
+          data-testid="back"
+          style={{ fontSize: 22, color: '#9cd9dd' }}
+          onClick={() => handleView('anxiety-sleep')}
+        />
+        <p>
+          What have you
+          <br />
+          been up to?
+        </p>
+        <DoneButton loading={isSubmitting} onClick={handleSubmit}>
+          Done
+        </DoneButton>
       </div>
-      <ActivitiesView>
-        {type === 'food' &&
-          activities[0].foods.map((activityType) => {
+      <InputWrapper>
+        <ReactSwipe
+          className="carousel"
+          swipeOptions={{ continuous: false }}
+          // eslint-disable-next-line no-return-assign
+          ref={(el) => (reactSwipeEl = el)}
+        >
+          {categories.map((arr) => {
+            return (
+              <div key={arr[0]}>
+                {arr.map((category) => {
+                  return (
+                    <TypeButton
+                      key={category}
+                      onClick={() => handleTypeView(category)}
+                      type="button"
+                      active={type === category}
+                    >
+                      {category}
+                    </TypeButton>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </ReactSwipe>
+        <ActivitiesWrapper>
+          {activities[type].map((activityType) => {
             return (
               <Activity
-                key={generateUniqueKey()}
+                key={activityType}
                 activityType={activityType}
                 addActivities={addActivities}
+                isSelectedForEdit={activitiesToEdit.includes(activityType)}
               />
             );
           })}
-        {type === 'drink' &&
-          activities[1].drinks.map((activityType) => {
-            return (
-              <Activity
-                key={generateUniqueKey()}
-                activityType={activityType}
-                addActivities={addActivities}
-              />
-            );
-          })}
-        {type === 'fun' &&
-          activities[2].funs.map((activityType) => {
-            return (
-              <Activity
-                key={generateUniqueKey()}
-                activityType={activityType}
-                addActivities={addActivities}
-              />
-            );
-          })}
-        {type === 'misc' &&
-          activities[3].miscs.map((activityType) => {
-            return (
-              <Activity
-                key={generateUniqueKey()}
-                activityType={activityType}
-                addActivities={addActivities}
-              />
-            );
-          })}
-        {type === 'leisure' &&
-          activities[4].leisures.map((activityType) => {
-            return (
-              <Activity
-                key={generateUniqueKey()}
-                activityType={activityType}
-                addActivities={addActivities}
-              />
-            );
-          })}
-      </ActivitiesView>
-    </ActivitiesWrapper>
+        </ActivitiesWrapper>
+      </InputWrapper>
+      <div className="footer">
+        <NextButton data-testid="next" onClick={() => handleView('journal')}>
+          Next
+        </NextButton>
+      </div>
+    </>
   );
 };
 
 Activities.propTypes = {
   addActivities: PropTypes.func.isRequired,
+  handleView: PropTypes.func.isRequired,
+  isSubmitting: PropTypes.bool.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  activitiesToEdit: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-const ActivitiesWrapper = styled.div`
+const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 400px;
   align-items: center;
-  margin: 0 auto;
-`;
+  /* margin-top: 100px; */
 
-const ActivitiesView = styled.div`
-  margin-left: 15px;
+  .carousel {
+    width: 100%;
+  }
 `;
 
 const TypeButton = styled.button`
-  width: 62px;
-  height: 16px;
-  background: #c4c4c4;
-  border-radius: 2px;
-  margin-right: 9px;
+  width: 25%;
+  height: 50px;
   align-items: center;
-  font-family: Muli;
+  border: none;
+  border-bottom: 2px solid #595959;
+  background-color: #fafdfc;
+  font-family: Fira Sans;
   font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 15px;
-  margin-top: 50px;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: center;
+  outline: none;
+  color: #595959;
+  font-weight: ${(props) => (props.active ? '600' : 'normal')};
+  border-bottom: ${(props) =>
+    props.active ? '2px solid #595959' : '1.5px solid lightgrey'};
+  &:first-of-type {
+    margin-bottom: 30px;
+  }
+`;
+
+const ActivitiesWrapper = styled.div`
+  min-height: 400px;
 `;
 
 export default Activities;
