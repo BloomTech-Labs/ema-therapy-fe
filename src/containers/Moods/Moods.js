@@ -48,8 +48,6 @@ const Moods = () => {
 
   if (error) return <p>{error.message}</p>;
 
-  console.log(tasks);
-
   return (
     <Switch>
       <PrivateRoute

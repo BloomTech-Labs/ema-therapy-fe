@@ -74,8 +74,6 @@ const DayDisplay = ({
     }
   }, [history, moodsToDisplay]);
 
-  console.log(tasksToDisplay);
-
   return isEditing ? (
     <FormViews editInitial={moodToEdit} stopEditing={stopEditing} />
   ) : (

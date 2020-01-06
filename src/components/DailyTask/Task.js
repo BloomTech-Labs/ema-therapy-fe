@@ -11,6 +11,7 @@ import { useAuth } from '../../utils/dataStore';
 import UploadPic from './UploadPic';
 import Button from '../Button';
 import TaskComplete from './TaskComplete';
+import { checkForUserAndGetMoodsQuery } from '../../queries';
 
 const { TextArea } = Input;
 
@@ -76,6 +77,13 @@ function Task() {
         text,
         photoUrl,
       },
+      refetchQueries: [
+        {
+          query: checkForUserAndGetMoodsQuery,
+          variables: { email: user.email },
+        },
+      ],
+      awaitRefetchQueries: true,
     });
     setTaskComplete(true);
   };
