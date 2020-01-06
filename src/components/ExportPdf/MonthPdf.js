@@ -5,6 +5,7 @@ import isAfter from 'date-fns/isAfter';
 import startOfDay from 'date-fns/startOfDay';
 import subDays from 'date-fns/subDays';
 import format from 'date-fns/format';
+import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { checkForUserAndGetMoodsQuery } from '../../queries/index';
 import { useAuth } from '../../utils/dataStore';
@@ -84,11 +85,22 @@ function MonthPdf() {
 
   return (
     <>
-      <button type="button" onClick={() => exportPDF()}>
+      <Button type="button" onClick={() => exportPDF()}>
         Last 30 Days
-      </button>
+      </Button>
     </>
   );
 }
 
 export default MonthPdf;
+
+const Button = styled.button`
+  height: 50px;
+  width: 60%;
+  border: none;
+  background-color: #00917a;
+  color: #fff;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+`;

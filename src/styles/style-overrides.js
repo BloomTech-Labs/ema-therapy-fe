@@ -16,4 +16,8 @@ module.exports = {
 
   '@font-family':
     "'Fira Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+
+  '@tag-default-bg': '@background-color-light',
+  '@tag-default-color': '@text-color',
+  '@tag-font-size': '@font-size-sm',
 };

@@ -1,25 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { getDay } from 'date-fns';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import MoodPreview from './MoodPreview';
 import styles from '../styles/theme';
+import CalendarIcon from '../containers/Moods/CalendarIcon';
+import getMoodsThisWeek from '../utils/weekOfMoods';
 
 function WeekDisplay({ moods, handleMoodsToDisplay }) {
+  const [moodsThisWeek, setMoodsThisWeek] = useState(null);
+
+  useEffect(() => {
+    // filters for only the moods from the past week
+    if (moods) setMoodsThisWeek(getMoodsThisWeek(moods));
+  }, [moods]);
+
+  const getMoodsByDay = (day) => {
+    for (let i = 0; i < moodsThisWeek.length; i += 1) {
+      if (
+        moodsThisWeek[i].length > 0 &&
+        day === getDay(+moodsThisWeek[i][0].createdAt)
+      ) {
+        handleMoodsToDisplay(moodsThisWeek[i]);
+        break;
+      }
+    }
+  };
+
   return (
     <>
-      <StyledLogo>MoodBloom</StyledLogo>
-      <Greeting>Weekly moods</Greeting>
-      {moods &&
-        moods.map((list) => {
+      <Header>
+        <StyledLogo>MoodBloom</StyledLogo>
+        <Link to="/dashboard/calendar">
+          <CalendarIcon />
+        </Link>
+      </Header>
+      <Greeting>Your weekly moods</Greeting>
+      {moodsThisWeek &&
+        moodsThisWeek.map((list) => {
           // return mood preview card if mood entries exist in the list
           if (list.length !== 0) {
             return (
               <Link
                 to="/dashboard/day"
                 key={list[0].id}
-                onClick={() => handleMoodsToDisplay(getDay(+list[0].createdAt))}
+                onClick={() => getMoodsByDay(getDay(+list[0].createdAt))}
               >
                 <MoodPreview
                   count={list.length}
@@ -36,17 +62,15 @@ function WeekDisplay({ moods, handleMoodsToDisplay }) {
 
 WeekDisplay.propTypes = {
   moods: PropTypes.arrayOf(
-    PropTypes.arrayOf(
-      PropTypes.shape({
-        mood: PropTypes.number.isRequired,
-        id: PropTypes.string.isRequired,
-        createdAt: PropTypes.string.isRequired,
-        anxietyLevel: PropTypes.number,
-        text: PropTypes.string,
-        sleep: PropTypes.number,
-        weather: PropTypes.string,
-      }),
-    ),
+    PropTypes.shape({
+      mood: PropTypes.number.isRequired,
+      id: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+      anxietyLevel: PropTypes.number,
+      text: PropTypes.string,
+      sleep: PropTypes.number,
+      weather: PropTypes.string,
+    }),
   ),
   handleMoodsToDisplay: PropTypes.func.isRequired,
 };
@@ -58,10 +82,10 @@ WeekDisplay.defaultProps = {
 export default WeekDisplay;
 
 const Greeting = styled.h2`
-  color: ${styles.rosyPink};
-  font-size: 18px;
+  color: ${styles.darkJungleGreen};
+  font-size: 16px;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 500;
   margin-bottom: 30px;
 `;
 
@@ -70,5 +94,11 @@ const StyledLogo = styled.h1`
   font-weight: 600;
   color: #0c423b;
   margin: unset;
-  margin-bottom: 31px;
+`;
+
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 20px;
 `;

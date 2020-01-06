@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import format from 'date-fns/format';
+import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { checkForUserAndGetMoodsQuery } from '../../queries';
 import { useAuth } from '../../utils/dataStore';
@@ -70,11 +71,22 @@ function AllMoodsPdf() {
   };
   return (
     <>
-      <button type="button" onClick={() => exportPDF()}>
+      <Button type="button" onClick={() => exportPDF()}>
         All Time
-      </button>
+      </Button>
     </>
   );
 }
 
 export default AllMoodsPdf;
+
+const Button = styled.button`
+  height: 50px;
+  width: 60%;
+  border: 1px solid #00917a;
+  background-color: #fff;
+  color: #00917a;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+`;

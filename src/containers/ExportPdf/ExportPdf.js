@@ -8,10 +8,8 @@ import { useAuth } from '../../utils/dataStore';
 import AllMoodsPdf from '../../components/ExportPdf/AllMoodsPdf';
 import MonthPdf from '../../components/ExportPdf/MonthPdf';
 import WeekPdf from '../../components/ExportPdf/WeekPdf';
-
-const Header = styled.div`
-  margin: 20px;
-`;
+import backgroundImg from '../../assets/background-leaf.svg';
+import ladybug from '../../assets/ladybug.svg';
 
 function ExportPdf() {
   const history = useHistory();
@@ -28,7 +26,7 @@ function ExportPdf() {
   if (error) return `Error: ${error.message}`;
 
   return (
-    <>
+    <ExportView>
       <Header>
         <Icon
           type="left"
@@ -36,11 +34,36 @@ function ExportPdf() {
           onClick={() => history.push('/dashboard/settings')}
         />
       </Header>
-      <AllMoodsPdf />
-      <MonthPdf />
+      <p
+        style={{
+          fontSize: 20,
+          padding: '10px',
+          marginTop: '75px',
+          textAlign: 'center',
+        }}
+      >
+        Select an option below to export your entries as a PDF:
+      </p>
       <WeekPdf />
-    </>
+      <MonthPdf />
+      <AllMoodsPdf />
+    </ExportView>
   );
 }
 
 export default ExportPdf;
+
+const Header = styled.div`
+  margin: 20px;
+  align-self: flex-start;
+`;
+
+const ExportView = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-image: url(${backgroundImg}), url(${ladybug});
+  background-repeat: no-repeat;
+  background-position: top -36px right -20px, bottom 5% left 10%;
+`;

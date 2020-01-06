@@ -1,23 +1,24 @@
 import React from 'react';
 import ApolloClient from 'apollo-boost';
-import styled from 'styled-components';
-import { Spin } from 'antd';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { Route, Switch } from 'react-router-dom';
 import { useAuth } from '../../utils/dataStore';
 import { GRAPHQL_URI } from '../../utils/config';
 import GlobalStyle from '../../styles/global-styles';
-import Welcome from '../Welcome/Welcome';
 import SignIn from '../../components/Auth/SignIn';
 import SignUp from '../../components/Auth/SignUp';
+import DailyTask from '../../components/DailyTask';
 import Profile from '../../components/Profile';
 import PrivateRoute from '../../components/PrivateRoute';
 import EntryForm from '../EntryForm/EntryForm';
 import Moods from '../Moods';
+import ChartViews from '../../components/ChartViews';
 import NotFound from '../NotFound/404';
 import Settings from '../Settings';
 import ExportPdf from '../ExportPdf/ExportPdf';
-import styles from '../../styles/theme';
+import LoadingSpinner from '../../components/LoadingSpinner';
+import Tasks from '../Tasks';
+import Welcome from '../Welcome/Welcome';
 
 function App() {
   const { loading } = useAuth();
@@ -35,9 +36,7 @@ function App() {
   });
 
   return loading ? (
-    <LoadingWrapper>
-      <Spin size="large" />
-    </LoadingWrapper>
+    <LoadingSpinner height="100vh" />
   ) : (
     <ApolloProvider client={client}>
       <div className="App">
@@ -47,6 +46,9 @@ function App() {
           <Route path="/signup" exact component={SignUp} />
           <PrivateRoute path="/entryform" component={EntryForm} />
           <PrivateRoute path="/dashboard/settings" component={Settings} />
+          <PrivateRoute path="/dashboard/charts" component={ChartViews} />
+          <PrivateRoute path="/dashboard/tasks" exact component={Tasks} />
+          <PrivateRoute path="/dashboard/tasks/:task" component={DailyTask} />
           <PrivateRoute path="/dashboard" component={Moods} />
           <PrivateRoute path="/profile" component={Profile} />
           <PrivateRoute path="/exportpdf" component={ExportPdf} />
@@ -57,16 +59,5 @@ function App() {
     </ApolloProvider>
   );
 }
-
-const LoadingWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-
-  .ant-spin-dot-item {
-    background-color: ${styles.darkJungleGreen} !important;
-  }
-`;
 
 export default App;
