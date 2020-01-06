@@ -2,7 +2,7 @@ const tasks = [
   {
     taskName: 'Worries',
     prompt:
-      'Without stopping write down everything that is churning around in your mind. Once it is out of your head, give yourself permission to leave it here and come back to it later with a clearer head.',
+      'Without stopping, write down everything that is churning around in your mind. Once it is out of your head, give yourself permission to leave it here and come back to it later with a clearer head.',
     picturePrompt:
       'Upload a picture of something or someone that calms you and helps remove your worries.',
   },
