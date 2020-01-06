@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { gql } from 'apollo-boost';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { Switch } from 'antd';
@@ -72,6 +72,14 @@ const Settings = () => {
             />
           </div>
         </div>
+        <div className="setting-group__item">
+          <StyledLink to="/profile">Profile</StyledLink>
+        </div>
+
+        <div className="setting-group__item">
+          <StyledLink to="/exportpdf">Export PDF</StyledLink>
+        </div>
+
         <div className="setting-group">
           <h2 className="setting-group__heading">Account</h2>
           <div className="setting-group__item">
@@ -129,7 +137,7 @@ const StyledSettings = styled.div`
   }
 `;
 
-// const StyledLink = styled(Link)`
-//   color: #000;
-//   text-decoration: none;
-// `;
+const StyledLink = styled(Link)`
+  color: #fff;
+  text-decoration: none;
+`;

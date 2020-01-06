@@ -6,6 +6,7 @@ import { Icon, Button, Modal } from 'antd';
 import moodToString from '../utils/moodToString';
 import Card from './Card';
 import styles from '../styles/theme';
+import DayActivityTag from './DayActivityTag';
 
 const formatDate = (timestamp, fmt) => {
   const ts = Number(timestamp);
@@ -22,6 +23,7 @@ const MoodCard = ({
   isEditing,
 }) => {
   const {
+    activities,
     mood,
     sleep,
     anxietyLevel: anxiety,
@@ -50,6 +52,11 @@ const MoodCard = ({
         <p className="time">{formatDate(createdAt, 'h:mm a')}</p>
       </div>
       <p className="mood">{moodToString(mood)}</p>
+      <div className="activities-list">
+        {activities.map((activity) => {
+          return <DayActivityTag activityType={activity} key={activity} />;
+        })}
+      </div>
       <div className="mood-details">
         {(anxiety || sleep || weather) && (
           <div className="stat-wrapper">
@@ -112,7 +119,7 @@ export default MoodCard;
 const StyledMoodCard = styled(Card)`
   margin: 0 7px 23px;
   box-shadow: 0px 0px 15px #E5E5E5;
-
+  padding: 0 8px;
   p {
     margin: unset;
   }
@@ -140,6 +147,14 @@ const StyledMoodCard = styled(Card)`
     }
   }
 
+  .activities-list {
+      margin: 0 auto;
+      display:flex;
+      max-width: 400px;
+      flex-wrap: wrap;
+      padding: 0 15px 10px;
+      justify-content: center;
+  }
   .mood {
     text-align: center;
     padding: 15px 0 25px;
