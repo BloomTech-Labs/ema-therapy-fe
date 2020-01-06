@@ -102,13 +102,15 @@ const DayDisplay = ({
               />
             ))}
       </div>
-      <div>
-        <StyledTaskHeader>Completed Tasks</StyledTaskHeader>
-        {tasksToDisplay &&
-          tasksToDisplay
-            .reverse()
-            .map((task) => <TaskCard key={task.id} task={task} />)}
-      </div>
+      {tasksToDisplay && tasksToDisplay.length > 0 && (
+        <div>
+          <StyledTaskHeader>Completed Tasks</StyledTaskHeader>
+          {tasksToDisplay &&
+            tasksToDisplay
+              .reverse()
+              .map((task) => <TaskCard key={task.id} task={task} />)}
+        </div>
+      )}
     </StyledMoodDisplay>
   );
 };
