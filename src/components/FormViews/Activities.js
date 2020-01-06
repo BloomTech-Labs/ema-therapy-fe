@@ -8,6 +8,7 @@ import { activities, categories } from '../../utils/Activities';
 import Activity from './Activity';
 import NextButton from './NextButton';
 import DoneButton from './DoneButton';
+import Dots from '../ChartViews/Dots';
 
 const Activities = ({
   addActivities,
@@ -22,6 +23,19 @@ const Activities = ({
   const handleTypeView = (view) => {
     setType(view);
   };
+
+  const [activeGraph, setActiveGraph] = useState(0);
+  const swipeOptions = {
+    startSlide: activeGraph,
+    auto: 0,
+    speed: 300,
+    continuous: false,
+    widthOfSiblingSlidePreview: 0,
+    callback(index) {
+      setActiveGraph(index);
+    },
+  };
+
   return (
     <>
       <div className="header">
@@ -43,7 +57,7 @@ const Activities = ({
       <InputWrapper>
         <ReactSwipe
           className="carousel"
-          swipeOptions={{ continuous: false }}
+          swipeOptions={swipeOptions}
           // eslint-disable-next-line no-return-assign
           ref={(el) => (reactSwipeEl = el)}
         >
@@ -66,6 +80,7 @@ const Activities = ({
             );
           })}
         </ReactSwipe>
+        <Dots activeGraph={activeGraph} />
         <ActivitiesWrapper>
           {activities[type].map((activityType) => {
             return (
