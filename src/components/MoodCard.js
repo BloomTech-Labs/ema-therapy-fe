@@ -1,17 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { format } from 'date-fns';
 import { Icon, Button, Modal } from 'antd';
 import moodToString from '../utils/moodToString';
 import Card from './Card';
 import styles from '../styles/theme';
 import DayActivityTag from './DayActivityTag';
-
-const formatDate = (timestamp, fmt) => {
-  const ts = Number(timestamp);
-  return format(new Date(ts), fmt);
-};
+import formatDate from '../utils/formatDate';
 
 const { confirm } = Modal;
 
