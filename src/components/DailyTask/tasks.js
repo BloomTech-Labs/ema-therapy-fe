@@ -36,7 +36,7 @@ const tasks = [
   {
     taskName: 'Lyrics',
     prompt:
-      'Think about the lyrics to a song that makes you happy.  What is it about this song that makes you feel this way.',
+      'Think about the lyrics to a song that makes you happy.  What is it about this song that makes you feel this way?',
     picturePrompt:
       'Upload a picture of something that reminds you of this song or how this song makes you feel.',
   },
