@@ -4,8 +4,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
-
-const tasks = ['Task 1', 'Task 2', 'Task 3', 'Task 4', 'Task 5', 'Task 6'];
+import tasks from './tasks';
 
 function Wheel() {
   const [selectedTask, setSelectedTask] = useState(null);
@@ -46,10 +45,10 @@ function Wheel() {
             {tasks.map((item, index) => (
               <div
                 className="wheel-item"
-                key={item}
+                key={item.taskName}
                 style={{ '--item-nb': index }}
               >
-                {item}
+                {item.taskName}
               </div>
             ))}
           </div>
