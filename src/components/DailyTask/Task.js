@@ -48,7 +48,7 @@ function Task() {
 
   const handleChange = (e) => setText(e.target.value);
 
-  const { taskName, prompt } = tasks[task - 1];
+  const { taskName, prompt, picturePrompt } = tasks[task - 1];
 
   const handleSubmit = async () => {
     await addTask({
@@ -101,7 +101,7 @@ function Task() {
       </Header>
 
       <main>
-        <StyledPrompt>{prompt}</StyledPrompt>
+        <p className="prompt">{prompt}</p>
 
         <TextArea
           name="text"
@@ -120,6 +120,7 @@ function Task() {
           placeholder="Write your thoughts here..."
         />
       </main>
+      <p className="picture-prompt">{picturePrompt}</p>
       <PicturesWrapper>
         <UploadPic upload={upload} />
       </PicturesWrapper>
@@ -138,12 +139,26 @@ const TaskWrapper = styled.div`
   padding: 30px 25px;
   display: flex;
   flex-direction: column;
+
+  .prompt,
+  .picture-prompt {
+    color: ${styles.tealGreen};
+  }
+
+  .prompt {
+    margin-bottom: 18px;
+  }
+
+  .picture-prompt {
+    margin-top: 18px;
+    margin-bottom: 10px;
+  }
 `;
 
 const Header = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 `;
 
 const Title = styled.h1`
@@ -151,11 +166,6 @@ const Title = styled.h1`
   font-size: 24px;
   margin: 0;
   margin: 0 20px;
-`;
-
-const StyledPrompt = styled.p`
-  color: ${styles.tealGreen};
-  margin-bottom: 24px;
 `;
 
 const ButtonWrapper = styled.div`
