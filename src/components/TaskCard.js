@@ -67,7 +67,7 @@ const StyledTaskCard = styled(Card)`
 
     .prompt {
       color: ${styles.darkJungleGreen};
-      font-size: 18px;
+      font-size: 15px;
     }
 
     .text {
