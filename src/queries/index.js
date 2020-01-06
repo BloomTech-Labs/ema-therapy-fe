@@ -62,6 +62,13 @@ export const checkForUserAndGetMoodsQuery = gql`
         id
         weather
       }
+      tasks {
+        id
+        completedAt
+        prompt
+        text
+        photoUrl
+      }
     }
   }
 `;

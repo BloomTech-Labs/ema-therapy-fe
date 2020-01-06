@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import { Switch, Route } from 'react-router-dom';
+import { isSameDay } from 'date-fns';
 import Dashboard from '../Dashboard';
 import WeekDisplay from '../../components/WeekDisplay';
 import PrivateRoute from '../../components/PrivateRoute';
@@ -16,6 +17,8 @@ import CalendarDisplay from '../../components/Calendar/CalendarDisplay';
 const Moods = () => {
   const [moods, setMoods] = useState(null);
   const [moodsToDisplay, setMoodsToDisplay] = useState(null);
+  const [tasks, setTasks] = useState(null);
+  const [tasksToDisplay, setTasksToDisplay] = useState(null);
   const { user } = useAuth();
 
   const { loading, error, data } = useQuery(checkForUserAndGetMoodsQuery, {
@@ -30,10 +33,16 @@ const Moods = () => {
     setMoodsToDisplay(updatedMoods);
   };
 
+  const handleTasksToDisplay = (date) => {
+    const newTasks = tasks.filter((task) => isSameDay(+task.completedAt, date));
+    setTasksToDisplay(newTasks);
+  };
+
   // set moods if the data from query exists
   useEffect(() => {
     if (data) {
       setMoods(data.user.moods);
+      setTasks(data.user.tasks);
     }
   }, [data]);
 
@@ -53,6 +62,7 @@ const Moods = () => {
                 <WeekDisplay
                   moods={moods}
                   handleMoodsToDisplay={handleMoodsToDisplay}
+                  handleTasksToDisplay={handleTasksToDisplay}
                 />
               )}
             </Wrapper>
@@ -65,6 +75,7 @@ const Moods = () => {
           <DayDisplay
             moodsToDisplay={moodsToDisplay}
             handleMoodsToDisplay={handleMoodsToDisplay}
+            tasksToDisplay={tasksToDisplay}
           />
         )}
       />
@@ -74,6 +85,7 @@ const Moods = () => {
           <CalendarDisplay
             moods={moods}
             handleMoodsToDisplay={handleMoodsToDisplay}
+            handleTasksToDisplay={handleTasksToDisplay}
           />
         )}
       />

@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import format from 'date-fns/format';
 import styled from 'styled-components';
 import ReactSwipe from 'react-swipe';
 import { useQuery } from '@apollo/react-hooks';
@@ -16,6 +15,7 @@ import Charts from '../../containers/Charts';
 import MoodePie from './MoodPie';
 import styles from '../../styles/theme';
 import Dots from './Dots';
+import formatDate from '../../utils/formatDate';
 
 const ChartViews = () => {
   let reactSwipeEl;
@@ -30,11 +30,6 @@ const ChartViews = () => {
       lastName: user.family_name,
     },
   });
-
-  const formatDate = (timestamp, fmt) => {
-    const ts = Number(timestamp);
-    return format(new Date(ts), fmt);
-  };
 
   //  parent component for multiple chart views
   //  get moods to pass down to different graphs

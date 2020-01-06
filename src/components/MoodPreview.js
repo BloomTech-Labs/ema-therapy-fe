@@ -1,5 +1,4 @@
 import React from 'react';
-import format from 'date-fns/format';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Card from './Card';
@@ -10,11 +9,7 @@ import normalPot from '../assets/normal200h.png';
 import sadPot from '../assets/sad200h.png';
 import unhappyPot from '../assets/unhappy200h.png';
 import styles from '../styles/theme';
-
-const formatDate = (timestamp, fmt) => {
-  const ts = Number(timestamp);
-  return format(new Date(ts), fmt);
-};
+import formatDate from '../utils/formatDate';
 
 function MoodPreview({ lastItem, count }) {
   return (

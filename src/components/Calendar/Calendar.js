@@ -12,6 +12,7 @@ const Calendar = ({
   activeStartDate,
   handleActiveStartDate,
   moodsThisMonth,
+  handleTasksToDisplay,
 }) => {
   const history = useHistory();
 
@@ -58,6 +59,7 @@ const Calendar = ({
         onClickDay={async (value) => {
           // update day selected
           await handleDaySelected(value);
+          await handleTasksToDisplay(value);
           // reroute to day display
           history.push('/dashboard/day');
         }}
@@ -71,6 +73,7 @@ Calendar.propTypes = {
   activeStartDate: PropTypes.instanceOf(Date).isRequired,
   handleActiveStartDate: PropTypes.func.isRequired,
   moodsThisMonth: PropTypes.arrayOf(PropTypes.array),
+  handleTasksToDisplay: PropTypes.func.isRequired,
 };
 
 Calendar.defaultProps = {

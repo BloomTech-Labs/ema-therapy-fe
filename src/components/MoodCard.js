@@ -1,17 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { format } from 'date-fns';
 import { Icon, Button, Modal } from 'antd';
 import moodToString from '../utils/moodToString';
 import Card from './Card';
 import styles from '../styles/theme';
 import DayActivityTag from './DayActivityTag';
-
-const formatDate = (timestamp, fmt) => {
-  const ts = Number(timestamp);
-  return format(new Date(ts), fmt);
-};
+import formatDate from '../utils/formatDate';
 
 const { confirm } = Modal;
 
@@ -52,11 +47,13 @@ const MoodCard = ({
         <p className="time">{formatDate(createdAt, 'h:mm a')}</p>
       </div>
       <p className="mood">{moodToString(mood)}</p>
-      <div className="activities-list">
-        {activities.map((activity) => {
-          return <DayActivityTag activityType={activity} key={activity} />;
-        })}
-      </div>
+      {activities.length > 0 && (
+        <div className="activities-list">
+          {activities.map((activity) => {
+            return <DayActivityTag activityType={activity} key={activity} />;
+          })}
+        </div>
+      )}
       <div className="mood-details">
         {(anxiety || sleep || weather) && (
           <div className="stat-wrapper">

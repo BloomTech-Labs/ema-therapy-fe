@@ -9,8 +9,13 @@ import { checkForUserAndGetMoodsQuery, removeMoodMutation } from '../queries';
 import MoodCard from './MoodCard';
 import styles from '../styles/theme';
 import FormViews from './FormViews';
+import TaskCard from './TaskCard';
 
-const DayDisplay = ({ moodsToDisplay, handleMoodsToDisplay }) => {
+const DayDisplay = ({
+  moodsToDisplay,
+  handleMoodsToDisplay,
+  tasksToDisplay,
+}) => {
   const { user } = useAuth();
   const history = useHistory();
   const [isEditing, setIsEditing] = useState(false);
@@ -80,7 +85,7 @@ const DayDisplay = ({ moodsToDisplay, handleMoodsToDisplay }) => {
           onClick={() => history.goBack()}
         />
       </Header>
-      <MoodList>
+      <div>
         {moodsToDisplay &&
           moodsToDisplay
             .reverse()
@@ -94,7 +99,16 @@ const DayDisplay = ({ moodsToDisplay, handleMoodsToDisplay }) => {
                 isEditing={isEditing}
               />
             ))}
-      </MoodList>
+      </div>
+      {tasksToDisplay && tasksToDisplay.length > 0 && (
+        <div>
+          <StyledTaskHeader>Completed Tasks</StyledTaskHeader>
+          {tasksToDisplay &&
+            tasksToDisplay
+              .reverse()
+              .map((task) => <TaskCard key={task.id} task={task} />)}
+        </div>
+      )}
     </StyledMoodDisplay>
   );
 };
@@ -112,16 +126,26 @@ DayDisplay.propTypes = {
     }),
   ),
   handleMoodsToDisplay: PropTypes.func.isRequired,
+  tasksToDisplay: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      completedAt: PropTypes.string.isRequired,
+      prompt: PropTypes.string.isRequired,
+      text: PropTypes.string,
+      photoUrl: PropTypes.string,
+    }),
+  ),
 };
 
 DayDisplay.defaultProps = {
   moodsToDisplay: null,
+  tasksToDisplay: null,
 };
 
 export default DayDisplay;
 
 const StyledMoodDisplay = styled.div`
-  padding: 30px;
+  padding: 30px 30px 90px;
   background-color: ${styles.seafoamGreen};
   min-height: 100vh;
 `;
@@ -130,6 +154,8 @@ const Header = styled.div`
   margin-bottom: 20px;
 `;
 
-const MoodList = styled.div`
-  padding-bottom: 90px;
+const StyledTaskHeader = styled.h1`
+  color: ${styles.darkJungleGreen};
+  font-size: 20px;
+  padding: 8px 8px 0;
 `;
