@@ -47,11 +47,13 @@ const MoodCard = ({
         <p className="time">{formatDate(createdAt, 'h:mm a')}</p>
       </div>
       <p className="mood">{moodToString(mood)}</p>
-      <div className="activities-list">
-        {activities.map((activity) => {
-          return <DayActivityTag activityType={activity} key={activity} />;
-        })}
-      </div>
+      {activities.length > 0 && (
+        <div className="activities-list">
+          {activities.map((activity) => {
+            return <DayActivityTag activityType={activity} key={activity} />;
+          })}
+        </div>
+      )}
       <div className="mood-details">
         {(anxiety || sleep || weather) && (
           <div className="stat-wrapper">
