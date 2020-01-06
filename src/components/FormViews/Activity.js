@@ -3,11 +3,15 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ActivityTag from './ActivityTag';
 
-const Activity = ({ activityType, addActivities }) => {
+const Activity = ({ activityType, addActivities, isSelectedForEdit }) => {
   return (
     <>
       <ActivityButtonToggle>
-        <ActivityTag activityType={activityType} addActivities={addActivities}>
+        <ActivityTag
+          isSelectedForEdit={isSelectedForEdit}
+          activityType={activityType}
+          addActivities={addActivities}
+        >
           {activityType}
         </ActivityTag>
       </ActivityButtonToggle>
@@ -18,6 +22,7 @@ const Activity = ({ activityType, addActivities }) => {
 Activity.propTypes = {
   activityType: PropTypes.string.isRequired,
   addActivities: PropTypes.func.isRequired,
+  isSelectedForEdit: PropTypes.bool.isRequired,
 };
 
 const ActivityButtonToggle = styled.div`

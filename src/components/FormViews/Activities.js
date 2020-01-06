@@ -14,6 +14,7 @@ const Activities = ({
   handleView,
   isSubmitting,
   handleSubmit,
+  activitiesToEdit,
 }) => {
   const [type, setType] = useState('food');
 
@@ -72,6 +73,7 @@ const Activities = ({
                 key={activityType}
                 activityType={activityType}
                 addActivities={addActivities}
+                isSelectedForEdit={activitiesToEdit.includes(activityType)}
               />
             );
           })}
@@ -91,6 +93,7 @@ Activities.propTypes = {
   handleView: PropTypes.func.isRequired,
   isSubmitting: PropTypes.bool.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  activitiesToEdit: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 const InputWrapper = styled.div`

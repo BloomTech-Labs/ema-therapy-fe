@@ -7,8 +7,13 @@ import styles from '../../styles/theme';
 
 const { CheckableTag } = Tag;
 
-const ActivityTag = ({ addActivities, activityType, ...rest }) => {
-  const [checked, setChecked] = useState(false);
+const ActivityTag = ({
+  isSelectedForEdit,
+  addActivities,
+  activityType,
+  ...rest
+}) => {
+  const [checked, setChecked] = useState(isSelectedForEdit);
 
   const handleChange = (checked, activityType) => {
     setChecked(!checked);
@@ -29,6 +34,7 @@ const ActivityTag = ({ addActivities, activityType, ...rest }) => {
 ActivityTag.propTypes = {
   addActivities: PropTypes.func.isRequired,
   activityType: PropTypes.string.isRequired,
+  isSelectedForEdit: PropTypes.bool.isRequired,
 };
 const Wrapper = styled.div`
   .ant-tag-checkable {

@@ -6,7 +6,7 @@ import { Icon, Button, Modal } from 'antd';
 import moodToString from '../utils/moodToString';
 import Card from './Card';
 import styles from '../styles/theme';
-import ActivityTag from './FormViews/ActivityTag';
+import DayActivityTag from './DayActivityTag';
 
 const formatDate = (timestamp, fmt) => {
   const ts = Number(timestamp);
@@ -54,7 +54,7 @@ const MoodCard = ({
       <p className="mood">{moodToString(mood)}</p>
       <div className="activities-list">
         {activities.map((activity) => {
-          return <ActivityTag key={activity}>{activity}</ActivityTag>;
+          return <DayActivityTag activityType={activity} key={activity} />;
         })}
       </div>
       <div className="mood-details">
@@ -119,7 +119,7 @@ export default MoodCard;
 const StyledMoodCard = styled(Card)`
   margin: 0 7px 23px;
   box-shadow: 0px 0px 15px #E5E5E5;
-
+  padding: 0 8px;
   p {
     margin: unset;
   }
@@ -152,7 +152,8 @@ const StyledMoodCard = styled(Card)`
       display:flex;
       max-width: 400px;
       flex-wrap: wrap;
-      justify-content: left;
+      padding: 0 15px 10px;
+      justify-content: center;
   }
   .mood {
     text-align: center;

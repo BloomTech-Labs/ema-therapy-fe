@@ -33,7 +33,8 @@ const FormViews = ({ editInitial, stopEditing }) => {
   const [view, setView] = useState('mood');
   const [input, setInput] = useState({
     mood: editInitial ? editInitial.mood : 3,
-    activities: [],
+    activities:
+      editInitial && editInitial.activities ? editInitial.activities : [],
     text: editInitial && editInitial.text ? editInitial.text : '',
     anxietyLevel:
       editInitial && editInitial.anxietyLevel ? editInitial.anxietyLevel : 5,
@@ -122,6 +123,7 @@ const FormViews = ({ editInitial, stopEditing }) => {
         variables: {
           id: editInitial.id,
           mood: input.mood,
+          activities: input.activities,
           anxietyLevel: isAnxietyChanged
             ? input.anxietyLevel
             : editInitial.anxietyLevel,
@@ -181,6 +183,7 @@ const FormViews = ({ editInitial, stopEditing }) => {
           handleSubmit={handleSubmit}
           addActivities={addActivities}
           isSubmitting={isSubmitting}
+          activitiesToEdit={input.activities}
         />
       )}
 
@@ -200,6 +203,7 @@ const FormViews = ({ editInitial, stopEditing }) => {
 FormViews.propTypes = {
   editInitial: PropTypes.shape({
     mood: PropTypes.number.isRequired,
+    activities: PropTypes.arrayOf(PropTypes.string),
     id: PropTypes.string.isRequired,
     createdAt: PropTypes.string.isRequired,
     anxietyLevel: PropTypes.number,
