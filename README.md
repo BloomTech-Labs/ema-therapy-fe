@@ -19,14 +19,10 @@ You can find the deployed project at [mood<strong>bloom</strong>app.com](https:/
 <br>
 <br>
 
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
-
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.11.0-blue.svg)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](https://app.netlify.com/sites/moodmuse-staging/deploys)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
-🚫 more info on using badges [here](https://github.com/badges/shields)
 
 ## Project Overview
 
@@ -38,17 +34,17 @@ You can find the deployed project at [mood<strong>bloom</strong>app.com](https:/
 
 ### MoodBloom
 
-People seeking therapy don't have a single source of truth for tracking their moods or for sharing it with their mental health provider. Due to the limitations that come with HIPAA as well as limited time for mental health providers to change their work flow, MoodMuse provides a central location for users who want to improve their overall quality of life through mood.
+People seeking therapy don't have a single source of truth for tracking their moods or for sharing it with their mental health provider. Due to the limitations that come with HIPAA as well as limited time for mental health providers to change their work flow, MoodBloom provides a central location for users who want to improve their overall quality of life through mood.
 
-Users can use MoodMuse to track their mood implementing EMA strategies for their own mindfulness or to share with their mental health provider.
+Users can use MoodBloom to track their mood implementing EMA strategies for their own mindfulness or to share with their mental health provider.
 
-### 4️⃣ Key Features
+### Key Features
 
-- feature one
-- feature two
-- feature three
-- feature four
-- feature five
+- Progressive Web App
+- Mood tracking system
+- Daily tasks to keep you on track
+- Data visualizations (graphs, calendar, PDFs)
+- Export data in a PDF file
 
 ## Tech Stack
 
@@ -56,52 +52,38 @@ Users can use MoodMuse to track their mood implementing EMA strategies for their
 
 #### React JS using Context API, and Apollo-Boost. Styles using Ant Design.
 
-🚫 Why did you choose this framework?
+- Using a JavaScript library like React gave us a lot of flexibililty to incorpororate other packages for data visualization and gamification.
+- We were able to create a Progressive Web App to avoid the environment issues that come with a native mobile app making the app more accessible to those even in areas with slower internet speeds or even those who are offline.
+- We wanted our application build to be quick and scalable so we could focus on the features our users need.
+- We implemented Context API with Apollo-Boost to handle our state and calls to the database.
 
-- point one
-- point two
-- point three
-- point four
-
-🚫List the rest of the front end features and libraries in the same format as the framework above.
-
-#### Front end deployed to Netlify
+#### [Front-end](https://www.moodbloomapp.com) deployed to Netlify
 
 #### [Back end](https://github.com/Lambda-School-Labs/ema-therapy-be) built using:
 
 #### Node.js with Express, GraphQL, and MongoDB with Mongoose.
 
-- point one
-- point two
-- point three
-
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+- We chose Node.js due to it's flexibility and quick set up.
+- We decided to use GraphQL to query our database because it made setting up complex data shapes simpler.
+- We implemented MongoDB with mongoose so we could switch our collections easily without having to alter tables or reset our database with each new version release.
 
 # APIs
 
-## Auth 0
+## Passport.js with OAuth
 
-🚫Replace text below with a description of the API
-
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+Everyone likes an easy sign up process. We chose to go with Passport.js because it allowed users to use their Google login to sign up in seconds and it was a lot easier for the dev team to set up and debug. We started out using Auth0 but quickly found that it wasn't meeting our needs.
 
 ## Apollo-Boost
 
-🚫Replace text below with a description of the API
-
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
+This is a library that allows you to write your GraphQL queries directly in your code just like you would in the Graphiql playground. It's like Axios but made for GraphQL.
 
 ## Context API
 
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
+Apollo-boost limits your global state management options and we found that Context API worked best with our tech stack.
 
 ## Ant Design
 
-🚫Replace text below with a description of the API
-
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
+Our UX team went with Ant Design components in our UX file so we challenged ourselves to learn the design system.
 
 # Environment Variables
 
@@ -110,41 +92,15 @@ In order for the app to function correctly, the user must set up their own envir
     *  REACT_APP_OPEN_WEATHER_API_KEY - this is your Open Weather API key, which can be generated at https://openweathermap.org/api.
     *  REACT_APP_CLOUDINARY_KEY - Cloudinary upload preset key
 
-# 5️⃣ Content Licenses
-
-🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
-
-| Image Filename | Source / Creator | License                                                                      |
-| -------------- | ---------------- | ---------------------------------------------------------------------------- |
-| doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
-| rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
-
 # Testing
 
-### Front-end: React Testing Library with Jest
+<strong>Front-end:</strong> React Testing Library with Jest
+</br>
+<strong>Back-end:</strong> Jest with Supertest
 
-- point one
-- point two
-- point three
+# Installation Instructions
 
-### Back-end: Jest with Supertest
-
-- point one
-- point two
-- point three
-
-# 4️⃣ Installation Instructions
-
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
-
-## Other Scripts
-
-🚫replace these examples with your own
-
-    * typecheck - runs the TypeScript compiler
-    * build - creates a build of the application
-    * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+Fork & clone both the front-end and back-end, run `yarn` and then `yarn start` on the front-end and `yarn server` on the back-end.
 
 # Contributing
 
