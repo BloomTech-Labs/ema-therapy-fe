@@ -78,9 +78,10 @@ function Task() {
       // .end((error, response) => {
       //     onPhotoUploaded(photoId, fileName, response);
       // });
+      // eslint-disable-next-line no-console
       .on('progress', (progress) => console.log(progress))
       .end((error, response) => {
-        console.log(error, response);
+        // console.log(error, response);
         // set local state to response.body.secure_url for when we submit form to our database
         setPhotoUrl(response.body.secure_url);
       });
