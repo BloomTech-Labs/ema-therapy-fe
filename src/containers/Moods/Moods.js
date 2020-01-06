@@ -85,6 +85,7 @@ const Moods = () => {
           <CalendarDisplay
             moods={moods}
             handleMoodsToDisplay={handleMoodsToDisplay}
+            handleTasksToDisplay={handleTasksToDisplay}
           />
         )}
       />

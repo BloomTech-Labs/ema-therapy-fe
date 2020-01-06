@@ -76,6 +76,7 @@ WeekDisplay.propTypes = {
     }),
   ),
   handleMoodsToDisplay: PropTypes.func.isRequired,
+  handleTasksToDisplay: PropTypes.func.isRequired,
 };
 
 WeekDisplay.defaultProps = {
