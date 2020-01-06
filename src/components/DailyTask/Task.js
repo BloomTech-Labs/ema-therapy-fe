@@ -11,6 +11,7 @@ import { useAuth } from '../../utils/dataStore';
 import UploadPic from './UploadPic';
 import Button from '../Button';
 import TaskComplete from './TaskComplete';
+import tasks from './tasks';
 
 const { TextArea } = Input;
 
@@ -47,32 +48,13 @@ function Task() {
 
   const handleChange = (e) => setText(e.target.value);
 
-  let prompt;
-
-  const getPrompt = () => {
-    if (task === '1') {
-      prompt = 'task 1';
-    } else if (task === '2') {
-      prompt = 'task 2';
-    } else if (task === '3') {
-      prompt = 'task 3';
-    } else if (task === '4') {
-      prompt = 'task 4';
-    } else if (task === '5') {
-      prompt = 'task 5';
-    } else if (task === '6') {
-      prompt = 'task 6';
-    } else if (task === '7') {
-      prompt = 'task 7';
-    }
-    return prompt;
-  };
+  const { taskName, prompt } = tasks[task - 1];
 
   const handleSubmit = async () => {
     await addTask({
       variables: {
         userEmail: user.email,
-        prompt: getPrompt(),
+        prompt,
         text,
         photoUrl,
       },
@@ -115,14 +97,11 @@ function Task() {
           style={{ fontSize: 22, color: '#9cd9dd' }}
           onClick={() => history.goBack()}
         />
-        <Title>Daily Task {task}</Title>
+        <Title>{taskName}</Title>
       </Header>
 
       <main>
-        <StyledPrompt>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-          hendrerit condimentum nisi, at convallis sapien pellentesque quis.
-        </StyledPrompt>
+        <StyledPrompt>{prompt}</StyledPrompt>
 
         <TextArea
           name="text"

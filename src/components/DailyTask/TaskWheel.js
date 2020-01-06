@@ -45,10 +45,10 @@ function Wheel() {
             {tasks.map((item, index) => (
               <div
                 className="wheel-item"
-                key={item.task}
+                key={item.taskName}
                 style={{ '--item-nb': index }}
               >
-                {item.task}
+                {item.taskName}
               </div>
             ))}
           </div>
