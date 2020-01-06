@@ -9,8 +9,13 @@ import { checkForUserAndGetMoodsQuery, removeMoodMutation } from '../queries';
 import MoodCard from './MoodCard';
 import styles from '../styles/theme';
 import FormViews from './FormViews';
+import TaskCard from './TaskCard';
 
-const DayDisplay = ({ moodsToDisplay, handleMoodsToDisplay }) => {
+const DayDisplay = ({
+  moodsToDisplay,
+  handleMoodsToDisplay,
+  tasksToDisplay,
+}) => {
   const { user } = useAuth();
   const history = useHistory();
   const [isEditing, setIsEditing] = useState(false);
@@ -69,6 +74,8 @@ const DayDisplay = ({ moodsToDisplay, handleMoodsToDisplay }) => {
     }
   }, [history, moodsToDisplay]);
 
+  console.log(tasksToDisplay);
+
   return isEditing ? (
     <FormViews editInitial={moodToEdit} stopEditing={stopEditing} />
   ) : (
@@ -95,6 +102,13 @@ const DayDisplay = ({ moodsToDisplay, handleMoodsToDisplay }) => {
               />
             ))}
       </MoodList>
+      <div>
+        <h1>Completed Tasks</h1>
+        {tasksToDisplay &&
+          tasksToDisplay
+            .reverse()
+            .map((task) => <TaskCard key={task.id} task={task} />)}
+      </div>
     </StyledMoodDisplay>
   );
 };
@@ -112,10 +126,20 @@ DayDisplay.propTypes = {
     }),
   ),
   handleMoodsToDisplay: PropTypes.func.isRequired,
+  tasksToDisplay: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      completedAt: PropTypes.string.isRequired,
+      prompt: PropTypes.string.isRequired,
+      text: PropTypes.string,
+      photoUrl: PropTypes.string,
+    }),
+  ),
 };
 
 DayDisplay.defaultProps = {
   moodsToDisplay: null,
+  tasksToDisplay: null,
 };
 
 export default DayDisplay;
