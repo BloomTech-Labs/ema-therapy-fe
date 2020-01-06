@@ -7,16 +7,9 @@ import styled from 'styled-components';
 import { activities, categories } from '../../utils/Activities';
 import Activity from './Activity';
 import NextButton from './NextButton';
-import DoneButton from './DoneButton';
 import Dots from '../ChartViews/Dots';
 
-const Activities = ({
-  addActivities,
-  handleView,
-  isSubmitting,
-  handleSubmit,
-  activitiesToEdit,
-}) => {
+const Activities = ({ addActivities, handleView, activitiesToEdit }) => {
   const [type, setType] = useState('food');
 
   let reactSwipeEl;
@@ -40,9 +33,9 @@ const Activities = ({
     <>
       <div className="header">
         <Icon
+          className="back-btn"
           type="left"
           data-testid="back"
-          style={{ fontSize: 22, color: '#9cd9dd' }}
           onClick={() => handleView('anxiety-sleep')}
         />
         <p>
@@ -50,9 +43,6 @@ const Activities = ({
           <br />
           been up to?
         </p>
-        <DoneButton loading={isSubmitting} onClick={handleSubmit}>
-          Done
-        </DoneButton>
       </div>
       <InputWrapper>
         <ReactSwipe
@@ -106,8 +96,6 @@ const Activities = ({
 Activities.propTypes = {
   addActivities: PropTypes.func.isRequired,
   handleView: PropTypes.func.isRequired,
-  isSubmitting: PropTypes.bool.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
   activitiesToEdit: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
