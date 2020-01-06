@@ -87,7 +87,7 @@ const DayDisplay = ({
           onClick={() => history.goBack()}
         />
       </Header>
-      <MoodList>
+      <div>
         {moodsToDisplay &&
           moodsToDisplay
             .reverse()
@@ -101,9 +101,9 @@ const DayDisplay = ({
                 isEditing={isEditing}
               />
             ))}
-      </MoodList>
+      </div>
       <div>
-        <h1>Completed Tasks</h1>
+        <StyledTaskHeader>Completed Tasks</StyledTaskHeader>
         {tasksToDisplay &&
           tasksToDisplay
             .reverse()
@@ -145,7 +145,7 @@ DayDisplay.defaultProps = {
 export default DayDisplay;
 
 const StyledMoodDisplay = styled.div`
-  padding: 30px;
+  padding: 30px 30px 90px;
   background-color: ${styles.seafoamGreen};
   min-height: 100vh;
 `;
@@ -154,6 +154,8 @@ const Header = styled.div`
   margin-bottom: 20px;
 `;
 
-const MoodList = styled.div`
-  padding-bottom: 90px;
+const StyledTaskHeader = styled.h1`
+  color: ${styles.darkJungleGreen};
+  font-size: 20px;
+  padding: 8px 8px 0;
 `;
