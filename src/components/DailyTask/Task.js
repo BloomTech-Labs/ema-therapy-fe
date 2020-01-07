@@ -109,18 +109,18 @@ function Task() {
         <Title>{taskName}</Title>
       </Header>
 
-      <main>
+      <main style={{ marginBottom: '20px' }}>
         <p className="prompt">{prompt}</p>
 
         <TextArea
           name="text"
           value={text}
           style={{
-            fontSize: 16,
-            height: '200px',
+            fontSize: 12,
+            height: '80px',
             color: '#658883',
             borderRadius: '10',
-            padding: '35px 30px',
+            padding: '15px',
             background: '#ffffff',
             boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)',
             resize: 'none',
@@ -148,10 +148,12 @@ const TaskWrapper = styled.div`
   padding: 30px 25px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
   .prompt,
   .picture-prompt {
     color: ${styles.tealGreen};
+    font-size: 12px;
   }
 
   .prompt {
@@ -161,6 +163,7 @@ const TaskWrapper = styled.div`
   .picture-prompt {
     margin-top: 18px;
     margin-bottom: 10px;
+    text-align: center;
   }
 `;
 
@@ -171,7 +174,7 @@ const Header = styled.div`
 `;
 
 const Title = styled.h1`
-  color: ${styles.tealGreen};
+  color: ${styles.darkJungleGreen};
   font-size: 24px;
   margin: 0;
   margin: 0 20px;
@@ -182,7 +185,6 @@ const ButtonWrapper = styled.div`
 `;
 
 const PicturesWrapper = styled.div`
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
