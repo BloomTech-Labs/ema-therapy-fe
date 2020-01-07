@@ -1,6 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
-import format from 'date-fns/format';
 import styled from 'styled-components';
 import ReactSwipe from 'react-swipe';
 import { useQuery } from '@apollo/react-hooks';
@@ -14,6 +14,8 @@ import SleepGraph from './SleepGraph';
 import Charts from '../../containers/Charts';
 import MoodePie from './MoodPie';
 import styles from '../../styles/theme';
+import Dots from './Dots';
+import formatDate from '../../utils/formatDate';
 
 const ChartViews = () => {
   let reactSwipeEl;
@@ -28,11 +30,6 @@ const ChartViews = () => {
       lastName: user.family_name,
     },
   });
-
-  const formatDate = (timestamp, fmt) => {
-    const ts = Number(timestamp);
-    return format(new Date(ts), fmt);
-  };
 
   //  parent component for multiple chart views
   //  get moods to pass down to different graphs
@@ -117,6 +114,17 @@ const ChartViews = () => {
 
   if (error) return <p>{error.message}</p>;
 
+  const [activeGraph, setActiveGraph] = useState(0);
+  const swipeOptions = {
+    startSlide: activeGraph,
+    auto: 0,
+    speed: 300,
+    continuous: false,
+    widthOfSiblingSlidePreview: 0,
+    callback(index) {
+      setActiveGraph(index);
+    },
+  };
   return loading ? null : (
     <>
       <TitleDiv>Charts</TitleDiv>
@@ -124,7 +132,7 @@ const ChartViews = () => {
         <Wrapper>
           <ReactSwipe
             className="carousel"
-            swipeOptions={{ continuous: false }}
+            swipeOptions={swipeOptions}
             // eslint-disable-next-line no-return-assign
             ref={(el) => (reactSwipeEl = el)}
           >
@@ -138,6 +146,7 @@ const ChartViews = () => {
               <SleepGraph arrayOfDays={getArrayOfDays(moods)} />
             </div>
           </ReactSwipe>
+          <Dots activeGraph={activeGraph} />
           {/* <button
             className="temp-slide-button"
             type="button"

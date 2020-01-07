@@ -8,13 +8,13 @@ import GlobalStyle from '../../styles/global-styles';
 import SignIn from '../../components/Auth/SignIn';
 import SignUp from '../../components/Auth/SignUp';
 import DailyTask from '../../components/DailyTask';
-import Profile from '../../components/Profile';
 import PrivateRoute from '../../components/PrivateRoute';
 import EntryForm from '../EntryForm/EntryForm';
 import Moods from '../Moods';
 import ChartViews from '../../components/ChartViews';
 import NotFound from '../NotFound/404';
 import Settings from '../Settings';
+import ExportPdf from '../ExportPdf/ExportPdf';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import Tasks from '../Tasks';
 import Welcome from '../Welcome/Welcome';
@@ -49,7 +49,7 @@ function App() {
           <PrivateRoute path="/dashboard/tasks" exact component={Tasks} />
           <PrivateRoute path="/dashboard/tasks/:task" component={DailyTask} />
           <PrivateRoute path="/dashboard" component={Moods} />
-          <PrivateRoute path="/profile" component={Profile} />
+          <PrivateRoute path="/exportpdf" component={ExportPdf} />
           <Route component={NotFound} />
         </Switch>
       </div>

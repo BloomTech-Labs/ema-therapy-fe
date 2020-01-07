@@ -3,14 +3,11 @@ import styled from 'styled-components';
 import { Slider, Icon } from 'antd';
 import PropTypes from 'prop-types';
 import NextButton from './NextButton';
-import DoneButton from './DoneButton';
 
 function FormAnxietySleep({
   sleep,
   handleView,
   anxietyLevel,
-  handleSubmit,
-  isSubmitting,
   onSleepSliderChange,
   onAnxietySliderChange,
 }) {
@@ -18,18 +15,15 @@ function FormAnxietySleep({
     <>
       <div className="header">
         <Icon
+          className="back-btn"
           type="left"
           data-testid="back"
-          style={{ fontSize: 22, color: '#9cd9dd' }}
           onClick={() => handleView('mood')}
         />
         <p>
           How stressed <br />
           are you?
         </p>
-        <DoneButton loading={isSubmitting} onClick={handleSubmit}>
-          Done
-        </DoneButton>
       </div>
       <div className="inputs-section">
         <div className="inputs">
@@ -60,10 +54,7 @@ function FormAnxietySleep({
         </div>
       </div>
       <div className="footer">
-        <NextButton
-          data-testid="next"
-          onClick={() => handleView('activity-journal')}
-        >
+        <NextButton data-testid="next" onClick={() => handleView('activities')}>
           Next
         </NextButton>
       </div>
@@ -77,8 +68,6 @@ FormAnxietySleep.propTypes = {
   onAnxietySliderChange: PropTypes.func.isRequired,
   onSleepSliderChange: PropTypes.func.isRequired,
   sleep: PropTypes.number.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  isSubmitting: PropTypes.bool.isRequired,
 };
 
 export default FormAnxietySleep;

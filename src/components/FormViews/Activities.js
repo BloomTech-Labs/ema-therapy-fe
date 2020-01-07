@@ -1,121 +1,145 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import ReactSwipe from 'react-swipe';
+import { Icon } from 'antd';
 import styled from 'styled-components';
-import activities from '../../utils/Activities';
+import { activities, categories } from '../../utils/Activities';
 import Activity from './Activity';
+import NextButton from './NextButton';
+import Dots from '../ChartViews/Dots';
+import styles from '../../styles/theme';
 
-function generateUniqueKey() {
-  return `_${Math.random()
-    .toString()
-    .substr(2, 9)}`;
-}
-
-const Activities = ({ addActivities }) => {
+const Activities = ({ addActivities, handleView, activitiesToEdit }) => {
   const [type, setType] = useState('food');
 
+  let reactSwipeEl;
   const handleTypeView = (view) => {
     setType(view);
   };
+
+  const [activeGraph, setActiveGraph] = useState(0);
+  const swipeOptions = {
+    startSlide: activeGraph,
+    auto: 0,
+    speed: 300,
+    continuous: false,
+    widthOfSiblingSlidePreview: 0,
+    callback(index) {
+      setActiveGraph(index);
+    },
+  };
+
   return (
-    <ActivitiesWrapper>
-      <div>
-        {activities.map((cur) => {
-          return (
-            <TypeButton
-              key={generateUniqueKey()}
-              onClick={() => handleTypeView(cur.name)}
-              type="button"
-            >
-              {cur.name}
-            </TypeButton>
-          );
-        })}
+    <>
+      <div className="header">
+        <Icon
+          className="back-btn"
+          type="left"
+          data-testid="back"
+          onClick={() => handleView('anxiety-sleep')}
+        />
+        <p>
+          What have you
+          <br />
+          been up to?
+        </p>
       </div>
-      <ActivitiesView>
-        {type === 'food' &&
-          activities[0].foods.map((activityType) => {
+      <InputWrapper>
+        <ReactSwipe
+          className="carousel"
+          swipeOptions={swipeOptions}
+          // eslint-disable-next-line no-return-assign
+          ref={(el) => (reactSwipeEl = el)}
+        >
+          {categories.map((arr) => {
+            return (
+              <div key={arr[0]}>
+                {arr.map((category) => {
+                  return (
+                    <TypeButton
+                      key={category}
+                      onClick={() => handleTypeView(category)}
+                      type="button"
+                      active={type === category}
+                    >
+                      {category}
+                    </TypeButton>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </ReactSwipe>
+        <Dots activeGraph={activeGraph} />
+        <ActivitiesWrapper>
+          {activities[type].map((activityType) => {
             return (
               <Activity
-                key={generateUniqueKey()}
+                key={activityType}
                 activityType={activityType}
                 addActivities={addActivities}
+                isSelectedForEdit={activitiesToEdit.includes(activityType)}
               />
             );
           })}
-        {type === 'drink' &&
-          activities[1].drinks.map((activityType) => {
-            return (
-              <Activity
-                key={generateUniqueKey()}
-                activityType={activityType}
-                addActivities={addActivities}
-              />
-            );
-          })}
-        {type === 'fun' &&
-          activities[2].funs.map((activityType) => {
-            return (
-              <Activity
-                key={generateUniqueKey()}
-                activityType={activityType}
-                addActivities={addActivities}
-              />
-            );
-          })}
-        {type === 'misc' &&
-          activities[3].miscs.map((activityType) => {
-            return (
-              <Activity
-                key={generateUniqueKey()}
-                activityType={activityType}
-                addActivities={addActivities}
-              />
-            );
-          })}
-        {type === 'leisure' &&
-          activities[4].leisures.map((activityType) => {
-            return (
-              <Activity
-                key={generateUniqueKey()}
-                activityType={activityType}
-                addActivities={addActivities}
-              />
-            );
-          })}
-      </ActivitiesView>
-    </ActivitiesWrapper>
+        </ActivitiesWrapper>
+      </InputWrapper>
+      <div className="footer">
+        <NextButton data-testid="next" onClick={() => handleView('journal')}>
+          Next
+        </NextButton>
+      </div>
+    </>
   );
 };
 
 Activities.propTypes = {
   addActivities: PropTypes.func.isRequired,
+  handleView: PropTypes.func.isRequired,
+  activitiesToEdit: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-const ActivitiesWrapper = styled.div`
+const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 400px;
   align-items: center;
-  margin: 0 auto;
-`;
+  margin-top: 22px;
+  flex: 1;
 
-const ActivitiesView = styled.div`
-  margin-left: 15px;
+  .carousel {
+    width: 100%;
+  }
 `;
 
 const TypeButton = styled.button`
-  width: 62px;
-  height: 16px;
-  background: #c4c4c4;
-  border-radius: 2px;
-  margin-right: 9px;
+  width: 25%;
+  height: 30px;
   align-items: center;
-  font-family: Muli;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 12px;
-  line-height: 15px;
-  margin-top: 50px;
+  border: none;
+  background-color: #fafdfc;
+  font-size: 14px;
+  text-align: center;
+  outline: none;
+  color: ${(props) =>
+    props.active ? styles.darkJungleGreen : 'rgba(12, 66, 59, 0.23)'};
+  font-weight: 600;
+  border-bottom: ${(props) =>
+    props.active
+      ? `3px solid ${styles.brightYellow}`
+      : '3px solid transparent'};
+  &:first-of-type {
+    margin-bottom: 10px;
+  }
+  white-space: nowrap;
+`;
+
+const ActivitiesWrapper = styled.div`
+  /* min-height: 330px; */
+  margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 `;
 
 export default Activities;

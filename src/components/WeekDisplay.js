@@ -8,7 +8,7 @@ import styles from '../styles/theme';
 import CalendarIcon from '../containers/Moods/CalendarIcon';
 import getMoodsThisWeek from '../utils/weekOfMoods';
 
-function WeekDisplay({ moods, handleMoodsToDisplay }) {
+function WeekDisplay({ moods, handleMoodsToDisplay, handleTasksToDisplay }) {
   const [moodsThisWeek, setMoodsThisWeek] = useState(null);
 
   useEffect(() => {
@@ -45,7 +45,10 @@ function WeekDisplay({ moods, handleMoodsToDisplay }) {
               <Link
                 to="/dashboard/day"
                 key={list[0].id}
-                onClick={() => getMoodsByDay(getDay(+list[0].createdAt))}
+                onClick={() => {
+                  getMoodsByDay(getDay(+list[0].createdAt));
+                  handleTasksToDisplay(+list[0].createdAt);
+                }}
               >
                 <MoodPreview
                   count={list.length}
@@ -73,6 +76,7 @@ WeekDisplay.propTypes = {
     }),
   ),
   handleMoodsToDisplay: PropTypes.func.isRequired,
+  handleTasksToDisplay: PropTypes.func.isRequired,
 };
 
 WeekDisplay.defaultProps = {

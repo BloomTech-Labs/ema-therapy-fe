@@ -13,11 +13,11 @@ import {
 } from '../../queries';
 import useCurrentWeather from '../../hooks/useCurrentWeather';
 import FormMood from './FormMood';
-import FormActivityJournal from './FormActvityJournal';
+import FormJournal from './FormJournal';
 import FormAnxietySleep from './FormAnxietySleep';
-import backgroundImage from '../../assets/background-leaf.svg';
-import ladybug from '../../assets/ladybug.svg';
+import Activities from './Activities';
 import LoadingSpinner from '../LoadingSpinner';
+import styles from '../../styles/theme';
 
 const FormViews = ({ editInitial, stopEditing }) => {
   const history = useHistory();
@@ -32,7 +32,8 @@ const FormViews = ({ editInitial, stopEditing }) => {
   const [view, setView] = useState('mood');
   const [input, setInput] = useState({
     mood: editInitial ? editInitial.mood : 3,
-    activities: [],
+    activities:
+      editInitial && editInitial.activities ? editInitial.activities : [],
     text: editInitial && editInitial.text ? editInitial.text : '',
     anxietyLevel:
       editInitial && editInitial.anxietyLevel ? editInitial.anxietyLevel : 5,
@@ -40,7 +41,6 @@ const FormViews = ({ editInitial, stopEditing }) => {
     weather: null,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   const [isAnxietyChanged, setIsAnxietyChanged] = useState(null);
   const [isSleepChanged, setIsSleepChanged] = useState(null);
 
@@ -70,19 +70,19 @@ const FormViews = ({ editInitial, stopEditing }) => {
     setIsSleepChanged(true);
   };
 
-  // const addActivities = (activityObject) => {
-  //   const hasActivity = input.activities.some(
-  //     (activity) => activity.type === activityObject.type,
-  //   );
-  //   if (hasActivity) {
-  //     const removeActivity = input.activities.filter((obj) => {
-  //       return obj.type !== activityObject.type;
-  //     });
-  //     setInput({ ...input, activities: removeActivity });
-  //   } else {
-  //     setInput({ ...input, activities: [...input.activities, activityObject] });
-  //   }
-  // };
+  const addActivities = (activityObject) => {
+    const hasActivity = input.activities.some(
+      (activity) => activity === activityObject,
+    );
+    if (hasActivity) {
+      const removeActivity = input.activities.filter((obj) => {
+        return obj !== activityObject;
+      });
+      setInput({ ...input, activities: removeActivity });
+    } else {
+      setInput({ ...input, activities: [...input.activities, activityObject] });
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -94,6 +94,7 @@ const FormViews = ({ editInitial, stopEditing }) => {
         variables: {
           userId: data.user.id,
           weather: input.weather,
+          activities: input.activities,
           mood: input.mood,
           anxietyLevel: isAnxietyChanged ? input.anxietyLevel : null,
           sleep: isSleepChanged ? input.sleep : null,
@@ -121,6 +122,7 @@ const FormViews = ({ editInitial, stopEditing }) => {
         variables: {
           id: editInitial.id,
           mood: input.mood,
+          activities: input.activities,
           anxietyLevel: isAnxietyChanged
             ? input.anxietyLevel
             : editInitial.anxietyLevel,
@@ -174,10 +176,18 @@ const FormViews = ({ editInitial, stopEditing }) => {
           isSubmitting={isSubmitting}
         />
       )}
+      {view === 'activities' && (
+        <Activities
+          handleView={handleView}
+          handleSubmit={handleSubmit}
+          addActivities={addActivities}
+          isSubmitting={isSubmitting}
+          activitiesToEdit={input.activities}
+        />
+      )}
 
-      {view === 'activity-journal' && (
-        <FormActivityJournal
-          // addActivities={addActivities}
+      {view === 'journal' && (
+        <FormJournal
           text={input.text}
           handleView={handleView}
           handleChange={handleChange}
@@ -192,6 +202,7 @@ const FormViews = ({ editInitial, stopEditing }) => {
 FormViews.propTypes = {
   editInitial: PropTypes.shape({
     mood: PropTypes.number.isRequired,
+    activities: PropTypes.arrayOf(PropTypes.string),
     id: PropTypes.string.isRequired,
     createdAt: PropTypes.string.isRequired,
     anxietyLevel: PropTypes.number,
@@ -214,12 +225,6 @@ const StyledForm = styled.form`
   justify-content: space-between;
   padding: 30px 25px;
   background-color: #fafdfc;
-  background-image: ${(props) =>
-    props.view === 'mood'
-      ? `url(${backgroundImage})`
-      : `url(${backgroundImage}), url(${ladybug})`};
-  background-repeat: no-repeat;
-  background-position: top -36px right -20px, top 84% right 10%;
 
   .ant-slider-track,
   .ant-slider-rail {
@@ -237,17 +242,24 @@ const StyledForm = styled.form`
 
   .header {
     display: flex;
-    justify-content: space-between;
-    &.center {
-      justify-content: center;
-    }
+    justify-content: center;
+    align-items: baseline;
+    position: relative;
 
     p {
-      color: #0c423b;
+      color: ${styles.darkJungleGreen};
       font-size: 21px;
-      font-weight: 500;
-      line-height: 24px;
+      font-weight: 600;
       text-align: center;
+      margin: 0 auto;
+    }
+
+    .back-btn {
+      position: absolute;
+      left: 4px;
+      top: 10px;
+      font-size: 22px;
+      color: #9cd9dd;
     }
   }
 

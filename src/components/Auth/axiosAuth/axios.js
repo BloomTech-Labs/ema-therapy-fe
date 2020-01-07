@@ -18,7 +18,7 @@ export const userLogin = (credentials, cbOnSuccess, cbOnError) => {
       const user = parseJwt(res.data.token);
       cbOnSuccess(user);
     })
-    .catch((err) => cbOnError(err.message));
+    .catch((err) => cbOnError(err.response.data.error));
 };
 
 // signup new user
@@ -30,5 +30,5 @@ export const postUser = (credentials, cbOnSuccess, cbOnError) => {
       const user = parseJwt(res.data.token);
       cbOnSuccess(user);
     })
-    .catch((err) => cbOnError(err.message));
+    .catch((err) => cbOnError(err.response.data.error));
 };

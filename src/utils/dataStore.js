@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect, useContext } from 'react';
+import { isAfter } from 'date-fns';
 import { parseJwt } from '../components/Auth/axiosAuth/axios';
 
 export const AuthContext = React.createContext();
@@ -16,8 +17,7 @@ export const AuthProvider = ({ children }) => {
       setIsAuthenticated(false);
       if (localStorage.token) {
         const userFromToken = parseJwt(localStorage.token);
-        const userExpDate = new Date().setSeconds(userFromToken.exp);
-        if (userExpDate > Date.now()) {
+        if (isAfter(userFromToken.exp * 1000, Date.now())) {
           setUser(userFromToken);
           setIsAuthenticated(true);
         } else {

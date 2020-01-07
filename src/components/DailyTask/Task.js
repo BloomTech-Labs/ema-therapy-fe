@@ -11,6 +11,8 @@ import { useAuth } from '../../utils/dataStore';
 import UploadPic from './UploadPic';
 import Button from '../Button';
 import TaskComplete from './TaskComplete';
+import { checkForUserAndGetMoodsQuery } from '../../queries';
+import tasks from './tasks';
 
 const { TextArea } = Input;
 
@@ -47,35 +49,23 @@ function Task() {
 
   const handleChange = (e) => setText(e.target.value);
 
-  let prompt;
-
-  const getPrompt = () => {
-    if (task === '1') {
-      prompt = 'task 1';
-    } else if (task === '2') {
-      prompt = 'task 2';
-    } else if (task === '3') {
-      prompt = 'task 3';
-    } else if (task === '4') {
-      prompt = 'task 4';
-    } else if (task === '5') {
-      prompt = 'task 5';
-    } else if (task === '6') {
-      prompt = 'task 6';
-    } else if (task === '7') {
-      prompt = 'task 7';
-    }
-    return prompt;
-  };
+  const { taskName, prompt, picturePrompt } = tasks[task - 1];
 
   const handleSubmit = async () => {
     await addTask({
       variables: {
         userEmail: user.email,
-        prompt: getPrompt(),
+        prompt,
         text,
         photoUrl,
       },
+      refetchQueries: [
+        {
+          query: checkForUserAndGetMoodsQuery,
+          variables: { email: user.email },
+        },
+      ],
+      awaitRefetchQueries: true,
     });
     setTaskComplete(true);
   };
@@ -96,9 +86,10 @@ function Task() {
       // .end((error, response) => {
       //     onPhotoUploaded(photoId, fileName, response);
       // });
+      // eslint-disable-next-line no-console
       .on('progress', (progress) => console.log(progress))
       .end((error, response) => {
-        console.log(error, response);
+        // console.log(error, response);
         // set local state to response.body.secure_url for when we submit form to our database
         setPhotoUrl(response.body.secure_url);
       });
@@ -115,24 +106,21 @@ function Task() {
           style={{ fontSize: 22, color: '#9cd9dd' }}
           onClick={() => history.goBack()}
         />
-        <Title>Daily Task {task}</Title>
+        <Title>{taskName}</Title>
       </Header>
 
-      <main>
-        <StyledPrompt>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-          hendrerit condimentum nisi, at convallis sapien pellentesque quis.
-        </StyledPrompt>
+      <main style={{ marginBottom: '20px' }}>
+        <p className="prompt">{prompt}</p>
 
         <TextArea
           name="text"
           value={text}
           style={{
-            fontSize: 16,
-            height: '200px',
+            fontSize: 12,
+            height: '80px',
             color: '#658883',
             borderRadius: '10',
-            padding: '35px 30px',
+            padding: '15px',
             background: '#ffffff',
             boxShadow: '0px 2px 8px rgba(0, 0, 0, 0.15)',
             resize: 'none',
@@ -141,6 +129,7 @@ function Task() {
           placeholder="Write your thoughts here..."
         />
       </main>
+      <p className="picture-prompt">{picturePrompt}</p>
       <PicturesWrapper>
         <UploadPic upload={upload} />
       </PicturesWrapper>
@@ -159,24 +148,36 @@ const TaskWrapper = styled.div`
   padding: 30px 25px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+
+  .prompt,
+  .picture-prompt {
+    color: ${styles.tealGreen};
+    font-size: 12px;
+  }
+
+  .prompt {
+    margin-bottom: 18px;
+  }
+
+  .picture-prompt {
+    margin-top: 18px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
 `;
 
 const Header = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 `;
 
 const Title = styled.h1`
-  color: ${styles.tealGreen};
+  color: ${styles.darkJungleGreen};
   font-size: 24px;
   margin: 0;
   margin: 0 20px;
-`;
-
-const StyledPrompt = styled.p`
-  color: ${styles.tealGreen};
-  margin-bottom: 24px;
 `;
 
 const ButtonWrapper = styled.div`
@@ -184,7 +185,6 @@ const ButtonWrapper = styled.div`
 `;
 
 const PicturesWrapper = styled.div`
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;

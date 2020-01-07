@@ -30,7 +30,11 @@ const getMoodsByMonth = (date, moodData) => {
   return monthOfMoods;
 };
 
-const CalendarDisplay = ({ moods, handleMoodsToDisplay }) => {
+const CalendarDisplay = ({
+  moods,
+  handleMoodsToDisplay,
+  handleTasksToDisplay,
+}) => {
   const [daySelected, setDaySelected] = useState(null);
   const [activeStartDate, setActiveStartDate] = useState(new Date());
   const [moodsThisMonth, setMoodsThisMonth] = useState(null);
@@ -76,6 +80,7 @@ const CalendarDisplay = ({ moods, handleMoodsToDisplay }) => {
           activeStartDate={activeStartDate}
           handleActiveStartDate={handleActiveStartDate}
           moodsThisMonth={moodsThisMonth}
+          handleTasksToDisplay={handleTasksToDisplay}
         />
         <CalendarLegend />
       </StyledCard>
@@ -96,6 +101,7 @@ CalendarDisplay.propTypes = {
     }),
   ),
   handleMoodsToDisplay: PropTypes.func.isRequired,
+  handleTasksToDisplay: PropTypes.func.isRequired,
 };
 
 CalendarDisplay.defaultProps = {

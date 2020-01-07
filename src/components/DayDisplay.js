@@ -5,19 +5,33 @@ import { Icon, message } from 'antd';
 import { useMutation } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../utils/dataStore';
-import { checkForUserAndGetMoodsQuery, removeMoodMutation } from '../queries';
+import {
+  checkForUserAndGetMoodsQuery,
+  removeMoodMutation,
+  removeTaskMutation,
+} from '../queries';
 import MoodCard from './MoodCard';
 import styles from '../styles/theme';
 import FormViews from './FormViews';
+import TaskCard from './TaskCard';
 
-const DayDisplay = ({ moodsToDisplay, handleMoodsToDisplay }) => {
+const DayDisplay = ({
+  moodsToDisplay,
+  handleMoodsToDisplay,
+  tasksToDisplay,
+  handleTasksToDisplay,
+}) => {
   const { user } = useAuth();
   const history = useHistory();
   const [isEditing, setIsEditing] = useState(false);
   const [moodToEdit, setMoodToEdit] = useState(null);
 
-  const [removeMood, { loading: deleteLoading }] = useMutation(
+  const [removeMood, { loading: deleteMoodLoading }] = useMutation(
     removeMoodMutation,
+  );
+
+  const [removeTask, { loading: deleteTaskLoading }] = useMutation(
+    removeTaskMutation,
   );
 
   const deleteMood = (id) => {
@@ -62,6 +76,30 @@ const DayDisplay = ({ moodsToDisplay, handleMoodsToDisplay }) => {
     // if status is cancel or anything else, do nothing
   };
 
+  // mutations for remove task
+
+  const deleteTask = (taskId) => {
+    removeTask({
+      variables: { id: taskId },
+      refetchQueries: [
+        {
+          query: checkForUserAndGetMoodsQuery,
+          variables: { email: user.email },
+        },
+      ],
+      awaitRefetchQueries: true,
+    })
+      .then((res) => {
+        // remove the deleted mood from state
+        handleTasksToDisplay(
+          tasksToDisplay.filter((task) => task.id !== res.data.removeTask.id),
+        );
+      })
+      .catch(() => {
+        message.error('Error: Unable to delete task');
+      });
+  };
+
   useEffect(() => {
     // if moods are null or everything has been deleted, go back to the dashboard
     if (!moodsToDisplay || moodsToDisplay.length === 0) {
@@ -80,7 +118,7 @@ const DayDisplay = ({ moodsToDisplay, handleMoodsToDisplay }) => {
           onClick={() => history.goBack()}
         />
       </Header>
-      <MoodList>
+      <div>
         {moodsToDisplay &&
           moodsToDisplay
             .reverse()
@@ -89,12 +127,28 @@ const DayDisplay = ({ moodsToDisplay, handleMoodsToDisplay }) => {
                 key={mood.id}
                 mood={mood}
                 deleteMood={deleteMood}
-                deleteLoading={deleteLoading}
+                deleteLoading={deleteMoodLoading}
                 editMood={editMood}
                 isEditing={isEditing}
               />
             ))}
-      </MoodList>
+      </div>
+      {tasksToDisplay && tasksToDisplay.length > 0 && (
+        <div>
+          <StyledTaskHeader>Completed Tasks</StyledTaskHeader>
+          {tasksToDisplay &&
+            tasksToDisplay
+              .reverse()
+              .map((task) => (
+                <TaskCard
+                  deleteTaskLoading={deleteTask}
+                  deleteLoading={deleteTaskLoading}
+                  key={task.id}
+                  task={task}
+                />
+              ))}
+        </div>
+      )}
     </StyledMoodDisplay>
   );
 };
@@ -112,16 +166,27 @@ DayDisplay.propTypes = {
     }),
   ),
   handleMoodsToDisplay: PropTypes.func.isRequired,
+  handleTasksToDisplay: PropTypes.func.isRequired,
+  tasksToDisplay: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      completedAt: PropTypes.string.isRequired,
+      prompt: PropTypes.string.isRequired,
+      text: PropTypes.string,
+      photoUrl: PropTypes.string,
+    }),
+  ),
 };
 
 DayDisplay.defaultProps = {
   moodsToDisplay: null,
+  tasksToDisplay: null,
 };
 
 export default DayDisplay;
 
 const StyledMoodDisplay = styled.div`
-  padding: 30px;
+  padding: 30px 30px 90px;
   background-color: ${styles.seafoamGreen};
   min-height: 100vh;
 `;
@@ -130,6 +195,8 @@ const Header = styled.div`
   margin-bottom: 20px;
 `;
 
-const MoodList = styled.div`
-  padding-bottom: 90px;
+const StyledTaskHeader = styled.h1`
+  color: ${styles.darkJungleGreen};
+  font-size: 20px;
+  padding: 8px 8px 0;
 `;

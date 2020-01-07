@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom';
 import { Slider, Icon } from 'antd';
 import NextButton from './NextButton';
 import moodToString from '../../utils/moodToString';
-import DoneButton from './DoneButton';
 import useStandalone from '../../hooks/useStandalone';
 import happyPlant from '../../assets/plants-png/plant-happy.png';
 import normalPlant from '../../assets/plants-png/plant-normal.png';
@@ -13,14 +12,7 @@ import sadPlant from '../../assets/plants-png/plant-sad.png';
 import reallyHappyPlant from '../../assets/plants-png/plant-really-happy.png';
 import unhappyPlant from '../../assets/plants-png/plant-unhappy.png';
 
-function FormMood({
-  onMoodSliderChange,
-  mood,
-  handleView,
-  handleSubmit,
-  isSubmitting,
-  stopEditing,
-}) {
+function FormMood({ onMoodSliderChange, mood, handleView, stopEditing }) {
   const history = useHistory();
   const isStandalone = useStandalone();
 
@@ -38,8 +30,8 @@ function FormMood({
     <>
       <div className="header">
         <Icon
+          className="back-btn"
           type="left"
-          style={{ fontSize: 22, color: '#9cd9dd' }}
           onClick={() =>
             stopEditing ? stopEditing() : history.push('/dashboard')
           }
@@ -48,9 +40,6 @@ function FormMood({
           How do you <br />
           feel?
         </p>
-        <DoneButton loading={isSubmitting} onClick={handleSubmit}>
-          Done
-        </DoneButton>
       </div>
       <MoodWrapper isStandalone={isStandalone}>
         <img src={getPlant(mood)} alt="happy plant" />
@@ -80,8 +69,6 @@ FormMood.propTypes = {
   handleView: PropTypes.func.isRequired,
   mood: PropTypes.number.isRequired,
   onMoodSliderChange: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  isSubmitting: PropTypes.bool.isRequired,
   stopEditing: PropTypes.func,
 };
 
