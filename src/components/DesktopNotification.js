@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { Modal } from 'antd';
 import styled from 'styled-components';
-// import useStandalone from '../hooks/useStandalone';
 import styles from '../styles/theme';
 
 function DesktopNotification() {
   const showModal = localStorage.getItem('DesktopNotification') === null;
   const [isVisible, setIsVisible] = useState();
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   useEffect(() => {
-    if (window.innerWidth > 500 && showModal) {
+    if (window.innerWidth > 500 && showModal && !isMobile) {
       setIsVisible(true);
     } else {
       setIsVisible(false);
     }
-  }, [showModal]);
+  }, [showModal, isMobile]);
 
   return (
     <Modal
@@ -31,9 +31,9 @@ function DesktopNotification() {
       <Title>Try MoodBloom on Mobile</Title>
       <StyledContent>
         MoodBloom was designed and optimized for mobile devices. Certain
-        features of the app may not function properly. For a better experience,
-        please visit moodbloomapp.com on a mobile phone where you will have the
-        option to install the app to your device homescreen.
+        features of the app may not function properly on desktop. For a better
+        experience, please visit moodbloomapp.com on a mobile phone where you
+        will have the option to install the app to your device homescreen.
       </StyledContent>
     </Modal>
   );
