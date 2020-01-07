@@ -1,12 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Icon, Button, Modal } from 'antd';
 import Card from './Card';
 import styles from '../styles/theme';
 import formatDate from '../utils/formatDate';
 
-const TaskCard = ({ task }) => {
-  const { completedAt, prompt, text, photoUrl } = task;
+const TaskCard = ({ task, deleteTask, deleteLoading }) => {
+  const { id, completedAt, prompt, text, photoUrl } = task;
+
+  const { confirm } = Modal;
+
+  const showDeleteConfirm = () => {
+    confirm({
+      title: 'Are you sure you want to delete this task?',
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
+      onOk() {
+        deleteTask(id);
+      },
+    });
+  };
+
   return (
     <StyledTaskCard>
       <div className="date-time">
@@ -17,6 +33,15 @@ const TaskCard = ({ task }) => {
         <h2 className="prompt">{prompt}</h2>
         {text && <p className="text">{text}</p>}
         {photoUrl && <img className="photo" src={photoUrl} alt="" />}
+      </div>
+      <div className="icons">
+        <Button
+          shape="circle"
+          onClick={() => showDeleteConfirm()}
+          disabled={deleteLoading}
+        >
+          <Icon type="delete" />
+        </Button>
       </div>
     </StyledTaskCard>
   );
@@ -30,6 +55,13 @@ TaskCard.propTypes = {
     text: PropTypes.string,
     photoUrl: PropTypes.string,
   }).isRequired,
+  deleteTask: PropTypes.func,
+  deleteLoading: PropTypes.bool,
+};
+
+TaskCard.defaultProps = {
+  deleteTask: null,
+  deleteLoading: null,
 };
 
 export default TaskCard;
@@ -79,6 +111,20 @@ const StyledTaskCard = styled(Card)`
     .photo {
       width: 100%;
       margin-bottom: 10px;
+    }
+  }
+
+  .icons {
+    padding: 10px 25px 20px;
+    text-align: right;
+
+    .ant-btn {
+      margin: 0 6px;
+    }
+
+    .anticon {
+      color: ${styles.darkJungleGreen};
+      font-size: 18px;
     }
   }
 `;

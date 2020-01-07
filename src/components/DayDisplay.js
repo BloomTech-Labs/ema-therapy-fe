@@ -5,7 +5,11 @@ import { Icon, message } from 'antd';
 import { useMutation } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../utils/dataStore';
-import { checkForUserAndGetMoodsQuery, removeMoodMutation } from '../queries';
+import {
+  checkForUserAndGetMoodsQuery,
+  removeMoodMutation,
+  removeTaskMutation,
+} from '../queries';
 import MoodCard from './MoodCard';
 import styles from '../styles/theme';
 import FormViews from './FormViews';
@@ -15,14 +19,19 @@ const DayDisplay = ({
   moodsToDisplay,
   handleMoodsToDisplay,
   tasksToDisplay,
+  handleTasksToDisplay,
 }) => {
   const { user } = useAuth();
   const history = useHistory();
   const [isEditing, setIsEditing] = useState(false);
   const [moodToEdit, setMoodToEdit] = useState(null);
 
-  const [removeMood, { loading: deleteLoading }] = useMutation(
+  const [removeMood, { loading: deleteMoodLoading }] = useMutation(
     removeMoodMutation,
+  );
+
+  const [removeTask, { loading: deleteTaskLoading }] = useMutation(
+    removeTaskMutation,
   );
 
   const deleteMood = (id) => {
@@ -67,6 +76,30 @@ const DayDisplay = ({
     // if status is cancel or anything else, do nothing
   };
 
+  // mutations for remove task
+
+  const deleteTask = (taskId) => {
+    removeTask({
+      variables: { id: taskId },
+      refetchQueries: [
+        {
+          query: checkForUserAndGetMoodsQuery,
+          variables: { email: user.email },
+        },
+      ],
+      awaitRefetchQueries: true,
+    })
+      .then((res) => {
+        // remove the deleted mood from state
+        handleTasksToDisplay(
+          tasksToDisplay.filter((task) => task.id !== res.data.removeTask.id),
+        );
+      })
+      .catch(() => {
+        message.error('Error: Unable to delete task');
+      });
+  };
+
   useEffect(() => {
     // if moods are null or everything has been deleted, go back to the dashboard
     if (!moodsToDisplay || moodsToDisplay.length === 0) {
@@ -94,7 +127,7 @@ const DayDisplay = ({
                 key={mood.id}
                 mood={mood}
                 deleteMood={deleteMood}
-                deleteLoading={deleteLoading}
+                deleteLoading={deleteMoodLoading}
                 editMood={editMood}
                 isEditing={isEditing}
               />
@@ -106,7 +139,14 @@ const DayDisplay = ({
           {tasksToDisplay &&
             tasksToDisplay
               .reverse()
-              .map((task) => <TaskCard key={task.id} task={task} />)}
+              .map((task) => (
+                <TaskCard
+                  deleteTaskLoading={deleteTask}
+                  deleteLoading={deleteTaskLoading}
+                  key={task.id}
+                  task={task}
+                />
+              ))}
         </div>
       )}
     </StyledMoodDisplay>
@@ -126,6 +166,7 @@ DayDisplay.propTypes = {
     }),
   ),
   handleMoodsToDisplay: PropTypes.func.isRequired,
+  handleTasksToDisplay: PropTypes.func.isRequired,
   tasksToDisplay: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
