@@ -141,7 +141,7 @@ const DayDisplay = ({
               .reverse()
               .map((task) => (
                 <TaskCard
-                  deleteTaskLoading={deleteTask}
+                  deleteTask={deleteTask}
                   deleteLoading={deleteTaskLoading}
                   key={task.id}
                   task={task}
