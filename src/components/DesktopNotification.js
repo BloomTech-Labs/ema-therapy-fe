@@ -30,9 +30,10 @@ function DesktopNotification() {
     >
       <Title>Try MoodBloom on Mobile</Title>
       <StyledContent>
-        This shit is some real hot garbage on a desktop. For a better
-        experience, please visit moodbloomapp.com on a mobile phone where you
-        will have the option to install the app to your device homescreen.
+        MoodBloom was designed and optimized for mobile devices. Certain
+        features of the app may not function properly. For a better experience,
+        please visit moodbloomapp.com on a mobile phone where you will have the
+        option to install the app to your device homescreen.
       </StyledContent>
     </Modal>
   );
