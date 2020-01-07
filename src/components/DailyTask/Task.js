@@ -45,6 +45,7 @@ function Task() {
   const [text, setText] = useState();
   const [taskComplete, setTaskComplete] = useState(false);
   const [photoUrl, setPhotoUrl] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [addTask] = useMutation(ADD_TASK);
 
   const handleChange = (e) => setText(e.target.value);
@@ -80,18 +81,15 @@ function Task() {
       .field('upload_preset', uploadPreset)
       .field('file', file)
       .field('multiple', false)
-      // .field('tags', title ? `myphotoalbum,${title}` : 'myphotoalbum')
-      // .field('context', title ? `photo=${title}` : '')
-      // .on('progress', (progress) => onPhotoUploadProgress(photoId, file.name, progress))
-      // .end((error, response) => {
-      //     onPhotoUploaded(photoId, fileName, response);
-      // });
-      // eslint-disable-next-line no-console
-      .on('progress', (progress) => console.log(progress))
+      .on('progress', (progress) => {
+        // console.log('progress', progress);
+        setIsLoading(true);
+      })
       .end((error, response) => {
         // console.log(error, response);
         // set local state to response.body.secure_url for when we submit form to our database
         setPhotoUrl(response.body.secure_url);
+        setIsLoading(false);
       });
   };
 
@@ -134,7 +132,9 @@ function Task() {
         <UploadPic upload={upload} />
       </PicturesWrapper>
       <ButtonWrapper>
-        <Button onClick={handleSubmit}>Done</Button>
+        <Button onClick={handleSubmit} disabled={isLoading}>
+          Done
+        </Button>
       </ButtonWrapper>
     </TaskWrapper>
   );
