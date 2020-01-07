@@ -18,6 +18,7 @@ import ExportPdf from '../ExportPdf/ExportPdf';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import Tasks from '../Tasks';
 import Welcome from '../Welcome/Welcome';
+import DesktopNotification from '../../components/DesktopNotification';
 
 function App() {
   const { loading } = useAuth();
@@ -39,6 +40,7 @@ function App() {
   ) : (
     <ApolloProvider client={client}>
       <div className="App">
+        <DesktopNotification />
         <Switch>
           <Route path="/" exact component={Welcome} />
           <Route path="/signin" exact component={SignIn} />
