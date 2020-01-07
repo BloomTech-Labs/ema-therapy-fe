@@ -26,11 +26,13 @@ const DayDisplay = ({
   const [isEditing, setIsEditing] = useState(false);
   const [moodToEdit, setMoodToEdit] = useState(null);
 
-  const [removeMood, { loading: deleteLoading }] = useMutation(
+  const [removeMood, { loading: deleteMoodLoading }] = useMutation(
     removeMoodMutation,
   );
 
-  const [removeTask, { loading }] = useMutation(removeTaskMutation);
+  const [removeTask, { loading: deleteTaskLoading }] = useMutation(
+    removeTaskMutation,
+  );
 
   const deleteMood = (id) => {
     // run the delete mutation
@@ -87,9 +89,9 @@ const DayDisplay = ({
       ],
       awaitRefetchQueries: true,
     })
-      .then(async (res) => {
+      .then((res) => {
         // remove the deleted mood from state
-        await handleTasksToDisplay(
+        handleTasksToDisplay(
           tasksToDisplay.filter((task) => task.id !== res.data.removeTask.id),
         );
       })
@@ -125,7 +127,7 @@ const DayDisplay = ({
                 key={mood.id}
                 mood={mood}
                 deleteMood={deleteMood}
-                deleteLoading={deleteLoading}
+                deleteLoading={deleteMoodLoading}
                 editMood={editMood}
                 isEditing={isEditing}
               />
@@ -138,7 +140,12 @@ const DayDisplay = ({
             tasksToDisplay
               .reverse()
               .map((task) => (
-                <TaskCard deleteTask={deleteTask} key={task.id} task={task} />
+                <TaskCard
+                  deleteTaskLoading={deleteTask}
+                  deleteLoading={deleteTaskLoading}
+                  key={task.id}
+                  task={task}
+                />
               ))}
         </div>
       )}
@@ -159,6 +166,7 @@ DayDisplay.propTypes = {
     }),
   ),
   handleMoodsToDisplay: PropTypes.func.isRequired,
+  handleTasksToDisplay: PropTypes.func.isRequired,
   tasksToDisplay: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,

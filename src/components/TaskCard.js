@@ -6,7 +6,7 @@ import Card from './Card';
 import styles from '../styles/theme';
 import formatDate from '../utils/formatDate';
 
-const TaskCard = ({ task, deleteTask }) => {
+const TaskCard = ({ task, deleteTask, deleteLoading }) => {
   const { id, completedAt, prompt, text, photoUrl } = task;
 
   const { confirm } = Modal;
@@ -37,10 +37,8 @@ const TaskCard = ({ task, deleteTask }) => {
       <div className="icons">
         <Button
           shape="circle"
-          onClick={() => {
-            showDeleteConfirm();
-          }}
-          // disabled={deleteLoading}
+          onClick={() => showDeleteConfirm()}
+          disabled={deleteLoading}
         >
           <Icon type="delete" />
         </Button>
@@ -58,6 +56,7 @@ TaskCard.propTypes = {
     photoUrl: PropTypes.string,
   }).isRequired,
   deleteTask: PropTypes.func.isRequired,
+  deleteLoading: PropTypes.bool.isRequired,
 };
 
 export default TaskCard;
@@ -113,9 +112,11 @@ const StyledTaskCard = styled(Card)`
   .icons {
     padding: 10px 25px 20px;
     text-align: right;
+
     .ant-btn {
       margin: 0 6px;
     }
+
     .anticon {
       color: ${styles.darkJungleGreen};
       font-size: 18px;

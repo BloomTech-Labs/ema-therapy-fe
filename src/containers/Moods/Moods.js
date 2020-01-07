@@ -38,6 +38,10 @@ const Moods = () => {
     setTasksToDisplay(newTasks);
   };
 
+  const handleUpdatedTasks = (updatedTasks) => {
+    setTasksToDisplay(updatedTasks);
+  };
+
   // set moods if the data from query exists
   useEffect(() => {
     if (data) {
@@ -76,7 +80,7 @@ const Moods = () => {
             moodsToDisplay={moodsToDisplay}
             handleMoodsToDisplay={handleMoodsToDisplay}
             tasksToDisplay={tasksToDisplay}
-            handleTasksToDisplay={handleTasksToDisplay}
+            handleTasksToDisplay={handleUpdatedTasks}
           />
         )}
       />
