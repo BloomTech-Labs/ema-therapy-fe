@@ -57,7 +57,9 @@ function WeekPdf() {
 
     const doc = new jsPDF(orientation, unit, size);
 
-    const title = `${user.firstName} ${user.lastName}'s 7-Day Mood History`;
+    const title = !user.lastName
+      ? `${user.firstName}'s 7-Day Mood History`
+      : `${user.firstName} ${user.lastName}'s 7-Day Mood History`;
     const headers = [
       [
         'Date of Entry',
