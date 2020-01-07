@@ -59,19 +59,19 @@ const MoodCard = ({
           <div className="stat-wrapper">
             {anxiety !== null && (
               <div>
-                <p className="anxiety">ANXIETY</p>
+                <p className="anxiety">Anxiety</p>
                 <p className="counter">{anxiety}</p>
               </div>
             )}
             {sleep !== null && (
               <div>
-                <p className="sleep">SLEEP</p>
+                <p className="sleep">Sleep</p>
                 <p className="counter">{`${sleep}h`}</p>
               </div>
             )}
             {weather && (
               <div>
-                <p className="weather">WEATHER</p>
+                <p className="weather">Weather</p>
                 <p className="counter">{weather}</p>
               </div>
             )}

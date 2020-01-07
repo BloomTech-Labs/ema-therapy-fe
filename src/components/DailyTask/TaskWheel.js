@@ -62,7 +62,8 @@ export default Wheel;
 
 const styles = {
   size: '300px',
-  color: theme.tealGreen,
+  // color: theme.brightYellow,
+  color: theme.rosyPink,
   borderSize: '5px',
   neutralColor: '#ffffff',
   spinningDuration: '4s',
