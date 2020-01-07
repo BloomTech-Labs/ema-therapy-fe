@@ -105,6 +105,7 @@ const InputWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 22px;
+  flex: 1;
 
   .carousel {
     width: 100%;
@@ -130,11 +131,15 @@ const TypeButton = styled.button`
   &:first-of-type {
     margin-bottom: 10px;
   }
+  white-space: nowrap;
 `;
 
 const ActivitiesWrapper = styled.div`
-  min-height: 330px;
+  /* min-height: 330px; */
   margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 `;
 
 export default Activities;
