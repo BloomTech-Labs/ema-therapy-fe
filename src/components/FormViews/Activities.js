@@ -124,7 +124,9 @@ const TypeButton = styled.button`
     props.active ? styles.darkJungleGreen : 'rgba(12, 66, 59, 0.23)'};
   font-weight: 600;
   border-bottom: ${(props) =>
-    props.active ? `3px solid ${styles.brightYellow}` : 'none'};
+    props.active
+      ? `3px solid ${styles.brightYellow}`
+      : '3px solid transparent'};
   &:first-of-type {
     margin-bottom: 10px;
   }
