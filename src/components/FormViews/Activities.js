@@ -7,16 +7,10 @@ import styled from 'styled-components';
 import { activities, categories } from '../../utils/Activities';
 import Activity from './Activity';
 import NextButton from './NextButton';
-import DoneButton from './DoneButton';
 import Dots from '../ChartViews/Dots';
+import styles from '../../styles/theme';
 
-const Activities = ({
-  addActivities,
-  handleView,
-  isSubmitting,
-  handleSubmit,
-  activitiesToEdit,
-}) => {
+const Activities = ({ addActivities, handleView, activitiesToEdit }) => {
   const [type, setType] = useState('food');
 
   let reactSwipeEl;
@@ -40,9 +34,9 @@ const Activities = ({
     <>
       <div className="header">
         <Icon
+          className="back-btn"
           type="left"
           data-testid="back"
-          style={{ fontSize: 22, color: '#9cd9dd' }}
           onClick={() => handleView('anxiety-sleep')}
         />
         <p>
@@ -50,9 +44,6 @@ const Activities = ({
           <br />
           been up to?
         </p>
-        <DoneButton loading={isSubmitting} onClick={handleSubmit}>
-          Done
-        </DoneButton>
       </div>
       <InputWrapper>
         <ReactSwipe
@@ -106,8 +97,6 @@ const Activities = ({
 Activities.propTypes = {
   addActivities: PropTypes.func.isRequired,
   handleView: PropTypes.func.isRequired,
-  isSubmitting: PropTypes.bool.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
   activitiesToEdit: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
@@ -115,7 +104,7 @@ const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin-top: 100px; */
+  margin-top: 22px;
 
   .carousel {
     width: 100%;
@@ -124,29 +113,28 @@ const InputWrapper = styled.div`
 
 const TypeButton = styled.button`
   width: 25%;
-  height: 50px;
+  height: 30px;
   align-items: center;
   border: none;
-  border-bottom: 2px solid #595959;
   background-color: #fafdfc;
-  font-family: Fira Sans;
-  font-style: normal;
-  font-weight: 600;
   font-size: 14px;
-  line-height: 22px;
   text-align: center;
   outline: none;
-  color: #595959;
-  font-weight: ${(props) => (props.active ? '600' : 'normal')};
+  color: ${(props) =>
+    props.active ? styles.darkJungleGreen : 'rgba(12, 66, 59, 0.23)'};
+  font-weight: 600;
   border-bottom: ${(props) =>
-    props.active ? '2px solid #595959' : '1.5px solid lightgrey'};
+    props.active
+      ? `3px solid ${styles.brightYellow}`
+      : '3px solid transparent'};
   &:first-of-type {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
 `;
 
 const ActivitiesWrapper = styled.div`
-  min-height: 400px;
+  min-height: 330px;
+  margin-top: 15px;
 `;
 
 export default Activities;

@@ -15,10 +15,9 @@ import useCurrentWeather from '../../hooks/useCurrentWeather';
 import FormMood from './FormMood';
 import FormJournal from './FormJournal';
 import FormAnxietySleep from './FormAnxietySleep';
-import backgroundImage from '../../assets/background-leaf.svg';
-import ladybug from '../../assets/ladybug.svg';
 import Activities from './Activities';
 import LoadingSpinner from '../LoadingSpinner';
+import styles from '../../styles/theme';
 
 const FormViews = ({ editInitial, stopEditing }) => {
   const history = useHistory();
@@ -226,12 +225,6 @@ const StyledForm = styled.form`
   justify-content: space-between;
   padding: 30px 25px;
   background-color: #fafdfc;
-  background-image: ${(props) =>
-    props.view === 'mood'
-      ? `url(${backgroundImage})`
-      : `url(${backgroundImage}), url(${ladybug})`};
-  background-repeat: no-repeat;
-  background-position: top -36px right -20px, top 84% right 10%;
 
   .ant-slider-track,
   .ant-slider-rail {
@@ -248,19 +241,25 @@ const StyledForm = styled.form`
   }
 
   .header {
-    color: red;
     display: flex;
-    justify-content: space-between;
-    &.center {
-      justify-content: center;
-    }
+    justify-content: center;
+    align-items: baseline;
+    position: relative;
 
     p {
-      color: #0c423b;
+      color: ${styles.darkJungleGreen};
       font-size: 21px;
-      font-weight: 500;
-      line-height: 24px;
+      font-weight: 600;
       text-align: center;
+      margin: 0 auto;
+    }
+
+    .back-btn {
+      position: absolute;
+      left: 4px;
+      top: 10px;
+      font-size: 22px;
+      color: #9cd9dd;
     }
   }
 

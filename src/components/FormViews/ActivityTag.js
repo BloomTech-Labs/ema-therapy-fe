@@ -37,22 +37,28 @@ ActivityTag.propTypes = {
   isSelectedForEdit: PropTypes.bool.isRequired,
 };
 const Wrapper = styled.div`
+  .ant-tag-checkable,
+  .ant-tag-checkable-checked {
+    border-radius: 10px;
+    font-weight: 500;
+    text-align: center;
+    margin: 12px 7px;
+    outline: none;
+    padding: 9px 8px;
+    font-family: Fira Sans;
+    font-size: 14px;
+  }
+
   .ant-tag-checkable {
     background: #f3faf9;
-    border: 1px solid #c7e7e2;
-    border-radius: 10px;
-    color: ${styles.darkJungleGreen};
-    margin-bottom: 7px;
+    border: 2px solid #c7e7e2;
+    color: ${styles.tealGreen};
   }
 
   .ant-tag-checkable-checked {
     background: #f5f5f5;
-    border-radius: 10px;
-    font-size: 14px;
-    text-align: center;
     color: #9e9c9c;
     border: 1px solid transparent;
-    margin-bottom: 7px;
   }
 `;
 export default ActivityTag;

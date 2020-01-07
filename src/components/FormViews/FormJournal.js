@@ -15,19 +15,13 @@ function FormActivityJournal({
 }) {
   return (
     <>
-      <Icon
-        data-testid="back"
-        style={{
-          top: 30,
-          left: 25,
-          fontSize: 22,
-          color: '#9cd9dd',
-          position: 'absolute',
-        }}
-        type="left"
-        onClick={() => handleView('activities')}
-      />
-      <div className="header center">
+      <div className="header">
+        <Icon
+          className="back-btn"
+          data-testid="back"
+          type="left"
+          onClick={() => handleView('activities')}
+        />
         <p>
           What are you
           <br /> thinking?
