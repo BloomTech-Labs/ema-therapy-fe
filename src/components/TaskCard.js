@@ -1,12 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Icon, Button, Modal } from 'antd';
+import { useMutation } from '@apollo/react-hooks';
 import Card from './Card';
+import { useAuth } from '../utils/dataStore';
 import styles from '../styles/theme';
 import formatDate from '../utils/formatDate';
+import { removeTaskMutation, checkForUserAndGetMoodsQuery } from '../queries';
 
 const TaskCard = ({ task }) => {
-  const { completedAt, prompt, text, photoUrl } = task;
+  const { id, completedAt, prompt, text, photoUrl } = task;
+  const { user } = useAuth();
+
+  const [removeTask, { loading }] = useMutation(removeTaskMutation);
+
+  const deleteTask = (taskId) => {
+    removeTask({
+      variables: { id: taskId },
+      refetchQueries: [
+        {
+          query: checkForUserAndGetMoodsQuery,
+          variables: { email: user.email },
+        },
+      ],
+      awaitRefetchQueries: true,
+    });
+  };
+
   return (
     <StyledTaskCard>
       <div className="date-time">
@@ -17,6 +38,19 @@ const TaskCard = ({ task }) => {
         <h2 className="prompt">{prompt}</h2>
         {text && <p className="text">{text}</p>}
         {photoUrl && <img className="photo" src={photoUrl} alt="" />}
+      </div>
+      <div className="icons">
+        <Button
+          shape="circle"
+          onClick={() => {
+            console.log('id', id);
+            console.log('type of', typeof id);
+            deleteTask(id);
+          }}
+          // disabled={deleteLoading}
+        >
+          <Icon type="delete" />
+        </Button>
       </div>
     </StyledTaskCard>
   );
@@ -79,6 +113,18 @@ const StyledTaskCard = styled(Card)`
     .photo {
       width: 100%;
       margin-bottom: 10px;
+    }
+  }
+
+  .icons {
+    padding: 10px 25px 20px;
+    text-align: right;
+    .ant-btn {
+      margin: 0 6px;
+    }
+    .anticon {
+      color: ${styles.darkJungleGreen};
+      font-size: 18px;
     }
   }
 `;

@@ -130,3 +130,11 @@ export const editMoodMutation = gql`
     }
   }
 `;
+
+export const removeTaskMutation = gql`
+  mutation($id: String!) {
+    removeTask(id: $id) {
+      id
+    }
+  }
+`;
