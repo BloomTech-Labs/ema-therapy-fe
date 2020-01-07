@@ -62,7 +62,7 @@ export default Wheel;
 
 const styles = {
   size: '300px',
-  color: theme.tealGreen,
+  color: theme.rosyPink,
   borderSize: '5px',
   neutralColor: '#ffffff',
   spinningDuration: '4s',
@@ -79,7 +79,7 @@ const WheelWrapper = styled.div`
     font-size: 24px;
     color: ${theme.darkJungleGreen};
     margin: 0;
-    margin-bottom: 44px;
+    margin-bottom: 74px;
   }
 `;
 

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import PieIcon from './PieIcon';
+import styles from '../../styles/theme';
 
 const PieSlice = ({ sliceData }) => {
   return (
@@ -30,10 +31,13 @@ const PieSliceWrapper = styled.div`
 const PieP1 = styled.p`
   margin: 0;
   margin-top: 9px;
+  text-transform: capitalize;
+  color: ${styles.darkJungleGreen};
 `;
 
 const PieP2 = styled.p`
   margin: 0;
+  color: #b5b5b5;
 `;
 
 export default PieSlice;
