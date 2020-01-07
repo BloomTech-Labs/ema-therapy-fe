@@ -249,7 +249,7 @@ const StyledForm = styled.form`
     p {
       color: ${styles.darkJungleGreen};
       font-size: 21px;
-      font-weight: 500;
+      font-weight: 600;
       text-align: center;
       margin: 0 auto;
     }

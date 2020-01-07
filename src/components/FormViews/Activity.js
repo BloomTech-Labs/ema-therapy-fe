@@ -27,19 +27,6 @@ Activity.propTypes = {
 
 const ActivityButtonToggle = styled.div`
   display: inline-block;
-
-  .ant-tag {
-    padding: 5px;
-    margin-left: 18px;
-    margin-top: 27px;
-    outline: none;
-    padding: 9px 8px;
-    border-radius: 9px;
-    font-family: Fira Sans;
-    font-size: 14px;
-    line-height: 20px;
-    text-align: center;
-  }
 `;
 
 export default Activity;

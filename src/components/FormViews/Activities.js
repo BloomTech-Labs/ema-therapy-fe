@@ -8,6 +8,7 @@ import { activities, categories } from '../../utils/Activities';
 import Activity from './Activity';
 import NextButton from './NextButton';
 import Dots from '../ChartViews/Dots';
+import styles from '../../styles/theme';
 
 const Activities = ({ addActivities, handleView, activitiesToEdit }) => {
   const [type, setType] = useState('food');
@@ -103,7 +104,7 @@ const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* margin-top: 100px; */
+  margin-top: 22px;
 
   .carousel {
     width: 100%;
@@ -115,26 +116,25 @@ const TypeButton = styled.button`
   height: 50px;
   align-items: center;
   border: none;
-  border-bottom: 2px solid #595959;
   background-color: #fafdfc;
-  font-family: Fira Sans;
-  font-style: normal;
-  font-weight: 600;
   font-size: 14px;
-  line-height: 22px;
   text-align: center;
   outline: none;
-  color: #595959;
-  font-weight: ${(props) => (props.active ? '600' : 'normal')};
+  color: ${(props) =>
+    props.active ? styles.darkJungleGreen : 'rgba(12, 66, 59, 0.23)'};
+  font-weight: 600;
   border-bottom: ${(props) =>
-    props.active ? '2px solid #595959' : '1.5px solid lightgrey'};
+    props.active
+      ? `3px solid ${styles.brightYellow}`
+      : '1.5px solid lightgrey'};
   &:first-of-type {
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
 `;
 
 const ActivitiesWrapper = styled.div`
-  min-height: 400px;
+  min-height: 330px;
+  margin-top: 15px;
 `;
 
 export default Activities;
