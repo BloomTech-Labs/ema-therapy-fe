@@ -36,7 +36,7 @@ const MoodPie = ({ totalMoods }) => {
     ],
   };
   const options = {
-    cutoutPercentage: 90,
+    cutoutPercentage: 85,
     legend: {
       display: false,
       position: 'bottom',
