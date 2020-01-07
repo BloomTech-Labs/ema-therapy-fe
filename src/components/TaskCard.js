@@ -55,8 +55,13 @@ TaskCard.propTypes = {
     text: PropTypes.string,
     photoUrl: PropTypes.string,
   }).isRequired,
-  deleteTask: PropTypes.func.isRequired,
-  deleteLoading: PropTypes.bool.isRequired,
+  deleteTask: PropTypes.func,
+  deleteLoading: PropTypes.bool,
+};
+
+TaskCard.defaultProps = {
+  deleteTask: null,
+  deleteLoading: null,
 };
 
 export default TaskCard;
