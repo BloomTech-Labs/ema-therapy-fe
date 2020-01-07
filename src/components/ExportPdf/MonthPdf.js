@@ -60,7 +60,9 @@ function MonthPdf() {
 
     const doc = new jsPDF(orientation, unit, size);
 
-    const title = `${user.firstName} ${user.lastName}'s 30-Day Mood History`;
+    const title = !user.lastName
+      ? `${user.firstName}'s 30-Day Mood History`
+      : `${user.firstName} ${user.lastName}'s 30-Day Mood History`;
     const headers = [
       [
         'Date of Entry',
