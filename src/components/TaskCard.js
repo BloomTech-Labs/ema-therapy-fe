@@ -2,29 +2,24 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Icon, Button, Modal } from 'antd';
-import { useMutation } from '@apollo/react-hooks';
 import Card from './Card';
-import { useAuth } from '../utils/dataStore';
 import styles from '../styles/theme';
 import formatDate from '../utils/formatDate';
-import { removeTaskMutation, checkForUserAndGetMoodsQuery } from '../queries';
 
-const TaskCard = ({ task }) => {
+const TaskCard = ({ task, deleteTask }) => {
   const { id, completedAt, prompt, text, photoUrl } = task;
-  const { user } = useAuth();
 
-  const [removeTask, { loading }] = useMutation(removeTaskMutation);
+  const { confirm } = Modal;
 
-  const deleteTask = (taskId) => {
-    removeTask({
-      variables: { id: taskId },
-      refetchQueries: [
-        {
-          query: checkForUserAndGetMoodsQuery,
-          variables: { email: user.email },
-        },
-      ],
-      awaitRefetchQueries: true,
+  const showDeleteConfirm = () => {
+    confirm({
+      title: 'Are you sure you want to delete this task?',
+      okText: 'Yes',
+      okType: 'danger',
+      cancelText: 'No',
+      onOk() {
+        deleteTask(id);
+      },
     });
   };
 
@@ -43,9 +38,7 @@ const TaskCard = ({ task }) => {
         <Button
           shape="circle"
           onClick={() => {
-            console.log('id', id);
-            console.log('type of', typeof id);
-            deleteTask(id);
+            showDeleteConfirm();
           }}
           // disabled={deleteLoading}
         >
@@ -64,6 +57,7 @@ TaskCard.propTypes = {
     text: PropTypes.string,
     photoUrl: PropTypes.string,
   }).isRequired,
+  deleteTask: PropTypes.func.isRequired,
 };
 
 export default TaskCard;

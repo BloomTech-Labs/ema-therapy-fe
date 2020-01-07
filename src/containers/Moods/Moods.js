@@ -76,6 +76,7 @@ const Moods = () => {
             moodsToDisplay={moodsToDisplay}
             handleMoodsToDisplay={handleMoodsToDisplay}
             tasksToDisplay={tasksToDisplay}
+            handleTasksToDisplay={handleTasksToDisplay}
           />
         )}
       />

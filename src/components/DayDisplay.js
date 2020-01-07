@@ -5,7 +5,11 @@ import { Icon, message } from 'antd';
 import { useMutation } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../utils/dataStore';
-import { checkForUserAndGetMoodsQuery, removeMoodMutation } from '../queries';
+import {
+  checkForUserAndGetMoodsQuery,
+  removeMoodMutation,
+  removeTaskMutation,
+} from '../queries';
 import MoodCard from './MoodCard';
 import styles from '../styles/theme';
 import FormViews from './FormViews';
@@ -15,6 +19,7 @@ const DayDisplay = ({
   moodsToDisplay,
   handleMoodsToDisplay,
   tasksToDisplay,
+  handleTasksToDisplay,
 }) => {
   const { user } = useAuth();
   const history = useHistory();
@@ -24,6 +29,8 @@ const DayDisplay = ({
   const [removeMood, { loading: deleteLoading }] = useMutation(
     removeMoodMutation,
   );
+
+  const [removeTask, { loading }] = useMutation(removeTaskMutation);
 
   const deleteMood = (id) => {
     // run the delete mutation
@@ -67,6 +74,30 @@ const DayDisplay = ({
     // if status is cancel or anything else, do nothing
   };
 
+  // mutations for remove task
+
+  const deleteTask = (taskId) => {
+    removeTask({
+      variables: { id: taskId },
+      refetchQueries: [
+        {
+          query: checkForUserAndGetMoodsQuery,
+          variables: { email: user.email },
+        },
+      ],
+      awaitRefetchQueries: true,
+    })
+      .then(async (res) => {
+        // remove the deleted mood from state
+        await handleTasksToDisplay(
+          tasksToDisplay.filter((task) => task.id !== res.data.removeTask.id),
+        );
+      })
+      .catch(() => {
+        message.error('Error: Unable to delete task');
+      });
+  };
+
   useEffect(() => {
     // if moods are null or everything has been deleted, go back to the dashboard
     if (!moodsToDisplay || moodsToDisplay.length === 0) {
@@ -106,7 +137,9 @@ const DayDisplay = ({
           {tasksToDisplay &&
             tasksToDisplay
               .reverse()
-              .map((task) => <TaskCard key={task.id} task={task} />)}
+              .map((task) => (
+                <TaskCard deleteTask={deleteTask} key={task.id} task={task} />
+              ))}
         </div>
       )}
     </StyledMoodDisplay>
