@@ -39,12 +39,12 @@ ActivityTag.propTypes = {
 const Wrapper = styled.div`
   .ant-tag-checkable,
   .ant-tag-checkable-checked {
-    border-radius: 10px;
+    border-radius: 6px;
     font-weight: 500;
     text-align: center;
-    margin: 12px 7px;
+    margin: 7px 4px;
     outline: none;
-    padding: 9px 8px;
+    padding: 3px 4px;
     font-family: Fira Sans;
     font-size: 14px;
   }
@@ -58,7 +58,7 @@ const Wrapper = styled.div`
   .ant-tag-checkable-checked {
     background: #f5f5f5;
     color: #9e9c9c;
-    border: 1px solid transparent;
+    border: 2px solid transparent;
   }
 `;
 export default ActivityTag;
