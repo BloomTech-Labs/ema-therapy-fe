@@ -37,7 +37,7 @@ const SignUp = () => {
   const saveUserAndRedirect = (returnedUser) => {
     setUser(returnedUser);
     setIsAuthenticated(true);
-    history.push('/dashboard');
+    history.push('/entryform');
   };
 
   const handleSubmit = (e) => {

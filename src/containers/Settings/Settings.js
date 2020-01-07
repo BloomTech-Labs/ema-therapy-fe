@@ -95,9 +95,9 @@ const StyledSettings = styled.div`
   h1 {
     font-size: 24px;
     line-height: 30px;
-    padding: 20px 0;
+    padding: 20px 0 40px;
     font-weight: 600;
-    color: ${styles.tealGreen};
+    color: ${styles.darkJungleGreen};
   }
 
   .ant-switch-checked {
@@ -116,7 +116,7 @@ const StyledSettings = styled.div`
     font-size: 18px;
     font-weight: 500;
     margin: 0 0 10px;
-    color: ${styles.tealGreen};
+    color: ${styles.darkJungleGreen};
   }
 
   .setting-group__item {
@@ -126,7 +126,7 @@ const StyledSettings = styled.div`
     padding: 0 10px;
     display: flex;
     align-items: center;
-    margin-bottom: 6px;
+    margin-bottom: 12px;
     justify-content: space-between;
     color: white;
   }
