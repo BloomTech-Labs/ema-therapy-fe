@@ -71,7 +71,7 @@ function MoodGraph({ arrayOfDays }) {
           },
           display: true,
           type: 'category',
-          labels: ['Happy', 'Fine', 'Normal', 'Sad', 'Unhappy'],
+          labels: ['happy', 'fine', 'normal', 'sad', 'unhappy'],
         },
       ],
     },
