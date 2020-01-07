@@ -21,13 +21,13 @@ const DotsWrapper = styled.div`
   justify-content: center;
 `;
 const Dot = styled.div`
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 50px;
   width: 10px;
   height: 10px;
   margin: 5px;
   background: ${(props) =>
-    props.active === props.activegraph ? 'black' : 'transparent'};
+    props.active === props.activegraph ? '#D5EDE9' : '#F5F5F5'};
 `;
 
 export default Dots;

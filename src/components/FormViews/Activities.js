@@ -113,7 +113,7 @@ const InputWrapper = styled.div`
 
 const TypeButton = styled.button`
   width: 25%;
-  height: 50px;
+  height: 30px;
   align-items: center;
   border: none;
   background-color: #fafdfc;
@@ -124,9 +124,7 @@ const TypeButton = styled.button`
     props.active ? styles.darkJungleGreen : 'rgba(12, 66, 59, 0.23)'};
   font-weight: 600;
   border-bottom: ${(props) =>
-    props.active
-      ? `3px solid ${styles.brightYellow}`
-      : '1.5px solid lightgrey'};
+    props.active ? `3px solid ${styles.brightYellow}` : 'none'};
   &:first-of-type {
     margin-bottom: 10px;
   }
