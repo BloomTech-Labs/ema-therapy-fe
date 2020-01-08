@@ -5,6 +5,8 @@ import { useAuth } from '../../utils/dataStore';
 import StyledSignIn from './auth.styles';
 import splash from '../../assets/splash-image.png';
 import { postUser } from './axiosAuth/axios';
+import googleLogo from '../../assets/google.png';
+import { GOOGLE_BUTTON_REDIRECT } from '../../utils/config';
 
 const inputStyles = {
   fontSize: '16px',
@@ -64,7 +66,11 @@ const SignUp = () => {
           <br />
           Account
         </h2>
-        <img src={splash} alt="leaves" style={{ width: '100%' }} />
+        <img
+          src={splash}
+          alt="leaves"
+          style={{ width: '100%', marginTop: -40 }}
+        />
       </div>
 
       <div className="form-wrapper">
@@ -100,6 +106,15 @@ const SignUp = () => {
           />
           <Button loading={loading} className="btn signup" htmlType="submit">
             Sign Up
+          </Button>
+          <p className="or">or</p>
+          <Button className="btn google" href={GOOGLE_BUTTON_REDIRECT}>
+            <img
+              src={googleLogo}
+              alt="Google logo"
+              style={{ height: 24, marginRight: 18 }}
+            />
+            Sign in with Google
           </Button>
         </Form>
         <div className="account">
